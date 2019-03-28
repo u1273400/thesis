@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ -z "$1" ]
+then
+	/Users/u1273400/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code .
+else
+	/Users/u1273400/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code $1
+fi

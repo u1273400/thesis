@@ -1,0 +1,29 @@
+{
+    "host": "gaia.hud.ac.uk",
+    "port": 22,
+    "username": "john",
+<<<<<<< HEAD
+    "password": "Al4min4J",
+=======
+    "password": "k_-_monger",
+>>>>>>> 3ef68fb5b75bb45286846e57bc17926fa30d5ad1
+    "protocol": "sftp",
+    "agent": null,
+    "privateKeyPath": null,
+    "passphrase": null,
+    "passive": false,
+    "interactiveAuth": false,
+    "remotePath": "/home/john/Dropbox/rtmp/src/org",
+    "uploadOnSave": true,
+    "syncMode": "update",
+    "watcher": {
+        "files": false,
+        "autoUpload": false,
+        "autoDelete": false
+    },
+    "ignore": [
+        "**/.vscode/**",
+        "**/.git/**",
+        "**/.DS_Store"
+    ]
+}

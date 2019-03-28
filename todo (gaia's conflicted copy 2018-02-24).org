@@ -1,0 +1,221 @@
+#+TITLE:     gaia Main TODO
+#+AUTHOR:    John Alamina
+#+EMAIL:     John.alamina@hud.ac.uk
+#+DATE:      2017-11-10 Fri
+#+DESCRIPTION: Work Organiser.
+#+KEYWORDS:  Organiser, TODO list
+
+* TODO Today
+** TODO Graph,Parameter Estimation DM Notes
+** TODO Ensemble
+** TODO AndrewNG
+** DONE RNN Deng
+** DONE NMT
+** TODO Deepspeech
+** DONE Papers
+** TODO Wbibled
+* TODO FMLP3
+** DONE Day 1
+   CLOSED: [2017-12-09 Sat 01:43]
+
+*** DONE References
+    CLOSED: [2017-12-09 Sat 01:42]
+
+** TODO Day 2
+   SCHEDULED: <2017-11-27 Mon 18:19>
+
+*** DONE Any LDA
+    CLOSED: [2017-12-10 Sun 14:59]
+
+*** DONE Covariance method
+    CLOSED: [2017-12-10 Sun 14:59]
+
+*** TODO Logistic regression
+*** TODO NER implementation
+**** TODO NER Test data
+*** TODO Word2vec
+*** TODO W2vec implementation Appendix
+*** TODO Test SVG_LDA
+*** TODO Home
+**** TODO BT Calls
+** TODO Day 3 Linear & Logistic Regresion and PCA
+*** TODO Linear Regression
+*** TODO Logistic Regression
+*** TODO PCA
+
+1. [X] Geron 
+2. [] Mlearning
+3. [X] Marsland
+4. [] Challenge
+5. [] Compression, IPCA, KPCA copy
+6. [] ng PCA
+
+** TODO Day 4: Naive Bayes, K-Means, KNN
+*** TODO Naive bayes
+
+1. [] Marsland
+
+*** TODO K-means
+
+1. [X] Bishop
+2. [X] Marsland
+3. [] Lab Challenge
+4. [] Jurafsky (ASR Notes)
+
+*** TODO KNN
+
+1. [X] Mathmonk
+2. [] MLearning
+3. [] Doing DS
+4. [X] Geron
+5. [] ML Notes
+6. [] Challenge
+
+** TODO Day 5: Trees, SVM, Ensemble
+*** TODO Trees
+
+1. [X] Geron
+2. [X] ML Notes
+3. [] Mathmonk
+4. [] Marsland
+
+*** TODO Ensemble
+
+1. [] Geron Ch2 n 8
+2. [] Photocopy Random Trees & Bagging
+3. [] Geron Adaboost
+4. [] Geron Gradient Boost
+5. [] Geron Stacking
+
+*** TODO SVM
+
+1. [] Presentation
+2. [] Geron
+3. [] Andrew NG
+
+*** DONE No Challenge
+** TODO Projects
+*** Tola: MNet Distro
+**** DONE Stages
+     CLOSED: [2018-01-10 Wed 09:55]
+
+***** MicroPlanning
+****** Forcasting population for budgeting
+******* Activities
+
+1. Ministry of Health - introduce to LGA reps
+2. No of people
+3. No of household
+4. Household criteria >-> 4 people per household
+
+******* Problems
+
+1. Miss community
+2. 
+
+***** Distributing of Net Card
+****** Problems
+
+1. Hoarding cards
+
+**** TODO Code
+***** Preliminary Data form fields
+
+1. [] name
+2. [] ward
+3. [] LGA
+4. [] DP
+5. [] Mob
+6. [X] MobId
+7. [] FSize
+8. [] Coordinates
+
+* TODO NMT-OK
+** TODO X,Y inputs. size=batchsize*inputsize
+** TODO Training loop
+** TODO Decoder
+* TODO RNN LM Journal [%]
+** TODO References
+   DEADLINE: <2017-11-25 Sat>
+
+** TODO Introduction
+*** TODO Low res metrics
+** TODO Literature
+** DONE Methodology
+   CLOSED: [2017-12-10 Sun 15:24]
+
+[  ] LSTM papers 
+[  ] Udacity video
+
+** DONE Evaluation
+   CLOSED: [2017-12-09 Sat 01:49]
+
+1. [X] Calculatw perplexity
+2. [X] Perplexity for 3-gram method
+3. [X] perplexity for 5-gram method
+4. [  ] justify method
+
+*** procedure
+
+1. Clean data
+2. merge data
+3. train srilm
+4. evaluate perplexity
+5. determine how to generate text
+
+* TODO SCE WLB
+** DONE Modules Update
+   CLOSED: [2017-12-10 Sun 15:21] DEADLINE: <2017-11-26 Sun>
+
+** DONE Modules delete
+   CLOSED: [2017-12-10 Sun 15:22] DEADLINE: <2017-11-26 Sun>
+
+** DONE Routing ui
+   CLOSED: [2017-12-31 Sun 05:17]
+
+*** DONE Module search
+    CLOSED: [2018-01-25 Thu 17:33]
+
+** TODO Login
+** TODO Ask Jenny whether to prepopulate or not
+* TODO Wakirke
+** TODO Complete annotations
+   SCHEDULED: <2017-11-26 Sun>
+
+** TODO Docs complete
+* DONE Spaces DB
+** TODO Laravel vid
+** DONE Email Paul time sheet
+** DONE Connect to db
+   CLOSED: [2017-12-31 Sun 05:16]
+
+** DONE Tables
+   CLOSED: [2017-12-31 Sun 05:16]
+
+*** DONE Spaces
+    CLOSED: [2017-12-31 Sun 05:16]
+
+* TODO To read up
+** DONE Cbow - enote, pocket
+   CLOSED: [2017-12-31 Sun 05:15]
+
+** DONE ML pipeline - orgzly
+   CLOSED: [2017-12-31 Sun 05:15]
+
+** DONE W2vec - gdocs+video
+   CLOSED: [2017-12-31 Sun 05:15]
+
+** TODO Mikolov RNN Gdocs
+** TODO Deepseech
+** TODO Cross entropy loss
+** DONE RNN
+*** DONE Geron
+    CLOSED: [2018-01-25 Thu 17:32]
+
+*** DONE Deng
+    CLOSED: [2018-01-25 Thu 17:32]
+
+* TODO Projects
+** TODO Diacritics
+** TODO Speech Recognition
+** TODO Bible editor

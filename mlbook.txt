@@ -1,0 +1,499 @@
+<<<<<<< HEAD
+	   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+	     DAY 2: USING PYTHON & ML STACK(WORD VECTORS VS
+			      CBOW MODEL)
+
+
+			      John Alamina
+	   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+			     2017-11-10 Fri
+
+
+Table of Contents
+─────────────────
+
+1 Introduction
+2 DONE ML Pipeline
+.. 2.1 Framing the Problem
+.. 2.2 Get the data
+.. 2.3 Explore the data
+.. 2.4 Prepare the data
+.. 2.5 Short-list promising models
+.. 2.6 Fine tune the system
+.. 2.7 Present your solution
+.. 2.8 Launch
+3 DONE Feature Extraction vs Data Cleaning
+4 TODO Session Challenge Word Vectors vs Bag of Words
+
+
+1 Introduction
+══════════════
+
+  In today's laboratory, we will pick up exactly from where we left off
+  in laboratory session 1.  We will attempt to generalise the LDA
+  algorithm to accept a wider range of inputs and outputs.  The aim of
+  this generalisation is for the purpose of reusing our codes or aspects
+  of our codes for different sets of data.  Thereby creating a solution
+  for a range of problems rather than just a specific problem. To
+  perform this generalisation we need to jump a fair amount of hurdles.
+  Two of the challenges with Machine learning already encountered in the
+  previous lab are
+  1. The diversity of the data and
+  2. The consistency and integrity of the data
+
+  Ensuring that the data is in the appropriate format is no trivial
+  task. This task known as Data cleaning and normalisation required a
+  special conceptual framework that combines a sequence of steps into a
+  special Machine leaning pipeline. Hence to perform the task of
+  formatting, cleaning and validating data, it is necessary to
+  conceptualise a pipeline for preprocessing the data. A typical machine
+  learning pipeline is depicted in Figure [ref:fig-mlpipeline] below:
+
+
+2 DONE ML Pipeline
+══════════════════
+
+  The machine learning pipeline consists of the following tasks
+  1. Frame the problem looking at the bigger picture
+  2. Obtain the data in the formulated problem.
+  3. Explore the data to gain insights
+  4. Prepare the data to better expose the underlying data patterns to
+     Machine Learning algorithms
+  5. Explore many different models and short-list the best ones
+  6. Fine-tune your models and combine them to a great solution
+  7. Present your solution
+  8. Launch, monitor, maintain your system
+
+
+2.1 Framing the Problem
+───────────────────────
+
+  1. Define the objective in business terms
+  2. How will your solution be used?s
+  3. What are the current solutions/workarounds (if any)
+  4. How should this problem be framed (supervised/unsupervised,
+     online/offline, etc.
+  5. How should performance be measured?
+  6. Is the performance measure aligned with the busines objective?
+  7. What would be the minimum performance needed to reachthe business
+     objective?
+  8. What are the comparable problems?  Can you reuse experience/tools
+  9. Is human expertise available?
+  10. How would you solve the problem manually
+
+
+2.2 Get the data
+────────────────
+
+  1. List the data you ned and how much you need
+  2. Find and document where you can get that data
+  3. check how much space it will take
+  4. Check legal obligations and get authorisation if necessary
+  5. Get access authorisations
+  6. Create a workspace with enough storage
+  7. get the data
+  8. Convert the data to the format you can easily manipulate without
+     chainging the data itself
+  9. Ensure sensitive invormation is removed or protected
+  10. Sample a test set, and never look at it
+
+
+2.3 Explore the data
+────────────────────
+
+  1. Create a copy of the data for exploration (sampling it down to a
+     manageable size if necesssary)
+  2. Create a Jupyter notebook to keep record of your data exploration
+  3. Study each attribute and its characteristics ie.e
+     • name
+     • type (categorical/int/float/bounded/unbounded/text/structured etc
+     • any missing values
+     • Noisiness and type of noise (stochastic, outlier, rounding errors
+       etc)
+     • Type of distribution (gaussian, uniform, log, etc)
+  4. For supervised learning, identify target attributes (features)
+  5. Visualise the data
+  6. Study the correlations between attributes
+  7. Study how you would solve the problem manually
+  8. Identify the promising transformations you may want to apply
+  9. Identify extra data that would be useful
+  10. Document what you have learned
+
+
+2.4 Prepare the data
+────────────────────
+
+  1. Work on copies of the data (keep originals intact)
+  2. Write functions for all data transformations you apply for 5
+     reasons
+     1. So you can easily prepare the data
+     2. So you can apply these transformations in similar situations in
+        the future
+     3. to clean and prepare the test set
+     4. to clean and prepare instances once your solution is live
+     5. to make it easy to treat your preparation choices as
+        hyperparameters
+  3. Data Cleaning
+     • Fix or remove outliers if need be.
+     • Fill in missing values (with zero, mean, median) or drop rows or
+       columns
+  4. Feature selection (optional)
+     • Drop attributes that prodie no useful information for the task
+  5. Feature engineering where appropriate e.g.
+     • Descretise continuous features
+     • Decompose features (e.g. categorical, date/time, etc.)
+     • Add promising transformations of features (e.g., log(x), sqrt(x),
+       x^2, etc)
+     • Aggregate features into promising new features
+  6. Feature Scaling
+     • Standardise or normalise features
+
+
+2.5 Short-list promising models
+───────────────────────────────
+
+  If the data is large, you may want to sample smaller training sets so
+  you can train many different models in a reasonable time (be aware
+  that this penalises complex models such as large neural nets or random
+  forests).  Once again try to automate these steps as much as possible.
+  1. Train many quick and dirty models from different categories
+     (e.g. linear, naive bayes, SVM, random forests, neural nets etc.)
+     using standard parameters.
+  2. Measure and compare their performance: For each model, use N-fold
+     cross-validation and compute the mean and standard deviation of the
+     performance on the N-folds.
+  3. Analyse the most significant variables for each algorithm.
+  4. Analyse the types of errors the models make and proffer how such
+     errors can be avoided.
+  5. Have a quick round of feature selection and engineering
+  6. Have one or two more quick iterations of steps 1 to 5
+  7. Short list the top three to five most promising models, preferring
+     models that make different types of errors?
+
+
+2.6 Fine tune the system
+────────────────────────
+
+  1. You will want to use as much data as possible for this step,
+     especially as you move toward the end of fine-tuning.
+  2. Automate what you can
+  3. Fine-tune hyper parameters using cross-validation
+  4. Treat data transformation choices you are sure about as hyper
+     parameters
+  5. Unless there are very few hyper parameter values to explore, prefer
+     random search over grid search.  If training is very long, you may
+     prefer a Bayesian optimisation approach using Gaussian process
+     priors [https://goo.gl/PEFfGr] [cite:snoek2012practical]
+  6. Try Ensemble methods.  Combining your best models will often
+     perform better than running them individually.
+  7. Once you are confident about the final model, measre its
+     performance on the test set to estimate the generalisation error.
+
+
+2.7 Present your solution
+─────────────────────────
+
+  1. Document what you have done.
+  2. Create a presentation highlighting the big picture
+  3. Explain why your solution achieves the business objective
+  4. Present interesting points you learned along the way.  Describe
+     what worked and what did not. List the assumptions and system
+     limitations.
+  5. Use visualisation to communicate key findings. e.g. the median
+     income is the number one predictor of housing prices.
+
+
+2.8 Launch
+──────────
+
+  1. Plug in production data inputs, write unit tests etc.
+  2. Write monitoring code to check you system's live performance at
+     regular intervals and trigger alerts when it drops.
+     • Beware of slow degration as models tend to wrote as data eveloves
+     • Performance measurement may require crowd sourcing.
+     • Monitor inputs quality.
+  3. Retrain your models at regular basis on fresh data (automate as
+     much as possible)
+
+
+3 DONE Feature Extraction vs Data Cleaning
+══════════════════════════════════════════
+
+  Feature extraction and data cleaning could almost be used
+  interchangeably, however, there is a fine difference between the two.
+  While data cleaning is a procedural concept, feature engineering
+  requires skills acquistion by experience and experimentation. In other
+  words, data cleaning operations are mostly bye-products of the feature
+  engineering process. These feature engineering tips will be
+  highlighted as we walk through the data cleaning process.
+
+
+4 TODO Session Challenge Word Vectors vs Bag of Words
+═════════════════════════════════════════════════════
+
+  In tasks in which words are features, the bag-of-words model can be
+  used to create a feature vector when the number of features (words) is
+  not known in advance, with the assumption that their order is not
+  important. Each word is represented by a one-hot vector - a sparse
+  vector in the size of the vocabulary, with 1 in the entry representing
+  the word and 0 in all other entries. The bag-of-words feature vector
+  is the sum of all one-hot vectors of the words, and therefore has a
+  non-zero value for every word that occurred. In the weighted
+  variation, it is a weighted sum according to frequency or TF-IDF
+  scores.
+
+  Continuous bag-of-words (CBOW) is exactly the same, but instead of
+  using sparse vectors to represent words, it uses dense vectors
+  (continuous distributional "embeddings").  See (Mikolov et. al, 2013).
+=======
+	   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+	     DAY 2: USING PYTHON & ML STACK(WORD VECTORS VS
+			      CBOW MODEL)
+
+
+			      John Alamina
+	   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+			     2017-11-10 Fri
+
+
+Table of Contents
+─────────────────
+
+1 Introduction
+2 DONE ML Pipeline
+.. 2.1 Framing the Problem
+.. 2.2 Get the data
+.. 2.3 Explore the data
+.. 2.4 Prepare the data
+.. 2.5 Short-list promising models
+.. 2.6 Fine tune the system
+.. 2.7 Present your solution
+.. 2.8 Launch
+3 DONE Feature Extraction vs Data Cleaning
+4 TODO Session Challenge Word Vectors vs Bag of Words
+
+
+1 Introduction
+══════════════
+
+  In today's laboratory, we will pick up exactly from where we left off
+  in laboratory session 1.  We will attempt to generalise the LDA
+  algorithm to accept a wider range of inputs and outputs.  The aim of
+  this generalisation is for the purpose of reusing our codes or aspects
+  of our codes for different sets of data.  Thereby creating a solution
+  for a range of problems rather than just a specific problem. To
+  perform this generalisation we need to jump a fair amount of hurdles.
+  Two of the challenges with Machine learning already encountered in the
+  previous lab are
+  1. The diversity of the data and
+  2. The consistency and integrity of the data
+
+  Ensuring that the data is in the appropriate format is no trivial
+  task. This task known as Data cleaning and normalisation required a
+  special conceptual framework that combines a sequence of steps into a
+  special Machine leaning pipeline. Hence to perform the task of
+  formatting, cleaning and validating data, it is necessary to
+  conceptualise a pipeline for preprocessing the data. A typical machine
+  learning pipeline is depicted in Figure [ref:fig-mlpipeline] below:
+
+
+2 DONE ML Pipeline
+══════════════════
+
+  The machine learning pipeline consists of the following tasks
+  1. Frame the problem looking at the bigger picture
+  2. Obtain the data in the formulated problem.
+  3. Explore the data to gain insights
+  4. Prepare the data to better expose the underlying data patterns to
+     Machine Learning algorithms
+  5. Explore many different models and short-list the best ones
+  6. Fine-tune your models and combine them to a great solution
+  7. Present your solution
+  8. Launch, monitor, maintain your system
+
+
+2.1 Framing the Problem
+───────────────────────
+
+  1. Define the objective in business terms
+  2. How will your solution be used?s
+  3. What are the current solutions/workarounds (if any)
+  4. How should this problem be framed (supervised/unsupervised,
+     online/offline, etc.
+  5. How should performance be measured?
+  6. Is the performance measure aligned with the busines objective?
+  7. What would be the minimum performance needed to reachthe business
+     objective?
+  8. What are the comparable problems?  Can you reuse experience/tools
+  9. Is human expertise available?
+  10. How would you solve the problem manually
+
+
+2.2 Get the data
+────────────────
+
+  1. List the data you ned and how much you need
+  2. Find and document where you can get that data
+  3. check how much space it will take
+  4. Check legal obligations and get authorisation if necessary
+  5. Get access authorisations
+  6. Create a workspace with enough storage
+  7. get the data
+  8. Convert the data to the format you can easily manipulate without
+     chainging the data itself
+  9. Ensure sensitive invormation is removed or protected
+  10. Sample a test set, and never look at it
+
+
+2.3 Explore the data
+────────────────────
+
+  1. Create a copy of the data for exploration (sampling it down to a
+     manageable size if necesssary)
+  2. Create a Jupyter notebook to keep record of your data exploration
+  3. Study each attribute and its characteristics ie.e
+     • name
+     • type (categorical/int/float/bounded/unbounded/text/structured etc
+     • any missing values
+     • Noisiness and type of noise (stochastic, outlier, rounding errors
+       etc)
+     • Type of distribution (gaussian, uniform, log, etc)
+  4. For supervised learning, identify target attributes (features)
+  5. Visualise the data
+  6. Study the correlations between attributes
+  7. Study how you would solve the problem manually
+  8. Identify the promising transformations you may want to apply
+  9. Identify extra data that would be useful
+  10. Document what you have learned
+
+
+2.4 Prepare the data
+────────────────────
+
+  1. Work on copies of the data (keep originals intact)
+  2. Write functions for all data transformations you apply for 5
+     reasons
+     1. So you can easily prepare the data
+     2. So you can apply these transformations in similar situations in
+        the future
+     3. to clean and prepare the test set
+     4. to clean and prepare instances once your solution is live
+     5. to make it easy to treat your preparation choices as
+        hyperparameters
+  3. Data Cleaning
+     • Fix or remove outliers if need be.
+     • Fill in missing values (with zero, mean, median) or drop rows or
+       columns
+  4. Feature selection (optional)
+     • Drop attributes that prodie no useful information for the task
+  5. Feature engineering where appropriate e.g.
+     • Descretise continuous features
+     • Decompose features (e.g. categorical, date/time, etc.)
+     • Add promising transformations of features (e.g., log(x), sqrt(x),
+       x^2, etc)
+     • Aggregate features into promising new features
+  6. Feature Scaling
+     • Standardise or normalise features
+
+
+2.5 Short-list promising models
+───────────────────────────────
+
+  If the data is large, you may want to sample smaller training sets so
+  you can train many different models in a reasonable time (be aware
+  that this penalises complex models such as large neural nets or random
+  forests).  Once again try to automate these steps as much as possible.
+  1. Train many quick and dirty models from different categories
+     (e.g. linear, naive bayes, SVM, random forests, neural nets etc.)
+     using standard parameters.
+  2. Measure and compare their performance: For each model, use N-fold
+     cross-validation and compute the mean and standard deviation of the
+     performance on the N-folds.
+  3. Analyse the most significant variables for each algorithm.
+  4. Analyse the types of errors the models make and proffer how such
+     errors can be avoided.
+  5. Have a quick round of feature selection and engineering
+  6. Have one or two more quick iterations of steps 1 to 5
+  7. Short list the top three to five most promising models, preferring
+     models that make different types of errors?
+
+
+2.6 Fine tune the system
+────────────────────────
+
+  1. You will want to use as much data as possible for this step,
+     especially as you move toward the end of fine-tuning.
+  2. Automate what you can
+  3. Fine-tune hyper parameters using cross-validation
+  4. Treat data transformation choices you are sure about as hyper
+     parameters
+  5. Unless there are very few hyper parameter values to explore, prefer
+     random search over grid search.  If training is very long, you may
+     prefer a Bayesian optimisation approach using Gaussian process
+     priors [https://goo.gl/PEFfGr] [cite:snoek2012practical]
+  6. Try Ensemble methods.  Combining your best models will often
+     perform better than running them individually.
+  7. Once you are confident about the final model, measre its
+     performance on the test set to estimate the generalisation error.
+
+
+2.7 Present your solution
+─────────────────────────
+
+  1. Document what you have done.
+  2. Create a presentation highlighting the big picture
+  3. Explain why your solution achieves the business objective
+  4. Present interesting points you learned along the way.  Describe
+     what worked and what did not. List the assumptions and system
+     limitations.
+  5. Use visualisation to communicate key findings. e.g. the median
+     income is the number one predictor of housing prices.
+
+
+2.8 Launch
+──────────
+
+  1. Plug in production data inputs, write unit tests etc.
+  2. Write monitoring code to check you system's live performance at
+     regular intervals and trigger alerts when it drops.
+     • Beware of slow degration as models tend to wrote as data eveloves
+     • Performance measurement may require crowd sourcing.
+     • Monitor inputs quality.
+  3. Retrain your models at regular basis on fresh data (automate as
+     much as possible)
+
+
+3 DONE Feature Extraction vs Data Cleaning
+══════════════════════════════════════════
+
+  Feature extraction and data cleaning could almost be used
+  interchangeably, however, there is a fine difference between the two.
+  While data cleaning is a procedural concept, feature engineering
+  requires skills acquistion by experience and experimentation. In other
+  words, data cleaning operations are mostly bye-products of the feature
+  engineering process. These feature engineering tips will be
+  highlighted as we walk through the data cleaning process.
+
+
+4 TODO Session Challenge Word Vectors vs Bag of Words
+═════════════════════════════════════════════════════
+
+  In tasks in which words are features, the bag-of-words model can be
+  used to create a feature vector when the number of features (words) is
+  not known in advance, with the assumption that their order is not
+  important. Each word is represented by a one-hot vector - a sparse
+  vector in the size of the vocabulary, with 1 in the entry representing
+  the word and 0 in all other entries. The bag-of-words feature vector
+  is the sum of all one-hot vectors of the words, and therefore has a
+  non-zero value for every word that occurred. In the weighted
+  variation, it is a weighted sum according to frequency or TF-IDF
+  scores.
+
+  Continuous bag-of-words (CBOW) is exactly the same, but instead of
+  using sparse vectors to represent words, it uses dense vectors
+  (continuous distributional "embeddings").  See (Mikolov et. al, 2013).
+>>>>>>> 3ef68fb5b75bb45286846e57bc17926fa30d5ad1

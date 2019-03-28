@@ -1,0 +1,43 @@
+% Created 2018-01-11 Thu 09:01
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\author{John Alamina}
+\date{2017-11-10 Fri}
+\title{Literature}
+\hypersetup{
+  pdfkeywords={Recurrent Neural Networks, Long Short-term memory, Deep neural networks, Speech Recognition, Language Model, RNN, DNN, LSTM},
+  pdfsubject={Speech Recognition Conference Paper},
+  pdfcreator={Emacs 25.3.1 (Org mode 8.2.10)}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+Statistical speech recognition is made possible by breaking down an intractible probability distribution of words given acoustic data by applying Bayesian logic. The result of this simplification is a tractible two step procedure where the acoustic probability distribution is multiplied by the probability of words known as a language model cite:Young2007.  The probability distribution of words or language model which has been traditionally obtained by counting words and using the Markov chain simplification within a Maximum Likelihood Estimation framework.  Best performance of this framework known as the n-gram model is achieved using various smoothing techniques cite:chen1996empirical. 
+
+As computing power and availability of big data became more ubiquitous, the applications of neural network to more areas of research has been seen to be an alternative approach to conventional methods. In 2003, Bengio et.al. cite:bengio2003neural proposed a language model based on neural multi-layer perceptrons (MLPs). These MLP Language models resort to a distributed representation of all the words in the vocabulary such that the probability function of the word sequences are expressed in terms of these word-level vector representations. The result of the MLP-based language models was found to be in cases for models with large parameters performing better than the traditional n-gram models.
+
+Improvements over the MLPs still using neural networks over the next decade include works of Mikolov cite:mikolov2011empirical,cite:sutskever2014sequence,cite:luong2013better, involved the utilisation of deep neural networks for estimating word probabilities in a language modelling.  While a Multi-layer Perceptron consists of a single hidden layer in addition to the input and output layers.  A deep network has several hidden layers.  In addition, the probability distributions were either based upon word or sub-word models this time having representations which also conveyed some level of syntactic or morphological weights to aid in establishing word relationships.  These learned weights are referred to as token or unit embeddings.
+
+So far for neural network implementations seen, a large amount of data is required due to the nature of words to have large vocabularies even for medium-scale speech recognition applications.  Yoon Kim et. al. cite:kim2016character on the other hand took a different approach to Language modelling taking advantage of the long term sequence memory of Long-short-term memory cell Recurrent neural networks (LSTM-RNN) to rather model a language based on characters rather than on words.  This greatly reduced the number of parameters involved and therefore the complexity of implementation.  This method is particularly of interest to this article and forms the basis of the implementation described in this article due to the low resource constrains imposed when using a character-level Language model.
+
+Other low resource language modelling strategies employed for the purpose of speech recognition is demonstrated by cite:xu2013cross who developes a language model based on phrase-level linguistic mapping from a high resource language to a low resource language using a Probabilistic model implemented using a weighted finite state transducer (WFST). This method rather uses WFST rather than a neural network due to scarcity of training data required to develop a neural network method.
+
+The method employed in this article uses a character-based Neural network langauge model that employs an LSTM network similar to that of cite:kim2016character on the Okrika language which is a low resource language bearing in mind that the character level network will reduce the number of parameters required for training just enough to develop a working language model for the purpose of speech recognition.  The description of the data and procedure used to develop the language model is discussed in the next section.  The last two sections evaluates the results of the language model developed in this research.
+% Emacs 25.3.1 (Org mode 8.2.10)
+\end{document}

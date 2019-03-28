@@ -1,0 +1,34 @@
+#+TITLE:     Hud Uni Spaces Work Plan
+#+AUTHOR:    John Alamina
+#+EMAIL:     John.alamina@hud.ac.uk
+#+DATE:      2017-11-30 Thu
+#+DESCRIPTION: University of Huddersfield Spaces Management.
+#+KEYWORDS: 
+* TODO [0%] Hud Spaces Project Management
+** TODO [50%] Database Tables
+*** DONE 1. Building
+*** TODO 2. Spaces
+*** TODO 3. Usages
+*** DONE 4. Modules
+
+** TODO Data Migration
+1. [ ] Merge usages
+2. [ ] Migrate tables
+   1) [ ] Usages
+   2) [ ] Spaces
+
+** TODO Routing
+
+** TODO [%] Forms
+*** TODO 1. Building
+**** TODO [/] Fields
+1. [ ] 
+**** TODO [/] Data functions
+1. [X] Create
+2. [X] Read
+3. [X] Update
+4. [X] Delete
+5. [ ] Validation
+
+*** TODO 2. Work Plans
+

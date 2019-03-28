@@ -1,0 +1,13 @@
+* Welcome to beorg
+beorg is an Org-mode companion app for iOS. Tap me to show links to the Org-mode and Emacs websites.
+** Org-mode website
+http://www.orgmode.org
+** Emacs website
+https://www.gnu.org/software/emacs/
+* Dropbox
+To get the most out of beorg you should synchronize your org files using Dropbox. The current version of beorg is aimed at existing Org-mode users who use Org-mode on their computers.
+
+
+
+* Tap here to learn more about beorg
+<2017-12-08>

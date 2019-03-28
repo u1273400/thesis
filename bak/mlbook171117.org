@@ -1,0 +1,291 @@
+#+TITLE:     Faster Machine Learning for Programmers
+#+AUTHOR:    John Alamina
+#+EMAIL:     John.alamina@hud.ac.uk
+#+DATE:      2017-11-10 Fri
+#+DESCRIPTION: Introduction to Machine Learning for programmers.
+#+KEYWORDS: Machine Learning, Computer Science, Linear Algebra, Bayesian Statistics
+
+* Day 1: Introduction (LDA)
+** Introduction to Machine Learning
+*** Learning  (Marsland, 2009)
+
+Learning, consists of remembering, adapting and generalising (Marsland, 2009). It also includes reasoning and logical deduction.
+
+*** Machine Learning
+
+Making computers modify their actions so that the actions become more accurate.
+
+*** Types of Machine Learning
+**** Supervised:
+
+Learning from examples. Includes regression and classification. Spam detection of emails constitutes an example of a binary classification problem. Predicting stock prices is an example of a regression problem. 
+
+**** Unsupervised Learning:
+
+Classification by estimating features a.k.a density estimation. Density reduction can also be seen as an unsupervised problem. 
+
+**** Reinforcement:
+
+Reward based learning
+
+**** Evolutionary Learning:
+
+Fitness on the goodness of the solution
+
+*** Properties of a Good Machine Learning System
+
+1. Features Extraction or Feature engineering
+2. Occam's Razor: The simplest classifier is more likely to generalise i. e.
+3. Does not overfit data with high variance
+4. Unbiased i.e. Doesn't underfit the data 
+
+*** Machine Learning Pipeline
+**** ML Pipeline figure
+** Python Basics
+
+Having gone through some of the formal Machine learning literature,  Let's now move to the more exciting stuff. One of the major features of the python programming language is the inherent datastructures such as lists that are first class types in the python language.  It is this feature, I hypothize, that has possibly made python a forerunner in scientific applications that are data intensive. Let's talk a bit more about python and it's intrinsics types.
+
+*** DONE Python types and basic syntax
+**** Getting output using print
+
+#+BEGIN_SRC python
+print("hello world")
+print("first value:", 1,"nice one")
+#+END_SRC
+
+**** Working with variables
+
+#+BEGIN_SRC python
+# assign 4 to the variable x
+x = 1         # x is an integer
+x = 'hello'   # now x is a string
+x = [1, 2, 3] # now x is a list
+print("x =", x)
+#+END_SRC
+
+**** In python everything is an object
+
+#+BEGIN_SRC python
+L = [1, 2, 3]
+L.append(100)
+print(L)
+x = 4.5
+print(x.real, "+", x.imag, 'i')
+x = 4.5
+x.is_integer()
+#+END_SRC
+
+**** Simple Types
+
+| Type     | Example   | Description                                                 |
+|----------+-----------+-------------------------------------------------------------|
+| int      | x = 1     | integers (i.e., whole numbers                               |
+| float    | x = 1.0   | floating point numbers (i.e., real numbers                  |
+| complex  | x = 1+2j  | Complex numbers (i.e. numbers with real and imaginary parts |
+| bool     | x = True  | Boolean: true or false values                               |
+| str      | x = 'abc' | String: characters or text                                  |
+| NoneType | x = None  | Special object indicating nulls.                            |
+
+**** Built in Data Structures
+
+| Type Name | Example               | Description                           |
+|-----------+-----------------------+---------------------------------------|
+| List      | [1, 2, 3]             | Ordered collection                    |
+| tuple     | (1, 2, 3)             | Immutable ordered collection          |
+| dict      | {'a':1, 'b':2, 'c':3} | unordered (key,value) pairs           |
+| set       | {1,2,3}               | Unordered collection of unique values |
+
+*** TODO Operations on Built in types
+
+In this section we take a brief look at some common examples operations on built in data structures. A comprehensive quick reference guide for python can be found here [[rgruet.free.fr/PQR27/PQR2.7.html][Python Quick Reference]]
+
+*** Python Copntrol Structures
+
+It is important to note that Control or block structure in python is demarkated using indentation.  Therefore, functions and control statements can be identified by their indentation levels.  The code snippen below shows an example of this indentation syntax.
+
+**** Example Prime Numbers
+
+The example below outputs prime numbers from 0 to nmax which in the snippet below nmax=30.
+
+#+BEGIN_SRC python
+L = []
+nmax = 30
+
+for n in range(2, nmax):
+    for factor in L:
+        if n % factor == 0:
+            break
+    else: # no break
+        L.append(n
+
+In the above example we can see that there is a nested-for-loop within which is an if statement.
+
+** TODO Linear Algebra Review
+*** Vectors and Matrices
+
+In programming we have the concept of n-dimensional arrays. Arrays are sets of ordered numbers i.e. a collection of numbers in a strict order such that each constituting number element can be accessed given it's unique index.  This concept was taken directly from linear algebra where a vector is a 1-dimensional array while an matrix is a 2-dimensional array.
+
+Note that in some programming languages such as python we start counting the index of the elements from zero while in linear algebra the first index count is one.
+
+**** Matrix representation
+
+Below is an example of a matrix A
+$$ A=\begin{bmatrix}234 & 292 \\444 & 422 \\999 & 846 \end{bmatrix} $$
+The above matrix referred to as matrix A and it has 3 rows and 2 columns.  We normally refer to the rows first then the columns therefore it is a 3 by 2 or 3 x 2 matrix.  Notationally this is $ \mathbb{R}^{3x2} $ where the number or rows and the number of columns are the dimensions of the matrix
+
+Also observe in the matrix A the following elements given by the identified by their indices as follows:
+$$
+\begin{matrix}
+A_{11} & = & 234 \\
+A_{12} & = & 292 \\
+A_{32} & = & 846
+\end{matrix}
+$$
+$A_{ij}$ is the "i,j entry" in the $i^{th}$ row and $j^{th}$ column.
+
+**** Vector representation
+*** Linear Algebra Operations
+**** Transposition
+**** Matrix Addition and Subtraction
+***** Properties
+
+- Must have the same dimension
+
+**** Scalar Multiplication
+**** Scalar Product
+
+- Pair-wise Multiplication
+- Also known as scalar product or dot product
+
+**** Matrix Vector Product
+
+- Scalar product is a special form of a matrix vector product.
+
+**** Matrix Matrix Multiplication
+***** Properties
+
+1. Associative (AB)C=A(BC)
+2. Not commutative AB!=Basics
+
+**** Identity matrix
+**** Inverse Matrix
+**** Euclidean Norms
+*** Linear Algebra using Python
+** TODO Session Challenge: Linear Discriminant Analysis
+
+http://www.saedsayad.com/lda.htm
+
+Linear Discriminant Analysis (LDA) is a classification method originally developed in 1936 by R. A. Fisher. It is simple, mathematically robust and often produces models whose accuracy is as good as more complex methods.
+
+*** Algorithm
+
+LDA is based upon the concept of searching for a linear combination of variables (predictors) that best separates two classes (targets). To capture the notion of separability, Fisher defined the following score function.
+[[./LDA_score.png]]
+
+Given the score function, the problem is to estimate the linear coefficients that maximize the score which can be solved by the following equations.
+
+One way of assessing the effectiveness of the discrimination is to calculate the Mahalanobis distance between two groups. A distance greater than 3 means that in two averages differ by more than 3 standard deviations. It means that the overlap (probability of misclassification) is quite small.
+
+Finally, a new point is classified by projecting it onto the maximally separating direction and classifying it as C1 if:
+
+*** Example:
+
+Suppose we received a dataset from a bank regarding its small business clients who defaulted (red square) and those that did not (blue circle) separated by delinquent days (DAYSDELQ) and number of months in business (BUSAGE). We use LDA to find an optimal linear model that best separates two classes (default and non-default).
+ 
+The first step is to calculate the mean (average) vectors, covariance matrices and class probabilities.
+
+Then, we calculate pooled covariance matrix and finally the coefficients of the linear model.
+
+A Mahalanobis distance of 2.32 shows a small overlap between two groups which means a good separation between classes by the linear model.
+
+*** Predictors Contribution
+
+A simple linear correlation between the model scores and predictors can be used to test which predictors contribute significantly to the discriminant function. Correlation varies from -1 to 1, with -1 and 1 meaning the highest contribution but in different directions and 0 means no contribution at all. 
+
+* TODO Day 2: Using Python & ML Stack(word vectors)
+** Feature Extraction vs Data Cleaning
+
+Feature extraction and data cleaning could almost be used interchangeably, however, there is a fine difference between the two.  While data cleaning is a procedural concept, feature engineerin requires skills acquistion by experience and experimentation. In other words, data cleaning operations are mostly bye-products of the feature engineering process. These feature engineering tips will be highlighted as we walk through the data cleaning process.
+
+* TODO Day 3: Linear & Logistic regression (PCA)
+* TODO Day 4: Naive Bayes and K nearest neighbours (k means)
+* TODO Day 5: Classification & regression trees & SVM(advanced topics)
+* Appendix
+** Appendix I
+*** Frequently Asked Questions
+**** What is FMLP-Cubed?
+
+Faster Machine Learning for Programmers and Professionals with Python (FMLP3), is an intensive online course that uses a unique method to get programmers and professionals quickly started with Machine Learning using the Python Machine Learning platform.  This commercialised version is streamlined and focused on this methodology and because it's just a 5 day intensive not all the topics in machine learning are covered but a working knowledge of python applied to data science is assured.  If your interested, PM me and I shall get you set up.
+
+**** Mode of Delivery and Assessment
+
+This is the interesting part.  Each participant will have his/her 
+own ML project that he will be working on through out the course.  Each day will have a 2-3 hour online webinar where programming walkthroughs will be provided.  These recipes can be used to implement daily assignments that would need to be ready before the next class.  Each session will have elements that can be used in the individual's personal project and the group project.  Assessment will be based on satisfactory completion of daily assignments and group projects.  A whatsapp group will be used at the group level to discuss assignment and group projects and will be open for discussions 24/7 subject to everyones availability.
+
+At the end of the course, the participants are to have 2 working ML projects along with mini projects completed with assignments.  Lecture notes and Materials will be sent over via email or group chat.  
+
+**** Course Requisites
+
+The course is a commercial version of an advanced python course in machine learning I have been teaching Post Graduate Computer Science students. The course became quite popular some tutors from other departments started joining the course.  This course therefore is not for novices. The course assumes you already have a working knowledge of basic programming concepts such as loops, arrays and classes as well as a working knowledge of basic calculus.  In addition, as this course is an online course, participants will be required to have  a solid internet connection during webinars and fairly good internet for group chats.  Also to facilitate online support it is advised to have TeamViewer(R) installed on your computer.
+
+**** What does FMLP3 cover?
+
+This introductory datascience course covers python basics and fundamental machine learning algorithms that form the building blocks of Machine Learning techniques used in industry practice.
+- Introduction to ML and Linear Algebra (LDA)
+- Using Python & ML Stack (word vectors)
+- Linear & Logistic regression (PCA)
+- Naive Bayes and K nearest neighbours (k means)
+- Classification & regression trees & SVM(ensemble & advanced methods introduction)
+
+**** FMLP3 Duration
+
+FMLP3 is a Five-day intensive course that can span over 5 weeks or 5 days.
+
+**** FMLP3 Cost and Payment
+
+Pay NGN45,000 to:
+Iyalla John Alamina
+FBN: 3024252015
+
+**** Current session schedule
+
+Start Date Schedule: Monday 27 Nov 2017, 11am - 2pm (NGR time for 5 weeks subject to rescheduling due to availability)
+Registration end Date: Fri 24 Nov 2017
+
+** Appendix II
+
+[[./fmlp3.PNG]]
+
+*** Assignment 0: Welcome & System Setup
+
+Hello and welcome to this course Faster Machine Learning for Programmers and Professionals using python.  The essence of this taster session is to get you up and running with your machine learning environment.  It is this environment that all our work is to get done in.  This python/scripting environment is a free cloud environment known as azure notebooks which is Microsoft's Jupyter notebooks cloud computing platform.  Before we dive into this platform a little note about python and Jupyter notebooks.
+
+**** Ways to Run Python
+
+There are four ways in which to run python on your computer.  The four ways are listed below.
+1. Executing a Python Script
+2. The Python script Shell
+3. The interactive python shell
+4. Jupyter notebooks
+
+The first method is done using the 'python' command to execute a previously edited python script file.  This can also be achieved if you are using a python integrated developer environment such as active python or pycharm by JetBrains.
+
+The remaining methods include interactive methods of using python so that results of commands can be seen simultaneously at time of writing just by pressing enter.  As we shall see, items 2 to 4 are with increasing order of interactivity and nifty features.  So the interactive python shell has more features than the python script shell and the Jupyter notebooks has the most features integrating a web interface IDE along with interactive shell features into one environment.  The Jupyter notebooks is fast becoming the defacto standard  used by the science and technology community to share computation-intensive knowledge to a wide range of audiences.  Jupyter Notebooks is therefore the method we will be adopting to perform machine learning using the azure notebooks cloud platform and the python machine learning stack.
+
+**** Steps to setup Azure Notebooks
+
+1. On any web browser, log on to [[notebooks.azure.com]] using your Microsoft(R) passport or register a new Microsoft account if you don't have one to log on with.
+2. Create A new Library within your Azure notebooks cloud environment.
+3. Open the newly created library and upload the 'pythintro.ipynb' file that came with this laboratory assignment.
+4. Open the 'pythintro.ipynb' ipython notebook file and run the interactive code step-by-step using the 'play' button located on the tool bar at the top within the browser.
+
+*** A brief History of Jupyter Notebooks
+
+There may be a little bit of confusion with the 'ipynb' file because sometimes we refer to it as an ipython notebook file and at other times we refer to it as a Jupyter notebook file.  They are one and the same thing.  Initially the kernel for ipython notebooks supported the python interpreter only.  However, the developers were able to develop methods of adding other computer languages into the platform hence the change of name from ipython notebooks to jupyter notebooks.  Note also that the ipython notebook files is not the same thing as the interactive python (ipython) shell. Ipython notebook files or jupyter notebook files can only be run on the Jupyter notebook environment.
+
+*** Session Challenge: Setting up Jupyter Notebooks on your system
+
+It is possible to run ipython notebook on your computer without having to use cloud computing.  However the process of setting up can be quite involving.  Fire up a browser and navigate to [[www.firstpythonnotebook.org]] and follow the instructions up to the end of chapter 2 in order to install jupyter notebooks to your local computer or laptop.
+
+We have now come to the end of this laboratory assignment.  Hopefully you have been able to create a notebooks.azure.com account and run your first ipython notebook.  In the sessions to come we shall be using this environment to create Machine Learning programs to work on big Data.  All the assignments shall be performed from this envinronment as well.  Stay Tuned!
+

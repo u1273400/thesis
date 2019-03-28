@@ -1,0 +1,1545 @@
+<<<<<<< HEAD
+@article{fosler1998,
+	author={Eric Fosler-Lussier},
+	year={1998},
+	title={Markov models and hidden Markov Models: a brief tutorial},
+	journal={International Computer Science Institute},
+	url={https://pdfs.semanticscholar.org/b328/2eb0509442b80760fea5845e158168daee62.pdf}
+}
+@book{hori2013,
+	author={Takaaki Hori and Atsushi Nakamura},
+	year={2013},
+	title={Speech Recognition Algorithms based on Weighted Finite-State Transducers},
+	publisher={Morgan & Claypool Publishers},
+	address={San Rafael},
+	edition={1},
+	abstract={This book introduces the theory, algorithms, and implementation techniques for efficient decoding in speech recognition mainly focusing on the Weighted Finite-State Transducer (WFST) approach. The decoding process for speech recognition is viewed as a search problem whose goal is to find a sequence of words that best matches an input speech signal. Since this process becomes computationally more expensive as the system vocabulary size increases, research has long been devoted to reducing the computational cost. Recently, the WFST approach has become an important state-of-the-art speech recognition technology, because it offers improved decoding speed with fewer recognition errors compared with conventional methods. However, it is not easy to understand all the algorithms used in this framework, and they are still in a black box for many people. In this book, we review the WFST approach and aim to provide comprehensive interpretations of WFST operations and decoding algorithms to help anyone who wants to understand, develop, and study WFST-based speech recognizers. We also mention recent advances in this framework and its applications to spoken language processing. Table of Contents: Introduction / Brief Overview of Speech Recognition / Introduction to Weighted Finite-State Transducers / Speech Recognition by Weighted Finite-State Transducers / Dynamic Decoders with On-the-fly WFST Operations / Summary and Perspective; This book introduces the theory, algorithms, and implementation techniques for efficient decoding in speech recognition mainly focusing on the Weighted Finite-State Transducer (WFST) approach. The decoding process for speech recognition is viewed as a search problem whose goal is to find a sequence of words that best matches an input speech signal. Since this process becomes computationally more expensive as the system vocabulary size increases, research has long been devoted to reducing the computational cost. Recently, the WFST approach has become an important state-of-the-art speech recognition technology, because it offers improved decoding speed with fewer recognition errors compared with conventional methods. However, it is not easy to understand all the algorithms used in this framework, and they are still in a black box for many people. In this book, we review the WFST approach and aim to provide comprehensive interpretations of WFST operations and decoding algorithms to help anyone who wants to understand, develop, and study WFST-based speech recognizers. We also mention recent advances in this framework and its applications to spoken language processing.},
+	isbn={9781608454730},
+	language={English}
+}
+@inproceedings{allauzen2007,
+	author={Cyril Allauzen and Michael Riley and Johan Schalkwyk and Wojciech Skut and Mehryar Mohri},
+	year={2007},
+	title={OpenFst: A general and efficient weighted finite-state transducer library},
+	booktitle={International Conference on Implementation and Application of Automata},
+	publisher={Springer},
+	pages={11-23},
+	url={http://www.stringology.org/event/CIAA2007/pres/Tue2/Riley.pdf}
+}
+@inproceedings{lee2009,
+	author={Akinobu Lee and Tatsuya Kawahara},
+	year={2009},
+	title={Recent development of open-source speech recognition engine julius},
+	booktitle={Proceedings: APSIPA ASC 2009: Asia-Pacific Signal and Information Processing Association, 2009 Annual Summit and Conference},
+	publisher={Asia-Pacific Signal and Information Processing Association, 2009 Annual Summit and Conference, International Organizing Committee},
+	pages={131-137},
+	url={http://eprints.lib.hokudai.ac.jp/dspace/bitstream/2115/39653/1/MP-SS1-3.pdf}
+}
+@inproceedings{sainath2013,
+	author={Tara N. Sainath and Abdel-rahman Mohamed and Brian Kingsbury and Bhuvana Ramabhadran},
+	year={2013},
+	title={Deep convolutional neural networks for LVCSR},
+	publisher={IEEE},
+	pages={8614-8618},
+	abstract={Convolutional Neural Networks (CNNs) are an alternative type of neural network that can be used to reduce spectral variations and model spectral correlations which exist in signals. Since speech signals exhibit both of these properties, CNNs are a more effective model for speech compared to Deep Neural Networks (DNNs). In this paper, we explore applying CNNs to large vocabulary speech tasks. First, we determine the appropriate architecture to make CNNs effective compared to DNNs for LVCSR tasks. Specifically, we focus on how many convolutional layers are needed, what is the optimal number of hidden units, what is the best pooling strategy, and the best input feature type for CNNs. We then explore the behavior of neural network features extracted from CNNs on a variety of LVCSR tasks, comparing CNNs to DNNs and GMMs. We find that CNNs offer between a 13-30% relative improvement over GMMs, and a 4-12% relative improvement over DNNs, on a 400-hr Broadcast News and 300-hr Switchboard task.},
+	isbn={1520-6149},
+	language={English},
+	doi={10.1109/ICASSP.2013.6639347}
+}
+@inproceedings{huang2013,
+	author={Chien-Lin Huang and Paul R. Dixon and Shigeki Matsuda and Youzheng Wu and Xugang Lu and Masahiro Saiko and Chiori Hori},
+	year={2013},
+	title={The NICT ASR system for IWSLT 2013},
+	booktitle={Proc. Int. Workshop Spoken Language Translation},
+	url={http://www.academia.edu/download/42779114/The_NICT_ASR_System_for_IWSLT_201320160217-14104-8xtjcv.pdf}
+}
+@inbook{clark2010,
+	author={Alexander Clark and Chris Fox and Shalom Lappin},
+	year={2010},
+	title={Speech Recognition},
+	publisher={Wileyâ€Blackwell},
+	address={Oxford, UK},
+	pages={297-332},
+	abstract={This chapter contains sections titled: Introduction Acoustic Modeling Search Case Study: The AMI System Current Topics Conclusions Notes},
+	isbn={1405155817},
+	language={English},
+	doi={10.1002/9781444324044.ch12}
+}
+@inproceedings{gopinath1998,
+	author={R. A. Gopinath},
+	year={1998},
+	title={Maximum likelihood modeling with Gaussian distributions for classification},
+	volume={2},
+	pages={664 vol.2},
+	abstract={Maximum likelihood (ML) modeling of multiclass data for classification often suffers from the following problems: (a) data insufficiency implying overtrained or unreliable models, (b) large storage requirement, (c) large computational requirement and/or (d) the ML is not discriminating between classes. Sharing parameters across classes (or constraining the parameters) clearly tends to alleviate the first three problems. We show that in some cases it can also lead to better discrimination (as evidenced by reduced misclassification error). The parameters considered are the means and variances of the Gaussians and linear transformations of the feature space (or equivalently the Gaussian means). Some constraints on the parameters are shown to lead to linear discrimination analysis (a well-known result) while others are shown to lead to optimal feature spaces (a relatively new result). Applications of some of these ideas to the speech recognition problem are also given.},
+	isbn={1520-6149},
+	language={English},
+	url={http://www.research.ibm.com/people/r/rameshg/gopinath-slt98.pdf},
+	doi={10.1109/ICASSP.1998.675351}
+}
+@inproceedings{mikolov2010,
+	author={Tomas Mikolov and Martin Karafit and Lukas Burget and Jan Cernock and Sanjeev Khudanpur},
+	year={2010},
+	title={Recurrent neural network based language model.},
+	booktitle={Interspeech},
+	volume={2},
+	pages={3},
+	url={http://www.fit.vutbr.cz/research/groups/speech/servite/2010/rnnlm_mikolov.pdf}
+}
+@inproceedings{evermann2000,
+	author={Gunnar Evermann and P. C. Woodland},
+	year={2000},
+	title={Posterior probability decoding, confidence estimation and system combination},
+	booktitle={Proc. Speech Transcription Workshop},
+	publisher={Baltimore},
+	volume={27},
+	pages={78},
+	url={http://mi.eng.cam.ac.uk/~ge204/papers/stw00-slides.pdf}
+}
+@inproceedings{fiscus1997,
+	author={Jonathan G. Fiscus},
+	year={1997},
+	title={A post-processing system to yield reduced word error rates: Recognizer output voting error reduction (ROVER)},
+	booktitle={Automatic Speech Recognition and Understanding, 1997. Proceedings., 1997 IEEE Workshop on},
+	publisher={IEEE},
+	pages={347-354},
+	url={https://www.dropbox.com/s/0we6bu82fy4grhp/Rover.pdf?dl=0}
+}
+@inproceedings{dahl2011,
+	author={George E. Dahl and Dong Yu and Li Deng and Alex Acero},
+	year={2011},
+	title={Large vocabulary continuous speech recognition with context-dependent DBN-HMMS},
+	pages={4688-4691},
+	abstract={The context-independent deep belief network (DBN) hidden Markov model (HMM) hybrid architecture has recently achieved promising results for phone recognition. In this work, we propose a context-dependent DBN-HMM system that dramatically outperforms strong Gaussian mixture model (GMM)-HMM baselines on a challenging, large vocabulary, spontaneous speech recognition dataset from the Bing mobile voice search task. Our system achieves absolute sentence accuracy improvements of 5.8% and 9.2% over GMM-HMMs trained using the minimum phone error rate (MPE) and maximum likelihood (ML) criteria, respectively, which translate to relative error reductions of 16.0% and 23.2%.},
+	isbn={1520-6149},
+	language={English},
+	doi={10.1109/ICASSP.2011.5947401}
+}
+@article{dahl2012,
+	author={G. E. Dahl and Dong Yu and Li Deng and A. Acero},
+	year={2012},
+	title={Context-Dependent Pre-Trained Deep Neural Networks for Large-Vocabulary Speech Recognition},
+	journal={IEEE Transactions on Audio, Speech, and Language Processing},
+	volume={20},
+	number={1},
+	pages={30-42},
+	abstract={We propose a novel context-dependent (CD) model for large-vocabulary speech recognition (LVSR) that leverages recent advances in using deep belief networks for phone recognition. We describe a pre-trained deep neural network hidden Markov model (DNN-HMM) hybrid architecture that trains the DNN to produce a distribution over senones (tied triphone states) as its output. The deep belief network pre-training algorithm is a robust and often helpful way to initialize deep neural networks generatively that can aid in optimization and reduce generalization error. We illustrate the key components of our model, describe the procedure for applying CD-DNN-HMMs to LVSR, and analyze the effects of various modeling choices on performance. Experiments on a challenging business search dataset demonstrate that CD-DNN-HMMs can significantly outperform the conventional context-dependent Gaussian mixture model (GMM)-HMMs, with an absolute sentence accuracy improvement of 5.8% and 9.2% (or relative error reduction of 16.0% and 23.2%) over the CD-GMM-HMMs trained using the minimum phone error rate (MPE) and maximum-likelihood (ML) criteria, respectively.},
+	isbn={1558-7916},
+	language={English},
+	doi={10.1109/TASL.2011.2134090}
+}
+@inproceedings{giuliani2007,
+	author={Diego Giuliani and Fabio Brugnara},
+	year={2007},
+	title={Experiments on cross-system acoustic model adaptation},
+	booktitle={Automatic Speech Recognition & Understanding, 2007. ASRU. IEEE Workshop on},
+	publisher={IEEE},
+	pages={117-122}
+}
+@inproceedings{stker2006,
+	author={Sebastian Stker and Christian Fgen and Susanne Burger and Matthias Wlfel},
+	year={2006},
+	title={Cross-system adaptation and combination for continuous speech recognition: the influence of phoneme set and acoustic front-end.},
+	booktitle={INTERSPEECH},
+	url={http://www.academia.edu/download/40636754/intercross_speech_recog.pdf}
+}
+@article{ristad1998,
+	author={Eric Sven Ristad and Peter N. Yianilos},
+	year={1998},
+	title={Learning string-edit distance},
+	journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+	volume={20},
+	number={5},
+	pages={522-532},
+	url={https://arxiv.org/pdf/cmp-lg/9610005}
+}
+@inproceedings{woodland1995,
+	author={P. C. Woodland and C. J. Leggetter and J. J. Odell and V. Valtchev and S. J. Young},
+	year={1995},
+	title={The 1994 HTK large vocabulary speech recognition system},
+	volume={1},
+	pages={76 vol.1},
+	abstract={This paper describes recent work on the HTK large vocabulary speech recognition system. The system uses tied-state cross-word context-dependent mixture Gaussian HMMs and a dynamic network decoder that can operate in a single pass. In the last year the decoder has been extended to produce word lattices to allow flexible and efficient system development, as well as multi-pass operation for use with computationally expensive acoustic and/or language models. The system vocabulary can now be up to 65 k words, the final acoustic models have been extended to be sensitive to more acoustic context (quinphones), a 4-gram language model has been used and unsupervised incremental speaker adaptation incorporated. The resulting system gave the lowest error rates on both the H1-P0 and H1-C1 hub tasks in the November 1994 ARPA CSR evaluation.},
+	isbn={1520-6149},
+	language={English},
+	url={https://www.researchgate.net/profile/Steve_Young3/publication/3618394_The_1994_HTK_large_vocabulary_speech_recognition_system/links/02e7e51e53b39a94f9000000.pdf},
+	doi={10.1109/ICASSP.1995.479276}
+}
+@inproceedings{deng2011,
+	author={Li Deng},
+	year={2011},
+	title={An overview of deep-structured learning for information processing},
+	booktitle={Proceedings of Asian-Pacific Signal & Information Processing Annual Summit and Conference (APSIPA-ASC)},
+	url={https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/DENG-APSIPA.pdf}
+}
+@inproceedings{lee1996,
+	author={Li Lee and R. C. Rose},
+	year={1996},
+	title={Speaker normalization using efficient frequency warping procedures},
+	volume={1},
+	pages={356 vol. 1},
+	abstract={In an effort to reduce the degradation in speech recognition performance caused by variation in vocal tract shape among speakers, a frequency warping approach to speaker normalization is investigated. A set of low complexity, maximum likelihood based frequency warping procedures have been applied to speaker normalization for a telephone based connected digit recognition task. This paper presents an efficient means for estimating a linear frequency warping factor and a simple mechanism for implementing frequency warping by modifying the filter-bank in mel-frequency cepstrum feature analysis. An experimental study comparing these techniques to other well-known techniques for reducing variability is described. The results showed that frequency warping was consistently able to reduce word error rate by 20% even for very short utterances.},
+	isbn={1520-6149},
+	language={English},
+	url={http://www.rle.mit.edu/dspg/documents/Speaker_1996.pdf},
+	doi={10.1109/ICASSP.1996.541105}
+}
+@article{hinton2006,
+	author={Geoffrey E. Hinton and Simon Osindero and Yee-Whye Teh},
+	year={2006},
+	title={A Fast Learning Algorithm for Deep Belief Nets},
+	journal={Neural computation},
+	volume={18},
+	number={7},
+	pages={1527-1554},
+	abstract={We show how to use "complementary priors" to eliminate the explaining-away effects that make inference difficult in densely connected belief nets that have many hidden layers. Using complementary priors, we derive a fast, greedy algorithm that can learn deep, directed belief networks one layer at a time, provided the top two layers form an undirected associative memory. The fast, greedy algorithm is used to initialize a slower learning procedure that fine-tunes the weights using a contrastive version of the wake-sleep algorithm. After fine-tuning, a network with three hidden layers forms a very good generative model of the joint distribution of handwritten digit images and their labels. This generative model gives better digit classification than the best discriminative learning algorithms. The low-dimensional manifolds on which the digits lie are modeled by long ravines in the free-energy landscape of the top-level associative memory, and it is easy to explore these ravines by using the directed connections to display what the associative memory has in mind. [PUBLICATION ABSTRACT]; We show how to use "complementary priors" to eliminate the explaining-away effects that make inference difficult in densely connected belief nets that have many hidden layers. Using complementary priors, we derive a fast, greedy algorithm that can learn deep, directed belief networks one layer at a time, provided the top two layers form an undirected associative memory. The fast, greedy algorithm is used to initialize a slower learning procedure that fine-tunes the weights using a contrastive version of the wake-sleep algorithm. After fine-tuning, a network with three hidden layers forms a very good generative model of the joint distribution of handwritten digit images and their labels. This generative model gives better digit classification than the best discriminative learning algorithms. The low-dimensional manifolds on which the digits lie are modeled by long ravines in the free-energy landscape of the top-level associative memory, and it is easy to explore these ravines by using the directed connections to display what the associative memory has in mind. [PUBLICATION ABSTRACT]; We show how to use "complementary priors" to eliminate the explaining-away effects thatmake inference difficult in densely connected belief nets that have many hidden layers. Using complementary priors, we derive a fast, greedy algorithm that can learn deep, directed belief networks one layer at a time, provided the top two layers form an undirected associative memory. The fast, greedy algorithm is used to initialize a slower learning procedure that fine-tunes the weights using a contrastive version of thewake-sleep algorithm. After fine-tuning, a networkwith three hidden layers forms a very good generative model of the joint distribution of handwritten digit images and their labels. This generative model gives better digit classification than the best discriminative learning algorithms. The low-dimensional manifolds on which the digits lie are modeled by long ravines in the free-energy landscape of the top-level associative memory, and it is easy to explore these ravines by using the directed connections to displaywhat the associativememory has in mind.; We show how to use "complementary priors" to eliminate the explaining-away effects that make inference difficult in densely connected belief nets that have many hidden layers. Using complementary priors, we derive a fast, greedy algorithm that can learn deep, directed belief networks one layer at a time, provided the top two layers form an undirected associative memory. The fast, greedy algorithm is used to initialize a slower learning procedure that fine-tunes the weights using a contrastive version of the wake-sleep algorithm. After fine-tuning, a network with three hidden layers forms a very good generative model of the joint distribution of handwritten digit images and their labels. This generative model gives better digit classification than the best discriminative learning algorithms. The low-dimensional manifolds on which the digits lie are modeled by long ravines in the free-energy landscape of the top-level associative memory, and it is easy to explore these ravines by using the directed connections to display what the associative memory has in mind.},
+	isbn={0899-7667},
+	language={English},
+	url={http://www.mitpressjournals.org/doi/pdfplus/10.1162/neco.2006.18.7.1527},
+	doi={10.1162/neco.2006.18.7.1527}
+}
+@article{sarikaya2014,
+	author={Ruhi Sarikaya and Geoffrey Hinton and Anoop Deoras},
+	year={2014},
+	title={Application of Deep Belief Networks for natural language understanding},
+	journal={IEEE/ACM Transactions on Audio, Speech and Language Processing (TASLP)},
+	volume={22},
+	number={4},
+	pages={778-784},
+	abstract={Applications of Deep Belief Nets (DBN) to various problems have been the subject of a number of recent studies ranging from image classification and speech recognition to audio classification. In this study we apply DBNs to a natural language understanding problem. The recent surge of activity in this area was largely spurred by the development of a greedy layer-wise pretraining method that uses an efficient learning algorithm called Contrastive Divergence (CD). CD allows DBNs to learn a multi-layer generative model from unlabeled data and the features discovered by this model are then used to initialize a feed-forward neural network which is fine-tuned with backpropagation. We compare a DBN-initialized neural network to three widely used text classification algorithms: Support Vector Machines (SVM), boosting and Maximum Entropy (MaxEnt). The plain DBN-based model gives a call-routing classification accuracy that is equal to the best of the other models. However, using additional unlabeled data for DBN pre-training and combining DBN-based learned features with the original features provides significant gains over SVMs, which, in turn, performed better than both MaxEnt and Boosting.; Â  Applications of Deep Belief Nets (DBN) to various problems have been the subject of a number of recent studies ranging from image classification and speech recognition to audio classification. In this study we apply DBNs to a natural language understanding problem. The recent surge of activity in this area was largely spurred by the development of a greedy layer-wise pretraining method that uses an efficient learning algorithm called Contrastive Divergence (CD). CD allows DBNs to learn a multi-layer generative model from unlabeled data and the features discovered by this model are then used to initialize a feed-forward neural network which is fine-tuned with backpropagation. We compare a DBN-initialized neural network to three widely used text classification algorithms: Support Vector Machines (SVM), boosting and Maximum Entropy (MaxEnt). The plain DBN-based model gives a call-routing classification accuracy that is equal to the best of the other models. However, using additional unlabeled data for DBN pre-training and combining DBN-based learned features with the original features provides significant gains over SVMs, which, in turn, performed better than both MaxEnt and Boosting.; Applications of Deep Belief Nets (DBN) to various problems have been the subject of a number of recent studies ranging from image classification and speech recognition to audio classification. In this study we apply DBNs to a natural language understanding problem. The recent surge of activity in this area was largely spurred by the development of a greedy layer-wise pretraining method that uses an efficient learning algorithm called Contrastive Divergence (CD). CD allows DBNs to learn a multi-layer generative model from unlabeled data and the features discovered by this model are then used to initialize a feed-forward neural network which is fine-tuned with backpropagation. We compare a DBN-initialized neural network to three widely used text classification algorithms: Support Vector Machines (SVM), boosting and Maximum Entropy (MaxEnt). The plain DBN-based model gives a call-routing classification accuracy that is equal to the best of the other models. However, using additional unlabeled data for DBN pre-training and combining DBN-based learned features with the original features provides significant gains over SVMs, which, in turn, performed better than both MaxEnt and Boosting.; Â  Applications of Deep Belief Nets (DBN) to various problems have been the subject of a number of recent studies ranging from image classification and speech recognition to audio classification. In this study we apply DBNs to a natural language understanding problem. The recent surge of activity in this area was largely spurred by the development of a greedy layer-wise pretraining method that uses an efficient learning algorithm called Contrastive Divergence (CD). CD allows DBNs to learn a multi-layer generative model from unlabeled data and the features discovered by this model are then used to initialize a feed-forward neural network which is fine-tuned with backpropagation. We compare a DBN-initialized neural network to three widely used text classification algorithms: Support Vector Machines (SVM), boosting and Maximum Entropy (MaxEnt). The plain DBN-based model gives a call-routing classification accuracy that is equal to the best of the other models. However, using additional unlabeled data for DBN pre-training and combining DBN-based learned features with the original features provides significant gains over SVMs, which, in turn, performed better than both MaxEnt and Boosting.},
+	isbn={2329-9290},
+	language={English},
+	url={http://www.cs.utoronto.ca/~hinton/absps/ruhijournal.pdf},
+	doi={10.1109/TASLP.2014.2303296}
+}
+@inproceedings{macherey2005,
+	author={Wolfgang Macherey and Lars Haferkamp and Ralf Schlter and Hermann Ney},
+	year={2005},
+	title={Investigations on error minimizing training criteria for discriminative training in automatic speech recognition.},
+	booktitle={Interspeech},
+	volume={2005},
+	pages={2133-2136},
+	url={https://pdfs.semanticscholar.org/a0d5/2a7dae2133bd2f82342f966eb207a52e2191.pdf}
+}
+@article{katz1987,
+	author={Slava Katz},
+	year={1987},
+	title={Estimation of probabilities from sparse data for the language model component of a speech recognizer},
+	journal={IEEE transactions on acoustics, speech, and signal processing},
+	volume={35},
+	number={3},
+	pages={400-401},
+	url={https://www.researchgate.net/profile/Lori_Lamel/publication/2572004_Estimation_of_probabilities_from_Sparse_data_for_the_language_model_component_of_a_speech_recognizer/links/5422cdc10cf26120b7a55d60.pdf}
+}
+@article{ney1994,
+	author={Hermann Ney and Ute Essen and Reinhard Kneser},
+	year={1994},
+	title={On structuring probabilistic dependences in stochastic language modelling},
+	journal={Computer Speech & Language},
+	volume={8},
+	number={1},
+	pages={1-38},
+	url={http://www.mathcs.emory.edu/~whalen/Hash/Hash_Articles/Abstracts.doc}
+}
+@article{kamper2016,
+	author={Herman Kamper and Aren Jansen and Sharon Goldwater},
+	year={2016},
+	title={Unsupervised word segmentation and lexicon discovery using acoustic word embeddings},
+	journal={IEEE/ACM Transactions on Audio, Speech and Language Processing (TASLP)},
+	volume={24},
+	number={4},
+	pages={669-679},
+	abstract={In settings where only unlabelled speech data is available, speech technology needs to be developed without transcriptions, pronunciation dictionaries, or language modelling text. A similar problem is faced when modelling infant language acquisition. In these cases, categorical linguistic structure needs to be discovered directly from speech audio. We present a novel unsupervised Bayesian model that segments unlabelled speech and clusters the segments into hypothesized word groupings. The result is a complete unsupervised tokenization of the input speech in terms of discovered word types. In our approach, a potential word segment (of arbitrary length) is embedded in a fixed-dimensional acoustic vector space. The model, implemented as a Gibbs sampler, then builds a whole-word acoustic model in this space while jointly performing segmentation. We report word error rates in a small-vocabulary connected digit recognition task by mapping the unsupervised decoded output to ground truth transcriptions. The model achieves around 20% error rate, outperforming a previous HMM-based system by about 10% absolute. Moreover, in contrast to the baseline, our model does not require a pre-specified vocabulary size.; In settings where only unlabeled speech data is available, speech technology needs to be developed without transcriptions, pronunciation dictionaries, or language modelling text. A similar problem is faced when modeling infant language acquisition. In these cases, categorical linguistic structure needs to be discovered directly from speech audio. We present a novel unsu-pervised Bayesian model that segments unlabeled speech and clusters the segments into hypothesized word groupings. The result is a complete unsupervised tokenization of the input speech in terms of discovered word types. In our approach, a potential word segment (of arbitrary length) is embedded in a fixed-dimensional acoustic vector space. The model, implemented as a Gibbs sampler, then builds a whole-word acoustic model in this space while jointly performing segmentation. We report word error rates in a small-vocabulary connected digit recognition task by mapping the unsupervised decoded output to ground truth transcriptions. The model achieves around 20% error rate, outperforming a previous HMM-based system by about 10% absolute. Moreover, in contrast to the baseline, our model does not require a pre-specified vocabulary size.; In settings where only unlabeled speech data is available, speech technology needs to be developed without transcriptions, pronunciation dictionaries, or language modelling text. A similar problem is faced when modeling infant language acquisition. In these cases, categorical linguistic structure needs to be discovered directly from speech audio. We present a novel unsupervised Bayesian model that segments unlabeled speech and clusters the segments into hypothesized word groupings. The result is a complete unsupervised tokenization of the input speech in terms of discovered word types. In our approach, a potential word segment (of arbitrary length) is embedded in a fixed-dimensional acoustic vector space. The model, implemented as a Gibbs sampler, then builds a whole-word acoustic model in this space while jointly performing segmentation. We report word error rates in a small-vocabulary connected digit recognition task by mapping the unsupervised decoded output to ground truth transcriptions. The model achieves around 20% error rate, outperforming a previous HMM-based system by about 10% absolute. Moreover, in contrast to the baseline, our model does not require a pre-specified vocabulary size.},
+	isbn={2329-9290},
+	language={English},
+	doi={10.1109/TASLP.2016.2517567}
+}
+@inproceedings{jansen2011,
+	author={Aren Jansen and Benjamin Van Durme},
+	year={2011},
+	title={Efficient spoken term discovery using randomized algorithms},
+	pages={401-406},
+	abstract={Spoken term discovery is the task of automatically identifying words and phrases in speech data by searching for long repeated acoustic patterns. Initial solutions relied on exhaustive dynamic time warping-based searches across the entire similarity matrix, a method whose scalability is ultimately limited by the O(n 2 ) nature of the search space. Recent strategies have attempted to improve search efficiency by using either unsupervised or mismatched-language acoustic models to reduce the complexity of the feature representation. Taking a completely different approach, this paper investigates the use of randomized algorithms that operate directly on the raw acoustic features to produce sparse approximate similarity matrices in O(n) space and O(n log n) time. We demonstrate these techniques facilitate spoken term discovery performance capable of outperforming a model-based strategy in the zero resource setting.},
+	isbn={9781-467303651},
+	language={English},
+	doi={10.1109/ASRU.2011.6163965}
+}
+@article{jelinek1976,
+	author={F. Jelinek},
+	year={1976},
+	title={Continuous speech recognition by statistical methods},
+	journal={Proceedings of the IEEE},
+	volume={64},
+	number={4},
+	pages={532-556},
+	abstract={Statistical methods useful in automatic recognition of continuous speech are described. They concern modeling of a speaker and of an acoustic processor, extraction of the models' statistical parameters and hypothesis search procedures and likelihood computations of linguistic decoding. Experimental results are presented that indicate the power of the methods.},
+	isbn={0018-9219},
+	language={English},
+	doi={10.1109/PROC.1976.10159}
+}
+@book{manning1999,
+	author={Christopher D. Manning and Hinrich Schℓutze},
+	year={1999},
+	title={Foundations of statistical natural language processing},
+	publisher={MIT Press},
+	address={Cambridge, Mass; London},
+	isbn={9780262133609},
+	language={English}
+}
+@article{kuhn1990,
+	author={R. Kuhn and R. De Mori},
+	year={1990},
+	title={A cache-based natural language model for speech recognition},
+	journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+	volume={12},
+	number={6},
+	pages={570-583},
+	abstract={Speech-recognition systems must often decide between competing ways of breaking up the acoustic input into strings of words. Since the possible strings may be acoustically similar, a language model is required; given a word string, the model returns its linguistic probability. Several Markov language models are discussed. A novel kind of language model which reflects short-term patterns of word use by means of a cache component (analogous to cache memory in hardware terminology) is presented. The model also contains a 3g-gram component of the traditional type. The combined model and a pure 3g-gram model were tested on samples drawn from the Lancaster-Oslo/Bergen (LOB) corpus of English text. The relative performance of the two models is examined, and suggestions for the future improvements are made.},
+	isbn={0162-8828},
+	language={English},
+	doi={10.1109/34.56193}
+}
+@article{brown1992,
+	author={Peter F. Brown and Peter V. Desouza and Robert L. Mercer and Vincent J. Della Pietra and Jenifer C. Lai},
+	year={1992},
+	title={Class-based n-gram models of natural language},
+	journal={Computational linguistics},
+	volume={18},
+	number={4},
+	pages={467-479},
+	url={http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.13.9919&rep=rep1&type=pdf}
+}
+@article{baum1970,
+    author={Baum,Leonard E. and Petrie,Ted and Soules,George and Weiss,Norman},
+    year={1970},
+    title={A Maximization Technique Occurring in the Statistical Analysis of Probabilistic Functions of Markov Chains},
+    journal={The Annals of Mathematical Statistics},
+    volume={41},
+    number={1},
+    pages={164-171},
+    isbn={0003-4851},
+    language={English},
+}
+@book{allen1994,
+	author={James Allen},
+	year={1994},
+	title={Natural language understanding},
+	publisher={Benjamin/Cummings},
+	address={Redwood City, Calif},
+	edition={2nd},
+	isbn={9780805303346},
+	language={English}
+}
+@inproceedings{bahl1986,
+	author={Lalit Bahl and Peter Brown and Peter De Souza and Robert Mercer},
+	year={1986},
+	title={Maximum mutual information estimation of hidden Markov model parameters for speech recognition},
+	booktitle={Acoustics, Speech, and Signal Processing, IEEE International Conference on ICASSP'86.},
+	publisher={IEEE},
+	volume={11},
+	pages={49-52}
+}
+@article{juang2000,
+	author={Bing-Hwang Juang and S. Furui},
+	year={2000},
+	title={Automatic recognition and understanding of spoken language - a first step toward natural human-machine communication},
+	journal={Proceedings of the IEEE},
+	volume={88},
+	number={8},
+	pages={1142-1165},
+	abstract={The promise of a powerful computing device to help people in productivity as well as in recreation can only be realized with proper human-machine communication. Automatic recognition and understanding of spoken language is the first step toward natural human-machine interaction. Research in this field has produced remarkable results, leading to many exciting expectations and new challenges. We summarize the development of the spoken language technology from both a vertical (chronology) and a horizontal (spectrum of technical approaches) perspective. We highlight the introduction of statistical methods in dealing with language-related problems, as this represents a paradigm shift in the research field of spoken language processing. Statistical methods are designed to allow the machine to learn structural regularities in the speech signal, directly from data, for the purpose of automatic speech recognition and understanding. Research results in spoken language processing have led to a number of successful applications, ranging from dictation software for personal computers and telephone-call processing systems for automatic call routing, to automatic sub-captioning for television broadcasts. We analyze the technical successes that support these applications. Along with an assessment of the state of the art in this broad technical field, we also discuss the limitations of the current technology, and point out the challenges that are ahead. This paper presents an accurate overview of spoken language technology as a basis to inspire future advances.},
+	isbn={0018-9219},
+	language={English},
+	url={http://ieeexplore.ieee.org/document/880077},
+	doi={10.1109/5.880077}
+}
+@book{booch1999,
+	author={Grady Booch and James Rumbaugh and Ivar Jacobson},
+	year={1999},
+	title={The unified modeling language user guide},
+	publisher={Addison-Wesley},
+	address={Boston, Mass; London},
+	isbn={9780201571684},
+	language={English}
+}
+@article{byrne2006,
+	author={William Byrne},
+	year={2006},
+	title={Minimum Bayes risk estimation and decoding in large vocabulary continuous speech recognition},
+	journal={IEICE Transactions on Information and Systems},
+	volume={89},
+	number={3},
+	pages={900-907},
+	url={http://svr-www.eng.cam.ac.uk/~wjb31/ppubs/ATRminriskBeyondHMMs.pdf}
+}
+@misc{cmu2016,
+	author={Carnegie Mellon University},
+	year={2016},
+	title={&nbsp;CMU pronouncing dictionary},
+	url={https://github.com/cmusphinx/cmudict}
+}
+@article{cmu2015,
+	author={Carnegie Mellon University (CMU) Sphinx.},
+	year={2015},
+	title={Basic concepts of speech},
+	url={http://cmusphinx.sourceforge.net/wiki/tutorialconcepts}
+}
+@inproceedings{chou1993,
+	author={W. Chou and C. H. Lee and B. H. Juang},
+	year={1993},
+	title={Minimum error rate training based on N-best string models},
+	volume={2},
+	pages={655 vol.2},
+	abstract={The authors study issues related to string level acoustic modeling in continuous speech recognition. They derive the formulation of minimum string error rate training. A minimum string error rate training algorithm, segmental minimum string error rate training, is described. It takes a further step in modeling the basic speech recognition units by directly applying discriminative analysis to string level acoustic model matching. One of the advantages of this training algorithm lies in its ability to model strings which are competitive with the correct string but are unseen in the training material. The robustness and acoustic resolution of the unit model set can therefore be significantly improved. Various experimental results have shown that significant error rate reduction can be achieved using this approach.},
+	isbn={1520-6149},
+	language={English},
+	doi={10.1109/ICASSP.1993.319394}
+}
+@article{davis1980,
+	author={S. Davis and P. Mermelstein},
+	year={1980},
+	title={Comparison of parametric representations for monosyllabic word recognition in continuously spoken sentences},
+	journal={IEEE Transactions on Acoustics, Speech, and Signal Processing},
+	volume={28},
+	number={4},
+	pages={357-366},
+	abstract={Several parametric representations of the acoustic signal were compared with regard to word recognition performance in a syllable-oriented continuous speech recognition system. The vocabulary included many phonetically similar monosyllabic words, therefore the emphasis was on the ability to retain phonetically significant acoustic information in the face of syntactic and duration variations. For each parameter set (based on a mel-frequency cepstrum, a linear frequency cepstrum, a linear prediction cepstrum, a linear prediction spectrum, or a set of reflection coefficients), word templates were generated using an efficient dynamic warping method, and test data were time registered with the templates. A set of ten mel-frequency cepstrum coefficients computed every 6.4 ms resulted in the best performance, namely 96.5 percent and 95.0 percent recognition with each of two speakers. The superior performance of the mel-frequency cepstrum coefficients may be attributed to the fact that they better represent the perceptually relevant aspects of the short-term speech spectrum.},
+	isbn={0096-3518},
+	language={English},
+	doi={10.1109/TASSP.1980.1163420}
+}
+@article{dempster1977,
+	author={A. P. Dempster and N. M. Laird and D. B. Rubin},
+	year={1977},
+	title={Maximum Likelihood from Incomplete Data via the EM Algorithm},
+	journal={Journal of the Royal Statistical Society.Series B (Methodological)},
+	volume={39},
+	number={1},
+	pages={1-38},
+	abstract={A broadly applicable algorithm for computing maximum likelihood estimates from incomplete data is presented at various levels of generality. Theory showing the monotone behaviour of the likelihood and convergence of the algorithm is derived. Many examples are sketched, including missing value situations, applications to grouped, censored or truncated data, finite mixture models, variance component estimation, hyperparameter estimation, iteratively reweighted least squares and factor analysis.},
+	isbn={0035-9246},
+	language={English}
+}
+@article{dempster1977b,
+	author={Arthur P. Dempster and Nan M. Laird and Donald B. Rubin},
+	year={1977},
+	title={Maximum likelihood from incomplete data via the EM algorithm},
+	journal={Journal of the royal statistical society.Series B (methodological)},
+	pages={1-38},
+	url={http://www.jstor.org/stable/2984875}
+}
+@book{fant1971,
+	author={Gunnar Fant},
+	year={1971},
+	title={Acoustic theory of speech production: with calculations based on X-ray studies of Russian articulations},
+	publisher={Walter de Gruyter},
+	volume={2}
+}
+@article{furui1986,
+	author={Sadaoki Furui},
+	year={1986},
+	title={Speaker-independent isolated word recognition using dynamic features of speech spectrum},
+	journal={IEEE Transactions on Acoustics, Speech, and Signal Processing},
+	volume={34},
+	number={1},
+	pages={52-59},
+	url={http://t2r2.star.titech.ac.jp/rrws/file/CTT100418594/ATD100000413/}
+}
+@article{gaida2014,
+	author={Christian Gaida and Patrick Lange and Rico Petrick and Patrick Proba and Ahmed Malatawy and David Suendermann-Oeft},
+	year={2014},
+	title={Comparing open-source speech recognition toolkits},
+	journal={Tech.Rep., DHBW Stuttgart},
+	url={http://sinaidiagnostics.com/su/pdf/oasis2014.pdf}
+}
+@inproceedings{gales2005,
+	author={M. J. F. Gales and B. Jia and X. Liu and K. C. Sim and P. C. Woodland and K. Yu},
+	year={2005},
+	title={Development of the CUHTK 2004 Mandarin conversational telephone speech transcription system},
+	publisher={IEEE},
+	volume={1},
+	pages={I/844 Vol. 1},
+	abstract={The paper details all aspects of the CUHTK 2004 Mandarin conversational telephone speech transcription system, but concentrates on the development of the acoustic models. As there are significant differences between the available training corpora, both in terms of topics of conversation and accents, forms of data normalisation and adaptive training techniques are investigated. The baseline discriminatively trained acoustic models are compared to a system built with a Gaussianisation front-end, a speaker adaptively trained system and an adaptively trained structured precision matrix system. The models are finally evaluated within a multi-pass, multi-branch, system combination framework.},
+	isbn={1520-6149},
+	language={English},
+	url={http://ieeexplore.ieee.org/document/1415245},
+	doi={10.1109/ICASSP.2005.1415245}
+}
+@article{gales2007,
+	author={Mark Gales and Steve Young},
+	year={2007},
+	title={The Application of Hidden Markov Models in Speech Recognition},
+	journal={Foundations and TrendsÂ® in Signal Processing},
+	volume={1},
+	number={3},
+	pages={195-304},
+	isbn={1932-8346},
+	language={English},
+	doi={10.1561/2000000004}
+}
+@article{glass2003,
+	author={James R. Glass},
+	year={2003},
+	title={A probabilistic framework for segment-based speech recognition},
+	journal={Computer Speech & Language},
+	volume={17},
+	number={2},
+	pages={137-152},
+	url={http://www.sls.csail.mit.edu/sls/publications/2003/glass.csl2003.pdf}
+}
+@article{hermansky1990,
+	author={Hynek Hermansky},
+	year={1990},
+	title={Perceptual linear predictive (PLP) analysis of speech},
+	journal={The Journal of the Acoustical Society of America},
+	volume={87},
+	number={4},
+	pages={1738-1752}
+}
+@article{jiang2010,
+	author={Hui Jiang},
+	year={2010},
+	title={Discriminative training of HMMs for automatic speech recognition: A survey},
+	journal={Computer Speech & Language},
+	volume={24},
+	number={4},
+	pages={589-608},
+	abstract={Recently, discriminative training (DT) methods have achieved tremendous progress in automatic speech recognition (ASR). In this survey article, all mainstream DT methods in speech recognition are reviewed from both theoretical and practical perspectives. From the theoretical aspect, many effective discriminative learning criteria in ASR are first introduced and then a unifying view is presented to elucidate the relationship among these popular DT criteria originally proposed from different viewpoints. Next, some key optimization methods used to optimize these criteria are summarized and their convergence properties are discussed. Moreover, as some recent advances, a novel discriminative learning framework is introduced as a general scheme to formulate discriminative training of HMMs for ASR, from which a variety of new DT methods can be developed. In addition, some important implementation issues regarding how to conduct DT for large vocabulary ASR are also discussed from a more practical aspect, such as efficient implementation of discriminative training on word graphs and effective optimization of complex DT objective functions in high-dimensionality space, and so on. Finally, this paper is summarized and concluded with some possible future research directions for this area. As a technical survey, all DT techniques and ideas are reviewed and discussed in this paper from high level without involving too much technical detail and experimental result. [Copyright Elsevier Ltd.]; Recently, discriminative training (DT) methods have achieved tremendous progress in automatic speech recognition (ASR). In this survey article, all mainstream DT methods in speech recognition are reviewed from both theoretical and practical perspectives. From the theoretical aspect, many effective discriminative learning criteria in ASR are first introduced and then a unifying view is presented to elucidate the relationship among these popular DT criteria originally proposed from different viewpoints. Next, some key optimization methods used to optimize these criteria are summarized and their convergence properties are discussed. Moreover, as some recent advances, a novel discriminative learning framework is introduced as a general scheme to formulate discriminative training of HMMs for ASR, from which a variety of new DT methods can be developed. In addition, some important implementation issues regarding how to conduct DT for large vocabulary ASR are also discussed from a more practical aspect, such as efficient implementation of discriminative training on word graphs and effective optimization of complex DT objective functions in high-dimensionality space, and so on. Finally, this paper is summarized and concluded with some possible future research directions for this area. As a technical survey, all DT techniques and ideas are reviewed and discussed in this paper from high level without involving too much technical detail and experimental result. [Copyright Elsevier Ltd.]; Recently, discriminative training (DT) methods have achieved tremendous progress in automatic speech recognition (ASR). In this survey article, all mainstream DT methods in speech recognition are reviewed from both theoretical and practical perspectives. From the theoretical aspect, many effective discriminative learning criteria in ASR are first introduced and then a unifying view is presented to elucidate the relationship among these popular DT criteria originally proposed from different viewpoints. Next, some key optimization methods used to optimize these criteria are summarized and their convergence properties are discussed. Moreover, as some recent advances, a novel discriminative learning framework is introduced as a general scheme to formulate discriminative training of HMMs for ASR, from which a variety of new DT methods can be developed. In addition, some important implementation issues regarding how to conduct DT for large vocabulary ASR are also discussed from a more practical aspect, such as efficient implementation of discriminative training on word graphs and effective optimization of complex DT objective functions in high-dimensionality space, and so on. Finally, this paper is summarized and concluded with some possible future research directions for this area. As a technical survey, all DT techniques and ideas are reviewed and discussed in this paper from high level without involving too much technical detail and experimental result. Â© 2009 Elsevier Ltd. All rights reserved.},
+	isbn={0885-2308},
+	language={English},
+	doi={10.1016/j.csl.2009.08.002}
+}
+@article{juang1992,
+	author={B. -H Juang and S. Katagiri},
+	year={1992},
+	title={Discriminative learning for minimum error classification (pattern recognition)},
+	journal={IEEE Transactions on Signal Processing},
+	volume={40},
+	number={12},
+	pages={3043-3054},
+	abstract={A formulation is proposed for minimum-error classification, in which the misclassification probability is to be minimized based on a given set of training samples. A fundamental technique for designing a classifier that approaches the objective of minimum classification error in a more direct manner than traditional methods is given. The method is contrasted with several traditional classifier designs in typical experiments to demonstrate the superiority of the new learning formulation. The method can applied to other classifier structures as well. Experimental results pertaining to a speech recognition task are provided to show the effectiveness of the technique.},
+	isbn={1053-587X},
+	language={English},
+	doi={10.1109/78.175747}
+}
+@book{jurafsky2009,
+	author={Dan Jurafsky and James H. Martin},
+	year={2009},
+	title={Speech and language processing: an introduction to natural language processing, computational linguistics, and speech recognition},
+	publisher={Prentice Hall},
+	address={Upper Saddle River, N.J; London},
+	edition={2nd International; Previous, 2001.},
+	isbn={0135041961},
+	language={English}
+}
+@inproceedings{kaiser2000,
+	author={Janez Kaiser and Bogomir Horvat and Zdravko Kacic},
+	year={2000},
+	title={A novel loss function for the overall risk criterion based discriminative training of HMM models},
+	booktitle={Sixth International Conference on Spoken Language Processing},
+	url={https://pdfs.semanticscholar.org/de8c/eb72bf54293959813c101c4f7ce54fbd3a20.pdf}
+}
+@inproceedings{lee1997,
+	author={Li Lee and R. C. Rose},
+	year={1996},
+	title={Speaker normalization using efficient frequency warping procedures},
+	volume={1},
+	pages={356 vol. 1},
+	abstract={In an effort to reduce the degradation in speech recognition performance caused by variation in vocal tract shape among speakers, a frequency warping approach to speaker normalization is investigated. A set of low complexity, maximum likelihood based frequency warping procedures have been applied to speaker normalization for a telephone based connected digit recognition task. This paper presents an efficient means for estimating a linear frequency warping factor and a simple mechanism for implementing frequency warping by modifying the filter-bank in mel-frequency cepstrum feature analysis. An experimental study comparing these techniques to other well-known techniques for reducing variability is described. The results showed that frequency warping was consistently able to reduce word error rate by 20% even for very short utterances.},
+	isbn={1520-6149},
+	language={English},
+	doi={10.1109/ICASSP.1996.541105}
+}
+@article{liddy2001,
+	author={Elizabeth D. Liddy},
+	year={2001},
+	title={Natural language processing},
+	url={http://surface.syr.edu/cgi/viewcontent.cgi?article=1043&context=istpub}
+}
+@inproceedings{wolfgang2005,
+	author={Wolfgang Macherey and Lars Haferkamp and Ralf Schlter and Hermann Ney},
+	year={2005},
+	title={Investigations on error minimizing training criteria for discriminative training in automatic speech recognition.},
+	booktitle={Interspeech},
+	volume={2005},
+	pages={2133-2136},
+	url={https://pdfs.semanticscholar.org/a0d5/2a7dae2133bd2f82342f966eb207a52e2191.pdf}
+}
+@inproceedings{makhoul1976,
+	author={J. Makhoul and L. Cosell},
+	year={1976},
+	title={LPCW: An LPC vocoder with linear predictive spectral warping},
+	volume={1},
+	pages={466-469},
+	abstract={In ordinary linear prediction the speech spectral envelope is modeled by an all-pole spectrum. The error criterion employed guarantees a uniform fit across the whole frequency range. However, we know from speech perception studies that low frequencies are more important than high frequencies for perception. Therefore, a minimally redundant model would strive to achieve a uniform perceptual fit across the spectrum, which means that it should be able to represent low frequencies more accurately than high frequencies. This is achieved in the LPCW vocoder: an LPC vocoder employing our recently developed method of linear predictive warping (LPW). The result is improved speech quality for the same bit rate.},
+	language={English},
+	doi={10.1109/ICASSP.1976.1170013}
+}
+@article{nadas1983,
+	author={Arthur Nadas},
+	year={1983},
+	title={DECISION THEORETIC FORMULATION OF A TRAINING PROBLEM IN SPEECH RECOGNITION AND A COMPARISON OF TRAINING BY UNCONDITIONAL VERSUS CONDITIONAL MAXIMUM LIKELIHOOD},
+	journal={IEEE Transactions on Acoustics, Speech, and Signal Processing},
+	volume={31},
+	number={4},
+	pages={814-817},
+	isbn={0096-3518},
+	language={English}
+}
+@inproceedings{ney1992,
+	author={H. Ney and R. Haeb-Umbach and B. -H Tran and M. Oerder},
+	year={1992},
+	title={Improvements in beam search for 10000-word continuous speech recognition},
+	volume={1},
+	pages={12 vol.1},
+	abstract={The author describes the improvements in a time synchronous beam search strategy for a 10000-word continuous speech recognition task. The improvements are based on two measures: a tree-organization of the pronunciation lexicon and a novel look-ahead technique at the phoneme level, both of which interact directly with the detailed search at the state levels of the phoneme models. Experimental tests were performed for four speakers on a 12306-word task. As a result of the above measures, the overall search effort was reduced by a factor of 17 without a loss in recognition accuracy.},
+	isbn={1520-6149},
+	language={English}
+	doi={10.1109/ICASSP.1992.225985}
+}
+@article{park2008,
+	author={Alex S. Park and James R. Glass},
+	year={2008},
+	title={Unsupervised pattern discovery in speech},
+	journal={IEEE Transactions on Audio, Speech, and Language Processing},
+	volume={16},
+	number={1},
+	pages={186-197},
+	url={http://www.academia.edu/download/40587723/Unsupervised_Pattern_Discovery_in_Speech20151202-17091-ixvloj.pdf}
+}
+@inproceedings{povey2011,
+	author={Dan Povey and D. Satya Ganesh and Prasant Kumar Sahu},
+	year={2011},
+	title={The Kaldi Speech Recognition toolkit},
+	publisher={IEEE},
+	pages={365-368},
+	abstract={The applications of modern speech recognition are becoming more common with the demand of human-machine interactions. Many speech based interactive software applications were executed on the classical general purpose computers. This paper reports an overview about the different speech recognition systems and also about the different speech recognition tools such as HTK, CMU Sphinx, Kaldi and performance metrics of the toolkits.},
+	language={English},
+	url={http://ieeexplore.ieee.org/document/7489768},
+	doi={10.1109/ICMOCE.2015.7489768}
+}
+@article{povey2009,
+	author={Daniel Povey},
+	year={2009},
+	title={A tutorial-style introduction to subspace Gaussian mixture models for speech recognition},
+	journal={Microsoft Research, Redmond, WA},
+	url={https://www.microsoft.com/en-us/research/wp-content/uploads/2009/08/ubmtutorial.pdf}
+}
+@inproceedings{povey2003,
+	author={Daniel Povey and Mark JF Gales and Do Yeong Kim and Philip C. Woodland},
+	year={2003},
+	title={MMI-MAP and MPE-MAP for acoustic model adaptation.},
+	booktitle={Interspeech},
+	url={http://www.danielpovey.com/files/eurospeech03mmimap.pdf}
+}
+@inproceedings{price1988,
+	author={P. Price and W. M. Fisher and J. Bernstein and D. S. Pallett},
+	year={1988},
+	title={The DARPA 1000-word resource management database for continuous speech recognition},
+	pages={654 vol.1},
+	abstract={A database of continuous read speech has been designed and recorded within the DARPA strategic computing speech recognition program. The data is intended for use in designing and evaluating algorithms for speaker-independent, speaker-adaptive and speaker-dependent speech recognition. The data consists of read sentences appropriate to a naval resource management task built around existing interactive database and graphics programs. The 1000-word task vocabulary is intended to be logically complete and habitable. The database, which represents over 21000 recorded utterances from 160 talkers with a variety of dialects, includes a partition of sentences and talkers for training and for testing purposes.},
+	isbn={1520-6149},
+	language={English},
+	doi={10.1109/ICASSP.1988.196669}
+}
+@article{rabiner1989,
+	author={L. R. Rabiner},
+	year={1989},
+	title={A tutorial on hidden Markov models and selected applications in speech recognition},
+	journal={Proceedings of the IEEE},
+	volume={77},
+	number={2},
+	pages={257-286},
+	abstract={This tutorial provides an overview of the basic theory of hidden Markov models (HMMs) as originated by L.E. Baum and T. Petrie (1966) and gives practical details on methods of implementation of the theory along with a description of selected applications of the theory to distinct problems in speech recognition. Results from a number of original sources are combined to provide a single source of acquiring the background required to pursue further this area of research. The author first reviews the theory of discrete Markov chains and shows how the concept of hidden states, where the observation is a probabilistic function of the state, can be used effectively. The theory is illustrated with two simple examples, namely coin-tossing, and the classic balls-in-urns system. Three fundamental problems of HMMs are noted and several practical techniques for solving these problems are given. The various types of HMMs that have been studied, including ergodic as well as left-right models, are described.},
+	isbn={0018-9219},
+	language={English},
+	doi={10.1109/5.18626}
+}
+@article{romdhani2015,
+	author={Sihem Romdhani},
+	year={2015},
+	title={Implementation of DNN-HMM Acoustic Models for Phoneme Recognition}
+}
+@book{sebesta2002,
+	author={Robert W. Sebesta and Soumen Mukherjee},
+	year={2002},
+	title={Concepts of programming languages},
+	publisher={Addison-Wesley Reading},
+	volume={281},
+	url={http://www.scis.nova.edu/~willsmit/MMIS%20610%20Summer%202005.pdf}
+}
+@article{shen2016,
+	author={Peng Shen and Xugang Lu and Xinhui Hu and Naoyuki Kanda and Masahiro Saiko and Chiori Hori and Hisashi Kawai},
+	year={2016},
+	title={Combination of multiple acoustic models with unsupervised adaptation for lecture speech transcription},
+	journal={Speech Communication},
+	volume={82},
+	pages={1-13},
+	abstract={Automatic speech recognition systems (ASR) have achieved considerable progress in real applications because of skilled design of the architecture with advanced techniques and algorithms. However, how to design a system efficiently integrating these various techniques to obtain advanced performance is still a challenging task. In this paper, we introduced an ensemble model combination and adaptation based ASR system with two characteristics: (1) large-scale combination of multiple ASR systems based on a Recognizer Output Voting Error Reduction (ROVER) system, and (2) multi-pass unsupervised speaker adaptation for deep neural network acoustic models and topic adaptation on language model. The multiple acoustic models were trained with different acoustic features and model architectures which helped to provide complementary and discriminative information in the ROVER process. With these multiple acoustic models, a better estimation of word confidence could be obtained from ROVER process which helped in selecting data for unsupervised adaptation on the previously trained acoustic models. The final recognition result was obtained using multi-pass decoding, ROVER, and adaptation processes. We tested the system on lecture speeches with topics related to Technology, Entertainment and Design (TED) that were used in the international workshop on spoken language translation (IWSLT) evaluation campaign, and obtained 6.5%, 7.0%, 10.6%, and 8.4% word error rates for test sets in 2011, 2012, 2013, and 2014, which to our knowledge are the best results for these evaluation sets.},
+	isbn={0167-6393},
+	language={English},
+	doi={10.1016/j.specom.2016.05.001}
+}
+@inproceedings{sinha2006,
+	author={Rohit Sinha and Mark JF Gales and D. Y. Kim and X. Andrew Liu and Khe Chai Sim and Philip C. Woodland},
+	year={2006},
+	title={The CU-HTK Mandarin broadcast news transcription system},
+	booktitle={Acoustics, Speech and Signal Processing, 2006. ICASSP 2006 Proceedings. 2006 IEEE International Conference on},
+	publisher={IEEE},
+	volume={1},
+	pages={I},
+	abstract={The paper discusses the development of CU-HTK Mandarin broadcast news (BN) transcription system. &nbsp;The data which is studded with English language required techniques of augmenting the Mandarin training sets with English acoustic and language model training data. &nbsp;The acoustic models were built based on Gaussianised features, speaker adaptive training (SAT) and feature space MPE (FMPE). &nbsp;The final output was as combination of multi-branch, multi-acoustic model and alternate phone sets which was claimed to give state of the art results.}
+}
+@inproceedings{soltau2005,
+	author={Hagen Soltau and Brian Kingsbury and Lidia Mangu and Daniel Povey and George Saon and Geoffrey Zweig},
+	year={2005},
+	title={The IBM 2004 conversational telephony system for rich transcription},
+	booktitle={Acoustics, Speech, and Signal Processing, 2005. Proceedings.(ICASSP'05). IEEE International Conference on},
+	publisher={IEEE},
+	volume={1},
+	pages={I/208 Vol. 1}
+}
+@inproceedings{steinbiss1989,
+	author={Volker Steinbiss},
+	year={1989},
+	title={Sentence-hypotheses generation in a continuous-speech recognition system},
+	booktitle={First European Conference on Speech Communication and Technology}
+}
+@misc{young1995,
+	author = 	 {Steve Young and Gunnar Evermann and Mark Gales and Thomas Hain and Dan Kershaw and Xunying (Andrew) Liu and Gareth Moore and Julian Odell and Dave Ollason and Dan Povey and Valtcho Valtchev and Phil Woodland},
+	year = 	 {1995},
+	title = 	 {The HTK Book}
+}
+@article{walker2004,
+	author={Willie Walker and Paul Lamere and Philip Kwok and Bhiksha Raj and Rita Singh and Evandro Gouvea and Peter Wolf and Joe Woelfel},
+	year={2004},
+	title={Sphinx-4: A flexible open source framework for speech recognition},
+	url={https://pdfs.semanticscholar.org/bfbe/5cc318cc5d9e73ac2b26f0a352cfb83b4be2.pdf}
+}
+@book{watanabe2015,
+	author={Shinji (Communications engineer) Watanabe and Jen-Tzung Chien},
+	year={2015},
+	title={Bayesian speech and language processing},
+	publisher={Cambridge University Press},
+	address={Cambridge},
+	isbn={1107055571},
+	language={English}
+}
+@inproceedings{woodland2001,
+	author={Phil C. Woodland},
+	year={2001},
+	title={Speaker adaptation for continuous density HMMs: A review},
+	booktitle={ISCA Tutorial and Research Workshop (ITRW) on Adaptation Methods for Speech Recognition},
+	url={https://pdfs.semanticscholar.org/3905/c2369edf44a9a5133fbd57ff06ceeceebd0e.pdf}
+}
+@article{woodland2002,
+	author={Philip C. Woodland and Daniel Povey},
+	year={2002},
+	title={Large scale discriminative training of hidden Markov models for speech recognition},
+	journal={Computer Speech & Language},
+	volume={16},
+	number={1},
+	pages={25-47}
+}
+@article{young1996,
+	author={Steve Young},
+	year={1996},
+	title={A review of large-vocabulary continuous-speech},
+	journal={IEEE Signal Processing Magazine},
+	volume={13},
+	number={5},
+	pages={45},
+	abstract={Considerable progress has been made in speech-recognition technology over the last few years and nowhere has this progress been more evident than in the area of large-vocabulary recognition (LVR). Current laboratory systems are capable of transcribing continuous speech from any speaker with average word-error rates between 5% and 10%. If speaker adaptation is allowed, then after 2 or 3 minutes of speech, the error rate will drop well below 5% for most speakers. LVR systems had been limited to dictation applications since the systems were speaker dependent and required words to be spoken with a short pause between them. However, the capability to recognize natural continuous-speech input from any speaker opens up many more applications. As a result, LVR technology appears to be on the brink of widespread deployment across a range of information technology (IT) systems. This article discusses the principles and architecture of current LVR systems and identifies the key issues affecting their future deployment. To illustrate the various points raised, the Cambridge University HTK system is described. This system is a modem design that gives state-of-the-art performance, and it is typical of the current generation of recognition systems.},
+	isbn={1053-5888},
+	language={English},
+	doi={10.1109/79.536824}
+}
+@book{young1993,
+	author={Steve J. Young and Sj Young},
+	year={1993},
+	title={The HTK hidden Markov model toolkit: Design and philosophy},
+	publisher={University of Cambridge, Department of Engineering},
+	url={https://www.researchgate.net/profile/Steve_Young3/publication/263124034_The_HTK_hidden_Markov_model_toolkit_Design_and_philosophy/links/555dc15d08ae6f4dcc8c5b62.pdf}
+}
+@book{yu2015,
+	author={Dong Yu and Li Deng},
+	year={2015},
+	title={Automatic speech recognition: a deep learning approach},
+	publisher={Springer},
+	address={London},
+	isbn={9781447157786},
+	language={English}
+}
+=======
+@article{fosler1998,
+	author={Eric Fosler-Lussier},
+	year={1998},
+	title={Markov models and hidden Markov Models: a brief tutorial},
+	journal={International Computer Science Institute},
+	url={https://pdfs.semanticscholar.org/b328/2eb0509442b80760fea5845e158168daee62.pdf}
+}
+@book{hori2013,
+	author={Takaaki Hori and Atsushi Nakamura},
+	year={2013},
+	title={Speech Recognition Algorithms based on Weighted Finite-State Transducers},
+	publisher={Morgan & Claypool Publishers},
+	address={San Rafael},
+	edition={1},
+	abstract={This book introduces the theory, algorithms, and implementation techniques for efficient decoding in speech recognition mainly focusing on the Weighted Finite-State Transducer (WFST) approach. The decoding process for speech recognition is viewed as a search problem whose goal is to find a sequence of words that best matches an input speech signal. Since this process becomes computationally more expensive as the system vocabulary size increases, research has long been devoted to reducing the computational cost. Recently, the WFST approach has become an important state-of-the-art speech recognition technology, because it offers improved decoding speed with fewer recognition errors compared with conventional methods. However, it is not easy to understand all the algorithms used in this framework, and they are still in a black box for many people. In this book, we review the WFST approach and aim to provide comprehensive interpretations of WFST operations and decoding algorithms to help anyone who wants to understand, develop, and study WFST-based speech recognizers. We also mention recent advances in this framework and its applications to spoken language processing. Table of Contents: Introduction / Brief Overview of Speech Recognition / Introduction to Weighted Finite-State Transducers / Speech Recognition by Weighted Finite-State Transducers / Dynamic Decoders with On-the-fly WFST Operations / Summary and Perspective; This book introduces the theory, algorithms, and implementation techniques for efficient decoding in speech recognition mainly focusing on the Weighted Finite-State Transducer (WFST) approach. The decoding process for speech recognition is viewed as a search problem whose goal is to find a sequence of words that best matches an input speech signal. Since this process becomes computationally more expensive as the system vocabulary size increases, research has long been devoted to reducing the computational cost. Recently, the WFST approach has become an important state-of-the-art speech recognition technology, because it offers improved decoding speed with fewer recognition errors compared with conventional methods. However, it is not easy to understand all the algorithms used in this framework, and they are still in a black box for many people. In this book, we review the WFST approach and aim to provide comprehensive interpretations of WFST operations and decoding algorithms to help anyone who wants to understand, develop, and study WFST-based speech recognizers. We also mention recent advances in this framework and its applications to spoken language processing.},
+	isbn={9781608454730},
+	language={English}
+}
+@inproceedings{allauzen2007,
+	author={Cyril Allauzen and Michael Riley and Johan Schalkwyk and Wojciech Skut and Mehryar Mohri},
+	year={2007},
+	title={OpenFst: A general and efficient weighted finite-state transducer library},
+	booktitle={International Conference on Implementation and Application of Automata},
+	publisher={Springer},
+	pages={11-23},
+	url={http://www.stringology.org/event/CIAA2007/pres/Tue2/Riley.pdf}
+}
+@inproceedings{lee2009,
+	author={Akinobu Lee and Tatsuya Kawahara},
+	year={2009},
+	title={Recent development of open-source speech recognition engine julius},
+	booktitle={Proceedings: APSIPA ASC 2009: Asia-Pacific Signal and Information Processing Association, 2009 Annual Summit and Conference},
+	publisher={Asia-Pacific Signal and Information Processing Association, 2009 Annual Summit and Conference, International Organizing Committee},
+	pages={131-137},
+	url={http://eprints.lib.hokudai.ac.jp/dspace/bitstream/2115/39653/1/MP-SS1-3.pdf}
+}
+@inproceedings{sainath2013,
+	author={Tara N. Sainath and Abdel-rahman Mohamed and Brian Kingsbury and Bhuvana Ramabhadran},
+	year={2013},
+	title={Deep convolutional neural networks for LVCSR},
+	publisher={IEEE},
+	pages={8614-8618},
+	abstract={Convolutional Neural Networks (CNNs) are an alternative type of neural network that can be used to reduce spectral variations and model spectral correlations which exist in signals. Since speech signals exhibit both of these properties, CNNs are a more effective model for speech compared to Deep Neural Networks (DNNs). In this paper, we explore applying CNNs to large vocabulary speech tasks. First, we determine the appropriate architecture to make CNNs effective compared to DNNs for LVCSR tasks. Specifically, we focus on how many convolutional layers are needed, what is the optimal number of hidden units, what is the best pooling strategy, and the best input feature type for CNNs. We then explore the behavior of neural network features extracted from CNNs on a variety of LVCSR tasks, comparing CNNs to DNNs and GMMs. We find that CNNs offer between a 13-30% relative improvement over GMMs, and a 4-12% relative improvement over DNNs, on a 400-hr Broadcast News and 300-hr Switchboard task.},
+	isbn={1520-6149},
+	language={English},
+	doi={10.1109/ICASSP.2013.6639347}
+}
+@inproceedings{huang2013,
+	author={Chien-Lin Huang and Paul R. Dixon and Shigeki Matsuda and Youzheng Wu and Xugang Lu and Masahiro Saiko and Chiori Hori},
+	year={2013},
+	title={The NICT ASR system for IWSLT 2013},
+	booktitle={Proc. Int. Workshop Spoken Language Translation},
+	url={http://www.academia.edu/download/42779114/The_NICT_ASR_System_for_IWSLT_201320160217-14104-8xtjcv.pdf}
+}
+@inbook{clark2010,
+	author={Alexander Clark and Chris Fox and Shalom Lappin},
+	year={2010},
+	title={Speech Recognition},
+	publisher={Wileyâ€Blackwell},
+	address={Oxford, UK},
+	pages={297-332},
+	abstract={This chapter contains sections titled: Introduction Acoustic Modeling Search Case Study: The AMI System Current Topics Conclusions Notes},
+	isbn={1405155817},
+	language={English},
+	doi={10.1002/9781444324044.ch12}
+}
+@inproceedings{gopinath1998,
+	author={R. A. Gopinath},
+	year={1998},
+	title={Maximum likelihood modeling with Gaussian distributions for classification},
+	volume={2},
+	pages={664 vol.2},
+	abstract={Maximum likelihood (ML) modeling of multiclass data for classification often suffers from the following problems: (a) data insufficiency implying overtrained or unreliable models, (b) large storage requirement, (c) large computational requirement and/or (d) the ML is not discriminating between classes. Sharing parameters across classes (or constraining the parameters) clearly tends to alleviate the first three problems. We show that in some cases it can also lead to better discrimination (as evidenced by reduced misclassification error). The parameters considered are the means and variances of the Gaussians and linear transformations of the feature space (or equivalently the Gaussian means). Some constraints on the parameters are shown to lead to linear discrimination analysis (a well-known result) while others are shown to lead to optimal feature spaces (a relatively new result). Applications of some of these ideas to the speech recognition problem are also given.},
+	isbn={1520-6149},
+	language={English},
+	url={http://www.research.ibm.com/people/r/rameshg/gopinath-slt98.pdf},
+	doi={10.1109/ICASSP.1998.675351}
+}
+@inproceedings{mikolov2010,
+	author={Tomas Mikolov and Martin Karafit and Lukas Burget and Jan Cernock and Sanjeev Khudanpur},
+	year={2010},
+	title={Recurrent neural network based language model.},
+	booktitle={Interspeech},
+	volume={2},
+	pages={3},
+	url={http://www.fit.vutbr.cz/research/groups/speech/servite/2010/rnnlm_mikolov.pdf}
+}
+@inproceedings{evermann2000,
+	author={Gunnar Evermann and P. C. Woodland},
+	year={2000},
+	title={Posterior probability decoding, confidence estimation and system combination},
+	booktitle={Proc. Speech Transcription Workshop},
+	publisher={Baltimore},
+	volume={27},
+	pages={78},
+	url={http://mi.eng.cam.ac.uk/~ge204/papers/stw00-slides.pdf}
+}
+@inproceedings{fiscus1997,
+	author={Jonathan G. Fiscus},
+	year={1997},
+	title={A post-processing system to yield reduced word error rates: Recognizer output voting error reduction (ROVER)},
+	booktitle={Automatic Speech Recognition and Understanding, 1997. Proceedings., 1997 IEEE Workshop on},
+	publisher={IEEE},
+	pages={347-354},
+	url={https://www.dropbox.com/s/0we6bu82fy4grhp/Rover.pdf?dl=0}
+}
+@inproceedings{dahl2011,
+	author={George E. Dahl and Dong Yu and Li Deng and Alex Acero},
+	year={2011},
+	title={Large vocabulary continuous speech recognition with context-dependent DBN-HMMS},
+	pages={4688-4691},
+	abstract={The context-independent deep belief network (DBN) hidden Markov model (HMM) hybrid architecture has recently achieved promising results for phone recognition. In this work, we propose a context-dependent DBN-HMM system that dramatically outperforms strong Gaussian mixture model (GMM)-HMM baselines on a challenging, large vocabulary, spontaneous speech recognition dataset from the Bing mobile voice search task. Our system achieves absolute sentence accuracy improvements of 5.8% and 9.2% over GMM-HMMs trained using the minimum phone error rate (MPE) and maximum likelihood (ML) criteria, respectively, which translate to relative error reductions of 16.0% and 23.2%.},
+	isbn={1520-6149},
+	language={English},
+	doi={10.1109/ICASSP.2011.5947401}
+}
+@article{dahl2012,
+	author={G. E. Dahl and Dong Yu and Li Deng and A. Acero},
+	year={2012},
+	title={Context-Dependent Pre-Trained Deep Neural Networks for Large-Vocabulary Speech Recognition},
+	journal={IEEE Transactions on Audio, Speech, and Language Processing},
+	volume={20},
+	number={1},
+	pages={30-42},
+	abstract={We propose a novel context-dependent (CD) model for large-vocabulary speech recognition (LVSR) that leverages recent advances in using deep belief networks for phone recognition. We describe a pre-trained deep neural network hidden Markov model (DNN-HMM) hybrid architecture that trains the DNN to produce a distribution over senones (tied triphone states) as its output. The deep belief network pre-training algorithm is a robust and often helpful way to initialize deep neural networks generatively that can aid in optimization and reduce generalization error. We illustrate the key components of our model, describe the procedure for applying CD-DNN-HMMs to LVSR, and analyze the effects of various modeling choices on performance. Experiments on a challenging business search dataset demonstrate that CD-DNN-HMMs can significantly outperform the conventional context-dependent Gaussian mixture model (GMM)-HMMs, with an absolute sentence accuracy improvement of 5.8% and 9.2% (or relative error reduction of 16.0% and 23.2%) over the CD-GMM-HMMs trained using the minimum phone error rate (MPE) and maximum-likelihood (ML) criteria, respectively.},
+	isbn={1558-7916},
+	language={English},
+	doi={10.1109/TASL.2011.2134090}
+}
+@inproceedings{giuliani2007,
+	author={Diego Giuliani and Fabio Brugnara},
+	year={2007},
+	title={Experiments on cross-system acoustic model adaptation},
+	booktitle={Automatic Speech Recognition & Understanding, 2007. ASRU. IEEE Workshop on},
+	publisher={IEEE},
+	pages={117-122}
+}
+@inproceedings{stker2006,
+	author={Sebastian Stker and Christian Fgen and Susanne Burger and Matthias Wlfel},
+	year={2006},
+	title={Cross-system adaptation and combination for continuous speech recognition: the influence of phoneme set and acoustic front-end.},
+	booktitle={INTERSPEECH},
+	url={http://www.academia.edu/download/40636754/intercross_speech_recog.pdf}
+}
+@article{ristad1998,
+	author={Eric Sven Ristad and Peter N. Yianilos},
+	year={1998},
+	title={Learning string-edit distance},
+	journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+	volume={20},
+	number={5},
+	pages={522-532},
+	url={https://arxiv.org/pdf/cmp-lg/9610005}
+}
+@inproceedings{woodland1995,
+	author={P. C. Woodland and C. J. Leggetter and J. J. Odell and V. Valtchev and S. J. Young},
+	year={1995},
+	title={The 1994 HTK large vocabulary speech recognition system},
+	volume={1},
+	pages={76 vol.1},
+	abstract={This paper describes recent work on the HTK large vocabulary speech recognition system. The system uses tied-state cross-word context-dependent mixture Gaussian HMMs and a dynamic network decoder that can operate in a single pass. In the last year the decoder has been extended to produce word lattices to allow flexible and efficient system development, as well as multi-pass operation for use with computationally expensive acoustic and/or language models. The system vocabulary can now be up to 65 k words, the final acoustic models have been extended to be sensitive to more acoustic context (quinphones), a 4-gram language model has been used and unsupervised incremental speaker adaptation incorporated. The resulting system gave the lowest error rates on both the H1-P0 and H1-C1 hub tasks in the November 1994 ARPA CSR evaluation.},
+	isbn={1520-6149},
+	language={English},
+	url={https://www.researchgate.net/profile/Steve_Young3/publication/3618394_The_1994_HTK_large_vocabulary_speech_recognition_system/links/02e7e51e53b39a94f9000000.pdf},
+	doi={10.1109/ICASSP.1995.479276}
+}
+@inproceedings{deng2011,
+	author={Li Deng},
+	year={2011},
+	title={An overview of deep-structured learning for information processing},
+	booktitle={Proceedings of Asian-Pacific Signal & Information Processing Annual Summit and Conference (APSIPA-ASC)},
+	url={https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/DENG-APSIPA.pdf}
+}
+@inproceedings{lee1996,
+	author={Li Lee and R. C. Rose},
+	year={1996},
+	title={Speaker normalization using efficient frequency warping procedures},
+	volume={1},
+	pages={356 vol. 1},
+	abstract={In an effort to reduce the degradation in speech recognition performance caused by variation in vocal tract shape among speakers, a frequency warping approach to speaker normalization is investigated. A set of low complexity, maximum likelihood based frequency warping procedures have been applied to speaker normalization for a telephone based connected digit recognition task. This paper presents an efficient means for estimating a linear frequency warping factor and a simple mechanism for implementing frequency warping by modifying the filter-bank in mel-frequency cepstrum feature analysis. An experimental study comparing these techniques to other well-known techniques for reducing variability is described. The results showed that frequency warping was consistently able to reduce word error rate by 20% even for very short utterances.},
+	isbn={1520-6149},
+	language={English},
+	url={http://www.rle.mit.edu/dspg/documents/Speaker_1996.pdf},
+	doi={10.1109/ICASSP.1996.541105}
+}
+@article{hinton2006,
+	author={Geoffrey E. Hinton and Simon Osindero and Yee-Whye Teh},
+	year={2006},
+	title={A Fast Learning Algorithm for Deep Belief Nets},
+	journal={Neural computation},
+	volume={18},
+	number={7},
+	pages={1527-1554},
+	abstract={We show how to use "complementary priors" to eliminate the explaining-away effects that make inference difficult in densely connected belief nets that have many hidden layers. Using complementary priors, we derive a fast, greedy algorithm that can learn deep, directed belief networks one layer at a time, provided the top two layers form an undirected associative memory. The fast, greedy algorithm is used to initialize a slower learning procedure that fine-tunes the weights using a contrastive version of the wake-sleep algorithm. After fine-tuning, a network with three hidden layers forms a very good generative model of the joint distribution of handwritten digit images and their labels. This generative model gives better digit classification than the best discriminative learning algorithms. The low-dimensional manifolds on which the digits lie are modeled by long ravines in the free-energy landscape of the top-level associative memory, and it is easy to explore these ravines by using the directed connections to display what the associative memory has in mind. [PUBLICATION ABSTRACT]; We show how to use "complementary priors" to eliminate the explaining-away effects that make inference difficult in densely connected belief nets that have many hidden layers. Using complementary priors, we derive a fast, greedy algorithm that can learn deep, directed belief networks one layer at a time, provided the top two layers form an undirected associative memory. The fast, greedy algorithm is used to initialize a slower learning procedure that fine-tunes the weights using a contrastive version of the wake-sleep algorithm. After fine-tuning, a network with three hidden layers forms a very good generative model of the joint distribution of handwritten digit images and their labels. This generative model gives better digit classification than the best discriminative learning algorithms. The low-dimensional manifolds on which the digits lie are modeled by long ravines in the free-energy landscape of the top-level associative memory, and it is easy to explore these ravines by using the directed connections to display what the associative memory has in mind. [PUBLICATION ABSTRACT]; We show how to use "complementary priors" to eliminate the explaining-away effects thatmake inference difficult in densely connected belief nets that have many hidden layers. Using complementary priors, we derive a fast, greedy algorithm that can learn deep, directed belief networks one layer at a time, provided the top two layers form an undirected associative memory. The fast, greedy algorithm is used to initialize a slower learning procedure that fine-tunes the weights using a contrastive version of thewake-sleep algorithm. After fine-tuning, a networkwith three hidden layers forms a very good generative model of the joint distribution of handwritten digit images and their labels. This generative model gives better digit classification than the best discriminative learning algorithms. The low-dimensional manifolds on which the digits lie are modeled by long ravines in the free-energy landscape of the top-level associative memory, and it is easy to explore these ravines by using the directed connections to displaywhat the associativememory has in mind.; We show how to use "complementary priors" to eliminate the explaining-away effects that make inference difficult in densely connected belief nets that have many hidden layers. Using complementary priors, we derive a fast, greedy algorithm that can learn deep, directed belief networks one layer at a time, provided the top two layers form an undirected associative memory. The fast, greedy algorithm is used to initialize a slower learning procedure that fine-tunes the weights using a contrastive version of the wake-sleep algorithm. After fine-tuning, a network with three hidden layers forms a very good generative model of the joint distribution of handwritten digit images and their labels. This generative model gives better digit classification than the best discriminative learning algorithms. The low-dimensional manifolds on which the digits lie are modeled by long ravines in the free-energy landscape of the top-level associative memory, and it is easy to explore these ravines by using the directed connections to display what the associative memory has in mind.},
+	isbn={0899-7667},
+	language={English},
+	url={http://www.mitpressjournals.org/doi/pdfplus/10.1162/neco.2006.18.7.1527},
+	doi={10.1162/neco.2006.18.7.1527}
+}
+@article{sarikaya2014,
+	author={Ruhi Sarikaya and Geoffrey Hinton and Anoop Deoras},
+	year={2014},
+	title={Application of Deep Belief Networks for natural language understanding},
+	journal={IEEE/ACM Transactions on Audio, Speech and Language Processing (TASLP)},
+	volume={22},
+	number={4},
+	pages={778-784},
+	abstract={Applications of Deep Belief Nets (DBN) to various problems have been the subject of a number of recent studies ranging from image classification and speech recognition to audio classification. In this study we apply DBNs to a natural language understanding problem. The recent surge of activity in this area was largely spurred by the development of a greedy layer-wise pretraining method that uses an efficient learning algorithm called Contrastive Divergence (CD). CD allows DBNs to learn a multi-layer generative model from unlabeled data and the features discovered by this model are then used to initialize a feed-forward neural network which is fine-tuned with backpropagation. We compare a DBN-initialized neural network to three widely used text classification algorithms: Support Vector Machines (SVM), boosting and Maximum Entropy (MaxEnt). The plain DBN-based model gives a call-routing classification accuracy that is equal to the best of the other models. However, using additional unlabeled data for DBN pre-training and combining DBN-based learned features with the original features provides significant gains over SVMs, which, in turn, performed better than both MaxEnt and Boosting.; Â  Applications of Deep Belief Nets (DBN) to various problems have been the subject of a number of recent studies ranging from image classification and speech recognition to audio classification. In this study we apply DBNs to a natural language understanding problem. The recent surge of activity in this area was largely spurred by the development of a greedy layer-wise pretraining method that uses an efficient learning algorithm called Contrastive Divergence (CD). CD allows DBNs to learn a multi-layer generative model from unlabeled data and the features discovered by this model are then used to initialize a feed-forward neural network which is fine-tuned with backpropagation. We compare a DBN-initialized neural network to three widely used text classification algorithms: Support Vector Machines (SVM), boosting and Maximum Entropy (MaxEnt). The plain DBN-based model gives a call-routing classification accuracy that is equal to the best of the other models. However, using additional unlabeled data for DBN pre-training and combining DBN-based learned features with the original features provides significant gains over SVMs, which, in turn, performed better than both MaxEnt and Boosting.; Applications of Deep Belief Nets (DBN) to various problems have been the subject of a number of recent studies ranging from image classification and speech recognition to audio classification. In this study we apply DBNs to a natural language understanding problem. The recent surge of activity in this area was largely spurred by the development of a greedy layer-wise pretraining method that uses an efficient learning algorithm called Contrastive Divergence (CD). CD allows DBNs to learn a multi-layer generative model from unlabeled data and the features discovered by this model are then used to initialize a feed-forward neural network which is fine-tuned with backpropagation. We compare a DBN-initialized neural network to three widely used text classification algorithms: Support Vector Machines (SVM), boosting and Maximum Entropy (MaxEnt). The plain DBN-based model gives a call-routing classification accuracy that is equal to the best of the other models. However, using additional unlabeled data for DBN pre-training and combining DBN-based learned features with the original features provides significant gains over SVMs, which, in turn, performed better than both MaxEnt and Boosting.; Â  Applications of Deep Belief Nets (DBN) to various problems have been the subject of a number of recent studies ranging from image classification and speech recognition to audio classification. In this study we apply DBNs to a natural language understanding problem. The recent surge of activity in this area was largely spurred by the development of a greedy layer-wise pretraining method that uses an efficient learning algorithm called Contrastive Divergence (CD). CD allows DBNs to learn a multi-layer generative model from unlabeled data and the features discovered by this model are then used to initialize a feed-forward neural network which is fine-tuned with backpropagation. We compare a DBN-initialized neural network to three widely used text classification algorithms: Support Vector Machines (SVM), boosting and Maximum Entropy (MaxEnt). The plain DBN-based model gives a call-routing classification accuracy that is equal to the best of the other models. However, using additional unlabeled data for DBN pre-training and combining DBN-based learned features with the original features provides significant gains over SVMs, which, in turn, performed better than both MaxEnt and Boosting.},
+	isbn={2329-9290},
+	language={English},
+	url={http://www.cs.utoronto.ca/~hinton/absps/ruhijournal.pdf},
+	doi={10.1109/TASLP.2014.2303296}
+}
+@inproceedings{macherey2005,
+	author={Wolfgang Macherey and Lars Haferkamp and Ralf Schlter and Hermann Ney},
+	year={2005},
+	title={Investigations on error minimizing training criteria for discriminative training in automatic speech recognition.},
+	booktitle={Interspeech},
+	volume={2005},
+	pages={2133-2136},
+	url={https://pdfs.semanticscholar.org/a0d5/2a7dae2133bd2f82342f966eb207a52e2191.pdf}
+}
+@article{katz1987,
+	author={Slava Katz},
+	year={1987},
+	title={Estimation of probabilities from sparse data for the language model component of a speech recognizer},
+	journal={IEEE transactions on acoustics, speech, and signal processing},
+	volume={35},
+	number={3},
+	pages={400-401},
+	url={https://www.researchgate.net/profile/Lori_Lamel/publication/2572004_Estimation_of_probabilities_from_Sparse_data_for_the_language_model_component_of_a_speech_recognizer/links/5422cdc10cf26120b7a55d60.pdf}
+}
+@article{ney1994,
+	author={Hermann Ney and Ute Essen and Reinhard Kneser},
+	year={1994},
+	title={On structuring probabilistic dependences in stochastic language modelling},
+	journal={Computer Speech & Language},
+	volume={8},
+	number={1},
+	pages={1-38},
+	url={http://www.mathcs.emory.edu/~whalen/Hash/Hash_Articles/Abstracts.doc}
+}
+@article{kamper2016,
+	author={Herman Kamper and Aren Jansen and Sharon Goldwater},
+	year={2016},
+	title={Unsupervised word segmentation and lexicon discovery using acoustic word embeddings},
+	journal={IEEE/ACM Transactions on Audio, Speech and Language Processing (TASLP)},
+	volume={24},
+	number={4},
+	pages={669-679},
+	abstract={In settings where only unlabelled speech data is available, speech technology needs to be developed without transcriptions, pronunciation dictionaries, or language modelling text. A similar problem is faced when modelling infant language acquisition. In these cases, categorical linguistic structure needs to be discovered directly from speech audio. We present a novel unsupervised Bayesian model that segments unlabelled speech and clusters the segments into hypothesized word groupings. The result is a complete unsupervised tokenization of the input speech in terms of discovered word types. In our approach, a potential word segment (of arbitrary length) is embedded in a fixed-dimensional acoustic vector space. The model, implemented as a Gibbs sampler, then builds a whole-word acoustic model in this space while jointly performing segmentation. We report word error rates in a small-vocabulary connected digit recognition task by mapping the unsupervised decoded output to ground truth transcriptions. The model achieves around 20% error rate, outperforming a previous HMM-based system by about 10% absolute. Moreover, in contrast to the baseline, our model does not require a pre-specified vocabulary size.; In settings where only unlabeled speech data is available, speech technology needs to be developed without transcriptions, pronunciation dictionaries, or language modelling text. A similar problem is faced when modeling infant language acquisition. In these cases, categorical linguistic structure needs to be discovered directly from speech audio. We present a novel unsu-pervised Bayesian model that segments unlabeled speech and clusters the segments into hypothesized word groupings. The result is a complete unsupervised tokenization of the input speech in terms of discovered word types. In our approach, a potential word segment (of arbitrary length) is embedded in a fixed-dimensional acoustic vector space. The model, implemented as a Gibbs sampler, then builds a whole-word acoustic model in this space while jointly performing segmentation. We report word error rates in a small-vocabulary connected digit recognition task by mapping the unsupervised decoded output to ground truth transcriptions. The model achieves around 20% error rate, outperforming a previous HMM-based system by about 10% absolute. Moreover, in contrast to the baseline, our model does not require a pre-specified vocabulary size.; In settings where only unlabeled speech data is available, speech technology needs to be developed without transcriptions, pronunciation dictionaries, or language modelling text. A similar problem is faced when modeling infant language acquisition. In these cases, categorical linguistic structure needs to be discovered directly from speech audio. We present a novel unsupervised Bayesian model that segments unlabeled speech and clusters the segments into hypothesized word groupings. The result is a complete unsupervised tokenization of the input speech in terms of discovered word types. In our approach, a potential word segment (of arbitrary length) is embedded in a fixed-dimensional acoustic vector space. The model, implemented as a Gibbs sampler, then builds a whole-word acoustic model in this space while jointly performing segmentation. We report word error rates in a small-vocabulary connected digit recognition task by mapping the unsupervised decoded output to ground truth transcriptions. The model achieves around 20% error rate, outperforming a previous HMM-based system by about 10% absolute. Moreover, in contrast to the baseline, our model does not require a pre-specified vocabulary size.},
+	isbn={2329-9290},
+	language={English},
+	doi={10.1109/TASLP.2016.2517567}
+}
+@inproceedings{jansen2011,
+	author={Aren Jansen and Benjamin Van Durme},
+	year={2011},
+	title={Efficient spoken term discovery using randomized algorithms},
+	pages={401-406},
+	abstract={Spoken term discovery is the task of automatically identifying words and phrases in speech data by searching for long repeated acoustic patterns. Initial solutions relied on exhaustive dynamic time warping-based searches across the entire similarity matrix, a method whose scalability is ultimately limited by the O(n 2 ) nature of the search space. Recent strategies have attempted to improve search efficiency by using either unsupervised or mismatched-language acoustic models to reduce the complexity of the feature representation. Taking a completely different approach, this paper investigates the use of randomized algorithms that operate directly on the raw acoustic features to produce sparse approximate similarity matrices in O(n) space and O(n log n) time. We demonstrate these techniques facilitate spoken term discovery performance capable of outperforming a model-based strategy in the zero resource setting.},
+	isbn={9781-467303651},
+	language={English},
+	doi={10.1109/ASRU.2011.6163965}
+}
+@article{jelinek1976,
+	author={F. Jelinek},
+	year={1976},
+	title={Continuous speech recognition by statistical methods},
+	journal={Proceedings of the IEEE},
+	volume={64},
+	number={4},
+	pages={532-556},
+	abstract={Statistical methods useful in automatic recognition of continuous speech are described. They concern modeling of a speaker and of an acoustic processor, extraction of the models' statistical parameters and hypothesis search procedures and likelihood computations of linguistic decoding. Experimental results are presented that indicate the power of the methods.},
+	isbn={0018-9219},
+	language={English},
+	doi={10.1109/PROC.1976.10159}
+}
+@book{manning1999,
+	author={Christopher D. Manning and Hinrich Schℓutze},
+	year={1999},
+	title={Foundations of statistical natural language processing},
+	publisher={MIT Press},
+	address={Cambridge, Mass; London},
+	isbn={9780262133609},
+	language={English}
+}
+@article{kuhn1990,
+	author={R. Kuhn and R. De Mori},
+	year={1990},
+	title={A cache-based natural language model for speech recognition},
+	journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+	volume={12},
+	number={6},
+	pages={570-583},
+	abstract={Speech-recognition systems must often decide between competing ways of breaking up the acoustic input into strings of words. Since the possible strings may be acoustically similar, a language model is required; given a word string, the model returns its linguistic probability. Several Markov language models are discussed. A novel kind of language model which reflects short-term patterns of word use by means of a cache component (analogous to cache memory in hardware terminology) is presented. The model also contains a 3g-gram component of the traditional type. The combined model and a pure 3g-gram model were tested on samples drawn from the Lancaster-Oslo/Bergen (LOB) corpus of English text. The relative performance of the two models is examined, and suggestions for the future improvements are made.},
+	isbn={0162-8828},
+	language={English},
+	doi={10.1109/34.56193}
+}
+@article{brown1992,
+	author={Peter F. Brown and Peter V. Desouza and Robert L. Mercer and Vincent J. Della Pietra and Jenifer C. Lai},
+	year={1992},
+	title={Class-based n-gram models of natural language},
+	journal={Computational linguistics},
+	volume={18},
+	number={4},
+	pages={467-479},
+	url={http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.13.9919&rep=rep1&type=pdf}
+}
+@article{baum1970,
+    author={Baum,Leonard E. and Petrie,Ted and Soules,George and Weiss,Norman},
+    year={1970},
+    title={A Maximization Technique Occurring in the Statistical Analysis of Probabilistic Functions of Markov Chains},
+    journal={The Annals of Mathematical Statistics},
+    volume={41},
+    number={1},
+    pages={164-171},
+    isbn={0003-4851},
+    language={English},
+}
+@book{allen1994,
+	author={James Allen},
+	year={1994},
+	title={Natural language understanding},
+	publisher={Benjamin/Cummings},
+	address={Redwood City, Calif},
+	edition={2nd},
+	isbn={9780805303346},
+	language={English}
+}
+@inproceedings{bahl1986,
+	author={Lalit Bahl and Peter Brown and Peter De Souza and Robert Mercer},
+	year={1986},
+	title={Maximum mutual information estimation of hidden Markov model parameters for speech recognition},
+	booktitle={Acoustics, Speech, and Signal Processing, IEEE International Conference on ICASSP'86.},
+	publisher={IEEE},
+	volume={11},
+	pages={49-52}
+}
+@article{juang2000,
+	author={Bing-Hwang Juang and S. Furui},
+	year={2000},
+	title={Automatic recognition and understanding of spoken language - a first step toward natural human-machine communication},
+	journal={Proceedings of the IEEE},
+	volume={88},
+	number={8},
+	pages={1142-1165},
+	abstract={The promise of a powerful computing device to help people in productivity as well as in recreation can only be realized with proper human-machine communication. Automatic recognition and understanding of spoken language is the first step toward natural human-machine interaction. Research in this field has produced remarkable results, leading to many exciting expectations and new challenges. We summarize the development of the spoken language technology from both a vertical (chronology) and a horizontal (spectrum of technical approaches) perspective. We highlight the introduction of statistical methods in dealing with language-related problems, as this represents a paradigm shift in the research field of spoken language processing. Statistical methods are designed to allow the machine to learn structural regularities in the speech signal, directly from data, for the purpose of automatic speech recognition and understanding. Research results in spoken language processing have led to a number of successful applications, ranging from dictation software for personal computers and telephone-call processing systems for automatic call routing, to automatic sub-captioning for television broadcasts. We analyze the technical successes that support these applications. Along with an assessment of the state of the art in this broad technical field, we also discuss the limitations of the current technology, and point out the challenges that are ahead. This paper presents an accurate overview of spoken language technology as a basis to inspire future advances.},
+	isbn={0018-9219},
+	language={English},
+	url={http://ieeexplore.ieee.org/document/880077},
+	doi={10.1109/5.880077}
+}
+@book{booch1999,
+	author={Grady Booch and James Rumbaugh and Ivar Jacobson},
+	year={1999},
+	title={The unified modeling language user guide},
+	publisher={Addison-Wesley},
+	address={Boston, Mass; London},
+	isbn={9780201571684},
+	language={English}
+}
+@article{byrne2006,
+	author={William Byrne},
+	year={2006},
+	title={Minimum Bayes risk estimation and decoding in large vocabulary continuous speech recognition},
+	journal={IEICE Transactions on Information and Systems},
+	volume={89},
+	number={3},
+	pages={900-907},
+	url={http://svr-www.eng.cam.ac.uk/~wjb31/ppubs/ATRminriskBeyondHMMs.pdf}
+}
+@misc{cmu2016,
+	author={Carnegie Mellon University},
+	year={2016},
+	title={&nbsp;CMU pronouncing dictionary},
+	url={https://github.com/cmusphinx/cmudict}
+}
+@article{cmu2015,
+	author={Carnegie Mellon University (CMU) Sphinx.},
+	year={2015},
+	title={Basic concepts of speech},
+	url={http://cmusphinx.sourceforge.net/wiki/tutorialconcepts}
+}
+@inproceedings{chou1993,
+	author={W. Chou and C. H. Lee and B. H. Juang},
+	year={1993},
+	title={Minimum error rate training based on N-best string models},
+	volume={2},
+	pages={655 vol.2},
+	abstract={The authors study issues related to string level acoustic modeling in continuous speech recognition. They derive the formulation of minimum string error rate training. A minimum string error rate training algorithm, segmental minimum string error rate training, is described. It takes a further step in modeling the basic speech recognition units by directly applying discriminative analysis to string level acoustic model matching. One of the advantages of this training algorithm lies in its ability to model strings which are competitive with the correct string but are unseen in the training material. The robustness and acoustic resolution of the unit model set can therefore be significantly improved. Various experimental results have shown that significant error rate reduction can be achieved using this approach.},
+	isbn={1520-6149},
+	language={English},
+	doi={10.1109/ICASSP.1993.319394}
+}
+@article{davis1980,
+	author={S. Davis and P. Mermelstein},
+	year={1980},
+	title={Comparison of parametric representations for monosyllabic word recognition in continuously spoken sentences},
+	journal={IEEE Transactions on Acoustics, Speech, and Signal Processing},
+	volume={28},
+	number={4},
+	pages={357-366},
+	abstract={Several parametric representations of the acoustic signal were compared with regard to word recognition performance in a syllable-oriented continuous speech recognition system. The vocabulary included many phonetically similar monosyllabic words, therefore the emphasis was on the ability to retain phonetically significant acoustic information in the face of syntactic and duration variations. For each parameter set (based on a mel-frequency cepstrum, a linear frequency cepstrum, a linear prediction cepstrum, a linear prediction spectrum, or a set of reflection coefficients), word templates were generated using an efficient dynamic warping method, and test data were time registered with the templates. A set of ten mel-frequency cepstrum coefficients computed every 6.4 ms resulted in the best performance, namely 96.5 percent and 95.0 percent recognition with each of two speakers. The superior performance of the mel-frequency cepstrum coefficients may be attributed to the fact that they better represent the perceptually relevant aspects of the short-term speech spectrum.},
+	isbn={0096-3518},
+	language={English},
+	doi={10.1109/TASSP.1980.1163420}
+}
+@article{dempster1977,
+	author={A. P. Dempster and N. M. Laird and D. B. Rubin},
+	year={1977},
+	title={Maximum Likelihood from Incomplete Data via the EM Algorithm},
+	journal={Journal of the Royal Statistical Society.Series B (Methodological)},
+	volume={39},
+	number={1},
+	pages={1-38},
+	abstract={A broadly applicable algorithm for computing maximum likelihood estimates from incomplete data is presented at various levels of generality. Theory showing the monotone behaviour of the likelihood and convergence of the algorithm is derived. Many examples are sketched, including missing value situations, applications to grouped, censored or truncated data, finite mixture models, variance component estimation, hyperparameter estimation, iteratively reweighted least squares and factor analysis.},
+	isbn={0035-9246},
+	language={English}
+}
+@article{dempster1977b,
+	author={Arthur P. Dempster and Nan M. Laird and Donald B. Rubin},
+	year={1977},
+	title={Maximum likelihood from incomplete data via the EM algorithm},
+	journal={Journal of the royal statistical society.Series B (methodological)},
+	pages={1-38},
+	url={http://www.jstor.org/stable/2984875}
+}
+@book{fant1971,
+	author={Gunnar Fant},
+	year={1971},
+	title={Acoustic theory of speech production: with calculations based on X-ray studies of Russian articulations},
+	publisher={Walter de Gruyter},
+	volume={2}
+}
+@article{furui1986,
+	author={Sadaoki Furui},
+	year={1986},
+	title={Speaker-independent isolated word recognition using dynamic features of speech spectrum},
+	journal={IEEE Transactions on Acoustics, Speech, and Signal Processing},
+	volume={34},
+	number={1},
+	pages={52-59},
+	url={http://t2r2.star.titech.ac.jp/rrws/file/CTT100418594/ATD100000413/}
+}
+@article{gaida2014,
+	author={Christian Gaida and Patrick Lange and Rico Petrick and Patrick Proba and Ahmed Malatawy and David Suendermann-Oeft},
+	year={2014},
+	title={Comparing open-source speech recognition toolkits},
+	journal={Tech.Rep., DHBW Stuttgart},
+	url={http://sinaidiagnostics.com/su/pdf/oasis2014.pdf}
+}
+@inproceedings{gales2005,
+	author={M. J. F. Gales and B. Jia and X. Liu and K. C. Sim and P. C. Woodland and K. Yu},
+	year={2005},
+	title={Development of the CUHTK 2004 Mandarin conversational telephone speech transcription system},
+	publisher={IEEE},
+	volume={1},
+	pages={I/844 Vol. 1},
+	abstract={The paper details all aspects of the CUHTK 2004 Mandarin conversational telephone speech transcription system, but concentrates on the development of the acoustic models. As there are significant differences between the available training corpora, both in terms of topics of conversation and accents, forms of data normalisation and adaptive training techniques are investigated. The baseline discriminatively trained acoustic models are compared to a system built with a Gaussianisation front-end, a speaker adaptively trained system and an adaptively trained structured precision matrix system. The models are finally evaluated within a multi-pass, multi-branch, system combination framework.},
+	isbn={1520-6149},
+	language={English},
+	url={http://ieeexplore.ieee.org/document/1415245},
+	doi={10.1109/ICASSP.2005.1415245}
+}
+@article{gales2007,
+	author={Mark Gales and Steve Young},
+	year={2007},
+	title={The Application of Hidden Markov Models in Speech Recognition},
+	journal={Foundations and TrendsÂ® in Signal Processing},
+	volume={1},
+	number={3},
+	pages={195-304},
+	isbn={1932-8346},
+	language={English},
+	doi={10.1561/2000000004}
+}
+@article{glass2003,
+	author={James R. Glass},
+	year={2003},
+	title={A probabilistic framework for segment-based speech recognition},
+	journal={Computer Speech & Language},
+	volume={17},
+	number={2},
+	pages={137-152},
+	url={http://www.sls.csail.mit.edu/sls/publications/2003/glass.csl2003.pdf}
+}
+@article{hermansky1990,
+	author={Hynek Hermansky},
+	year={1990},
+	title={Perceptual linear predictive (PLP) analysis of speech},
+	journal={The Journal of the Acoustical Society of America},
+	volume={87},
+	number={4},
+	pages={1738-1752}
+}
+@article{jiang2010,
+	author={Hui Jiang},
+	year={2010},
+	title={Discriminative training of HMMs for automatic speech recognition: A survey},
+	journal={Computer Speech & Language},
+	volume={24},
+	number={4},
+	pages={589-608},
+	abstract={Recently, discriminative training (DT) methods have achieved tremendous progress in automatic speech recognition (ASR). In this survey article, all mainstream DT methods in speech recognition are reviewed from both theoretical and practical perspectives. From the theoretical aspect, many effective discriminative learning criteria in ASR are first introduced and then a unifying view is presented to elucidate the relationship among these popular DT criteria originally proposed from different viewpoints. Next, some key optimization methods used to optimize these criteria are summarized and their convergence properties are discussed. Moreover, as some recent advances, a novel discriminative learning framework is introduced as a general scheme to formulate discriminative training of HMMs for ASR, from which a variety of new DT methods can be developed. In addition, some important implementation issues regarding how to conduct DT for large vocabulary ASR are also discussed from a more practical aspect, such as efficient implementation of discriminative training on word graphs and effective optimization of complex DT objective functions in high-dimensionality space, and so on. Finally, this paper is summarized and concluded with some possible future research directions for this area. As a technical survey, all DT techniques and ideas are reviewed and discussed in this paper from high level without involving too much technical detail and experimental result. [Copyright Elsevier Ltd.]; Recently, discriminative training (DT) methods have achieved tremendous progress in automatic speech recognition (ASR). In this survey article, all mainstream DT methods in speech recognition are reviewed from both theoretical and practical perspectives. From the theoretical aspect, many effective discriminative learning criteria in ASR are first introduced and then a unifying view is presented to elucidate the relationship among these popular DT criteria originally proposed from different viewpoints. Next, some key optimization methods used to optimize these criteria are summarized and their convergence properties are discussed. Moreover, as some recent advances, a novel discriminative learning framework is introduced as a general scheme to formulate discriminative training of HMMs for ASR, from which a variety of new DT methods can be developed. In addition, some important implementation issues regarding how to conduct DT for large vocabulary ASR are also discussed from a more practical aspect, such as efficient implementation of discriminative training on word graphs and effective optimization of complex DT objective functions in high-dimensionality space, and so on. Finally, this paper is summarized and concluded with some possible future research directions for this area. As a technical survey, all DT techniques and ideas are reviewed and discussed in this paper from high level without involving too much technical detail and experimental result. [Copyright Elsevier Ltd.]; Recently, discriminative training (DT) methods have achieved tremendous progress in automatic speech recognition (ASR). In this survey article, all mainstream DT methods in speech recognition are reviewed from both theoretical and practical perspectives. From the theoretical aspect, many effective discriminative learning criteria in ASR are first introduced and then a unifying view is presented to elucidate the relationship among these popular DT criteria originally proposed from different viewpoints. Next, some key optimization methods used to optimize these criteria are summarized and their convergence properties are discussed. Moreover, as some recent advances, a novel discriminative learning framework is introduced as a general scheme to formulate discriminative training of HMMs for ASR, from which a variety of new DT methods can be developed. In addition, some important implementation issues regarding how to conduct DT for large vocabulary ASR are also discussed from a more practical aspect, such as efficient implementation of discriminative training on word graphs and effective optimization of complex DT objective functions in high-dimensionality space, and so on. Finally, this paper is summarized and concluded with some possible future research directions for this area. As a technical survey, all DT techniques and ideas are reviewed and discussed in this paper from high level without involving too much technical detail and experimental result. Â© 2009 Elsevier Ltd. All rights reserved.},
+	isbn={0885-2308},
+	language={English},
+	doi={10.1016/j.csl.2009.08.002}
+}
+@article{juang1992,
+	author={B. -H Juang and S. Katagiri},
+	year={1992},
+	title={Discriminative learning for minimum error classification (pattern recognition)},
+	journal={IEEE Transactions on Signal Processing},
+	volume={40},
+	number={12},
+	pages={3043-3054},
+	abstract={A formulation is proposed for minimum-error classification, in which the misclassification probability is to be minimized based on a given set of training samples. A fundamental technique for designing a classifier that approaches the objective of minimum classification error in a more direct manner than traditional methods is given. The method is contrasted with several traditional classifier designs in typical experiments to demonstrate the superiority of the new learning formulation. The method can applied to other classifier structures as well. Experimental results pertaining to a speech recognition task are provided to show the effectiveness of the technique.},
+	isbn={1053-587X},
+	language={English},
+	doi={10.1109/78.175747}
+}
+@book{jurafsky2009,
+	author={Dan Jurafsky and James H. Martin},
+	year={2009},
+	title={Speech and language processing: an introduction to natural language processing, computational linguistics, and speech recognition},
+	publisher={Prentice Hall},
+	address={Upper Saddle River, N.J; London},
+	edition={2nd International; Previous, 2001.},
+	isbn={0135041961},
+	language={English}
+}
+@inproceedings{kaiser2000,
+	author={Janez Kaiser and Bogomir Horvat and Zdravko Kacic},
+	year={2000},
+	title={A novel loss function for the overall risk criterion based discriminative training of HMM models},
+	booktitle={Sixth International Conference on Spoken Language Processing},
+	url={https://pdfs.semanticscholar.org/de8c/eb72bf54293959813c101c4f7ce54fbd3a20.pdf}
+}
+@inproceedings{lee1997,
+	author={Li Lee and R. C. Rose},
+	year={1996},
+	title={Speaker normalization using efficient frequency warping procedures},
+	volume={1},
+	pages={356 vol. 1},
+	abstract={In an effort to reduce the degradation in speech recognition performance caused by variation in vocal tract shape among speakers, a frequency warping approach to speaker normalization is investigated. A set of low complexity, maximum likelihood based frequency warping procedures have been applied to speaker normalization for a telephone based connected digit recognition task. This paper presents an efficient means for estimating a linear frequency warping factor and a simple mechanism for implementing frequency warping by modifying the filter-bank in mel-frequency cepstrum feature analysis. An experimental study comparing these techniques to other well-known techniques for reducing variability is described. The results showed that frequency warping was consistently able to reduce word error rate by 20% even for very short utterances.},
+	isbn={1520-6149},
+	language={English},
+	doi={10.1109/ICASSP.1996.541105}
+}
+@article{liddy2001,
+	author={Elizabeth D. Liddy},
+	year={2001},
+	title={Natural language processing},
+	url={http://surface.syr.edu/cgi/viewcontent.cgi?article=1043&context=istpub}
+}
+@inproceedings{wolfgang2005,
+	author={Wolfgang Macherey and Lars Haferkamp and Ralf Schlter and Hermann Ney},
+	year={2005},
+	title={Investigations on error minimizing training criteria for discriminative training in automatic speech recognition.},
+	booktitle={Interspeech},
+	volume={2005},
+	pages={2133-2136},
+	url={https://pdfs.semanticscholar.org/a0d5/2a7dae2133bd2f82342f966eb207a52e2191.pdf}
+}
+@inproceedings{makhoul1976,
+	author={J. Makhoul and L. Cosell},
+	year={1976},
+	title={LPCW: An LPC vocoder with linear predictive spectral warping},
+	volume={1},
+	pages={466-469},
+	abstract={In ordinary linear prediction the speech spectral envelope is modeled by an all-pole spectrum. The error criterion employed guarantees a uniform fit across the whole frequency range. However, we know from speech perception studies that low frequencies are more important than high frequencies for perception. Therefore, a minimally redundant model would strive to achieve a uniform perceptual fit across the spectrum, which means that it should be able to represent low frequencies more accurately than high frequencies. This is achieved in the LPCW vocoder: an LPC vocoder employing our recently developed method of linear predictive warping (LPW). The result is improved speech quality for the same bit rate.},
+	language={English},
+	doi={10.1109/ICASSP.1976.1170013}
+}
+@article{nadas1983,
+	author={Arthur Nadas},
+	year={1983},
+	title={DECISION THEORETIC FORMULATION OF A TRAINING PROBLEM IN SPEECH RECOGNITION AND A COMPARISON OF TRAINING BY UNCONDITIONAL VERSUS CONDITIONAL MAXIMUM LIKELIHOOD},
+	journal={IEEE Transactions on Acoustics, Speech, and Signal Processing},
+	volume={31},
+	number={4},
+	pages={814-817},
+	isbn={0096-3518},
+	language={English}
+}
+@inproceedings{ney1992,
+	author={H. Ney and R. Haeb-Umbach and B. -H Tran and M. Oerder},
+	year={1992},
+	title={Improvements in beam search for 10000-word continuous speech recognition},
+	volume={1},
+	pages={12 vol.1},
+	abstract={The author describes the improvements in a time synchronous beam search strategy for a 10000-word continuous speech recognition task. The improvements are based on two measures: a tree-organization of the pronunciation lexicon and a novel look-ahead technique at the phoneme level, both of which interact directly with the detailed search at the state levels of the phoneme models. Experimental tests were performed for four speakers on a 12306-word task. As a result of the above measures, the overall search effort was reduced by a factor of 17 without a loss in recognition accuracy.},
+	isbn={1520-6149},
+	language={English}
+	doi={10.1109/ICASSP.1992.225985}
+}
+@article{park2008,
+	author={Alex S. Park and James R. Glass},
+	year={2008},
+	title={Unsupervised pattern discovery in speech},
+	journal={IEEE Transactions on Audio, Speech, and Language Processing},
+	volume={16},
+	number={1},
+	pages={186-197},
+	url={http://www.academia.edu/download/40587723/Unsupervised_Pattern_Discovery_in_Speech20151202-17091-ixvloj.pdf}
+}
+@inproceedings{povey2011,
+	author={Dan Povey and D. Satya Ganesh and Prasant Kumar Sahu},
+	year={2011},
+	title={The Kaldi Speech Recognition toolkit},
+	publisher={IEEE},
+	pages={365-368},
+	abstract={The applications of modern speech recognition are becoming more common with the demand of human-machine interactions. Many speech based interactive software applications were executed on the classical general purpose computers. This paper reports an overview about the different speech recognition systems and also about the different speech recognition tools such as HTK, CMU Sphinx, Kaldi and performance metrics of the toolkits.},
+	language={English},
+	url={http://ieeexplore.ieee.org/document/7489768},
+	doi={10.1109/ICMOCE.2015.7489768}
+}
+@article{povey2009,
+	author={Daniel Povey},
+	year={2009},
+	title={A tutorial-style introduction to subspace Gaussian mixture models for speech recognition},
+	journal={Microsoft Research, Redmond, WA},
+	url={https://www.microsoft.com/en-us/research/wp-content/uploads/2009/08/ubmtutorial.pdf}
+}
+@inproceedings{povey2003,
+	author={Daniel Povey and Mark JF Gales and Do Yeong Kim and Philip C. Woodland},
+	year={2003},
+	title={MMI-MAP and MPE-MAP for acoustic model adaptation.},
+	booktitle={Interspeech},
+	url={http://www.danielpovey.com/files/eurospeech03mmimap.pdf}
+}
+@inproceedings{price1988,
+	author={P. Price and W. M. Fisher and J. Bernstein and D. S. Pallett},
+	year={1988},
+	title={The DARPA 1000-word resource management database for continuous speech recognition},
+	pages={654 vol.1},
+	abstract={A database of continuous read speech has been designed and recorded within the DARPA strategic computing speech recognition program. The data is intended for use in designing and evaluating algorithms for speaker-independent, speaker-adaptive and speaker-dependent speech recognition. The data consists of read sentences appropriate to a naval resource management task built around existing interactive database and graphics programs. The 1000-word task vocabulary is intended to be logically complete and habitable. The database, which represents over 21000 recorded utterances from 160 talkers with a variety of dialects, includes a partition of sentences and talkers for training and for testing purposes.},
+	isbn={1520-6149},
+	language={English},
+	doi={10.1109/ICASSP.1988.196669}
+}
+@article{rabiner1989,
+	author={L. R. Rabiner},
+	year={1989},
+	title={A tutorial on hidden Markov models and selected applications in speech recognition},
+	journal={Proceedings of the IEEE},
+	volume={77},
+	number={2},
+	pages={257-286},
+	abstract={This tutorial provides an overview of the basic theory of hidden Markov models (HMMs) as originated by L.E. Baum and T. Petrie (1966) and gives practical details on methods of implementation of the theory along with a description of selected applications of the theory to distinct problems in speech recognition. Results from a number of original sources are combined to provide a single source of acquiring the background required to pursue further this area of research. The author first reviews the theory of discrete Markov chains and shows how the concept of hidden states, where the observation is a probabilistic function of the state, can be used effectively. The theory is illustrated with two simple examples, namely coin-tossing, and the classic balls-in-urns system. Three fundamental problems of HMMs are noted and several practical techniques for solving these problems are given. The various types of HMMs that have been studied, including ergodic as well as left-right models, are described.},
+	isbn={0018-9219},
+	language={English},
+	doi={10.1109/5.18626}
+}
+@article{romdhani2015,
+	author={Sihem Romdhani},
+	year={2015},
+	title={Implementation of DNN-HMM Acoustic Models for Phoneme Recognition}
+}
+@book{sebesta2002,
+	author={Robert W. Sebesta and Soumen Mukherjee},
+	year={2002},
+	title={Concepts of programming languages},
+	publisher={Addison-Wesley Reading},
+	volume={281},
+	url={http://www.scis.nova.edu/~willsmit/MMIS%20610%20Summer%202005.pdf}
+}
+@article{shen2016,
+	author={Peng Shen and Xugang Lu and Xinhui Hu and Naoyuki Kanda and Masahiro Saiko and Chiori Hori and Hisashi Kawai},
+	year={2016},
+	title={Combination of multiple acoustic models with unsupervised adaptation for lecture speech transcription},
+	journal={Speech Communication},
+	volume={82},
+	pages={1-13},
+	abstract={Automatic speech recognition systems (ASR) have achieved considerable progress in real applications because of skilled design of the architecture with advanced techniques and algorithms. However, how to design a system efficiently integrating these various techniques to obtain advanced performance is still a challenging task. In this paper, we introduced an ensemble model combination and adaptation based ASR system with two characteristics: (1) large-scale combination of multiple ASR systems based on a Recognizer Output Voting Error Reduction (ROVER) system, and (2) multi-pass unsupervised speaker adaptation for deep neural network acoustic models and topic adaptation on language model. The multiple acoustic models were trained with different acoustic features and model architectures which helped to provide complementary and discriminative information in the ROVER process. With these multiple acoustic models, a better estimation of word confidence could be obtained from ROVER process which helped in selecting data for unsupervised adaptation on the previously trained acoustic models. The final recognition result was obtained using multi-pass decoding, ROVER, and adaptation processes. We tested the system on lecture speeches with topics related to Technology, Entertainment and Design (TED) that were used in the international workshop on spoken language translation (IWSLT) evaluation campaign, and obtained 6.5%, 7.0%, 10.6%, and 8.4% word error rates for test sets in 2011, 2012, 2013, and 2014, which to our knowledge are the best results for these evaluation sets.},
+	isbn={0167-6393},
+	language={English},
+	doi={10.1016/j.specom.2016.05.001}
+}
+@inproceedings{sinha2006,
+	author={Rohit Sinha and Mark JF Gales and D. Y. Kim and X. Andrew Liu and Khe Chai Sim and Philip C. Woodland},
+	year={2006},
+	title={The CU-HTK Mandarin broadcast news transcription system},
+	booktitle={Acoustics, Speech and Signal Processing, 2006. ICASSP 2006 Proceedings. 2006 IEEE International Conference on},
+	publisher={IEEE},
+	volume={1},
+	pages={I},
+	abstract={The paper discusses the development of CU-HTK Mandarin broadcast news (BN) transcription system. &nbsp;The data which is studded with English language required techniques of augmenting the Mandarin training sets with English acoustic and language model training data. &nbsp;The acoustic models were built based on Gaussianised features, speaker adaptive training (SAT) and feature space MPE (FMPE). &nbsp;The final output was as combination of multi-branch, multi-acoustic model and alternate phone sets which was claimed to give state of the art results.}
+}
+@inproceedings{soltau2005,
+	author={Hagen Soltau and Brian Kingsbury and Lidia Mangu and Daniel Povey and George Saon and Geoffrey Zweig},
+	year={2005},
+	title={The IBM 2004 conversational telephony system for rich transcription},
+	booktitle={Acoustics, Speech, and Signal Processing, 2005. Proceedings.(ICASSP'05). IEEE International Conference on},
+	publisher={IEEE},
+	volume={1},
+	pages={I/208 Vol. 1}
+}
+@inproceedings{steinbiss1989,
+	author={Volker Steinbiss},
+	year={1989},
+	title={Sentence-hypotheses generation in a continuous-speech recognition system},
+	booktitle={First European Conference on Speech Communication and Technology}
+}
+@misc{young1995,
+	author = 	 {Steve Young and Gunnar Evermann and Mark Gales and Thomas Hain and Dan Kershaw and Xunying (Andrew) Liu and Gareth Moore and Julian Odell and Dave Ollason and Dan Povey and Valtcho Valtchev and Phil Woodland},
+	year = 	 {1995},
+	title = 	 {The HTK Book}
+}
+@article{walker2004,
+	author={Willie Walker and Paul Lamere and Philip Kwok and Bhiksha Raj and Rita Singh and Evandro Gouvea and Peter Wolf and Joe Woelfel},
+	year={2004},
+	title={Sphinx-4: A flexible open source framework for speech recognition},
+	url={https://pdfs.semanticscholar.org/bfbe/5cc318cc5d9e73ac2b26f0a352cfb83b4be2.pdf}
+}
+@book{watanabe2015,
+	author={Shinji (Communications engineer) Watanabe and Jen-Tzung Chien},
+	year={2015},
+	title={Bayesian speech and language processing},
+	publisher={Cambridge University Press},
+	address={Cambridge},
+	isbn={1107055571},
+	language={English}
+}
+@inproceedings{woodland2001,
+	author={Phil C. Woodland},
+	year={2001},
+	title={Speaker adaptation for continuous density HMMs: A review},
+	booktitle={ISCA Tutorial and Research Workshop (ITRW) on Adaptation Methods for Speech Recognition},
+	url={https://pdfs.semanticscholar.org/3905/c2369edf44a9a5133fbd57ff06ceeceebd0e.pdf}
+}
+@article{woodland2002,
+	author={Philip C. Woodland and Daniel Povey},
+	year={2002},
+	title={Large scale discriminative training of hidden Markov models for speech recognition},
+	journal={Computer Speech & Language},
+	volume={16},
+	number={1},
+	pages={25-47}
+}
+@article{young1996,
+	author={Steve Young},
+	year={1996},
+	title={A review of large-vocabulary continuous-speech},
+	journal={IEEE Signal Processing Magazine},
+	volume={13},
+	number={5},
+	pages={45},
+	abstract={Considerable progress has been made in speech-recognition technology over the last few years and nowhere has this progress been more evident than in the area of large-vocabulary recognition (LVR). Current laboratory systems are capable of transcribing continuous speech from any speaker with average word-error rates between 5% and 10%. If speaker adaptation is allowed, then after 2 or 3 minutes of speech, the error rate will drop well below 5% for most speakers. LVR systems had been limited to dictation applications since the systems were speaker dependent and required words to be spoken with a short pause between them. However, the capability to recognize natural continuous-speech input from any speaker opens up many more applications. As a result, LVR technology appears to be on the brink of widespread deployment across a range of information technology (IT) systems. This article discusses the principles and architecture of current LVR systems and identifies the key issues affecting their future deployment. To illustrate the various points raised, the Cambridge University HTK system is described. This system is a modem design that gives state-of-the-art performance, and it is typical of the current generation of recognition systems.},
+	isbn={1053-5888},
+	language={English},
+	doi={10.1109/79.536824}
+}
+@book{young1993,
+	author={Steve J. Young and Sj Young},
+	year={1993},
+	title={The HTK hidden Markov model toolkit: Design and philosophy},
+	publisher={University of Cambridge, Department of Engineering},
+	url={https://www.researchgate.net/profile/Steve_Young3/publication/263124034_The_HTK_hidden_Markov_model_toolkit_Design_and_philosophy/links/555dc15d08ae6f4dcc8c5b62.pdf}
+}
+@book{yu2015,
+	author={Dong Yu and Li Deng},
+	year={2015},
+	title={Automatic speech recognition: a deep learning approach},
+	publisher={Springer},
+	address={London},
+	isbn={9781447157786},
+	language={English}
+}
+>>>>>>> 3ef68fb5b75bb45286846e57bc17926fa30d5ad1

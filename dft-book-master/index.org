@@ -1,0 +1,21 @@
+<<<<<<< HEAD
+#+TITLE: Welcome to dft-book
+
+
+- [[./dft.pdf][PDF]]
+- [[./dft.html][HTML]]
+
+
+#+ATTR_HTML: width="500px"
+[[./images/cover-page.png]]
+=======
+#+TITLE: Welcome to dft-book
+
+
+- [[./dft.pdf][PDF]]
+- [[./dft.html][HTML]]
+
+
+#+ATTR_HTML: width="500px"
+[[./images/cover-page.png]]
+>>>>>>> 3ef68fb5b75bb45286846e57bc17926fa30d5ad1

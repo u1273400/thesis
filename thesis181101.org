@@ -1,0 +1,40 @@
+#+TITLE:     Deep Neural Network Techniques for Low Resource Speech Recognition
+#+AUTHOR:    John Alamina
+#+EMAIL:     John.alamina@hud.ac.uk
+#+DATE:      2018-03-12 Mon
+#+DESCRIPTION: Ph.D Thesis Draft
+#+KEYWORDS: Recurrent Neural Networks, Long Short-term memory, Deep neural networks, Speech Recognition, Language Model, Acoustic Modelling, RNN, DNN, LSTM
+
+\begin{abstract}
+
+\end{abstract}
+
+* TODO Introduction
+** TODO Uses of ASR ([[https://www.dropbox.com/s/ly7lwhljsxhuos1/forced_alignment_slides.pdf?dl=0][University of Oxford]])
+- As a toolbox
+- As a methodology
+** TODO Generative Speech Models disambiguation
+* TODO Literature Review
+** TODO Speech Recognition Overview
+*** Challenges of speech recognitio
+*** Challenges of low resource speech recognition
+** TODO Low Resource Speech Recognition
+*** TODO Low Resource Language Modelling
+*** TODO Low Resource Acoustic Modelling
+**** TODO Swap Hat Method
+**** TODO SubSpace Gaussian Mixture Modelling
+* TODO RNN
+** TODO Sequential Models
+** TODO LSTM Training
+* TODO GAN
+** TODO Auto encoders
+* TODO Language Models
+** TODO Wakirike Language Mode
+** TODO Pidgin English 
+* TODO LSTM Speech Models
+* TODO Conclusion and Discussion
+* TODO Future Direction
+* References
+
+references:bib.org
+

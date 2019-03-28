@@ -1,0 +1,78 @@
+#+TITLE:     Deep Neural Network Techniques for Low Resource Speech Recognition
+#+AUTHOR:    John Alamina
+#+EMAIL:     John.alamina@hud.ac.uk
+#+DATE:      2018-03-12 Mon
+#+DESCRIPTION: Ph.D Thesis Draft
+#+KEYWORDS: Recurrent Neural Networks, Long Short-term memory, Deep neural networks, Speech Recognition, Language Model, Acoustic Modelling, RNN, DNN, LSTM
+
+\begin{abstract}
+
+\end{abstract}
+
+* TODO Introduction
+** TODO Uses of ASR ([[https://www.dropbox.com/s/ly7lwhljsxhuos1/forced_alignment_slides.pdf?dl=0][University of Oxford]])
+- As a toolbox
+- As a methodology
+** TODO Generative Speech Models disambiguation
+** TODO Low Resource Languages
+*** TODO Blark Matrix
+**** Spoken Resources/applications vs written modules vs spoken modules
+1. Acoustic models | Annotated Written corpus | Customisation to different 
+2. Dialect Language Identification | Audio Data with prosodic markers | Dictation
+3. Emotion Identification | High Quality audio | Embedded Speech
+4. Language models | Non vowelised corpus | Emotion identification
+5. Lexicon Adapatation | proper names | emotion/prosody output
+6. Lips movment reading | phonetic lexicon | generation lips movement
+7. phoneme alignment | telephony | speaker 2 speaker mapping
+8. pronounciation lexicon | unannotated written corpus | speaker adaptation 
+9. prosody prediction | visual data (lips, faces, etc | speaker recognition
+10. prosody recognition | vowelised corpus | telephony speech 
+11. Segmenter speech/silence | | text to speech( inc database) 
+12. Sentence boundary detection | | topic detection/segmentation/topic boundary
+13. Speaker adaptation | | Transcription of broadcast news
+14. Speaker recognition/identification | | Transcription of conversatonal speech
+15. Speech units selection 
+16. Speech/non speech music detection
+17. Word boundary identification
+
+*** Written Applicatins/resources versus written modules  
+1. Alignment | ASR/Dictation | Annotated Corpora
+2. Diacritiser | Classification | Monolingual lexicon
+3. Grapheme recognition for handwritten OCR | Dialog systems | multi/bilingual lexicon
+4. Morphological comparison | document proeuction | multimodal corpora for hand-written OCR
+5. Named Entity Recognition | IE | Mulimodal corpora for typed OCR
+6. POS diambiguator/tagger | indexing | parallel multilingual corpora
+7. Semantic analysis | IR/filtering | proper names
+8. Sentence boundary detection | MAT | Thesauri, ontology, wordnets
+9. Sentence synthesis and generation | MT | Unannotated corpora
+10. Shallow parsing | Summarisation | 
+11. Syntactic analysis compunded | TTS
+12. Grapheme recognition for typed OCR
+13. Term extraction
+14. Transfer tool (software)
+15. word sense disambiguation
+
+* TODO Literature Review
+** TODO Speech Recognition Overview
+*** Challenges of speech recognitio
+*** Challenges of low resource speech recognition
+** TODO Low Resource Speech Recognition
+*** TODO Low Resource Language Modelling
+*** TODO Low Resource Acoustic Modelling
+**** TODO Swap Hat Method
+**** TODO SubSpace Gaussian Mixture Modelling
+* TODO RNN
+** TODO Sequential Models
+** TODO LSTM Training
+* TODO GAN
+** TODO Auto encoders
+* TODO Language Models
+** TODO Wakirike Language Mode
+** TODO Pidgin English 
+* TODO LSTM Speech Models
+* TODO Conclusion and Discussion
+* TODO Future Direction
+* References
+
+references:bib.org
+

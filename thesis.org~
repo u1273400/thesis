@@ -1,0 +1,313 @@
+#+TITLE:     Deep Neural Network Techniques for Low Resource Speech Recognition
+#+AUTHOR:    John Alamina
+#+EMAIL:     John.alamina@hud.ac.uk
+#+DATE:      2018-03-12 Mon
+#+DESCRIPTION: Ph.D Thesis Draft
+#+KEYWORDS: Recurrent Neural Networks, Long Short-term memory, Deep neural networks, Speech Recognition, Language Model, Acoustic Modelling, RNN, DNN, LSTM
+
+\begin{abstract}
+
+\end{abstract}
+
+<<<<<<< HEAD
+* DONE Introduction
+Automatic Speech Recognition is a subset of Machine Translation that takes a sequence of raw audio information and translates or matches it against the most likely sequence of text as would be interpreted by a human language expert.  In this thesis, Automatic Speech Recognition will also be referred to as 
+ASR or speech recognition for short.
+
+It can be argued that while ASR has achieved excellent performance in specific applications, much is left to be desired for general purpose speech recognition. While commercial applications like Google voice search and Apple Siri gives evidence that this gap is closing, there is still yet other areas within this research space that speech recognition task is very much an unsolved problem.
+
+It is estimated that there are close to 7000 human languages in the world \citep{besacier2014automatic} and yet for only a fraction of this number have there been efforts made towards ASR.  The level of ASR accuracy that have been so far achieved have been based on large quantities of speech data and other linguistic resources used to train models for ASR. These models which depend largely on pattern recognition techniques degrade tremendously  when applied to different languages other than the languages that they were trained or designed for.  In addition, due to the fact that collection of sufficient amounts of linguistic resources required to create accurate models for ASR are particularly laborious and time consuming to collect sometimes extending to decades, it is therefore wise to considerIn addition due to the fact that collection of sufficient amounts of linguistic resources required to create accurate models for ASR are particularly laborious and time consuming to collect sometimes extending to decades, it is therefore wise to consider alternative approaches towards developing ASR systems for  languages lacking the resources required to build such systems using existing mechanisms.
+
+** DONE ASR as a Machine Learning  problem \label{ASRMLP}
+Automatic speech recognition can be put into a class of machine learning problems described as sequence pattern recognition because an ASR attempts to discriminate a pattern from the sequence of speech utterances. 
+
+One immediate problem realised with this definition leads us to discuss statistical speech models that address how to handle the problem described in the following paragraph.
+
+Speech is a complex phenomena that begins as a cognitive process and ends up as a physical process.  The process of automatic speech recognition attempts to reverse engineer the steps back from the physical process to the cognitive process giving rise to latent variables or mismatched data or loss of information from interpreting speech information from one physiological layer to the next.
+
+It has been acknowledged in the research community \citep{2015watanabe,deng2013machine}  that work being done in Machine Learning has enhanced the research of automatic speech recognition.  Similarly any progress made in ASR usually constitutes a contribution to enhances made in the machine learning field.  This also is an attribution to the fact that speech recogntion is a sequence pattern recogntion problem.  Therefore techniques within speech recognition could be applied generally to sequence pattern recognition problems.
+
+The two main approaches to machine learning problems historically involve two methods rooted in statistical science.  These approaches are the generative and discriminitative models.  From a computing science perspective, the generative approach is a bruteforce approach while the discriminative model uses a rather heuristic approach to machine learning. This chapter derives the basic definitions of these two approaches in order to establish the motivation for the proposed models used in this research for low resource speech recognition as well as introduces the Wakirike language as the motivating language case study.  
+
+As this research investigates, the although the generative process is able to generate arbitrary outputs, its major draw back is the direct relation to the training data from which the model parameters are learned. Specific characteristics of various machine learning models are reserved for later chapters albeit the heuristic nature of the discriminative approach gains over the generative approach being able to better compensate the latent variables of speech data often lost in training data during the transformation from one physiological layer of abstraction to the next as discussed in section \ref{ASRMLP}.
+
+
+\iffalse
+ Uses of ASR ([[https://www.dropbox.com/s/ly7lwhljsxhuos1/forced_alignment_slides.pdf?dl=0][University of Oxford]]) 
+- As a toolbox
+- As a methodology
+\fi
+
+** DONE Generative Speech Models disambiguation
+In the next chapter, the Hidden Markov Model (HMM) is examined as a powerful and major driver behind generative modeling of sequential data like speech.  Generative models are data-sensitive models because they are derived from the data by accumulating as many different features which can be seen and make generalisations based on the features seen. The discriminative model, on the other hand, has a heuristic approach to make classification.  Rather than using features of the data directly, the discriminative method attempts to characterise the data into features. It is possible to conclude that the generative approach uses a bottom-to-top strategy starting with the fundamental structures to determine the overall structure, while the discriminative method uses a top-to-bottom approach starting with the big picture and then drilling down to discover the fundamental structures.
+
+Ultimately the generative models for machine learning learning can be interpreted mathematically as a joint distribution that produces the highest likelihood of outputs and inputs based on a predefined decision function.  The outputs for speech recognition being the sequence of words and the inputs for speech being the audio wave form or equivalent speech sequence.
+
+\begin{equation}d_y(\mathbf{x};\lambda)=p(\mathbf{x},y;\lambda)=p(\mathbf{x}|y;\lambda)p(y;\lambda)\label{eqn1_1}
+\end{equation}
+
+where $$d_y(\mathbf{x};\lambda)$$ is the decision function of $$y$$ for data labels $$\mathbf{x}$$.  This joint probability expression given as $$p(\mathbf{x}|y;\lambda)$$ can also be expressed as the conditional probability product in equation (\ref{eqn_1_1}).  In this above equation, lambda predefines the nature of the distribution \cite{deng2013machine} referred to as model parameters.
+
+Similarly, machine learning discriminative models are described mathematically as the conditional probability defined by the generic decision function below:
+\begin{equation}
+d_y(\mathbf{x};\lambda)=p(y|\mathbf{x};\lambda)
+\end{equation}
+
+It is clearly seen that the discriminative paradigm is a much simpler and a more straight forward paradigm and indeed is the chosen paradigm for this study.  However, what the discriminative model gains in discriminative simplicity it loses in model parameter estimation ($$\lambda$$) in equation (\ref{eqn1_1}) and (\ref{eqn1_2). As this research investigates, the although the generative process is able to generate arbitrary outputs from learned inputs, its major draw back is the direct dependence on the training data from which the model parameters are learned. Specific characteristics of various machine learning models are reserved for later chapters albeit the heuristic nature of the discriminative approach, not directly dependent on the training data,  gains over the generative approach being able to better compensate the latent variables.  In the case of speech data information is lost in training data due to the physiologic transformations mentioned in section \ref{ASRMLP}.  This rationale is reinforced from the notion of deep learning defined in \cite{deng2014deep} as an attempt to learn patterns from data at multiple levels of abstraction. Thus while shallow machine learning models like hidden Markov models (HMMs) define latent variables for fixed layers of abstraction, deep machine learning models handle hidden/latent information for arbitrary layers of abstraction determined heuristically.  As deep learning are typically implemented using deep neural networks, this work applies deep recurrent neural networks as an end-to-end discriminative classifier, to speech recognition.  This is a so called "an end-to-end model" because it adopts the top-to-bottom machine learning approach. Unlike the typical generative classifiers that require sub-word acoustic models, the end-to-end models develop algorithms at higher levels of abstraction as well as the lower levels of abstraction.  In the case of the deep-speech model \citep{hannun2014first} utilised in this research, the levels of abstraction include sentence/phrase, words and character discrimination. A second advantage of the end-to-end model is that because the traditional generative models require various stages of modeling including an acoustic, language and lexicon, the end-to-end discriminating multiple levels of abstractions simultaneously only requires a single stage process, greatly reducing the amount of resources required for speech recognition.  From a low resource language perspective this is an attractive feature meaning that the model can be learned from an acoustic only source without the need of an acoustic model or a phonetic dictionary.  In theory this deep learning technique is sufficient in itself without a language model.  However, applying a language model was found to serve as a correction factor further improving recognition results \citep{hannun2014deep}.
+
+** Low Resource Languages
+A second challenge observed in complex machine learning models for both generative as well as discriminative learning models is the data intensive nature required for robust classification models. \cite{saon2015ibm} recommends around 2000 hours of transcribed speech data for a robust speech recognition system. As we cover in the next chapter, for new languages for which are low in training data such as transcribed speech, there are various strategies devised for low resource speech recognition. \cite{besacier2014automatic} outlines various matrices for bench-marking low resource languages.  From the generative speech model interest perspective,  reference is made to languages having less than ideal data in transcribed speech, phonetic dictionary and a text corpus for language modelling.  For end-to-end speech recognition models interests, the data relevant for low resource evaluation is the transcribed speech and a text corpus for language modelling.  It is worth noting that it was observed \citep{besacier2014automatic} that speaker-base often doesn't affect the language resource status of a language and was often observed that large speaker bases could in fact lack language/speech recognition resources and that some languages having small speaker bases did in fact have sufficient language/ speech recognition resources.
+
+Speech recognition methods looked at in this work was motivated by the Wakirike language discussed in the next section, which is a low resource language by definition.  Thus this research looked at low research language modeling for the Wakirike language from a corpus of wakirike text available for analysis.  However, due to the insufficiency of transcribed speech for the Wakirike language, English language was substituted and used as a control variable to study low resource effects of a language when exposed to speech models developed in this work.
+
+
+** The Wakirike Language
+The Wakirike municipality is a fishing community comprising 13 districts in the Niger Delta area of the country of Nigeria in the West African region of the continent of Africa.  Wakirike migrants settled at the Okrika mainland between AD860 at the earliest AD1515.  Earliest settlers migrated from Central and Western Niger Delta.  When the second set of settlers met the first set of settlers they exclaimed we are not different or Wakirike \citep{wakirike}.  Although the population of the Wakirike community from a 1995 report \citep{ethnologue} is about 248,000, the speaker base is  much less than that.  The language is classified as Niger-Congo and Ijoid languages.  The writing orthography is Latin and the language status is 5 (developing) \citep{ethnologue}.  This means that although the language is not yet an endangered language, it still isn't thriving and it is being passed on to the next generation at a limited rate.
+
+The Wakirike language was the focus for this research.  And End-to-end deep neural network language model was built for the Wakirike language based on the availability of the new testament bible printed edition that was available for processing.  The corpus utilized for this thesis work was about 9,000 words.
+
+Due to limitations in transcribed speech for the Wakirike language, English was substituted and used for the final speech model.  The English language was used as a control variable to measure accuracy of speech recognition for differing spans of speech data being validated against on algorithms developed in this research.
+
+** Thesis outline
+The outline of this report follows the development of an end-to-end speech recogniser and develops the theory based on the building blocks of the final system.  Chapter two introduces the speech recognition pipeline and the generative speech model.  Chapter two outlines the weaknesses in the generative model and describes some of the machine learning techniques applied to improve speech recognition performance. 
+
+Various Low speech recognition methods are reviewed and the relevance of this study is also highlighted.  Chapter three describes Recurrent neural networks beginning from multi-layer perceptrons and probabilistic sequence models.  Specialised recurrent neural networks, long short-term memory (LSTM) networks and the Gated Recurrent Units (GRU) used to develop the language model for the Wakirike language are detailed.
+
+Chapter Four explains the wavelet theorem as well as the deep scattering spectrum. The chapter develops the theory from Fourier transform and details the the significance of using the scattering transform as a feature selection mechanism for low resource recognition.  
+
+Chapters five and six is a description of the models developed by this thesis and details the experiment setup along with the results obtained. Chapters seven is a discussion of the result and chapter 8 are the recommendations for further study. 
+
+* DONE Literature Review
+The speech recogniser developed in this thesis is based on an end-to-end discriminative deep recurrent neural network.  Two models were developed.  The first model is a Gated-Recurrent-Unit Recurrent Neural network (GRU-RNN) was used to develop a character-based language model, while the second recurrent neural network is a Bi-Directional Recurrent neural Network (BiRNN) used as an end-to-end speech model capable of generating word sequences based on learned character sequence outputs.  This chapter describes the transition from generative speech models to these discriminative end-to-end recurrent neural network models.  Low speech recognition strategies are also discussed and the contribution to knowledge gained by using character-based discrimination as well as introducing deep scattering features to the biRNN speech model is brought to light.
+
+** DONE Speech Recognition Overview
+Computer speech recognition takes raw audio speech and converts it into a sequence of symbols.  This can be considered as an analog to digital conversion as a continuous signal becomes discretised.  The way this conversion is done is by breaking up the audio sequence into very small packets referred to as frames and developing discriminating parameters or features for each frame. Then using the vector of features as input to the speech recogniser.  
+
+A statistical formulation \citep{young2002htk} for the speech recogniser follows given that each discretised output word in the audio speech signal is represented as a vector sequence of frame observations defined in the set $$\mathbf{O}$$ such that 
+\begin{equation}$$\mathbf{O}=\mathbf{o}_1,\mathbf{o}_2,\dots,\mathbf{o}_T$$.
+\label{eqn_1_1_sr_inputs}\end{equation}
+
+At each discrete time $$t$$, we have an observation $$\mathbf{o}_t$$, which is, in itself is a vector in $$\mathbb{R}^D$$.  From the conditional probability, it can be formulated that certain word sequences from a finite dictionary are most probable given a sequence of observations. That is:
+\begin{equation}$$arg\max_t\{P(w_i|\mathbf{O})\}$$
+\label{eqn_2_2_srgen}
+\end{equation}
+
+As we describe in the next section on speech recognition challenges, there is no straightforward analysis of of $$P(w_i|\mathbf{O})$$.  The divide and conquer strategy therefore employed uses Bayes formulation to simplify the problem.  Accordingly, the argument that maximises the probability of an audio sequence given a particular word multiplied by the probability of that word is equivalent to the original posterior probability required to solve the isolated word recognition problem. This is summarised by the following equation
+\begin{equation}$$P(w_i|\mathbf{O})=\frac{P(\mathbf{O}|w_i)P(w_i)}{P(\mathbf{O})}$$
+\label{eqn_2_3_bayes_sr}
+\end{equation}
+
+That is, according to Bayes’ rule, the posterior probability is obtained by multiplying a certain likelihood probability by a prior probability.  The likelihood in this case, $P(\mathbf{O}|w_i)$, is obtained from a Hidden Markov Model (HMM) parametric model such that rather than estimating the observation densities in the likelihood probability, these are obtained by estimating the parameters of the HMM model.  The HMM model explained in the next section gives a statistical representation of the latent variables of speech.
+
+The second parameter in the speech model interpreted from Bayes' formula is prior is the probability a given word.  This aspect of the model is the language model which we review in section \ref{sec_lrlm}.
+
+*** DONE HMM-based Generative speech model
+A HMM represents a finite state machine where a process transits a sequence of states from a set of fixed states. The overall sequence of transitions will have a start state, an end state and a finite number of intermediate states all within the set of finite states.  For each state transition emits an output observation that represents the current internal state of the system.
+![alt text](https://raw.githubusercontent.com/deeperj/dillinger/master/thesis/images/hmm.png "Generative HMM model")
+\begin{figure}
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=7cm]{thesis/images/hmm}\\
+  \caption{HMM Generative Model}\cite{young2002htk}}\label{fig_2_1_hmm}
+\end{figure}
+
+In an HMM represented in figure \ref{fig_2_1_hmm} there are two important probabilities.  The first is the state transition probability given by $$a_{ij}$$ this is the probability to move from state $$i$$ to state $$j$$.  The second probability $$b_j$$ is the probability that an output probability when a state emits an observation.
+
+Given that $$X$$ represents the sequence of states transitioned by a process a HMM the joint probability of $$X$$ and the output probabilities given the HMM is given as the following representation:
+\begin{equation}$$P(\mathbf{O}|M)=\sum_Xa_{x(0)x(1)}\prod_{t=1}^Tb_{x(t)}(\mathbf{o}_t)a_{x(t)x(t+1)}$$
+\label{eqn_2_4_hmm}
+\end{equation}
+
+Generally speaking, the HMM formulation presents 3 distinct challenges.  The first is that likelihood of a sequence of observations given in equation \ref{eqn_2_4_hmm} above.  The next two which we describe later is the inference and the learning problem.  While the inference problem determines the sequence of steps given the emission probabilities, the learning problem determines the HMM parameters, that is the initial transition and emission probabilities of the HMM model.
+
+For the case of the inference problem, the sequence of states can be obtained by determining the sequence of states that maximises the probability of the output sequences.
+
+*** DONE Challenges of speech recognition
+The realised symbol is assumed to have a one to one mapping with the segmented raw audio speech. However, the difficulty in computer speech recognition is the fact that there is significant amount of variation in speech that would make it practically intractable to establish a direct mapping from segmented raw speech audio to a sequence of static symbols. The phenomena known as coarticulation has it that there are several different symbols having a mapping to a single waveform of speech in addition to several other varying factors including the speaker mood, gender, age, the speech transducing medium, the room acoustics. Et cetera.
+
+Another challenge faced by automated speech recognisers is the fact that the boundaries of the words is not apparent from the raw speech waveform. A third problem that immediately arises from the second is the fact that the words from the speech may not strictly follow the words in the selected vocabulary database.  Such occurrence in speech recognition research is referred to as out of vocabulary (OOV) terms.  It is reasonable to approach these challenges using a divide and conquer strategy.  In this case, the first step in this case would be to create assumption that somehow word boundaries can be determined.  This first step in speech recognition is referred to as the isolated word recognition case.
+
+*** DONE Challenges of low resource speech recognition
+Speech recognition for low resource languages poses another distinct set of challenges.  In chapter one, low resource languages were described to be languages lacking in resources required for adequate machine learning of models required for generative speech models.  These resources are described basically as a text corpus for language modelling, a phonetic dictionary and transcribed audio speech for acoustic modelling. Figure \ref{fig_2_2_asr_pipeline}, illustrates how resources of required for speech recognition are utilised.  It is observed that in addition to the three resources identified other processes are required for the speech decoder to function normally.  For example, aligned speech would also need to be segmented into speech utterances to ensure that the computer resources are used conservatively.
+
+In terms of data collection processing \cite{besacier2014automatic} enumerates the  challenges for developing low resource ASR systems to include the fact that phonologies (or language sound systems) differ across languages, word segmentation problems, fuzzy grammatical structures, unwritten languages, lack of native speakers having technical skills and the multidisciplinary nature of ASR constitute impedance to ASR system building.
+![alt text](https://raw.githubusercontent.com/deeperj/dillinger/master/thesis/images/asr_pipeline.jpg "Generative HMM model")
+\begin{figure}
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=7cm]{thesis/images/asr_pipeline}\\
+  \caption{Automatic Speech Recognition Pipeline} \cite{besacier2014automatic}}\label{fig_2_2_asr_pipeline}
+\end{figure}
+
+** DONE Low Resource Speech Recognition
+In this system building speech recognition research, the focus was on the development of a language model and and an end-to-end speech model comparable in performance to state of the art speech recognition system consisting of an acoustic model and a language model.  Low resource language and acoustic modelling is now reviewed keeping in mind that little work has been done on low-resource end-to-end speech modelling when compared to general end-to-end speech modelling and general speech recognition as a whole.  
+
+From an engineering perspective, a practical means of achieving low resource speech modeling from a language rich in resources is through various strategies of the machine learning sub-field of transfer learning.  
+
+Transfer learning takes the inner representation of knowledge derived from a training an algorithm used from one domain and applying this knowledge in a similar domain having different set of system parameters. Early work of this nature was for speech recognition is demonstrated in \citep{vu2013multilingual} where multi-layer perceptrons were used to train multiple languages rich in linguistic resources. In a later section titled speech recognition on a budget, a transfer learning mechanism involving deep neural networks from \citep{kunze2017transfer} is described.
+
+*** DONE Low Resource Language Modelling
+General language modelling is reviewed and then Low resource language modelling is discussed in this section. Recall from the general speech model influenced by Bayes' theorem.  The speech recognition model is a product of an acoustic model (likelihood probability) and the language model (prior probability).  The development of  language models for speech recognition is discussed in \cite{juang2000automatic} and \cite{1996YoungA}. 
+
+Language modelling formulate rules that predict linguistic events and can be modeled in terms discrete density $$P(W)$$, where  $$W=(w_1, w_2,..., w_L)$$ is a word sequence. The density function $$P(W)$$ assigns a probability to a particular word sequence $$W$$.  This value is determines how likely the word is to appear in an utterance. A sentence with words appearing in a grammatically correct manner is more likely to be spoken than a sentence with words mixed up in an ungrammatical manner, and, therefore, is assigned a higher probability. The order of words therefore reflect the language structure, rules, and convention in a probabilistic way. Statistical language modeling therefore, is an estimate for $$P(W)$$ from a given set of sentences, or corpus.
+
+The prior probability of a word sequence $$\mathbf{w}=w_1,\dots,w_k$$ required in equation (2.2) is given by
+\begin{equation}$$P(\mathbf{w})=\prod_{k=1}^KP(w_k|w_{k-1},\dots,w_1)$$
+\label{eqn_c2_lm01}
+\end{equation}
+
+The N-gram model is formed by conditioning of the word history in equation \ref{eqn_c2_lm01}.  This therefore becomes
+\begin{equation}$$P(\mathbf{w})=\prod_{k=1}^KP(w_k|w_{k-1},w_{k-2},\dots,w_{k-N+1})$$
+\label{eqn_c2_lm02}
+\end{equation}
+
+N is typically in the range of 2-4.
+
+N-gram probabilities are estimated from training corpus by counting N-gram occurrences.  This is plugged into maximum likelihood (ML) parameter estimate. For example, Given that N=3 then the probability that three words occurred is assuming $$C(w_{k-2}w_{k-1}w_k)$$ is the number of occurrences of the three words $$C(w_{k-2}w_{k-1})$$ is the count for $$w_{k-2}w_{k-1}w_k$$ then
+\begin{equation}
+$$P(w_k|w_{k-1},w_{k-2}\approx\frac{C(w_{k-2}w_{k-1}w_k}{C(w_{k-2}w_{k-1})}$$
+\label{eqn_c2_lm03}
+\end{equation}
+
+The major problem with maximum likelihood estimation scheme is data sparsity. This can be tackled by a combination of smoothing techniques involving discounting and backing-off.  The alternative approach to robust language modelling is the so-called class based models \citep{Brown1992class,Kuhn1990cache} in which data sparsity is not so much an issue. Given that for every word $$w_k$$, there is a corresponding class $$c_k$$, then,
+\begin{equation}
+$$P(\mathbf{w})\prod_{k=1}^KP(w_k|c_k)p(c_k|c_{k-1},\dots,c_{k-N+1})$$
+\label{eqn_c2_lm04}
+\end{equation}
+
+In 2003, \cite{bengio2003neural} proposed a language model based on neural multi-layer perceptrons (MLPs). These MLP language models resort to a distributed representation of all the words in the vocabulary such that the probability function of the word sequences is expressed in terms of these word-level vector representations. The result of the MLP-based language models was found to be, in cases for models with large parameters, performing better than the traditional n-gram models.
+
+Improvements over the MLPs still using neural networks over the next decade include works of \cite{mikolov2011empirical,sutskever2014sequence,luong2013better}, involved the utilisation of deep neural networks for estimating word probabilities in a language model.  While a Multi-Layer Perceptron consists of a single hidden layer in addition to the input and output layers, a deep network in addition to having several hidden layers are characterised by complex structures that render the architecture beyond the basic feed forward nature where data flows from input to output hence in the RNN architecture we have some feedback neurons as well.  Furthermore, the probability distributions in these deep neural networks were either based upon word or sub-word models this time having representations which also conveyed some level of syntactic or morphological weights to aid in establishing word relationships.  These learned weights are referred to as token or unit embedding.
+
+For the neural network implementations so far seen, a large amount of data is required due to the nature of words to have large vocabularies, even for medium-scale speech recognition applications.  \cite{kim2016character} on the other hand took a different approach to language modelling taking advantage of the long-term sequence memory of long-short-term memory cell recurrent neural network (LSTM-RNN) to rather model a language based on characters rather than on words.  This greatly reduced the number of parameters involved and therefore the complexity of implementation.  This method is particularly of interest to this article and forms the basis of the implementation described in this article due to the low resource constraints imposed when using a character-level language model.
+
+Other low resource language modelling strategies employed for the purpose of speech recognition was demonstrated by \cite{xu2013cross}.  The language model developed in that work was based on phrase-level linguistic mapping from a high resource language to a low resource language using a probabilistic model implemented using a weighted finite state transducer (WFST). This method uses WFST rather than a neural network due to scarcity of training data required to develop a neural network. However, it did not gain from the high nonlinearity ability of a neural network model to discover hidden patterns in data, being a shallower machine learning architecture.
+
+The method employed in this report uses a character-based Neural network language model that employs an LSTM network similar to that of \cite{kim2016character} on the Okrika language which is a low resource language bearing in mind that the character level network will reduce the number of parameters required for training just enough to develop a working language model for the purpose of speech recognition.  
+
+**** TODO Attention models
+*** DONE Low Resource Acoustic Modelling
+Two transfer learning techniques for acoustic modelling investigated by \cite{povey2011subspace} and \cite{ghoshal2013multilingual} respectively include the sub-space Gaussian mixture models (SGMMs) and the use of pretrained hidden layers of a deep neural network trained multilingually as a means to initialise weights for an unknown language.  This second method has been informally referred to as the swap-hat method.
+
+**** DONE SubSpace Gaussian Mixture Modelling
+In an SGMM, emission densities of a hidden Markov Model (HMM) are modeled as mixtures of Gaussians, whose parameters are factorized into a globally-shared set that does not depend on the HMM states, and a state specific set.
+The global parameters may be thought of as a model for the overall acoustic space, while the state-specific parameters provide the correspondence between different regions of the acoustic space and individual speech sounds.
+The decoupling  of two aspects of speech modeling that makes SGMM suitable for different languages.
+
+**** DONE Swap Hat Method
+Sub-space Gaussian Mixture Models (SGMMs) has been shown to be suitable for cross-lingual modeling without explicit mapping between phone units in different languages.
+
+Using layer wise pretraining of stacked Restricted Boltzmann Machines (RBMs) is shown to be insensitive to the choice of languages analogous to global parameters of SGMMs. Using a network whose output layer corresponds to context-dependent phone states of a language, by borrowing the hidden layers and fine-tune the network to a new language. The new outputs are scaled likelihood estimates for states of an HMM in a DNN-HMM recognition setup.
+Used a 7-layer network without a bottleneck layer where the network outputs correspond to triphone states trained on MFCC features. Each layer contained about 2000 neurons.
+
+**** TODO RNN Speech models
+** DONE Groundwork for low resource end-to-end speech modelling
+The underpinning notion of this work is firstly a departure from the bottom-to-top baggage that comes as a bye-product of the generative process sponsored by the HMM-based speech models so that we can gain from simplifying the speech pipeline from acoustic, language and phonetic model to just a speech model that approximates the same process.  Secondly, the model developed seeks to overcome the data intensity barrier and was seen to achieve measurable results for GRU RNN language models.  Therefore adopting the same character-based strategy, this research performed experiments using the character-based bi-directional recurrent neural networks (BiRNN).  However, BiRNNs researchers have found them as other deep learning algorithms, as being very data intensive\cite{hannun2014deep}.  The next paragraphs introduce Deep-speech BiRNNs and the two strategies for tackling the data intensity drawback as related with low resource speech recognition.
+
+*** Deep speech
+Up until recently speech recognition research has been centred around improvements of the HMM-based acoustic models.  This has included a departure from generative training of HMM to discriminative training \citep{woodland2000large} and the use of neural network precursors to initialise the HMM parameters \citep{mohamed2012acoustic}.  Although these  discriminative models brought improvements over generative models, being HMM dependent speech models they lacked the end-to-end nature.  This means that they were subject to training of acoustic, language and phonetic models.  With the introduction of the Connectionist Temporal Classification (CTC) loss  function, \cite{graves2014towards} finally find a means to end-to-end speech recognition departing from HMM-based speech recognition. 
+
+The architecture of the Deep-speech end-to-end speech recognition model \cite{hannun2014first} follows an end-to-end Bi-directional Recurrent Neural Network (BiRNN) and CTC loss function \citep{graves2006connectionist}.  The CTC loss function uses a modified beam search to sum over all possible input-output sequence alignments thereby maximising the likelihood of the output sequence characters.
+
+*** Speech recognition on a low budget
+In this section, a recent transfer learning speech model model \citep{kunze2017transfer} that has some characteristics similar to the speech model developed in this thesis is reviewed.  The end-to-end speech model described by \cite{kunze2017transfer} is based on that developed by \cite{collobert2016wav2letter} and is based on deep convolutional neural networks rather than the Bi-RNN structure proposed by this work.  In addition it uses a loss function based on the AutoSegCriterion which is claimed to work competitively with raw audio waveform without any preprocessing.  The main strategy for low resource management in their system was the freezing of some layers within the convolutional network layer.  The low resource mechanisms used in this work includes the use of a unique scattering network being used as input features for the BiRNN model.  The fascinating similarity between the end-to-end BiRNN speech model developed in this work and the transfer learning model in \cite{kunze2017transfer} is the fact that the scattering network input are equivalent to the output of a light-weight convolutional neural network \cite{hannun2014first}.  Therefore the proposed system then approximates a combination of a recurrent neural network as well as a convolution neural network without the overhead of actually training a convolutional neural network (CNN).
+
+Introduction of the unique scattering network is discussed in the next section.  It is worthy to note however that \cite{kunze2017transfer} uses a CNN network only while \citep{amodei2016deep} uses both RNN and CNN network.  The speech model in this thesis uses a BiRNN model in this work combines an RNN model with the scattering layer which represents a light-weight low resource friendly pseudo enhanced CNN backing.  What is meant by pseudo enhanced CNN backing is reserved for the next section, however, therefore, the proposed speech model in this speech model stands to gain from an enhanced but lightweight CNN combined with RNN learning.
+
+*** Adding a Scattering Layer
+In machine learning, training accuracy is greatly improved through a process described as feature engineering.  In feature engineering, discriminating characteristics of the data is enhanced at the same time non-distinguishing features constituting noise is removed or attenuated to a barest minimum.  A lot of the components signal speech signal are due to noise in the environment as well as signal channel distortions such as losses due to conversion from audio signals to electrical signal in the recording system.
+
+In figure \ref{fig_2_2_asr_pipeline}, feature engineering is done at the feature extraction stage of the ASR pipe line. It has be shown that a common technique using Mel-frequency cepstral coefficients (MFCCs) \citep{davis1990comparison} can represent speech in a stable fashion that approximate how the working of the human auditory speech processing and is able to filter useful components in the speech signal required for human speech hearing. Similar feature processing schemes have been developed include Perceptual Linear Prediction (PLP) \citep{hermansky1990perceptual} and RASTA \citep{hermansky1994rasta}. 
+
+The scattering spectrum defines a locally translation invariant reprepresentation of a signal resistant to signal deformation over extended periods of time spanning seconds of the signal \citep{anden2014deep}. While Mel-frequency cepstral coefficients (MFCCs) are cosine transforms of Mel-frequency spectral coefficients (MFSCs), the scattering operator consists of a composite wavelet and modulus operation on input signals. 
+
+Over a fixed time, MFSCs measure signal energy having constant Q bandwidth Mel-frequency intervals.  This procedure is susceptible to time-warping signal distortions since these information often reside in the high frequency regions discarded by Mel-frequency intervals.  As time-warping distortions isn't explicit classifier objective when developing these filters, there is no way to recover such information using current techniques. 
+
+In addition, short time windows of about 20 ms are used in these feature extraction techniques since at this resolution speech signal is mostly locally stationary.  Again, this resolution adds to the loss of dynamic speech discriminating information on signal structures that are non-stationary at this time interval. To minimize this loss Delta-MFCC and Delta-Delta-MFCCs \citep{furui1986speaker} are some of the means developed to capture dynamic audio signal characterisation over  larger time scales.
+
+By computing multi-scale co-occurrence coefficients from a wavelet-modulus operation \cite{anden2011multiscale} shows that non-stationary behavior lost by MFSC coefficients is captured by the scattering transform multi scale co-occurrence coefficients and the scattering representation includes MFSC-like measurements.  Together with higher-order co-occurrence coefficients, deep scattering spectrum coefficients represents audio signals similar to  models based on cascades of constant-Q filter banks and rectifiers.  In particular, second-order co-occurrence coefficients carry important  signal information capable of discriminating dynamic information lost to the MFCC analog over several seconds and therefore a more efficient discriminant than the MFCC representation. Second-order co-occurrence coefficients calculated by cascading wavelet filter banks and rectified using modulus operators have been evaluated as equivalent to a light-weight convolutional neural networks whose output posteriors are computed at each layer instead of only at the output layer \cite{mallat2016understanding}.
+
+The premise for this work is that low speech recognition can be achieved by having higher resolution features for discrimination as well as using an end-to-end framework to replace some of the cumbersome and time-consuming hand-engineered domain knowledge required in the standard ASR pipeline.  In additio,n this research work makes contributions to the requirements for the two tracks specified in the [Zero Resource](http://www.clsp.jhu.edu/~ajansen/papers/IS2015d.pdf) challenge of 2015 \citep{versteegh2015zero}.  The first requirement is sub-word modelling satisfied with using deep scattering network and the second that of spoken term discovery criteria being satisfied with the end-to-end speech model supplemented with a language model.
+
+** DONE Methodology
+System building methodology \citep{nunamaker1990systems} for speech recognition systems require models to be evaluated against speech recognition machine learning metrics.  For language models, perplexity metric was used for evaluation.  Bleu has also been used as a metric for evaluating language models.
+
+Perplexity measures the complexity of a language that the language model is designed to represent \citep{1976jelinekcontinuous}. In practice, the entropy of a language with an N-gram language model $$P_N(W)$$ is measured from a set of sentences and is defined as
+\begin{equation}$$H=\sum_{\mathbf{W}\in\Omega}P_N(\mathbf{W})$$
+\label{eqn_c2_lm05}
+\end{equation}
+
+where $$\Omega$$ is a set of sentences of the language. The perplexity, which is interpreted as the average word-branching factor, is defined as
+\begin{equation}$$B=2^H$$
+\label{eqn_c2_lm06}
+\end{equation}
+
+Full speech recognition pipelines are usually evaluated against the Word Error Rate (WER).  WER is computed as follows:
+\begin{equation}\label{eqn_2_3_wer}
+$$WER=\frac{I+D+R}{WC}\times 100$$
+\end{equation}
+
+Metrics used for low speech recognition includes the ABX metric  \citep{versteegh2015zero}. Other common errors following a similar definition as the Word Error Rate (WER) are Character Error Rate (CER), Phoneme Error Rate (PER) and Syllabic Error Rate (SyER) and sentence error rate (SER).
+* TODO RNN
+** TODO Sequential Models
+** TODO Neural Networks
+** TODO LSTM Training
+* TODO Deep Scattering Network
+** TODO Fourier transform
+** TODO Mel filter banks
+
+** TODO Wavelets Transform
+The Fourier transform discussed in the previous section constitutes a valuable tool for the analysis of the frequency component of a signal. 
+** TODO Deep scattering spectrum
+* TODO Wakirike Language Models
+** TODO Wakirike Language Model
+** TODO Grapheme to phoneme model
+* TODO LSTM Speech Models
+** TODO Deep speech model
+** TODO CTC decoder
+** TODO DSS model
+* TODO Conclusion and Discussion
+* TODO Future Direction
+** TODO Pidgin english models
+** TODO OCR exploration
+** TODO GAN exploration
+ References
+
+references:bib.org
+
+* Appendices
+** Image Sketches
+- [thesis mind map](https://www.dropbox.com/s/wxp2tdel014jp0r/th_roadmap.PNG?dl=0)
+
+
+
+* References
+references:bib.md
+=======
+* TODO Introduction
+** TODO Generative Speech Models disambiguation
+* TODO Literature Review
+** TODO Speech Recognition Overview
+*** Challenges of speech recognitio
+*** Challenges of low resource speech recognition
+** TODO Low Resource Speech Recognition
+*** TODO Low Resource Language Modelling
+*** TODO Low Resource Acoustic Modelling
+**** TODO Swap Hat Method
+**** TODO SubSpace Gaussian Mixture Modelling
+* TODO RNN
+** TODO Sequential Models
+** TODO LSTM Training
+* TODO GAN
+** TODO Auto encoders
+* TODO Language Models
+** TODO Wakirike Language Mode
+** TODO Pidgin English 
+* TODO Generative Speech Models
+* TODO Conclusion and Discussion
+* TODO Future Direction
+* References
+
+references:bib.org
+
+>>>>>>> 3ef68fb5b75bb45286846e57bc17926fa30d5ad1

@@ -1,0 +1,656 @@
+#+TITLE:     Faster Machine Learning for Programmers and Professionals using Python
+#+AUTHOR:    John Alamina
+#+EMAIL:     John.alamina@hud.ac.uk
+#+DATE:      2017-11-10 Fri
+#+DESCRIPTION: Introduction to Machine Learning for programmers.
+#+KEYWORDS: Machine Learning, Computer Science, Linear Algebra, Bayesian Statistics
+
+* TODO Day 1: Introduction (LDA)
+** Introduction to Machine Learning
+*** Learning
+
+Learning, consists of remembering, adapting and generalising cite:marsland2009. It also includes reasoning and logical deduction.
+
+*** Machine Learning
+
+Making computers modify their actions so that the actions become more accurate.
+
+*** Types of Machine Learning
+**** Supervised:
+
+Learning from examples. Includes regression and classification. Spam detection of emails constitutes an example of a binary classification problem. Predicting stock prices is an example of a regression problem. 
+
+**** Unsupervised Learning:
+
+Classification by estimating features a.k.a density estimation. Density reduction can also be seen as an unsupervised problem. 
+
+**** Reinforcement:
+
+Reward based learning
+
+**** Evolutionary Learning:
+
+Fitness on the goodness of the solution
+
+*** Properties of a Good Machine Learning System cite:geron2017
+
+1. Features Extraction or Feature engineering
+2. Occam's Razor: The simplest classifier is more likely to generalise i. e.
+3. Does not overfit data with high variance
+4. Unbiased i.e. Doesn't underfit the data 
+
+*** Machine Learning Pipeline
+**** ML Pipeline figure
+** TODO Python Basics
+
+Having gone through some of the formal Machine learning literature,  Let's now turn our attention to the more exciting stuff. One of the major features of the python programming language is the inherent datastructures such as lists that are first class types in the python language.  It is this feature, I hypothize, that has possibly made python a forerunner in scientific applications that are data intensive. Let's talk a bit more about python and it's intrinsics types.
+
+*** DONE Python types and basic syntax
+**** Getting output using print
+
+#+BEGIN_SRC python
+print("hello world")
+print("first value:", 1,"nice one")
+#+END_SRC
+
+**** Working with variables
+
+#+BEGIN_SRC python
+# assign 4 to the variable x
+x = 1         # x is an integer
+x = 'hello'   # now x is a string
+x = [1, 2, 3] # now x is a list
+print("x =", x)
+#+END_SRC
+
+**** In python everything is an object
+
+#+BEGIN_SRC python
+L = [1, 2, 3]
+L.append(100)
+print(L)
+x = 4.5
+print(x.real, "+", x.imag, 'i')
+x = 4.5
+x.is_integer()
+#+END_SRC
+
+**** Simple Types
+
+| Type     | Example   | Description                                                 |
+|----------+-----------+-------------------------------------------------------------|
+| int      | x = 1     | integers (i.e., whole numbers                               |
+| float    | x = 1.0   | floating point numbers (i.e., real numbers                  |
+| complex  | x = 1+2j  | Complex numbers (i.e. numbers with real and imaginary parts |
+| bool     | x = True  | Boolean: true or false values                               |
+| str      | x = 'abc' | String: characters or text                                  |
+| NoneType | x = None  | Special object indicating nulls.                            |
+
+**** Built in Data Structures
+
+| Type Name | Example               | Description                           |
+|-----------+-----------------------+---------------------------------------|
+| List      | [1, 2, 3]             | Ordered collection                    |
+| tuple     | (1, 2, 3)             | Immutable ordered collection          |
+| dict      | {'a':1, 'b':2, 'c':3} | unordered (key,value) pairs           |
+| set       | {1,2,3}               | Unordered collection of unique values |
+
+*** TODO Operations on Built in types
+
+In this section we take a brief look at some common examples operations on built in data structures. A comprehensive quick reference guide for python can be found here [[rgruet.free.fr/PQR27/PQR2.7.html][Python Quick Reference]]
+
+*** DONE Python Copntrol Structures
+
+It is important to note that Control or block structure in python is demarkated using indentation.  Therefore, functions and control statements can be identified by their indentation levels.  The code snippen below shows an example of this indentation syntax.
+
+**** DONE Example Prime Numbers
+
+The example below outputs prime numbers from 0 to nmax which in the snippet below nmax=30.
+
+#+BEGIN_SRC python
+L = []
+nmax = 30
+
+for n in range(2, nmax):
+    for factor in L:
+        if n % factor == 0:
+            break
+    else: # no break
+        L.append(n
+#+END_SRC
+
+In the above example we can see that there is a nested-for-loop within which is an if statement.
+
+*** TODO Functions and Classes
+**** Default Arguments
+**** Flexible arguments
+**** Anonymous Functions
+**** An example class definition
+** TODO Linear Algebra Review
+*** DONE Vectors and Matrices
+
+In programming we have the concept of n-dimensional arrays. Arrays are sets of ordered numbers i.e. a collection of numbers in a strict order such that each constituting number element can be accessed given it's unique index.  This concept was taken directly from linear algebra where a vector is a 1-dimensional array while an matrix is a 2-dimensional array.
+
+Note that in some programming languages such as python we start counting the index of the elements from zero while in linear algebra the first index count is one.
+
+**** DONE Matrix representation
+
+Below is an example of a matrix A
+$$ A=\begin{bmatrix}234 & 292 \\444 & 422 \\999 & 846 \end{bmatrix} $$
+The above matrix referred to as matrix A and it has 3 rows and 2 columns.  We normally refer to the rows first then the columns therefore it is a 3 by 2 or 3 x 2 matrix.  Notationally this is $ \mathbb{R}^{3x2} $ where the number or rows and the number of columns are the dimensions of the matrix
+
+Also observe in the matrix A the following elements given by the identified by their indices as follows:
+$$
+\begin{matrix}
+A_{11} & = & 234 \\
+A_{12} & = & 292 \\
+A_{32} & = & 846
+\end{matrix}
+$$
+$A_{ij}$ is the "i,j entry" in the $i^{th}$ row and $j^{th}$ column.
+
+**** DONE Vector representation
+
+A vector is an n x 1 matrix.  In the example below  $y_i = i^{th}$ element.
+$$ y=\begin{bmatrix}460 \\444 \\ 425 \\179 \\ 646 \end{bmatrix} $$
+Therefore,
+$$
+\begin{matrix}
+y_{1} & = & 460 \\
+y_{2} & = & 444 \\
+y_{3} & = & 425 \\
+y_{5} & = & 646
+\end{matrix}
+$$
+
+*** DONE Linear Algebra Operations
+**** DONE Transposition
+
+Given an m x n matrix/vector. By transposing or exchanging the rows and columns the resulting matrix becomes a n x m matrix. For example, given
+$$z=\begin{bmatrix}1&2\\3&4\\5&6\\7&8\end{bmatrix}=\mathbb{R}^{4\times 2}$$ 4 rows by  2 columns matrix
+The resulting transpose of z becomes:
+$$z^\top=\begin{bmatrix}1&3&5&7\\2&4&6&8\end{bmatrix}=\mathbb{R}^{2\times 4}$$ 2 rows by 4 columns matrix
+
+**** DONE Matrix Addition and Subtraction
+***** DONE Example
+
+$$
+\begin{bmatrix}
+1 & 0 \\ 2 & 5 \\ 3 & 1
+\end{bmatrix}+
+\begin{bmatrix}
+4 & 5 \\ 2 & 1.5 \\ 0 & 1
+\end{bmatrix}=
+\begin{bmatrix}
+5 & 5 \\ 4 & 6.5 \\ 3 & 2
+\end{bmatrix}
+$$
+
+***** DONE Matrix Addition and Subtraction Properties
+
+- Operands must have the same dimension
+- Resulting value dimensions must be consistent with operand dimensions
+
+**** DONE Scalar Multiplication
+***** DONE Exampe
+
+$$
+3\times\begin{bmatrix}
+1 & 0 \\ 2 & 5 \\ 3 & 1
+\end{bmatrix}=
+\begin{bmatrix}
+3 & 0 \\ 6 & 15 \\ 9 & 3
+\end{bmatrix}=
+\begin{bmatrix}
+1 & 0 \\ 2 & 5 \\ 3 & 1
+\end{bmatrix}\times 3
+$$
+
+**** DONE Scalar Product
+***** Example
+
+$$
+\begin{bmatrix}
+1 \\ 2 \\ 3 
+\end{bmatrix}\times
+\begin{bmatrix}
+4 \\ 1.5 \\ 1
+\end{matrix}=
+\begin{bmatrix}
+1 \times 4 \\+\\ 2 \times 1.5 \\+\\ 3 \times 1
+\end{bmatrix}=4+3+3=10
+$$
+- Pair-wise Multiplication
+- Also known as vector-vector product or dot product
+
+**** DONE Matrix Vector Product
+***** Example
+
+$$
+\begin{bmatrix}
+1 & 3 \\ 4 & 0 \\ 2 & 1
+\end{bmatrix}\times
+\begin{bmatrix}
+4 \\ 5 
+\end{bmatrix}=
+\begin{bmatrix}
+1 \times 4 + 3 \times 5  \\ 4 \times 5 + 0 \times 5  \\ 2 \times 4 + 1 \times 5
+\end{bmatrix}=
+\begin{bmatrix}
+4 + 15  \\ 20 + 0  \\ 8 + 5
+\end{bmatrix}=
+\begin{bmatrix}
+19  \\ 20  \\ 13
+\end{bmatrix}
+$$
+- Scalar product is a special form of a matrix vector product.
+
+**** DONE Matrix Matrix Multiplication
+***** TODO Example
+
+$$
+\begin{bmatrix}
+1 & 3 & 2 \\ 4 & 0 & 1 
+\end{bmatrix}\times
+\begin{bmatrix}
+1 & 3\\ 0 & 1 \\ 5 & 2
+\end{matrix}=
+\begin{bmatrix}
+11 & 10 \\ 9 & 14
+\end{bmatrix}
+$$
+$$
+\begin{bmatrix}
+1 \\ 2 \\ 3 
+\end{bmatrix}\times
+\begin{bmatrix}
+4 \\ 1.5 \\ 1
+\end{matrix}=
+\begin{bmatrix}
+1 \times 4 \\+\\ 2 \times 1.5 \\+\\ 3 \times 1
+\end{bmatrix}=4+3+3=10
+$$
+$$
+\begin{bmatrix}
+1 \\ 2 \\ 3 
+\end{bmatrix}\times
+\begin{bmatrix}
+4 \\ 1.5 \\ 1
+\end{matrix}=
+\begin{bmatrix}
+1 \times 4 \\+\\ 2 \times 1.5 \\+\\ 3 \times 1
+\end{bmatrix}=4+3+3=10
+$$
+
+***** DONE Properties
+
+1. Associative $(AB)C=A(BC)$
+2. Not commutative $AB\noteq BA$
+3. m x n matrix multiplied by n x o matrix results in an m x o matrix.
+
+**** DONE Identity matrix
+
+In mathematics, the identity property is a concept by when a mathematical element is multiplied by an identity element the result is the original multiplying element.  In linear algebra when a matrix or vector is multiplied by its corresponding identity matrix i.e. (max dimension of multiplying matrix/vector) will be the the multiplying matrix or vector.  The Identity matrix is denoted by $I=I_{n\times n}$ where n is the maximum dimension of the multiplying matrix of vector. Sybmolically for any Matrix $A$, $A\dot I = I \dot A = A$.
+
+***** Examples
+
+$$[1]\text{ for }n=1$$
+$$\begin{bmatrix}1&0\\0&1\end{bmatrix}\text{ for }n=2$$
+$$\begin{bmatrix}1&0&0\\0&1&0\\0&0&1\end{bmatrix}\text{ for }n=3$$
+$$etc..$$
+
+**** DONE Inverse Matrix
+
+Any matrix factor when multiplied by matrix A resulting in an identity matrix is the inverse of such a matrix following the mathematical definition of an inverse. Therefore symbolically speaking $A(A^{-1})=A^{-1}A=I$
+
+***** Example
+
+\begin{bmatrix}
+3 & 4\\ 2 & 16 
+\end{bmatrix}\times
+\begin{bmatrix}
+0.4 & -0.1\\ -0.05 & 0.025
+\end{matrix}=
+\begin{bmatrix}
+1 & 0 \\ 0 & 1
+\end{bmatrix}=I_{2 \times 2}
+$$
+
+Note that matrices that do not have an inverse factor are known as singular matrices or degenerate matrices.
+
+**** DONE Euclidean Norms
+
+Also known as the $L_2$ Norm of a vector is the square root dot product of the vector by itself. i.e. Given vector A, it's Euclidean Norm is $\sqrt{A\dot A}$.
+
+*** TODO Linear Algebra using Python
+**** TODO Example 1
+
+Given a Vector $$, find the Euclidean norm of A.
+
+**** TODO Example 2
+
+Solve the following equation
+$\begin{bmatrix}5&2\\-2&4\end{bmatrix}
+\begin{bmatrix}5\\2 \end{bmatrix}$
+
+** TODO Session Challenge: Linear Discriminant Analysis
+
+LDA is a method developed by R. A. Fisher to perform classification task based on the statistical properties namely mean and variance of a data set.  As simple as this technique may look it performs a relatively decent job when the data is in the right format.  So what do we mean by the right format?  The LDA criterion makes two assumptions:
+1. That the dataset is Gaussian, i.e. one that has a uniform mean and standard deviation that tends zero the further away from the mean the values are.
+2. That each attribute has roughly the same variance on average. In other words there should be very few or eliminated outliers.
+
+Therefore once we have been able to remove outliers, ensure a standard normal distribution of the data having roughly same variance, the linear discriminant function becomes:
+$$D_k(x)=x\times\frac{\mu_k}{\sigma^2_k}-\frac{\mu_k^2}{2\times\sigma^2_k}+\ln(P(k)) - - - (1)$$
+where
+$$\begin{matrix}
+ D_k(x)&=&\text{Classification of data, x}& \\
+ k&=&\text{class k}\end{matrix}& \\
+ \mu_k &=& \frac{1}{n_k}\sum_{i=1}^nx_i
+& \text{mean of class k}\end{matrix} - - - (2)$$
+$$\begin{matrix}
+ \sigma^2 &=& \frac{1}{n-K}\sum_{i=1}^n(x_i-\mu_k)^2 & \text{variance of class k}
+\end{matrix} - - - (3)$$
+
+Note that for x having more than one feature, the average of the means of each feature will be used and the covariance matrix of the features  will also be applied instead of the variance.
+
+One major advantage of LDA is the fact that it still performs reasonably accurately for small amounts of data as well.  In addition, it can be used for multinomial classification as opposed to logistic regression which is suited for binary classification.
+
+*** TODO LDA Lab
+*** DONE Lab Challenge:LDA alternative
+
+There is another presentation of the LDA algorithm found at http://www.saedsayad.com/lda.htm.  This is a slightly more convoluted approach than the one previously described.  In this method, the coefficients of the linear combination of variables (predictors) that best separates two classes (targets) are first determined.
+$$\beta=C^{-1}(\mu_k-\Sigma_{i=1}^m\mu_i/m$$
+where
+$$\beta=Coefficients, \mu=\text{average values in class k}$$
+$$\begin{aligned}C&=&\text{pooled covariance matrix}\\
+		&=&(\Sigma n_k)^{-1}(\Sigma n_kC_k)\end{aligned}$$
+ Next, to capture the notion of separability, the following score function is derived.
+[[./LDA_score.png]]
+
+The score function estimates the linear coefficients that maximize the score.
+Ultimately, the effectiveness of the discrimination is determined the Mahalanobis distance between two groups. A distance greater than 3 means that in two averages differ by more than 3 standard deviations. This means that probability of misclassification is quite small.
+
+Finally, a new point is classified by projecting it onto the maximally separating direction and classifying it as C1 if:
+$$\beta^\top(x-\Sigma x_k/m)>\log{\frac{p(c_k)}{p(~c_k)}}$$
+
+*** DONE Lab Exercises:
+
+1. Implement a more efficient initial LDA algorithm
+2. Implement the alternative LDA algorithm and compare your answers.  If they are different, explain why this could be. Which algorithm is better based on
+   a. Accuracy
+   b. Ease of implementation
+   c. Computation Resource efficiency (time & space complexity)
+
+*** Predictors Contribution
+
+A simple linear correlation between the model scores and predictors can be used to test which predictors contribute significantly to the discriminant function. Correlation varies from -1 to 1, with -1 and 1 meaning the highest contribution but in different directions and 0 means no contribution at all. 
+
+** TODO References
+* TODO Day 2: Using Python & ML Stack(word vectors vs CBOW model)
+** Introduction
+
+In today's laboratory, we will pick up exactly from where we left off in laboratory session 1.  We will attempt to generalise the LDA algorithm to accept a wider range of inputs and outputs.  The aim of this generalisation is for the purpose of reusing our codes or aspects of our codes for different sets of data.  Thereby creating a solution for a range of problems rather than just a specific problem. To perform this generalisation we need to jump a fair amount of hurdles.  Two of the challenges with Machine learning already encountered in the previous lab are
+1. The diversity of the data and
+2. The consistency and integrity of the data
+
+Ensuring that the data is in the appropriate format is no trivial task. This task known as Data cleaning and normalisation required a special conceptual framework that combines a sequence of steps into a special Machine leaning pipeline. Hence to perform the task of formatting, cleaning and validating data, it is necessary to conceptualise a pipeline for preprocessing the data. A typical machine learning pipeline is depicted in Figure ref:fig-mlpipeline below:
+
+#+caption: Machine Learning Pipeline.  label:fig-mlpipeline
+[[.\pipeline.png]] 
+
+** DONE ML Pipeline
+
+The machine learning pipeline consists of the following tasks
+1. Frame the problem looking at the bigger picture
+2. Obtain the data in the formulated problem.
+3. Explore the data to gain insights
+4. Prepare the data to better expose the underlying data patterns  to Machine Learning algorithms
+5. Explore many different models and short-list the best ones
+6. Fine-tune your models and combine them to a great solution
+7. Present your solution
+8. Launch, monitor, maintain your system
+
+*** Framing the Problem
+
+1. Define the objective in business terms
+2. How will your solution be used?s
+3. What are the current solutions/workarounds (if any)
+4. How should this problem be framed (supervised/unsupervised, online/offline, etc.
+5. How should performance be measured?
+6. Is the performance measure aligned with the busines objective?
+7. What would be the minimum performance needed to reachthe business objective?
+8. What are the comparable problems?  Can you reuse experience/tools
+9. Is human expertise available?
+10. How would you solve the problem manually
+
+*** Get the data
+
+1. List the data you ned and how much you need
+2. Find and document where you can get that data
+3. check how much space it will take
+4. Check legal obligations and get authorisation if necessary
+5. Get access authorisations
+6. Create a workspace with enough storage
+7. get the data
+8. Convert the data to the format you can easily manipulate without chainging the data itself
+9. Ensure sensitive invormation is removed or protected
+10. Sample a test set, and never look at it
+
+*** Explore the data
+
+1. Create a copy of the data for exploration (sampling it down to a manageable size if necesssary)
+2. Create a Jupyter notebook to keep record of your data exploration
+3. Study each attribute and its characteristics ie.e
+   - name
+   - type (categorical/int/float/bounded/unbounded/text/structured etc
+   - any missing values
+   - Noisiness and type of noise (stochastic, outlier, rounding errors etc)
+   - Type of distribution (gaussian, uniform, log, etc)
+4. For supervised learning, identify target attributes (features)
+5. Visualise the data
+6. Study the correlations between attributes
+7. Study how you would solve the problem manually
+8. Identify the promising transformations you may want to apply
+9. Identify extra data that would be useful
+10. Document what you have learned
+
+*** Prepare the data
+
+1. Work on copies of the data (keep originals intact)
+2. Write functions for all data transformations you apply for 5 reasons 
+   1. So you can easily prepare the data
+   2. So you can apply these transformations in similar situations in the future
+   3. to clean and prepare the test set
+   4. to clean and prepare instances once your solution is live
+   5. to make it easy to treat your preparation choices as hyperparameters
+3. Data Cleaning
+   - Fix or remove outliers if need be.
+   - Fill in missing values (with zero, mean, median) or drop rows or columns
+4. Feature selection (optional)
+   - Drop attributes that prodie no useful information for the task
+5. Feature engineering where appropriate e.g.
+   - Descretise continuous features
+   - Decompose features (e.g. categorical, date/time, etc.)
+   - Add promising transformations of features (e.g., log(x), sqrt(x), x^2, etc)
+   - Aggregate features into promising new features
+6. Feature Scaling
+   - Standardise or normalise features
+
+*** Short-list promising models
+
+If the data is large, you may want to sample smaller training sets so you can train many different models in a reasonable time (be aware that this penalises complex models such as large neural nets or random forests).  Once again try to automate these steps as much as possible.
+1. Train many quick and dirty models from different categories (e.g. linear, naive bayes, SVM, random forests, neural nets etc.) using standard parameters.
+2. Measure and compare their performance:  For each model, use N-fold cross-validation and compute the mean and standard deviation of the performance on the N-folds.
+3. Analyse the most significant variables for each algorithm.
+4. Analyse the types of errors the models make and proffer how such errors can be avoided.
+5. Have a quick round of feature selection and engineering
+6. Have one or two more quick iterations of steps 1 to 5
+7. Short list the top three to five most promising models, preferring models that make different types of errors?
+
+*** Fine tune the system
+
+1. You will want to use as much data as possible for this step, especially as you move toward the end of fine-tuning.
+2. Automate what you can
+3. Fine-tune hyper parameters using cross-validation
+4. Treat data transformation choices you are sure about as hyper parameters
+5. Unless there are very few hyper parameter values to explore, prefer random search over grid search.  If training is very long, you may prefer a Bayesian optimisation approach using Gaussian process priors  [[https://goo.gl/PEFfGr]] cite:snoek2012practical
+6. Try Ensemble methods.  Combining your best models will often perform better than running them individually.
+7. Once you are confident about the final model, measre its performance on the test set to estimate the generalisation error.
+
+*** Present your solution
+
+1. Document what you have done.
+2. Create a presentation highlighting the big picture
+3. Explain why your solution achieves the business objective
+4. Present interesting points  you learned along the way.  Describe what worked and what did not. List the assumptions and system limitations.
+5. Use visualisation to communicate key findings. e.g. the median income is the number one predictor of housing prices.
+
+*** Launch
+
+1. Plug in production data inputs, write unit tests etc.
+2. Write monitoring code to check you system's live performance at regular intervals and trigger alerts when it drops.
+   - Beware of slow degration as models tend to wrote as data eveloves
+   - Performance measurement may require crowd sourcing.
+   - Monitor inputs quality.
+3. Retrain your models at regular basis on fresh data (automate as much as possible)
+
+** DONE Feature Extraction vs Data Cleaning
+
+Feature extraction and data cleaning could almost be used interchangeably, however, there is a fine difference between the two.  While data cleaning is a procedural concept, feature engineering requires skills acquistion by experience and experimentation. In other words, data cleaning operations are mostly bye-products of the feature engineering process. These feature engineering tips will be highlighted as we walk through the data cleaning process.
+
+** TODO Session Challenge Word Vectors vs Bag of Words
+
+In tasks in which words are features, the bag-of-words model can be used to create a feature vector when the number of features (words) is not known in advance, with the assumption that their order is not important. Each word is represented by a one-hot vector - a sparse vector in the size of the vocabulary, with 1 in the entry representing the word and 0 in all other entries. The bag-of-words feature vector is the sum of all one-hot vectors of the words, and therefore has a non-zero value for every word that occurred. In the weighted variation, it is a weighted sum according to frequency or TF-IDF scores.
+
+Continuous bag-of-words (CBOW) is exactly the same, but instead of using sparse vectors to represent words, it uses dense vectors (continuous distributional "embeddings").  See (Mikolov et. al, 2013).
+
+* TODO Day 3: Linear & Logistic regression (PCA)
+In previous labs we have applied logistic regression to various classification tasks using the of the shelf models within the scikit-learn machine learning libray.  In today's class we take a look under the hood by creating our own models. Linear and logistic regression follow similar modelling procedures and therefore fall into the class of machine learning models known as generalised linear models.
+
+* TODO Day 4: Naive Bayes and K nearest neighbours (k means)
+** TODO Introduction
+** TODO Naive Bayes Model
+*** TODO Conditional Probability
+*** TODO Bayes Rule
+*** TODO Naive Bayes
+** TODO K-Nearest Neigbours
+*** TODO KNN Representation
+*** TODO KNN Distance measures
+** Session Challenge: K-means Clustering
+K-nearest neighbors is a classification algorithm, which is a subset of supervised learning.
+
+K-means is a clustering algorithm, which is a subset of unsupervised learning.
+
+If I have a dataset of basketball players, their positions, and their measurements, and I want to assign positions to basketball players in a new dataset where I have measurements but no positions, I might use k-nearest neighbors.
+
+On the other hand, if I have a dataset of basketball players who need to be grouped into k distinct groups based off of similarity, I might use k-means.
+
+Correspondingly, the K in each case also mean different things! In k-nearest neighbors, the k represents the number of neighbors who have a vote in determining a new player's position. Take the example where k =3. If I have a new basketball player who needs a position, I take the 3 basketball players in my dataset with measurements closest to my new basketball player, and I have them vote on the position that I should assign the new player.
+
+The k in k-means means the number of clusters I want to have in the end. If k = 5, I will have 5 clusters, or distinct groups, of basketball players after I run the algorithm on my dataset.
+
+In sum, two different algorithms with two very different end results, but the fact that they both use k can be very confusing!
+
+These are completely different methods. The fact that they both have the letter K in their name is a coincidence.
+
+K-means is a clustering algorithm that tries to partition a set of points into K sets (clusters) such that the points in each cluster tend to be near each other. It is unsupervised because the points have no external classification.
+
+K-nearest neighbors is a classification (or regression) algorithm that in order to determine the classification of a point, combines the classification of the K nearest points. It is supervised because you are trying to classify a point based on the known classification of other points. 
+* TODO Day 5: Classification & regression trees & SVM(advanced topics)
+** Decision Trees(cite:geron)
+Decision trees are capable of performing both regression and classification.  They also are fundamental components of random forest.  We first look at the classification properties of decision trees before considering the regression capabilities.
+*** Decision Tree classifier
+Suppose you find an iris flower and you want to classify it.  You start at the root node (depth 0, at the top): this node asks whether the flower's petal length is smaller than 2.45cm.  If it is then you move down to the root's left child node (depth 1, left).  In this case, it is a leaf node (i.e. it does not have any children nodes), so it does not ask any more questions: you can simply look at the predicted class for that node and the decision tree predicts that the flower belongs to the class (Class=Setosa).
+
+Now suppose you find another flow, but this time the petal length is greater than 2.45 cm.  You must move down to the root's right child node (depth 2, left).  If not, it is likely an Iris-Virginica (depth 2, right).
+
+One nice quality of decision trees is that they require much less data preparation, in particular decision trees are neutral to normalisation of the data.
+
+A node's samples attribute counts how many training instances it applies to.  for example, 100 training instances have a petal length greater than 2.45cm (depth 1, right), among  which 54 have a petal width smaller than 1.75cm (depth 2 left).  A node's value
+* DONE Appendix
+** DONE Appendix I
+*** Frequently Asked Questions
+**** What is FMLP-Cubed?
+
+Faster Machine Learning for Programmers and Professionals with Python (FMLP3), is an intensive online course that uses a unique method to get programmers and professionals quickly started with Machine Learning using the Python Machine Learning platform.  This commercialised version is streamlined and focused on this methodology and because it's just a 5 day intensive not all the topics in machine learning are covered but a working knowledge of python applied to data science is assured.  If your interested, PM me and I shall get you set up.
+
+**** Mode of Delivery and Assessment
+
+This is the interesting part.  Each participant will have his/her 
+own ML project that he will be working on through out the course.  Each day will have a 2-3 hour online webinar where programming walkthroughs will be provided.  These recipes can be used to implement daily assignments that would need to be ready before the next class.  Each session will have elements that can be used in the individual's personal project and the group project.  Assessment will be based on satisfactory completion of daily assignments and group projects.  A whatsapp group will be used at the group level to discuss assignment and group projects and will be open for discussions 24/7 subject to everyones availability.
+
+At the end of the course, the participants are to have 2 working ML projects along with mini projects completed with assignments.  Lecture notes and Materials will be sent over via email or group chat.  
+
+**** Course Requisites
+
+The course is a commercial version of an advanced python course in machine learning I have been teaching Post Graduate Computer Science students. The course became quite popular some tutors from other departments started joining the course.  This course therefore is not for novices. The course assumes you already have a working knowledge of basic programming concepts such as loops, arrays and classes as well as a working knowledge of basic calculus.  In addition, as this course is an online course, participants will be required to have  a solid internet connection during webinars and fairly good internet for group chats.  Also to facilitate online support it is advised to have TeamViewer(R) installed on your computer.
+
+**** What does FMLP3 cover?
+
+This introductory datascience course covers python basics and fundamental machine learning algorithms that form the building blocks of Machine Learning techniques used in industry practice.
+- Introduction to ML and Linear Algebra (LDA)
+- Using Python & ML Stack (word vectors)
+- Linear & Logistic regression (PCA)
+- Naive Bayes and K nearest neighbours (k means)
+- Classification & regression trees & SVM(ensemble & advanced methods introduction)
+
+**** FMLP3 Duration
+
+FMLP3 is a Five-day intensive course that can span over 5 weeks or 5 days.
+
+**** FMLP3 Cost and Payment
+
+Pay NGN45,000 to:
+Iyalla John Alamina
+FBN: 3024252015
+
+**** Current session schedule
+
+Start Date Schedule: Monday 27 Nov 2017, 11am - 2pm (NGR time for 5 weeks subject to rescheduling due to availability)
+Registration end Date: Fri 24 Nov 2017
+
+** DONE Appendix II
+
+[[./fmlp3.PNG]]
+
+*** Assignment 0: Welcome & System Setup
+
+Hello and welcome to this course Faster Machine Learning for Programmers and Professionals using python.  The essence of this taster session is to get you up and running with your machine learning environment.  It is this environment that all our work is to get done in.  This python/scripting environment is a free cloud environment known as azure notebooks which is Microsoft's Jupyter notebooks cloud computing platform.  Before we dive into this platform a little note about python and Jupyter notebooks.
+
+**** Ways to Run Python
+
+There are four ways in which to run python on your computer.  The four ways are listed below.
+1. Executing a Python Script
+2. The Python script Shell
+3. The interactive python shell
+4. Jupyter notebooks
+
+The first method is done using the 'python' command to execute a previously edited python script file.  This can also be achieved if you are using a python integrated developer environment such as active python or pycharm by JetBrains.
+
+The remaining methods include interactive methods of using python so that results of commands can be seen simultaneously at time of writing just by pressing enter.  As we shall see, items 2 to 4 are with increasing order of interactivity and nifty features.  So the interactive python shell has more features than the python script shell and the Jupyter notebooks has the most features integrating a web interface IDE along with interactive shell features into one environment.  The Jupyter notebooks is fast becoming the defacto standard  used by the science and technology community to share computation-intensive knowledge to a wide range of audiences.  Jupyter Notebooks is therefore the method we will be adopting to perform machine learning using the azure notebooks cloud platform and the python machine learning stack.
+
+**** Steps to setup Azure Notebooks
+
+1. On any web browser, log on to [[notebooks.azure.com]] using your Microsoft(R) passport or register a new Microsoft account if you don't have one to log on with.
+2. Create A new Library within your Azure notebooks cloud environment.
+3. Open the newly created library and upload the 'pythintro.ipynb' file that came with this laboratory assignment.
+4. Open the 'pythintro.ipynb' ipython notebook file and run the interactive code step-by-step using the 'play' button located on the tool bar at the top within the browser.
+
+*** A brief History of Jupyter Notebooks
+
+There may be a little bit of confusion with the 'ipynb' file because sometimes we refer to it as an ipython notebook file and at other times we refer to it as a Jupyter notebook file.  They are one and the same thing.  Initially the kernel for ipython notebooks supported the python interpreter only.  However, the developers were able to develop methods of adding other computer languages into the platform hence the change of name from ipython notebooks to jupyter notebooks.  Note also that the ipython notebook files is not the same thing as the interactive python (ipython) shell. Ipython notebook files or jupyter notebook files can only be run on the Jupyter notebook environment.
+
+*** Session Challenge: Setting up Jupyter Notebooks on your system
+
+It is possible to run ipython notebook on your computer without having to use cloud computing.  However the process of setting up can be quite involving.  Fire up a browser and navigate to [[www.firstpythonnotebook.org]] and follow the instructions up to the end of chapter 2 in order to install jupyter notebooks to your local computer or laptop.
+
+We have now come to the end of this laboratory assignment.  Hopefully you have been able to create a notebooks.azure.com account and run your first ipython notebook.  In the sessions to come we shall be using this environment to create Machine Learning programs to work on big Data.  All the assignments shall be performed from this envinronment as well.  Stay Tuned!
+
+** TODO Appendix III
+*** Math: Matrix Inverse Methods
+**** Engineering method
+**** Co-factor/Determinant Method
+* References
+
+bibliography:fmlp3.bib 
+

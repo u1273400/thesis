@@ -1,0 +1,413 @@
+TY  - BOOK
+AU  - Allen, James
+
+T1  - Natural language understanding
+PB  - Pearson
+
+Y1  - 1995
+
+
+
+
+
+
+
+
+
+
+
+
+
+ER  -
+TY  - JOUR
+AU  - Bengio, Yoshua
+AU  - Ducharme, Réjean
+AU  - Vincent, Pascal
+AU  - Jauvin, Christian
+T1  - A neural probabilistic language model
+JO  - Journal of machine learning research
+Y1  - 2003
+VL  - 3
+IS  - Feb
+SP  - 1137
+EP  - 1155
+
+
+
+
+
+
+
+
+
+
+ER  -
+TY  - JOUR
+AU  - Besacier, Laurent
+AU  - Barnard, Etienne
+AU  - Karpov, Alexey
+AU  - Schultz, Tanja
+T1  - Automatic speech recognition for under-resourced languages: A survey
+JO  - Speech Communication
+Y1  - 2014
+VL  - 56
+
+SP  - 85
+EP  - 100
+
+
+
+
+
+
+
+
+
+
+ER  -
+TY  - CONF
+AU  - Chen, Stanley F.
+AU  - Goodman, Joshua
+
+T1  - An empirical study of smoothing techniques for language modeling
+T2  - Proceedings of the 34th annual meeting on Association for Computational Linguistics
+
+
+Y1  - 1996
+
+
+SP  - 310
+EP  - 318
+
+
+
+
+
+
+
+
+
+
+ER  -
+TY  - JOUR
+AU  - Cho, Kyunghyun
+AU  - Van Merriënboer, Bart
+AU  - Gulcehre, Caglar
+AU  - Bahdanau, Dzmitry
+AU  - Bougares, Fethi
+AU  - Schwenk, Holger
+AU  - Bengio, Yoshua
+T1  - Learning phrase representations using RNN encoder-decoder for statistical machine translation
+JO  - arXiv preprint arXiv:1406.1078
+Y1  - 2014
+
+
+
+
+
+
+
+
+
+
+
+
+
+ER  -
+TY  - JOUR
+AU  - Gales, Mark
+AU  - Young, Steve
+T1  - The Application of Hidden Markov Models in Speech Recognition
+JO  - Foundations and TrendsÂ® in Signal Processing
+Y1  - 2007
+VL  - 1
+IS  - 3
+SP  - 195
+EP  - 304
+
+M3  - https://doi.org/10.1561/2000000004
+
+
+
+
+
+
+
+
+ER  -
+TY  - CONF
+AU  - Goodfellow, Ian
+AU  - Pouget-Abadie, Jean
+AU  - Mirza, Mehdi
+AU  - Xu, Bing
+AU  - Warde-Farley, David
+AU  - Ozair, Sherjil
+AU  - Courville, Aaron
+AU  - Bengio, Yoshua
+
+T1  - Generative adversarial nets
+T2  - Advances in neural information processing systems
+
+
+Y1  - 2014
+
+
+SP  - 2672
+EP  - 2680
+
+
+
+
+
+
+
+
+
+
+ER  -
+TY  - CONF
+AU  - Graves, Alex
+AU  - Jaitly, Navdeep
+AU  - Mohamed, Abdel-rahman
+
+T1  - Hybrid speech recognition with deep bidirectional LSTM
+T2  - Automatic Speech Recognition and Understanding (ASRU), 2013 IEEE Workshop on
+
+
+Y1  - 2013
+
+
+SP  - 273
+EP  - 278
+
+
+
+
+
+
+
+
+
+
+ER  -
+TY  - JOUR
+AU  - Hannun, Awni
+AU  - Case, Carl
+AU  - Casper, Jared
+AU  - Catanzaro, Bryan
+AU  - Diamos, Greg
+AU  - Elsen, Erich
+AU  - Prenger, Ryan
+AU  - Satheesh, Sanjeev
+AU  - Sengupta, Shubho
+AU  - Coates, Adam
+AU  - others
+T1  - Deep speech: Scaling up end-to-end speech recognition
+JO  - arXiv preprint arXiv:1412.5567
+Y1  - 2014
+
+
+
+
+
+
+
+
+
+
+
+
+
+ER  -
+TY  - JOUR
+AU  - Jelinek, Frederick
+T1  - Continuous speech recognition by statistical methods
+JO  - Proceedings of the IEEE
+Y1  - 1976
+VL  - 64
+IS  - 4
+SP  - 532
+EP  - 556
+
+
+
+
+
+
+
+
+
+
+ER  -
+TY  - CONF
+AU  - Kim, Yoon
+AU  - Jernite, Yacine
+AU  - Sontag, David
+AU  - Rush, Alexander M.
+
+T1  - Character-Aware Neural Language Models.
+T2  - AAAI
+
+
+Y1  - 2016
+
+
+SP  - 2741
+EP  - 2749
+
+
+
+
+
+
+
+
+
+
+ER  -
+TY  - CONF
+AU  - Luong, Thang
+AU  - Socher, Richard
+AU  - Manning, Christopher D.
+
+T1  - Better word representations with recursive neural networks for morphology.
+T2  - CoNLL
+
+
+Y1  - 2013
+
+
+SP  - 104
+EP  - 113
+
+
+
+
+
+
+
+
+
+
+ER  -
+TY  - CONF
+AU  - Mikolov, Tomáš
+AU  - Deoras, Anoop
+AU  - Kombrink, Stefan
+AU  - Burget, Lukáš
+AU  - Černockỳ, Jan
+
+T1  - Empirical evaluation and combination of advanced language modeling techniques
+T2  - Twelfth Annual Conference of the International Speech Communication Association
+
+
+Y1  - 2011
+
+
+
+
+
+
+
+
+
+
+
+
+
+ER  -
+TY  - JOUR
+AU  - Sak, Haşim
+AU  - Senior, Andrew
+AU  - Beaufays, Françoise
+T1  - Long short-term memory based recurrent neural network architectures for large vocabulary speech recognition
+JO  - arXiv preprint arXiv:1402.1128
+Y1  - 2014
+
+
+
+
+
+
+
+
+
+
+
+
+
+ER  -
+TY  - CONF
+AU  - Sutskever, Ilya
+AU  - Vinyals, Oriol
+AU  - Le, Quoc V.
+
+T1  - Sequence to sequence learning with neural networks
+T2  - Advances in neural information processing systems
+
+
+Y1  - 2014
+
+
+SP  - 3104
+EP  - 3112
+
+
+
+
+
+
+
+
+
+
+ER  -
+TY  - CONF
+AU  - Versteegh, Maarten
+AU  - Thiolliere, Roland
+AU  - Schatz, Thomas
+AU  - Cao, Xuan Nga
+AU  - Anguera, Xavier
+AU  - Jansen, Aren
+AU  - Dupoux, Emmanuel
+
+T1  - The zero resource speech challenge 2015
+T2  - Sixteenth Annual Conference of the International Speech Communication Association
+
+
+Y1  - 2015
+
+
+
+
+
+
+
+
+
+
+
+
+
+ER  -
+TY  - JOUR
+AU  - Xu, Ping
+AU  - Fung, Pascale
+T1  - Cross-lingual language modeling for low-resource speech recognition
+JO  - IEEE Transactions on Audio, Speech, and Language Processing
+Y1  - 2013
+VL  - 21
+IS  - 6
+SP  - 1134
+EP  - 1144
+
+
+
+
+
+
+
+
+
+
+ER  -

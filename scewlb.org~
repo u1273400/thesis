@@ -1,0 +1,77 @@
+<<<<<<< HEAD
+#+TITLE:     SCE Work Load Balance Web Solution
+#+AUTHOR:    John Alamina
+#+EMAIL:     John.alamina@hud.ac.uk
+#+DATE:      2017-11-10 Fri
+#+DESCRIPTION: University of Huddersfield School of computing and engineering Academic Work Load Balance tool.
+#+KEYWORDS: 
+* TODO [%] SCE WLB Project Management
+** TODO [50%] Database Tables
+*** DONE 1. Academics
+*** TODO 2. WLB
+*** TODO 3. WorkPlan
+*** DONE 4. Modules
+
+** TODO [%] Forms
+*** TODO 1. Modules
+**** TODO [/] Fields
+1. [X] ModCode
+2. [X] ModName
+3. [X] SA
+4. [X] ModLeader
+5. [X] IntModerator
+6. [X] ExtExaminer
+7. [X] Credits
+8. [X] LectCount
+9. [X] TotDelHrs
+10. [X] Stud Count
+**** TODO Data functions
+1. [ ] Create
+2. [X] Read
+3. [ ] Update
+4. [ ] Delete
+
+*** TODO 2. Work Plans
+
+*** TODO 3. Work Plan Items
+    
+*** TODO 4. Academics
+=======
+#+TITLE:     SCE Work Load Balance Web Solution
+#+AUTHOR:    John Alamina
+#+EMAIL:     John.alamina@hud.ac.uk
+#+DATE:      2017-11-10 Fri
+#+DESCRIPTION: University of Huddersfield School of computing and engineering Academic Work Load Balance tool.
+#+KEYWORDS: 
+* TODO [%] SCE WLB Project Management
+** TODO [50%] Database Tables
+*** DONE 1. Academics
+*** TODO 2. WLB
+*** TODO 3. WorkPlan
+*** DONE 4. Modules
+
+** TODO [%] Forms
+*** TODO 1. Modules
+**** TODO [/] Fields
+1. [X] ModCode
+2. [X] ModName
+3. [X] SA
+4. [X] ModLeader
+5. [X] IntModerator
+6. [X] ExtExaminer
+7. [X] Credits
+8. [X] LectCount
+9. [X] TotDelHrs
+10. [X] Stud Count
+**** TODO Data functions
+1. [ ] Create
+2. [X] Read
+3. [ ] Update
+4. [ ] Delete
+
+*** TODO 2. Work Plans
+
+*** TODO 3. Work Plan Items
+    
+*** TODO 4. Academics
+>>>>>>> 3ef68fb5b75bb45286846e57bc17926fa30d5ad1

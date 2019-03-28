@@ -1,0 +1,50 @@
+<<<<<<< HEAD
+@book{geron2017,
+author={Géron,Aurélien},
+year={2017},
+title={Hands-on machine learning with Scikit-Learn and TensorFlow: concepts, tools, and techniques to build intelligent systems},
+publisher={O'Reilly},
+address={Beijing},
+edition={First},
+keywords={Computers and IT; Machine learning},
+isbn={9781491962299;1491962291;},
+language={English},
+}
+
+@book{marsland2009,
+author={Marsland,Stephen},
+year={2009},
+title={Machine learning: an algorithmic perspective},
+publisher={Chapman & Hall/CRC},
+address={Boca Raton;London;},
+keywords={Algorithms; Machine learning},
+isbn={1420067184;9781420067187;},
+language={English},
+url={http://hud.summon.serialssolutions.com/2.0.0/link/0/eLvHCXMwbV25DsIwDLU4FiSkcopT6g8UaNK0ZEYgFjYkxspJU2Bhgv8nblNAwJgMTiI5tny8ZwDOFqvgyyYQz3csNK41ZpqFaP1IFiVa2fhC5OuCdvuDmOlFu10l3i6PzEGrNN6psrlUV7WMmRRS1KGeJKTb4Ym_syuRkDySJZKLLLI9qCJ4cmvyR1buhzfZdaBBCIMu1MytB141V8F336wP3qHocDS-G-lwHsB4tz1u9oGVlLqES1reiw2hjdSlfrsXaLZsBP5KIU94bkMqKYh7CzlHI-IoVBLRMDWG7q-gyb_NKbTKugYlA2bQzK2ymnnxoidGUGLj},
+}
+=======
+@book{geron2017,
+author={Géron,Aurélien},
+year={2017},
+title={Hands-on machine learning with Scikit-Learn and TensorFlow: concepts, tools, and techniques to build intelligent systems},
+publisher={O'Reilly},
+address={Beijing},
+edition={First},
+keywords={Computers and IT; Machine learning},
+isbn={9781491962299;1491962291;},
+language={English},
+}
+
+@book{marsland2009,
+author={Marsland,Stephen},
+year={2009},
+title={Machine learning: an algorithmic perspective},
+publisher={Chapman & Hall/CRC},
+address={Boca Raton;London;},
+keywords={Algorithms; Machine learning},
+isbn={1420067184;9781420067187;},
+language={English},
+url={http://hud.summon.serialssolutions.com/2.0.0/link/0/eLvHCXMwbV25DsIwDLU4FiSkcopT6g8UaNK0ZEYgFjYkxspJU2Bhgv8nblNAwJgMTiI5tny8ZwDOFqvgyyYQz3csNK41ZpqFaP1IFiVa2fhC5OuCdvuDmOlFu10l3i6PzEGrNN6psrlUV7WMmRRS1KGeJKTb4Ym_syuRkDySJZKLLLI9qCJ4cmvyR1buhzfZdaBBCIMu1MytB141V8F336wP3qHocDS-G-lwHsB4tz1u9oGVlLqES1reiw2hjdSlfrsXaLZsBP5KIU94bkMqKYh7CzlHI-IoVBLRMDWG7q-gyb_NKbTKugYlA2bQzK2ymnnxoidGUGLj},
+}
+>>>>>>> 3ef68fb5b75bb45286846e57bc17926fa30d5ad1
+}

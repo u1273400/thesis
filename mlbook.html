@@ -1,0 +1,2477 @@
+<<<<<<< HEAD
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Faster Machine Learning for Programmers and Professionals using Python</title>
+<!-- 2017-11-26 Sun 22:57 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="John Alamina" />
+<meta  name="description" content="Introduction to Machine Learning for programmers."
+ />
+<meta  name="keywords" content="Machine Learning, Computer Science, Linear Algebra, Bayesian Statistics" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Faster Machine Learning for Programmers and Professionals using Python</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. <span class="todo TODO">TODO</span> Day 1: Introduction (LDA)</a>
+<ul>
+<li><a href="#sec-1-1">1.1. Introduction to Machine Learning</a>
+<ul>
+<li><a href="#sec-1-1-1">1.1.1. Learning  c</a></li>
+<li><a href="#sec-1-1-2">1.1.2. Machine Learning</a></li>
+<li><a href="#sec-1-1-3">1.1.3. Types of Machine Learning</a></li>
+<li><a href="#sec-1-1-4">1.1.4. Properties of a Good Machine Learning System </a></li>
+<li><a href="#sec-1-1-5">1.1.5. Machine Learning Pipeline</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-2">1.2. <span class="todo TODO">TODO</span> Python Basics</a>
+<ul>
+<li><a href="#sec-1-2-1">1.2.1. <span class="done DONE">DONE</span> Python types and basic syntax</a></li>
+<li><a href="#sec-1-2-2">1.2.2. <span class="todo TODO">TODO</span> Operations on Built in types</a></li>
+<li><a href="#sec-1-2-3">1.2.3. <span class="done DONE">DONE</span> Python Copntrol Structures</a></li>
+<li><a href="#sec-1-2-4">1.2.4. <span class="todo TODO">TODO</span> Functions and Classes</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-3">1.3. <span class="todo TODO">TODO</span> Linear Algebra Review</a>
+<ul>
+<li><a href="#sec-1-3-1">1.3.1. <span class="done DONE">DONE</span> Vectors and Matrices</a></li>
+<li><a href="#sec-1-3-2">1.3.2. <span class="done DONE">DONE</span> Linear Algebra Operations</a></li>
+<li><a href="#sec-1-3-3">1.3.3. <span class="todo TODO">TODO</span> Linear Algebra using Python</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-4">1.4. <span class="todo TODO">TODO</span> Session Challenge: Linear Discriminant Analysis</a>
+<ul>
+<li><a href="#sec-1-4-1">1.4.1. <span class="todo TODO">TODO</span> LDA Lab</a></li>
+<li><a href="#sec-1-4-2">1.4.2. <span class="done DONE">DONE</span> Lab Challenge:LDA alternative</a></li>
+<li><a href="#sec-1-4-3">1.4.3. <span class="done DONE">DONE</span> Lab Exercises:</a></li>
+<li><a href="#sec-1-4-4">1.4.4. Predictors Contribution</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-5">1.5. <span class="todo TODO">TODO</span> References</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. <span class="todo TODO">TODO</span> Day 2: Using Python &amp; ML Stack(word vectors vs CBOW model)</a>
+<ul>
+<li><a href="#sec-2-1">2.1. <span class="todo TODO">TODO</span> ML Pipeline</a></li>
+<li><a href="#sec-2-2">2.2. <span class="todo TODO">TODO</span> Feature Extraction vs Data Cleaning</a></li>
+<li><a href="#sec-2-3">2.3. <span class="todo TODO">TODO</span> Session Challenge Word Vectors vs Bag of Words</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. <span class="todo TODO">TODO</span> Day 3: Linear &amp; Logistic regression (PCA)</a></li>
+<li><a href="#sec-4">4. <span class="todo TODO">TODO</span> Day 4: Naive Bayes and K nearest neighbours (k means)</a>
+<ul>
+<li><a href="#sec-4-1">4.1. <span class="todo TODO">TODO</span> Introduction</a></li>
+<li><a href="#sec-4-2">4.2. <span class="todo TODO">TODO</span> Naive Bayes Model</a>
+<ul>
+<li><a href="#sec-4-2-1">4.2.1. <span class="todo TODO">TODO</span> Conditional Probability</a></li>
+<li><a href="#sec-4-2-2">4.2.2. <span class="todo TODO">TODO</span> Bayes Rule</a></li>
+<li><a href="#sec-4-2-3">4.2.3. <span class="todo TODO">TODO</span> Naive Bayes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-3">4.3. <span class="todo TODO">TODO</span> K-Nearest Neigbours</a>
+<ul>
+<li><a href="#sec-4-3-1">4.3.1. <span class="todo TODO">TODO</span> KNN Representation</a></li>
+<li><a href="#sec-4-3-2">4.3.2. <span class="todo TODO">TODO</span> KNN Distance measures</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-4">4.4. Session Challenge: K-means Clustering</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. <span class="todo TODO">TODO</span> Day 5: Classification &amp; regression trees &amp; SVM(advanced topics)</a></li>
+<li><a href="#sec-6">6. <span class="done DONE">DONE</span> Appendix</a>
+<ul>
+<li><a href="#sec-6-1">6.1. <span class="done DONE">DONE</span> Appendix I</a>
+<ul>
+<li><a href="#sec-6-1-1">6.1.1. Frequently Asked Questions</a></li>
+</ul>
+</li>
+<li><a href="#sec-6-2">6.2. <span class="done DONE">DONE</span> Appendix II</a>
+<ul>
+<li><a href="#sec-6-2-1">6.2.1. Assignment 0: Welcome &amp; System Setup</a></li>
+<li><a href="#sec-6-2-2">6.2.2. A brief History of Jupyter Notebooks</a></li>
+<li><a href="#sec-6-2-3">6.2.3. Session Challenge: Setting up Jupyter Notebooks on your system</a></li>
+</ul>
+</li>
+<li><a href="#sec-6-3">6.3. <span class="todo TODO">TODO</span> Appendix III</a>
+<ul>
+<li><a href="#sec-6-3-1">6.3.1. Math: Matrix Inverse Methods</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> <span class="todo TODO">TODO</span> Day 1: Introduction (LDA)</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Introduction to Machine Learning</h3>
+<div class="outline-text-3" id="text-1-1">
+</div><div id="outline-container-sec-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> Learning  c</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+Learning, consists of remembering, adapting and generalising <a class='org-ref-reference' href="#marsland2009">marsland2009</a>. It also includes reasoning and logical deduction.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> Machine Learning</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+Making computers modify their actions so that the actions become more accurate.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-3" class="outline-4">
+<h4 id="sec-1-1-3"><span class="section-number-4">1.1.3</span> Types of Machine Learning</h4>
+<div class="outline-text-4" id="text-1-1-3">
+</div><ol class="org-ol"><li><a id="sec-1-1-3-1" name="sec-1-1-3-1"></a>Supervised:<br  /><div class="outline-text-5" id="text-1-1-3-1">
+<p>
+Learning from examples. Includes regression and classification. Spam detection of emails constitutes an example of a binary classification problem. Predicting stock prices is an example of a regression problem. 
+</p>
+</div>
+</li>
+
+<li><a id="sec-1-1-3-2" name="sec-1-1-3-2"></a>Unsupervised Learning:<br  /><div class="outline-text-5" id="text-1-1-3-2">
+<p>
+Classification by estimating features a.k.a density estimation. Density reduction can also be seen as an unsupervised problem. 
+</p>
+</div>
+</li>
+
+<li><a id="sec-1-1-3-3" name="sec-1-1-3-3"></a>Reinforcement:<br  /><div class="outline-text-5" id="text-1-1-3-3">
+<p>
+Reward based learning
+</p>
+</div>
+</li>
+
+<li><a id="sec-1-1-3-4" name="sec-1-1-3-4"></a>Evolutionary Learning:<br  /><div class="outline-text-5" id="text-1-1-3-4">
+<p>
+Fitness on the goodness of the solution
+</p>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-1-1-4" class="outline-4">
+<h4 id="sec-1-1-4"><span class="section-number-4">1.1.4</span> Properties of a Good Machine Learning System <a class='org-ref-reference' href="#geron2017">geron2017</a></h4>
+<div class="outline-text-4" id="text-1-1-4">
+<ol class="org-ol">
+<li>Features Extraction or Feature engineering
+</li>
+<li>Occam's Razor: The simplest classifier is more likely to generalise i. e.
+</li>
+<li>Does not overfit data with high variance
+</li>
+<li>Unbiased i.e. Doesn't underfit the data 
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-5" class="outline-4">
+<h4 id="sec-1-1-5"><span class="section-number-4">1.1.5</span> Machine Learning Pipeline</h4>
+<div class="outline-text-4" id="text-1-1-5">
+</div><ol class="org-ol"><li><a id="sec-1-1-5-1" name="sec-1-1-5-1"></a>ML Pipeline figure<br  /></li></ol>
+</div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> <span class="todo TODO">TODO</span> Python Basics</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Having gone through some of the formal Machine learning literature,  Let's now turn our attention to the more exciting stuff. One of the major features of the python programming language is the inherent datastructures such as lists that are first class types in the python language.  It is this feature, I hypothize, that has possibly made python a forerunner in scientific applications that are data intensive. Let's talk a bit more about python and it's intrinsics types.
+</p>
+</div>
+
+<div id="outline-container-sec-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> <span class="done DONE">DONE</span> Python types and basic syntax</h4>
+<div class="outline-text-4" id="text-1-2-1">
+</div><ol class="org-ol"><li><a id="sec-1-2-1-1" name="sec-1-2-1-1"></a>Getting output using print<br  /><div class="outline-text-5" id="text-1-2-1-1">
+<div class="org-src-container">
+
+<pre class="src src-python">print("hello world")
+print("first value:", 1,"nice one")
+</pre>
+</div>
+</div>
+</li>
+
+<li><a id="sec-1-2-1-2" name="sec-1-2-1-2"></a>Working with variables<br  /><div class="outline-text-5" id="text-1-2-1-2">
+<div class="org-src-container">
+
+<pre class="src src-python"># assign 4 to the variable x
+x = 1         # x is an integer
+x = 'hello'   # now x is a string
+x = [1, 2, 3] # now x is a list
+print("x =", x)
+</pre>
+</div>
+</div>
+</li>
+
+<li><a id="sec-1-2-1-3" name="sec-1-2-1-3"></a>In python everything is an object<br  /><div class="outline-text-5" id="text-1-2-1-3">
+<div class="org-src-container">
+
+<pre class="src src-python">L = [1, 2, 3]
+L.append(100)
+print(L)
+x = 4.5
+print(x.real, "+", x.imag, 'i')
+x = 4.5
+x.is_integer()
+</pre>
+</div>
+</div>
+</li>
+
+<li><a id="sec-1-2-1-4" name="sec-1-2-1-4"></a>Simple Types<br  /><div class="outline-text-5" id="text-1-2-1-4">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Type</th>
+<th scope="col" class="left">Example</th>
+<th scope="col" class="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">int</td>
+<td class="left">x = 1</td>
+<td class="left">integers (i.e., whole numbers</td>
+</tr>
+
+<tr>
+<td class="left">float</td>
+<td class="left">x = 1.0</td>
+<td class="left">floating point numbers (i.e., real numbers</td>
+</tr>
+
+<tr>
+<td class="left">complex</td>
+<td class="left">x = 1+2j</td>
+<td class="left">Complex numbers (i.e. numbers with real and imaginary parts</td>
+</tr>
+
+<tr>
+<td class="left">bool</td>
+<td class="left">x = True</td>
+<td class="left">Boolean: true or false values</td>
+</tr>
+
+<tr>
+<td class="left">str</td>
+<td class="left">x = 'abc'</td>
+<td class="left">String: characters or text</td>
+</tr>
+
+<tr>
+<td class="left">NoneType</td>
+<td class="left">x = None</td>
+<td class="left">Special object indicating nulls.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+
+<li><a id="sec-1-2-1-5" name="sec-1-2-1-5"></a>Built in Data Structures<br  /><div class="outline-text-5" id="text-1-2-1-5">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Type Name</th>
+<th scope="col" class="left">Example</th>
+<th scope="col" class="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">List</td>
+<td class="left">[1, 2, 3]</td>
+<td class="left">Ordered collection</td>
+</tr>
+
+<tr>
+<td class="left">tuple</td>
+<td class="left">(1, 2, 3)</td>
+<td class="left">Immutable ordered collection</td>
+</tr>
+
+<tr>
+<td class="left">dict</td>
+<td class="left">{'a':1, 'b':2, 'c':3}</td>
+<td class="left">unordered (key,value) pairs</td>
+</tr>
+
+<tr>
+<td class="left">set</td>
+<td class="left">{1,2,3}</td>
+<td class="left">Unordered collection of unique values</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-1-2-2" class="outline-4">
+<h4 id="sec-1-2-2"><span class="section-number-4">1.2.2</span> <span class="todo TODO">TODO</span> Operations on Built in types</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+In this section we take a brief look at some common examples operations on built in data structures. A comprehensive quick reference guide for python can be found here <i>Python Quick Reference</i>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-3" class="outline-4">
+<h4 id="sec-1-2-3"><span class="section-number-4">1.2.3</span> <span class="done DONE">DONE</span> Python Copntrol Structures</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<p>
+It is important to note that Control or block structure in python is demarkated using indentation.  Therefore, functions and control statements can be identified by their indentation levels.  The code snippen below shows an example of this indentation syntax.
+</p>
+</div>
+
+<ol class="org-ol"><li><a id="sec-1-2-3-1" name="sec-1-2-3-1"></a><span class="done DONE">DONE</span> Example Prime Numbers<br  /><div class="outline-text-5" id="text-1-2-3-1">
+<p>
+The example below outputs prime numbers from 0 to nmax which in the snippet below nmax=30.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python">L = []
+nmax = 30
+
+for n in range(2, nmax):
+    for factor in L:
+        if n % factor == 0:
+            break
+    else: # no break
+        L.append(n
+</pre>
+</div>
+
+<p>
+In the above example we can see that there is a nested-for-loop within which is an if statement.
+</p>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-1-2-4" class="outline-4">
+<h4 id="sec-1-2-4"><span class="section-number-4">1.2.4</span> <span class="todo TODO">TODO</span> Functions and Classes</h4>
+<div class="outline-text-4" id="text-1-2-4">
+</div><ol class="org-ol"><li><a id="sec-1-2-4-1" name="sec-1-2-4-1"></a>Default Arguments<br  /></li>
+<li><a id="sec-1-2-4-2" name="sec-1-2-4-2"></a>Flexible arguments<br  /></li>
+<li><a id="sec-1-2-4-3" name="sec-1-2-4-3"></a>Anonymous Functions<br  /></li>
+<li><a id="sec-1-2-4-4" name="sec-1-2-4-4"></a>An example class definition<br  /></li></ol>
+</div>
+</div>
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> <span class="todo TODO">TODO</span> Linear Algebra Review</h3>
+<div class="outline-text-3" id="text-1-3">
+</div><div id="outline-container-sec-1-3-1" class="outline-4">
+<h4 id="sec-1-3-1"><span class="section-number-4">1.3.1</span> <span class="done DONE">DONE</span> Vectors and Matrices</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+In programming we have the concept of n-dimensional arrays. Arrays are sets of ordered numbers i.e. a collection of numbers in a strict order such that each constituting number element can be accessed given it's unique index.  This concept was taken directly from linear algebra where a vector is a 1-dimensional array while an matrix is a 2-dimensional array.
+</p>
+
+<p>
+Note that in some programming languages such as python we start counting the index of the elements from zero while in linear algebra the first index count is one.
+</p>
+</div>
+
+<ol class="org-ol"><li><a id="sec-1-3-1-1" name="sec-1-3-1-1"></a><span class="done DONE">DONE</span> Matrix representation<br  /><div class="outline-text-5" id="text-1-3-1-1">
+<p>
+Below is an example of a matrix A
+$$ A=\begin{bmatrix}234 & 292 \\444 & 422 \\999 & 846 \end{bmatrix} $$
+The above matrix referred to as matrix A and it has 3 rows and 2 columns.  We normally refer to the rows first then the columns therefore it is a 3 by 2 or 3 x 2 matrix.  Notationally this is $ \mathbb{R}<sup>3x2</sup> $ where the number or rows and the number of columns are the dimensions of the matrix
+</p>
+
+<p>
+Also observe in the matrix A the following elements given by the identified by their indices as follows:
+$$
+</p>
+\begin{matrix}
+A_{11} & = & 234 \\
+A_{12} & = & 292 \\
+A_{32} & = & 846
+\end{matrix}
+<p>
+$$
+\(A_{ij}\) is the "i,j entry" in the \(i^{th}\) row and \(j^{th}\) column.
+</p>
+</div>
+</li>
+
+<li><a id="sec-1-3-1-2" name="sec-1-3-1-2"></a><span class="done DONE">DONE</span> Vector representation<br  /><div class="outline-text-5" id="text-1-3-1-2">
+<p>
+A vector is an n x 1 matrix.  In the example below  \(y_i = i^{th}\) element.
+$$ y=\begin{bmatrix}460 \\444 \\ 425 \\179 \\ 646 \end{bmatrix} $$
+Therefore,
+$$
+</p>
+\begin{matrix}
+y_{1} & = & 460 \\
+y_{2} & = & 444 \\
+y_{3} & = & 425 \\
+y_{5} & = & 646
+\end{matrix}
+<p>
+$$
+</p>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-1-3-2" class="outline-4">
+<h4 id="sec-1-3-2"><span class="section-number-4">1.3.2</span> <span class="done DONE">DONE</span> Linear Algebra Operations</h4>
+<div class="outline-text-4" id="text-1-3-2">
+</div><ol class="org-ol"><li><a id="sec-1-3-2-1" name="sec-1-3-2-1"></a><span class="done DONE">DONE</span> Transposition<br  /><div class="outline-text-5" id="text-1-3-2-1">
+<p>
+Given an m x n matrix/vector. By transposing or exchanging the rows and columns the resulting matrix becomes a n x m matrix. For example, given
+$$z=\begin{bmatrix}1&2\\3&4\\5&6\\7&8\end{bmatrix}=\mathbb{R}^{4\times 2}$$ 4 rows by  2 columns matrix
+The resulting transpose of z becomes:
+$$z^\top=\begin{bmatrix}1&3&5&7\\2&4&6&8\end{bmatrix}=\mathbb{R}^{2\times 4}$$ 2 rows by 4 columns matrix
+</p>
+</div>
+</li>
+
+<li><a id="sec-1-3-2-2" name="sec-1-3-2-2"></a><span class="done DONE">DONE</span> Matrix Addition and Subtraction<br  /><ol class="org-ol"><li><a id="sec-1-3-2-2-1" name="sec-1-3-2-2-1"></a><span class="done DONE">DONE</span> Example<br  /><div class="outline-text-6" id="text-1-3-2-2-1">
+<p>
+$$
+</p>
+\begin{bmatrix}
+1 & 0 \\ 2 & 5 \\ 3 & 1
+\end{bmatrix}+
+\begin{bmatrix}
+4 & 5 \\ 2 & 1.5 \\ 0 & 1
+\end{bmatrix}=
+\begin{bmatrix}
+5 & 5 \\ 4 & 6.5 \\ 3 & 2
+\end{bmatrix}
+<p>
+$$
+</p>
+</div>
+</li>
+
+<li><a id="sec-1-3-2-2-2" name="sec-1-3-2-2-2"></a><span class="done DONE">DONE</span> Matrix Addition and Subtraction Properties<br  /><div class="outline-text-6" id="text-1-3-2-2-2">
+<ul class="org-ul">
+<li>Operands must have the same dimension
+</li>
+<li>Resulting value dimensions must be consistent with operand dimensions
+</li>
+</ul>
+</div>
+</li></ol>
+</li>
+
+<li><a id="sec-1-3-2-3" name="sec-1-3-2-3"></a><span class="done DONE">DONE</span> Scalar Multiplication<br  /><ol class="org-ol"><li><a id="sec-1-3-2-3-1" name="sec-1-3-2-3-1"></a><span class="done DONE">DONE</span> Exampe<br  /><div class="outline-text-6" id="text-1-3-2-3-1">
+<p>
+$$
+3&times;\begin{bmatrix}
+1 &amp; 0 \\ 2 &amp; 5 \\ 3 &amp; 1
+\end{bmatrix}=
+</p>
+<p>
+\begin{bmatrix}
+3 &amp; 0 \\ 6 &amp; 15 \\ 9 &amp; 3
+\end{bmatrix}=
+</p>
+<p>
+\begin{bmatrix}
+1 &amp; 0 \\ 2 &amp; 5 \\ 3 &amp; 1
+\end{bmatrix}&times; 3
+$$
+</p>
+</div>
+</li></ol>
+</li>
+
+<li><a id="sec-1-3-2-4" name="sec-1-3-2-4"></a><span class="done DONE">DONE</span> Scalar Product<br  /><ol class="org-ol"><li><a id="sec-1-3-2-4-1" name="sec-1-3-2-4-1"></a>Example<br  /><div class="outline-text-6" id="text-1-3-2-4-1">
+<p>
+$$
+</p>
+<p>
+\begin{bmatrix}
+1 \\ 2 \\ 3 
+\end{bmatrix}&times;
+</p>
+<p>
+\begin{bmatrix}
+4 \\ 1.5 \\ 1
+\end{matrix}=
+</p>
+<p>
+\begin{bmatrix}
+1 &times; 4 \\+\\ 2 &times; 1.5 \\+\\ 3 &times; 1
+\end{bmatrix}=4+3+3=10
+$$
+</p>
+<ul class="org-ul">
+<li>Pair-wise Multiplication
+</li>
+<li>Also known as vector-vector product or dot product
+</li>
+</ul>
+</div>
+</li></ol>
+</li>
+
+<li><a id="sec-1-3-2-5" name="sec-1-3-2-5"></a><span class="done DONE">DONE</span> Matrix Vector Product<br  /><ol class="org-ol"><li><a id="sec-1-3-2-5-1" name="sec-1-3-2-5-1"></a>Example<br  /><div class="outline-text-6" id="text-1-3-2-5-1">
+<p>
+$$
+</p>
+\begin{bmatrix}
+1 & 3 \\ 4 & 0 \\ 2 & 1
+\end{bmatrix}\times
+\begin{bmatrix}
+4 \\ 5 
+\end{bmatrix}=
+\begin{bmatrix}
+1 \times 4 + 3 \times 5  \\ 4 \times 5 + 0 \times 5  \\ 2 \times 4 + 1 \times 5
+\end{bmatrix}=
+\begin{bmatrix}
+4 + 15  \\ 20 + 0  \\ 8 + 5
+\end{bmatrix}=
+\begin{bmatrix}
+19  \\ 20  \\ 13
+\end{bmatrix}
+<p>
+$$
+</p>
+<ul class="org-ul">
+<li>Scalar product is a special form of a matrix vector product.
+</li>
+</ul>
+</div>
+</li></ol>
+</li>
+
+<li><a id="sec-1-3-2-6" name="sec-1-3-2-6"></a><span class="done DONE">DONE</span> Matrix Matrix Multiplication<br  /><ol class="org-ol"><li><a id="sec-1-3-2-6-1" name="sec-1-3-2-6-1"></a><span class="todo TODO">TODO</span> Example<br  /><div class="outline-text-6" id="text-1-3-2-6-1">
+<p>
+$$
+</p>
+\begin{bmatrix}
+1 & 3 & 2 \\ 4 & 0 & 1 
+\end{bmatrix}\times
+\begin{bmatrix}
+1 & 3\\ 0 & 1 \\ 5 & 2
+\end{matrix}=
+\begin{bmatrix}
+11 & 10 \\ 9 & 14
+\end{bmatrix}
+<p>
+$$
+$$
+</p>
+<p>
+\begin{bmatrix}
+1 \\ 2 \\ 3 
+\end{bmatrix}&times;
+</p>
+<p>
+\begin{bmatrix}
+4 \\ 1.5 \\ 1
+\end{matrix}=
+</p>
+<p>
+\begin{bmatrix}
+1 &times; 4 \\+\\ 2 &times; 1.5 \\+\\ 3 &times; 1
+\end{bmatrix}=4+3+3=10
+$$
+$$
+</p>
+<p>
+\begin{bmatrix}
+1 \\ 2 \\ 3 
+\end{bmatrix}&times;
+</p>
+<p>
+\begin{bmatrix}
+4 \\ 1.5 \\ 1
+\end{matrix}=
+</p>
+<p>
+\begin{bmatrix}
+1 &times; 4 \\+\\ 2 &times; 1.5 \\+\\ 3 &times; 1
+\end{bmatrix}=4+3+3=10
+$$
+</p>
+</div>
+</li>
+
+<li><a id="sec-1-3-2-6-2" name="sec-1-3-2-6-2"></a><span class="done DONE">DONE</span> Properties<br  /><div class="outline-text-6" id="text-1-3-2-6-2">
+<ol class="org-ol">
+<li>Associative \((AB)C=A(BC)\)
+</li>
+<li>Not commutative \(AB\noteq BA\)
+</li>
+<li>m x n matrix multiplied by n x o matrix results in an m x o matrix.
+</li>
+</ol>
+</div>
+</li></ol>
+</li>
+
+<li><a id="sec-1-3-2-7" name="sec-1-3-2-7"></a><span class="done DONE">DONE</span> Identity matrix<br  /><div class="outline-text-5" id="text-1-3-2-7">
+<p>
+In mathematics, the identity property is a concept by when a mathematical element is multiplied by an identity element the result is the original multiplying element.  In linear algebra when a matrix or vector is multiplied by its corresponding identity matrix i.e. (max dimension of multiplying matrix/vector) will be the the multiplying matrix or vector.  The Identity matrix is denoted by \(I=I_{n\times n}\) where n is the maximum dimension of the multiplying matrix of vector. Sybmolically for any Matrix \(A\), \(A\dot I = I \dot A = A\).
+</p>
+</div>
+<ol class="org-ol"><li><a id="sec-1-3-2-7-1" name="sec-1-3-2-7-1"></a>Examples<br  /><div class="outline-text-6" id="text-1-3-2-7-1">
+<p>
+$$[1]\text{ for }n=1$$
+$$\begin{bmatrix}1&0\\0&1\end{bmatrix}\text{ for }n=2$$
+$$\begin{bmatrix}1&0&0\\0&1&0\\0&0&1\end{bmatrix}\text{ for }n=3$$
+$$etc..$$
+</p>
+</div>
+</li></ol>
+</li>
+<li><a id="sec-1-3-2-8" name="sec-1-3-2-8"></a><span class="done DONE">DONE</span> Inverse Matrix<br  /><div class="outline-text-5" id="text-1-3-2-8">
+<p>
+Any matrix factor when multiplied by matrix A resulting in an identity matrix is the inverse of such a matrix following the mathematical definition of an inverse. Therefore symbolically speaking \(A(A^{-1})=A^{-1}A=I\)
+</p>
+</div>
+<ol class="org-ol"><li><a id="sec-1-3-2-8-1" name="sec-1-3-2-8-1"></a>Example<br  /><div class="outline-text-6" id="text-1-3-2-8-1">
+<p>
+\begin{bmatrix}
+3 &amp; 4\\ 2 &amp; 16 
+\end{bmatrix}&times;
+</p>
+<p>
+\begin{bmatrix}
+0.4 &amp; -0.1\\ -0.05 &amp; 0.025
+\end{matrix}=
+</p>
+<p>
+\begin{bmatrix}
+1 &amp; 0 \\ 0 &amp; 1
+\end{bmatrix}=I<sub>2 &times; 2</sub>
+$$
+</p>
+
+<p>
+Note that matrices that do not have an inverse factor are known as singular matrices or degenerate matrices.
+</p>
+</div>
+</li></ol>
+</li>
+<li><a id="sec-1-3-2-9" name="sec-1-3-2-9"></a><span class="done DONE">DONE</span> Euclidean Norms<br  /><div class="outline-text-5" id="text-1-3-2-9">
+<p>
+Also known as the \(L_2\) Norm of a vector is the square root dot product of the vector by itself. i.e. Given vector A, it's Euclidean Norm is \(\sqrt{A\dot A}\).
+</p>
+</div>
+</li></ol>
+</div>
+<div id="outline-container-sec-1-3-3" class="outline-4">
+<h4 id="sec-1-3-3"><span class="section-number-4">1.3.3</span> <span class="todo TODO">TODO</span> Linear Algebra using Python</h4>
+<div class="outline-text-4" id="text-1-3-3">
+</div><ol class="org-ol"><li><a id="sec-1-3-3-1" name="sec-1-3-3-1"></a><span class="todo TODO">TODO</span> Example 1<br  /><div class="outline-text-5" id="text-1-3-3-1">
+<p>
+Given a Vector $$, find the Euclidean norm of A.
+</p>
+</div>
+</li>
+<li><a id="sec-1-3-3-2" name="sec-1-3-3-2"></a><span class="todo TODO">TODO</span> Example 2<br  /><div class="outline-text-5" id="text-1-3-3-2">
+<p>
+Solve the following equation
+$\begin{bmatrix}5&amp;2\&#x00ad;2&amp;4\end{bmatrix}
+</p>
+<p>
+\begin{bmatrix}5\\2 \end{bmatrix}$
+</p>
+</div>
+</li></ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> <span class="todo TODO">TODO</span> Session Challenge: Linear Discriminant Analysis</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+LDA is a method developed by R. A. Fisher to perform classification task based on the statistical properties namely mean and variance of a data set.  As simple as this technique may look it performs a relatively decent job when the data is in the right format.  So what do we mean by the right format?  The LDA criterion makes two assumptions:
+</p>
+<ol class="org-ol">
+<li>That the dataset is Gaussian, i.e. one that has a uniform mean and standard deviation that tends zero the further away from the mean the values are.
+</li>
+<li>That each attribute has roughly the same variance on average. In other words there should be very few or eliminated outliers.
+</li>
+</ol>
+
+<p>
+Therefore once we have been able to remove outliers, ensure a standard normal distribution of the data having roughly same variance, the linear discriminant function becomes:
+$$D_k(x)=x\times\frac{\mu_k}{\sigma^2_k}-\frac{\mu_k^2}{2\times\sigma^2_k}+\ln(P(k)) - - - (1)$$
+where
+$$\begin{matrix}
+ D_k(x)&=&\text{Classification of data, x}& \\
+ k&=&\text{class k}\end{matrix}& \\
+ \mu_k &=& \frac{1}{n_k}\sum_{i=1}^nx_i
+& \text{mean of class k}\end{matrix} - - - (2)$$
+$$\begin{matrix}
+ \sigma^2 &=& \frac{1}{n-K}\sum_{i=1}^n(x_i-\mu_k)^2 & \text{variance of class k}
+\end{matrix} - - - (3)$$
+</p>
+
+<p>
+Note that for x having more than one feature, the average of the means of each feature will be used and the covariance matrix of the features  will also be applied instead of the variance.
+</p>
+
+<p>
+One major advantage of LDA is the fact that it still performs reasonably accurately for small amounts of data as well.  In addition, it can be used for multinomial classification as opposed to logistic regression which is suited for binary classification.
+</p>
+</div>
+
+<div id="outline-container-sec-1-4-1" class="outline-4">
+<h4 id="sec-1-4-1"><span class="section-number-4">1.4.1</span> <span class="todo TODO">TODO</span> LDA Lab</h4>
+</div>
+<div id="outline-container-sec-1-4-2" class="outline-4">
+<h4 id="sec-1-4-2"><span class="section-number-4">1.4.2</span> <span class="done DONE">DONE</span> Lab Challenge:LDA alternative</h4>
+<div class="outline-text-4" id="text-1-4-2">
+<p>
+There is another presentation of the LDA algorithm found at <a href="http://www.saedsayad.com/lda.htm">http://www.saedsayad.com/lda.htm</a>.  This is a slightly more convoluted approach than the one previously described.  In this method, the coefficients of the linear combination of variables (predictors) that best separates two classes (targets) are first determined.
+$$\beta=C^{-1}(\mu_k-\Sigma_{i=1}^m\mu_i/m$$
+where
+$$\beta=Coefficients, \mu=\text{average values in class k}$$
+$$\begin{aligned}C&=&\text{pooled covariance matrix}\\
+		&=&(\Sigma n_k)^{-1}(\Sigma n_kC_k)\end{aligned}$$
+ Next, to capture the notion of separability, the following score function is derived.
+<img src="./LDA_score.png" alt="LDA_score.png" />
+</p>
+
+<p>
+The score function estimates the linear coefficients that maximize the score.
+Ultimately, the effectiveness of the discrimination is determined the Mahalanobis distance between two groups. A distance greater than 3 means that in two averages differ by more than 3 standard deviations. This means that probability of misclassification is quite small.
+</p>
+
+<p>
+Finally, a new point is classified by projecting it onto the maximally separating direction and classifying it as C1 if:
+$$\beta^\top(x-\Sigma x_k/m)>\log{\frac{p(c_k)}{p(~c_k)}}$$
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4-3" class="outline-4">
+<h4 id="sec-1-4-3"><span class="section-number-4">1.4.3</span> <span class="done DONE">DONE</span> Lab Exercises:</h4>
+<div class="outline-text-4" id="text-1-4-3">
+<ol class="org-ol">
+<li>Implement a more efficient initial LDA algorithm
+</li>
+<li>Implement the alternative LDA algorithm and compare your answers.  If they are different, explain why this could be. Which algorithm is better based on
+a. Accuracy
+b. Ease of implementation
+c. Computation Resource efficiency (time &amp; space complexity)
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4-4" class="outline-4">
+<h4 id="sec-1-4-4"><span class="section-number-4">1.4.4</span> Predictors Contribution</h4>
+<div class="outline-text-4" id="text-1-4-4">
+<p>
+A simple linear correlation between the model scores and predictors can be used to test which predictors contribute significantly to the discriminant function. Correlation varies from -1 to 1, with -1 and 1 meaning the highest contribution but in different directions and 0 means no contribution at all. 
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> <span class="todo TODO">TODO</span> References</h3>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> <span class="todo TODO">TODO</span> Day 2: Using Python &amp; ML Stack(word vectors vs CBOW model)</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> <span class="todo TODO">TODO</span> ML Pipeline</h3>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> <span class="todo TODO">TODO</span> Feature Extraction vs Data Cleaning</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Feature extraction and data cleaning could almost be used interchangeably, however, there is a fine difference between the two.  While data cleaning is a procedural concept, feature engineering requires skills acquistion by experience and experimentation. In other words, data cleaning operations are mostly bye-products of the feature engineering process. These feature engineering tips will be highlighted as we walk through the data cleaning process.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> <span class="todo TODO">TODO</span> Session Challenge Word Vectors vs Bag of Words</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+In tasks in which words are features, the bag-of-words model can be used to create a feature vector when the number of features (words) is not known in advance, with the assumption that their order is not important. Each word is represented by a one-hot vector - a sparse vector in the size of the vocabulary, with 1 in the entry representing the word and 0 in all other entries. The bag-of-words feature vector is the sum of all one-hot vectors of the words, and therefore has a non-zero value for every word that occurred. In the weighted variation, it is a weighted sum according to frequency or TF-IDF scores.
+</p>
+
+<p>
+Continuous bag-of-words (CBOW) is exactly the same, but instead of using sparse vectors to represent words, it uses dense vectors (continuous distributional "embeddings").  See (Mikolov et. al, 2013).
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> <span class="todo TODO">TODO</span> Day 3: Linear &amp; Logistic regression (PCA)</h2>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> <span class="todo TODO">TODO</span> Day 4: Naive Bayes and K nearest neighbours (k means)</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> <span class="todo TODO">TODO</span> Introduction</h3>
+</div>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> <span class="todo TODO">TODO</span> Naive Bayes Model</h3>
+<div class="outline-text-3" id="text-4-2">
+</div><div id="outline-container-sec-4-2-1" class="outline-4">
+<h4 id="sec-4-2-1"><span class="section-number-4">4.2.1</span> <span class="todo TODO">TODO</span> Conditional Probability</h4>
+</div>
+<div id="outline-container-sec-4-2-2" class="outline-4">
+<h4 id="sec-4-2-2"><span class="section-number-4">4.2.2</span> <span class="todo TODO">TODO</span> Bayes Rule</h4>
+</div>
+<div id="outline-container-sec-4-2-3" class="outline-4">
+<h4 id="sec-4-2-3"><span class="section-number-4">4.2.3</span> <span class="todo TODO">TODO</span> Naive Bayes</h4>
+</div>
+</div>
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> <span class="todo TODO">TODO</span> K-Nearest Neigbours</h3>
+<div class="outline-text-3" id="text-4-3">
+</div><div id="outline-container-sec-4-3-1" class="outline-4">
+<h4 id="sec-4-3-1"><span class="section-number-4">4.3.1</span> <span class="todo TODO">TODO</span> KNN Representation</h4>
+</div>
+<div id="outline-container-sec-4-3-2" class="outline-4">
+<h4 id="sec-4-3-2"><span class="section-number-4">4.3.2</span> <span class="todo TODO">TODO</span> KNN Distance measures</h4>
+</div>
+</div>
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> Session Challenge: K-means Clustering</h3>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> <span class="todo TODO">TODO</span> Day 5: Classification &amp; regression trees &amp; SVM(advanced topics)</h2>
+</div>
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> <span class="done DONE">DONE</span> Appendix</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> <span class="done DONE">DONE</span> Appendix I</h3>
+<div class="outline-text-3" id="text-6-1">
+</div><div id="outline-container-sec-6-1-1" class="outline-4">
+<h4 id="sec-6-1-1"><span class="section-number-4">6.1.1</span> Frequently Asked Questions</h4>
+<div class="outline-text-4" id="text-6-1-1">
+</div><ol class="org-ol"><li><a id="sec-6-1-1-1" name="sec-6-1-1-1"></a>What is FMLP-Cubed?<br  /><div class="outline-text-5" id="text-6-1-1-1">
+<p>
+Faster Machine Learning for Programmers and Professionals with Python (FMLP3), is an intensive online course that uses a unique method to get programmers and professionals quickly started with Machine Learning using the Python Machine Learning platform.  This commercialised version is streamlined and focused on this methodology and because it's just a 5 day intensive not all the topics in machine learning are covered but a working knowledge of python applied to data science is assured.  If your interested, PM me and I shall get you set up.
+</p>
+</div>
+</li>
+
+<li><a id="sec-6-1-1-2" name="sec-6-1-1-2"></a>Mode of Delivery and Assessment<br  /><div class="outline-text-5" id="text-6-1-1-2">
+<p>
+This is the interesting part.  Each participant will have his/her 
+own ML project that he will be working on through out the course.  Each day will have a 2-3 hour online webinar where programming walkthroughs will be provided.  These recipes can be used to implement daily assignments that would need to be ready before the next class.  Each session will have elements that can be used in the individual's personal project and the group project.  Assessment will be based on satisfactory completion of daily assignments and group projects.  A whatsapp group will be used at the group level to discuss assignment and group projects and will be open for discussions 24/7 subject to everyones availability.
+</p>
+
+<p>
+At the end of the course, the participants are to have 2 working ML projects along with mini projects completed with assignments.  Lecture notes and Materials will be sent over via email or group chat.  
+</p>
+</div>
+</li>
+
+<li><a id="sec-6-1-1-3" name="sec-6-1-1-3"></a>Course Requisites<br  /><div class="outline-text-5" id="text-6-1-1-3">
+<p>
+The course is a commercial version of an advanced python course in machine learning I have been teaching Post Graduate Computer Science students. The course became quite popular some tutors from other departments started joining the course.  This course therefore is not for novices. The course assumes you already have a working knowledge of basic programming concepts such as loops, arrays and classes as well as a working knowledge of basic calculus.  In addition, as this course is an online course, participants will be required to have  a solid internet connection during webinars and fairly good internet for group chats.  Also to facilitate online support it is advised to have TeamViewer(R) installed on your computer.
+</p>
+</div>
+</li>
+
+<li><a id="sec-6-1-1-4" name="sec-6-1-1-4"></a>What does FMLP3 cover?<br  /><div class="outline-text-5" id="text-6-1-1-4">
+<p>
+This introductory datascience course covers python basics and fundamental machine learning algorithms that form the building blocks of Machine Learning techniques used in industry practice.
+</p>
+<ul class="org-ul">
+<li>Introduction to ML and Linear Algebra (LDA)
+</li>
+<li>Using Python &amp; ML Stack (word vectors)
+</li>
+<li>Linear &amp; Logistic regression (PCA)
+</li>
+<li>Naive Bayes and K nearest neighbours (k means)
+</li>
+<li>Classification &amp; regression trees &amp; SVM(ensemble &amp; advanced methods introduction)
+</li>
+</ul>
+</div>
+</li>
+
+<li><a id="sec-6-1-1-5" name="sec-6-1-1-5"></a>FMLP3 Duration<br  /><div class="outline-text-5" id="text-6-1-1-5">
+<p>
+FMLP3 is a Five-day intensive course that can span over 5 weeks or 5 days.
+</p>
+</div>
+</li>
+
+<li><a id="sec-6-1-1-6" name="sec-6-1-1-6"></a>FMLP3 Cost and Payment<br  /><div class="outline-text-5" id="text-6-1-1-6">
+<p>
+Pay NGN45,000 to:
+Iyalla John Alamina
+FBN: 3024252015
+</p>
+</div>
+</li>
+
+<li><a id="sec-6-1-1-7" name="sec-6-1-1-7"></a>Current session schedule<br  /><div class="outline-text-5" id="text-6-1-1-7">
+<p>
+Start Date Schedule: Monday 27 Nov 2017, 11am - 2pm (NGR time for 5 weeks subject to rescheduling due to availability)
+Registration end Date: Fri 24 Nov 2017
+</p>
+</div>
+</li></ol>
+</div>
+</div>
+
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> <span class="done DONE">DONE</span> Appendix II</h3>
+<div class="outline-text-3" id="text-6-2">
+
+<div class="figure">
+<p><img src="./fmlp3.PNG" alt="fmlp3.PNG" />
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6-2-1" class="outline-4">
+<h4 id="sec-6-2-1"><span class="section-number-4">6.2.1</span> Assignment 0: Welcome &amp; System Setup</h4>
+<div class="outline-text-4" id="text-6-2-1">
+<p>
+Hello and welcome to this course Faster Machine Learning for Programmers and Professionals using python.  The essence of this taster session is to get you up and running with your machine learning environment.  It is this environment that all our work is to get done in.  This python/scripting environment is a free cloud environment known as azure notebooks which is Microsoft's Jupyter notebooks cloud computing platform.  Before we dive into this platform a little note about python and Jupyter notebooks.
+</p>
+</div>
+
+<ol class="org-ol"><li><a id="sec-6-2-1-1" name="sec-6-2-1-1"></a>Ways to Run Python<br  /><div class="outline-text-5" id="text-6-2-1-1">
+<p>
+There are four ways in which to run python on your computer.  The four ways are listed below.
+</p>
+<ol class="org-ol">
+<li>Executing a Python Script
+</li>
+<li>The Python script Shell
+</li>
+<li>The interactive python shell
+</li>
+<li>Jupyter notebooks
+</li>
+</ol>
+
+<p>
+The first method is done using the 'python' command to execute a previously edited python script file.  This can also be achieved if you are using a python integrated developer environment such as active python or pycharm by JetBrains.
+</p>
+
+<p>
+The remaining methods include interactive methods of using python so that results of commands can be seen simultaneously at time of writing just by pressing enter.  As we shall see, items 2 to 4 are with increasing order of interactivity and nifty features.  So the interactive python shell has more features than the python script shell and the Jupyter notebooks has the most features integrating a web interface IDE along with interactive shell features into one environment.  The Jupyter notebooks is fast becoming the defacto standard  used by the science and technology community to share computation-intensive knowledge to a wide range of audiences.  Jupyter Notebooks is therefore the method we will be adopting to perform machine learning using the azure notebooks cloud platform and the python machine learning stack.
+</p>
+</div>
+</li>
+
+<li><a id="sec-6-2-1-2" name="sec-6-2-1-2"></a>Steps to setup Azure Notebooks<br  /><div class="outline-text-5" id="text-6-2-1-2">
+<ol class="org-ol">
+<li>On any web browser, log on to <i>notebooks.azure.com</i> using your Microsoft(R) passport or register a new Microsoft account if you don't have one to log on with.
+</li>
+<li>Create A new Library within your Azure notebooks cloud environment.
+</li>
+<li>Open the newly created library and upload the 'pythintro.ipynb' file that came with this laboratory assignment.
+</li>
+<li>Open the 'pythintro.ipynb' ipython notebook file and run the interactive code step-by-step using the 'play' button located on the tool bar at the top within the browser.
+</li>
+</ol>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-6-2-2" class="outline-4">
+<h4 id="sec-6-2-2"><span class="section-number-4">6.2.2</span> A brief History of Jupyter Notebooks</h4>
+<div class="outline-text-4" id="text-6-2-2">
+<p>
+There may be a little bit of confusion with the 'ipynb' file because sometimes we refer to it as an ipython notebook file and at other times we refer to it as a Jupyter notebook file.  They are one and the same thing.  Initially the kernel for ipython notebooks supported the python interpreter only.  However, the developers were able to develop methods of adding other computer languages into the platform hence the change of name from ipython notebooks to jupyter notebooks.  Note also that the ipython notebook files is not the same thing as the interactive python (ipython) shell. Ipython notebook files or jupyter notebook files can only be run on the Jupyter notebook environment.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6-2-3" class="outline-4">
+<h4 id="sec-6-2-3"><span class="section-number-4">6.2.3</span> Session Challenge: Setting up Jupyter Notebooks on your system</h4>
+<div class="outline-text-4" id="text-6-2-3">
+<p>
+It is possible to run ipython notebook on your computer without having to use cloud computing.  However the process of setting up can be quite involving.  Fire up a browser and navigate to <i>www.firstpythonnotebook.org</i> and follow the instructions up to the end of chapter 2 in order to install jupyter notebooks to your local computer or laptop.
+</p>
+
+<p>
+We have now come to the end of this laboratory assignment.  Hopefully you have been able to create a notebooks.azure.com account and run your first ipython notebook.  In the sessions to come we shall be using this environment to create Machine Learning programs to work on big Data.  All the assignments shall be performed from this envinronment as well.  Stay Tuned!
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> <span class="todo TODO">TODO</span> Appendix III</h3>
+<div class="outline-text-3" id="text-6-3">
+</div><div id="outline-container-sec-6-3-1" class="outline-4">
+<h4 id="sec-6-3-1"><span class="section-number-4">6.3.1</span> Math: Matrix Inverse Methods</h4>
+<div class="outline-text-4" id="text-6-3-1">
+</div><ol class="org-ol"><li><a id="sec-6-3-1-1" name="sec-6-3-1-1"></a>Engineering method<br  /></li>
+<li><a id="sec-6-3-1-2" name="sec-6-3-1-2"></a>Co-factor/Determinant Method<br  /><div class="outline-text-5" id="text-6-3-1-2">
+<p>
+<h1 class='org-ref-bib-h1'>Bibliography</h1>
+<ul class='org-ref-bib'><li><a id="marsland2009">[marsland2009]</a> Marsland, Machine learning: an algorithmic perspective, Chapman & Hall/CRC (2009).</li>
+<li><a id="geron2017">[geron2017]</a> Géron, Hands-on machine learning with Scikit-Learn and TensorFlow: concepts, tools, and techniques to build intelligent systems, O'Reilly (2017).</li>
+</ul> 
+</p>
+</div>
+</li></ol>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2017-11-10 Fri</p>
+<p class="author">Author: John Alamina</p>
+<p class="date">Created: 2017-11-26 Sun 22:57</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Faster Machine Learning for Programmers and Professionals using Python</title>
+<!-- 2017-11-26 Sun 22:57 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="John Alamina" />
+<meta  name="description" content="Introduction to Machine Learning for programmers."
+ />
+<meta  name="keywords" content="Machine Learning, Computer Science, Linear Algebra, Bayesian Statistics" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Faster Machine Learning for Programmers and Professionals using Python</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. <span class="todo TODO">TODO</span> Day 1: Introduction (LDA)</a>
+<ul>
+<li><a href="#sec-1-1">1.1. Introduction to Machine Learning</a>
+<ul>
+<li><a href="#sec-1-1-1">1.1.1. Learning  c</a></li>
+<li><a href="#sec-1-1-2">1.1.2. Machine Learning</a></li>
+<li><a href="#sec-1-1-3">1.1.3. Types of Machine Learning</a></li>
+<li><a href="#sec-1-1-4">1.1.4. Properties of a Good Machine Learning System </a></li>
+<li><a href="#sec-1-1-5">1.1.5. Machine Learning Pipeline</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-2">1.2. <span class="todo TODO">TODO</span> Python Basics</a>
+<ul>
+<li><a href="#sec-1-2-1">1.2.1. <span class="done DONE">DONE</span> Python types and basic syntax</a></li>
+<li><a href="#sec-1-2-2">1.2.2. <span class="todo TODO">TODO</span> Operations on Built in types</a></li>
+<li><a href="#sec-1-2-3">1.2.3. <span class="done DONE">DONE</span> Python Copntrol Structures</a></li>
+<li><a href="#sec-1-2-4">1.2.4. <span class="todo TODO">TODO</span> Functions and Classes</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-3">1.3. <span class="todo TODO">TODO</span> Linear Algebra Review</a>
+<ul>
+<li><a href="#sec-1-3-1">1.3.1. <span class="done DONE">DONE</span> Vectors and Matrices</a></li>
+<li><a href="#sec-1-3-2">1.3.2. <span class="done DONE">DONE</span> Linear Algebra Operations</a></li>
+<li><a href="#sec-1-3-3">1.3.3. <span class="todo TODO">TODO</span> Linear Algebra using Python</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-4">1.4. <span class="todo TODO">TODO</span> Session Challenge: Linear Discriminant Analysis</a>
+<ul>
+<li><a href="#sec-1-4-1">1.4.1. <span class="todo TODO">TODO</span> LDA Lab</a></li>
+<li><a href="#sec-1-4-2">1.4.2. <span class="done DONE">DONE</span> Lab Challenge:LDA alternative</a></li>
+<li><a href="#sec-1-4-3">1.4.3. <span class="done DONE">DONE</span> Lab Exercises:</a></li>
+<li><a href="#sec-1-4-4">1.4.4. Predictors Contribution</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-5">1.5. <span class="todo TODO">TODO</span> References</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. <span class="todo TODO">TODO</span> Day 2: Using Python &amp; ML Stack(word vectors vs CBOW model)</a>
+<ul>
+<li><a href="#sec-2-1">2.1. <span class="todo TODO">TODO</span> ML Pipeline</a></li>
+<li><a href="#sec-2-2">2.2. <span class="todo TODO">TODO</span> Feature Extraction vs Data Cleaning</a></li>
+<li><a href="#sec-2-3">2.3. <span class="todo TODO">TODO</span> Session Challenge Word Vectors vs Bag of Words</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. <span class="todo TODO">TODO</span> Day 3: Linear &amp; Logistic regression (PCA)</a></li>
+<li><a href="#sec-4">4. <span class="todo TODO">TODO</span> Day 4: Naive Bayes and K nearest neighbours (k means)</a>
+<ul>
+<li><a href="#sec-4-1">4.1. <span class="todo TODO">TODO</span> Introduction</a></li>
+<li><a href="#sec-4-2">4.2. <span class="todo TODO">TODO</span> Naive Bayes Model</a>
+<ul>
+<li><a href="#sec-4-2-1">4.2.1. <span class="todo TODO">TODO</span> Conditional Probability</a></li>
+<li><a href="#sec-4-2-2">4.2.2. <span class="todo TODO">TODO</span> Bayes Rule</a></li>
+<li><a href="#sec-4-2-3">4.2.3. <span class="todo TODO">TODO</span> Naive Bayes</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-3">4.3. <span class="todo TODO">TODO</span> K-Nearest Neigbours</a>
+<ul>
+<li><a href="#sec-4-3-1">4.3.1. <span class="todo TODO">TODO</span> KNN Representation</a></li>
+<li><a href="#sec-4-3-2">4.3.2. <span class="todo TODO">TODO</span> KNN Distance measures</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-4">4.4. Session Challenge: K-means Clustering</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. <span class="todo TODO">TODO</span> Day 5: Classification &amp; regression trees &amp; SVM(advanced topics)</a></li>
+<li><a href="#sec-6">6. <span class="done DONE">DONE</span> Appendix</a>
+<ul>
+<li><a href="#sec-6-1">6.1. <span class="done DONE">DONE</span> Appendix I</a>
+<ul>
+<li><a href="#sec-6-1-1">6.1.1. Frequently Asked Questions</a></li>
+</ul>
+</li>
+<li><a href="#sec-6-2">6.2. <span class="done DONE">DONE</span> Appendix II</a>
+<ul>
+<li><a href="#sec-6-2-1">6.2.1. Assignment 0: Welcome &amp; System Setup</a></li>
+<li><a href="#sec-6-2-2">6.2.2. A brief History of Jupyter Notebooks</a></li>
+<li><a href="#sec-6-2-3">6.2.3. Session Challenge: Setting up Jupyter Notebooks on your system</a></li>
+</ul>
+</li>
+<li><a href="#sec-6-3">6.3. <span class="todo TODO">TODO</span> Appendix III</a>
+<ul>
+<li><a href="#sec-6-3-1">6.3.1. Math: Matrix Inverse Methods</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> <span class="todo TODO">TODO</span> Day 1: Introduction (LDA)</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Introduction to Machine Learning</h3>
+<div class="outline-text-3" id="text-1-1">
+</div><div id="outline-container-sec-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> Learning  c</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+Learning, consists of remembering, adapting and generalising <a class='org-ref-reference' href="#marsland2009">marsland2009</a>. It also includes reasoning and logical deduction.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> Machine Learning</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+Making computers modify their actions so that the actions become more accurate.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-3" class="outline-4">
+<h4 id="sec-1-1-3"><span class="section-number-4">1.1.3</span> Types of Machine Learning</h4>
+<div class="outline-text-4" id="text-1-1-3">
+</div><ol class="org-ol"><li><a id="sec-1-1-3-1" name="sec-1-1-3-1"></a>Supervised:<br  /><div class="outline-text-5" id="text-1-1-3-1">
+<p>
+Learning from examples. Includes regression and classification. Spam detection of emails constitutes an example of a binary classification problem. Predicting stock prices is an example of a regression problem. 
+</p>
+</div>
+</li>
+
+<li><a id="sec-1-1-3-2" name="sec-1-1-3-2"></a>Unsupervised Learning:<br  /><div class="outline-text-5" id="text-1-1-3-2">
+<p>
+Classification by estimating features a.k.a density estimation. Density reduction can also be seen as an unsupervised problem. 
+</p>
+</div>
+</li>
+
+<li><a id="sec-1-1-3-3" name="sec-1-1-3-3"></a>Reinforcement:<br  /><div class="outline-text-5" id="text-1-1-3-3">
+<p>
+Reward based learning
+</p>
+</div>
+</li>
+
+<li><a id="sec-1-1-3-4" name="sec-1-1-3-4"></a>Evolutionary Learning:<br  /><div class="outline-text-5" id="text-1-1-3-4">
+<p>
+Fitness on the goodness of the solution
+</p>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-1-1-4" class="outline-4">
+<h4 id="sec-1-1-4"><span class="section-number-4">1.1.4</span> Properties of a Good Machine Learning System <a class='org-ref-reference' href="#geron2017">geron2017</a></h4>
+<div class="outline-text-4" id="text-1-1-4">
+<ol class="org-ol">
+<li>Features Extraction or Feature engineering
+</li>
+<li>Occam's Razor: The simplest classifier is more likely to generalise i. e.
+</li>
+<li>Does not overfit data with high variance
+</li>
+<li>Unbiased i.e. Doesn't underfit the data 
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-5" class="outline-4">
+<h4 id="sec-1-1-5"><span class="section-number-4">1.1.5</span> Machine Learning Pipeline</h4>
+<div class="outline-text-4" id="text-1-1-5">
+</div><ol class="org-ol"><li><a id="sec-1-1-5-1" name="sec-1-1-5-1"></a>ML Pipeline figure<br  /></li></ol>
+</div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> <span class="todo TODO">TODO</span> Python Basics</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Having gone through some of the formal Machine learning literature,  Let's now turn our attention to the more exciting stuff. One of the major features of the python programming language is the inherent datastructures such as lists that are first class types in the python language.  It is this feature, I hypothize, that has possibly made python a forerunner in scientific applications that are data intensive. Let's talk a bit more about python and it's intrinsics types.
+</p>
+</div>
+
+<div id="outline-container-sec-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> <span class="done DONE">DONE</span> Python types and basic syntax</h4>
+<div class="outline-text-4" id="text-1-2-1">
+</div><ol class="org-ol"><li><a id="sec-1-2-1-1" name="sec-1-2-1-1"></a>Getting output using print<br  /><div class="outline-text-5" id="text-1-2-1-1">
+<div class="org-src-container">
+
+<pre class="src src-python">print("hello world")
+print("first value:", 1,"nice one")
+</pre>
+</div>
+</div>
+</li>
+
+<li><a id="sec-1-2-1-2" name="sec-1-2-1-2"></a>Working with variables<br  /><div class="outline-text-5" id="text-1-2-1-2">
+<div class="org-src-container">
+
+<pre class="src src-python"># assign 4 to the variable x
+x = 1         # x is an integer
+x = 'hello'   # now x is a string
+x = [1, 2, 3] # now x is a list
+print("x =", x)
+</pre>
+</div>
+</div>
+</li>
+
+<li><a id="sec-1-2-1-3" name="sec-1-2-1-3"></a>In python everything is an object<br  /><div class="outline-text-5" id="text-1-2-1-3">
+<div class="org-src-container">
+
+<pre class="src src-python">L = [1, 2, 3]
+L.append(100)
+print(L)
+x = 4.5
+print(x.real, "+", x.imag, 'i')
+x = 4.5
+x.is_integer()
+</pre>
+</div>
+</div>
+</li>
+
+<li><a id="sec-1-2-1-4" name="sec-1-2-1-4"></a>Simple Types<br  /><div class="outline-text-5" id="text-1-2-1-4">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Type</th>
+<th scope="col" class="left">Example</th>
+<th scope="col" class="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">int</td>
+<td class="left">x = 1</td>
+<td class="left">integers (i.e., whole numbers</td>
+</tr>
+
+<tr>
+<td class="left">float</td>
+<td class="left">x = 1.0</td>
+<td class="left">floating point numbers (i.e., real numbers</td>
+</tr>
+
+<tr>
+<td class="left">complex</td>
+<td class="left">x = 1+2j</td>
+<td class="left">Complex numbers (i.e. numbers with real and imaginary parts</td>
+</tr>
+
+<tr>
+<td class="left">bool</td>
+<td class="left">x = True</td>
+<td class="left">Boolean: true or false values</td>
+</tr>
+
+<tr>
+<td class="left">str</td>
+<td class="left">x = 'abc'</td>
+<td class="left">String: characters or text</td>
+</tr>
+
+<tr>
+<td class="left">NoneType</td>
+<td class="left">x = None</td>
+<td class="left">Special object indicating nulls.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+
+<li><a id="sec-1-2-1-5" name="sec-1-2-1-5"></a>Built in Data Structures<br  /><div class="outline-text-5" id="text-1-2-1-5">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Type Name</th>
+<th scope="col" class="left">Example</th>
+<th scope="col" class="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">List</td>
+<td class="left">[1, 2, 3]</td>
+<td class="left">Ordered collection</td>
+</tr>
+
+<tr>
+<td class="left">tuple</td>
+<td class="left">(1, 2, 3)</td>
+<td class="left">Immutable ordered collection</td>
+</tr>
+
+<tr>
+<td class="left">dict</td>
+<td class="left">{'a':1, 'b':2, 'c':3}</td>
+<td class="left">unordered (key,value) pairs</td>
+</tr>
+
+<tr>
+<td class="left">set</td>
+<td class="left">{1,2,3}</td>
+<td class="left">Unordered collection of unique values</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-1-2-2" class="outline-4">
+<h4 id="sec-1-2-2"><span class="section-number-4">1.2.2</span> <span class="todo TODO">TODO</span> Operations on Built in types</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+In this section we take a brief look at some common examples operations on built in data structures. A comprehensive quick reference guide for python can be found here <i>Python Quick Reference</i>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-3" class="outline-4">
+<h4 id="sec-1-2-3"><span class="section-number-4">1.2.3</span> <span class="done DONE">DONE</span> Python Copntrol Structures</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<p>
+It is important to note that Control or block structure in python is demarkated using indentation.  Therefore, functions and control statements can be identified by their indentation levels.  The code snippen below shows an example of this indentation syntax.
+</p>
+</div>
+
+<ol class="org-ol"><li><a id="sec-1-2-3-1" name="sec-1-2-3-1"></a><span class="done DONE">DONE</span> Example Prime Numbers<br  /><div class="outline-text-5" id="text-1-2-3-1">
+<p>
+The example below outputs prime numbers from 0 to nmax which in the snippet below nmax=30.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python">L = []
+nmax = 30
+
+for n in range(2, nmax):
+    for factor in L:
+        if n % factor == 0:
+            break
+    else: # no break
+        L.append(n
+</pre>
+</div>
+
+<p>
+In the above example we can see that there is a nested-for-loop within which is an if statement.
+</p>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-1-2-4" class="outline-4">
+<h4 id="sec-1-2-4"><span class="section-number-4">1.2.4</span> <span class="todo TODO">TODO</span> Functions and Classes</h4>
+<div class="outline-text-4" id="text-1-2-4">
+</div><ol class="org-ol"><li><a id="sec-1-2-4-1" name="sec-1-2-4-1"></a>Default Arguments<br  /></li>
+<li><a id="sec-1-2-4-2" name="sec-1-2-4-2"></a>Flexible arguments<br  /></li>
+<li><a id="sec-1-2-4-3" name="sec-1-2-4-3"></a>Anonymous Functions<br  /></li>
+<li><a id="sec-1-2-4-4" name="sec-1-2-4-4"></a>An example class definition<br  /></li></ol>
+</div>
+</div>
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> <span class="todo TODO">TODO</span> Linear Algebra Review</h3>
+<div class="outline-text-3" id="text-1-3">
+</div><div id="outline-container-sec-1-3-1" class="outline-4">
+<h4 id="sec-1-3-1"><span class="section-number-4">1.3.1</span> <span class="done DONE">DONE</span> Vectors and Matrices</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+In programming we have the concept of n-dimensional arrays. Arrays are sets of ordered numbers i.e. a collection of numbers in a strict order such that each constituting number element can be accessed given it's unique index.  This concept was taken directly from linear algebra where a vector is a 1-dimensional array while an matrix is a 2-dimensional array.
+</p>
+
+<p>
+Note that in some programming languages such as python we start counting the index of the elements from zero while in linear algebra the first index count is one.
+</p>
+</div>
+
+<ol class="org-ol"><li><a id="sec-1-3-1-1" name="sec-1-3-1-1"></a><span class="done DONE">DONE</span> Matrix representation<br  /><div class="outline-text-5" id="text-1-3-1-1">
+<p>
+Below is an example of a matrix A
+$$ A=\begin{bmatrix}234 & 292 \\444 & 422 \\999 & 846 \end{bmatrix} $$
+The above matrix referred to as matrix A and it has 3 rows and 2 columns.  We normally refer to the rows first then the columns therefore it is a 3 by 2 or 3 x 2 matrix.  Notationally this is $ \mathbb{R}<sup>3x2</sup> $ where the number or rows and the number of columns are the dimensions of the matrix
+</p>
+
+<p>
+Also observe in the matrix A the following elements given by the identified by their indices as follows:
+$$
+</p>
+\begin{matrix}
+A_{11} & = & 234 \\
+A_{12} & = & 292 \\
+A_{32} & = & 846
+\end{matrix}
+<p>
+$$
+\(A_{ij}\) is the "i,j entry" in the \(i^{th}\) row and \(j^{th}\) column.
+</p>
+</div>
+</li>
+
+<li><a id="sec-1-3-1-2" name="sec-1-3-1-2"></a><span class="done DONE">DONE</span> Vector representation<br  /><div class="outline-text-5" id="text-1-3-1-2">
+<p>
+A vector is an n x 1 matrix.  In the example below  \(y_i = i^{th}\) element.
+$$ y=\begin{bmatrix}460 \\444 \\ 425 \\179 \\ 646 \end{bmatrix} $$
+Therefore,
+$$
+</p>
+\begin{matrix}
+y_{1} & = & 460 \\
+y_{2} & = & 444 \\
+y_{3} & = & 425 \\
+y_{5} & = & 646
+\end{matrix}
+<p>
+$$
+</p>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-1-3-2" class="outline-4">
+<h4 id="sec-1-3-2"><span class="section-number-4">1.3.2</span> <span class="done DONE">DONE</span> Linear Algebra Operations</h4>
+<div class="outline-text-4" id="text-1-3-2">
+</div><ol class="org-ol"><li><a id="sec-1-3-2-1" name="sec-1-3-2-1"></a><span class="done DONE">DONE</span> Transposition<br  /><div class="outline-text-5" id="text-1-3-2-1">
+<p>
+Given an m x n matrix/vector. By transposing or exchanging the rows and columns the resulting matrix becomes a n x m matrix. For example, given
+$$z=\begin{bmatrix}1&2\\3&4\\5&6\\7&8\end{bmatrix}=\mathbb{R}^{4\times 2}$$ 4 rows by  2 columns matrix
+The resulting transpose of z becomes:
+$$z^\top=\begin{bmatrix}1&3&5&7\\2&4&6&8\end{bmatrix}=\mathbb{R}^{2\times 4}$$ 2 rows by 4 columns matrix
+</p>
+</div>
+</li>
+
+<li><a id="sec-1-3-2-2" name="sec-1-3-2-2"></a><span class="done DONE">DONE</span> Matrix Addition and Subtraction<br  /><ol class="org-ol"><li><a id="sec-1-3-2-2-1" name="sec-1-3-2-2-1"></a><span class="done DONE">DONE</span> Example<br  /><div class="outline-text-6" id="text-1-3-2-2-1">
+<p>
+$$
+</p>
+\begin{bmatrix}
+1 & 0 \\ 2 & 5 \\ 3 & 1
+\end{bmatrix}+
+\begin{bmatrix}
+4 & 5 \\ 2 & 1.5 \\ 0 & 1
+\end{bmatrix}=
+\begin{bmatrix}
+5 & 5 \\ 4 & 6.5 \\ 3 & 2
+\end{bmatrix}
+<p>
+$$
+</p>
+</div>
+</li>
+
+<li><a id="sec-1-3-2-2-2" name="sec-1-3-2-2-2"></a><span class="done DONE">DONE</span> Matrix Addition and Subtraction Properties<br  /><div class="outline-text-6" id="text-1-3-2-2-2">
+<ul class="org-ul">
+<li>Operands must have the same dimension
+</li>
+<li>Resulting value dimensions must be consistent with operand dimensions
+</li>
+</ul>
+</div>
+</li></ol>
+</li>
+
+<li><a id="sec-1-3-2-3" name="sec-1-3-2-3"></a><span class="done DONE">DONE</span> Scalar Multiplication<br  /><ol class="org-ol"><li><a id="sec-1-3-2-3-1" name="sec-1-3-2-3-1"></a><span class="done DONE">DONE</span> Exampe<br  /><div class="outline-text-6" id="text-1-3-2-3-1">
+<p>
+$$
+3&times;\begin{bmatrix}
+1 &amp; 0 \\ 2 &amp; 5 \\ 3 &amp; 1
+\end{bmatrix}=
+</p>
+<p>
+\begin{bmatrix}
+3 &amp; 0 \\ 6 &amp; 15 \\ 9 &amp; 3
+\end{bmatrix}=
+</p>
+<p>
+\begin{bmatrix}
+1 &amp; 0 \\ 2 &amp; 5 \\ 3 &amp; 1
+\end{bmatrix}&times; 3
+$$
+</p>
+</div>
+</li></ol>
+</li>
+
+<li><a id="sec-1-3-2-4" name="sec-1-3-2-4"></a><span class="done DONE">DONE</span> Scalar Product<br  /><ol class="org-ol"><li><a id="sec-1-3-2-4-1" name="sec-1-3-2-4-1"></a>Example<br  /><div class="outline-text-6" id="text-1-3-2-4-1">
+<p>
+$$
+</p>
+<p>
+\begin{bmatrix}
+1 \\ 2 \\ 3 
+\end{bmatrix}&times;
+</p>
+<p>
+\begin{bmatrix}
+4 \\ 1.5 \\ 1
+\end{matrix}=
+</p>
+<p>
+\begin{bmatrix}
+1 &times; 4 \\+\\ 2 &times; 1.5 \\+\\ 3 &times; 1
+\end{bmatrix}=4+3+3=10
+$$
+</p>
+<ul class="org-ul">
+<li>Pair-wise Multiplication
+</li>
+<li>Also known as vector-vector product or dot product
+</li>
+</ul>
+</div>
+</li></ol>
+</li>
+
+<li><a id="sec-1-3-2-5" name="sec-1-3-2-5"></a><span class="done DONE">DONE</span> Matrix Vector Product<br  /><ol class="org-ol"><li><a id="sec-1-3-2-5-1" name="sec-1-3-2-5-1"></a>Example<br  /><div class="outline-text-6" id="text-1-3-2-5-1">
+<p>
+$$
+</p>
+\begin{bmatrix}
+1 & 3 \\ 4 & 0 \\ 2 & 1
+\end{bmatrix}\times
+\begin{bmatrix}
+4 \\ 5 
+\end{bmatrix}=
+\begin{bmatrix}
+1 \times 4 + 3 \times 5  \\ 4 \times 5 + 0 \times 5  \\ 2 \times 4 + 1 \times 5
+\end{bmatrix}=
+\begin{bmatrix}
+4 + 15  \\ 20 + 0  \\ 8 + 5
+\end{bmatrix}=
+\begin{bmatrix}
+19  \\ 20  \\ 13
+\end{bmatrix}
+<p>
+$$
+</p>
+<ul class="org-ul">
+<li>Scalar product is a special form of a matrix vector product.
+</li>
+</ul>
+</div>
+</li></ol>
+</li>
+
+<li><a id="sec-1-3-2-6" name="sec-1-3-2-6"></a><span class="done DONE">DONE</span> Matrix Matrix Multiplication<br  /><ol class="org-ol"><li><a id="sec-1-3-2-6-1" name="sec-1-3-2-6-1"></a><span class="todo TODO">TODO</span> Example<br  /><div class="outline-text-6" id="text-1-3-2-6-1">
+<p>
+$$
+</p>
+\begin{bmatrix}
+1 & 3 & 2 \\ 4 & 0 & 1 
+\end{bmatrix}\times
+\begin{bmatrix}
+1 & 3\\ 0 & 1 \\ 5 & 2
+\end{matrix}=
+\begin{bmatrix}
+11 & 10 \\ 9 & 14
+\end{bmatrix}
+<p>
+$$
+$$
+</p>
+<p>
+\begin{bmatrix}
+1 \\ 2 \\ 3 
+\end{bmatrix}&times;
+</p>
+<p>
+\begin{bmatrix}
+4 \\ 1.5 \\ 1
+\end{matrix}=
+</p>
+<p>
+\begin{bmatrix}
+1 &times; 4 \\+\\ 2 &times; 1.5 \\+\\ 3 &times; 1
+\end{bmatrix}=4+3+3=10
+$$
+$$
+</p>
+<p>
+\begin{bmatrix}
+1 \\ 2 \\ 3 
+\end{bmatrix}&times;
+</p>
+<p>
+\begin{bmatrix}
+4 \\ 1.5 \\ 1
+\end{matrix}=
+</p>
+<p>
+\begin{bmatrix}
+1 &times; 4 \\+\\ 2 &times; 1.5 \\+\\ 3 &times; 1
+\end{bmatrix}=4+3+3=10
+$$
+</p>
+</div>
+</li>
+
+<li><a id="sec-1-3-2-6-2" name="sec-1-3-2-6-2"></a><span class="done DONE">DONE</span> Properties<br  /><div class="outline-text-6" id="text-1-3-2-6-2">
+<ol class="org-ol">
+<li>Associative \((AB)C=A(BC)\)
+</li>
+<li>Not commutative \(AB\noteq BA\)
+</li>
+<li>m x n matrix multiplied by n x o matrix results in an m x o matrix.
+</li>
+</ol>
+</div>
+</li></ol>
+</li>
+
+<li><a id="sec-1-3-2-7" name="sec-1-3-2-7"></a><span class="done DONE">DONE</span> Identity matrix<br  /><div class="outline-text-5" id="text-1-3-2-7">
+<p>
+In mathematics, the identity property is a concept by when a mathematical element is multiplied by an identity element the result is the original multiplying element.  In linear algebra when a matrix or vector is multiplied by its corresponding identity matrix i.e. (max dimension of multiplying matrix/vector) will be the the multiplying matrix or vector.  The Identity matrix is denoted by \(I=I_{n\times n}\) where n is the maximum dimension of the multiplying matrix of vector. Sybmolically for any Matrix \(A\), \(A\dot I = I \dot A = A\).
+</p>
+</div>
+<ol class="org-ol"><li><a id="sec-1-3-2-7-1" name="sec-1-3-2-7-1"></a>Examples<br  /><div class="outline-text-6" id="text-1-3-2-7-1">
+<p>
+$$[1]\text{ for }n=1$$
+$$\begin{bmatrix}1&0\\0&1\end{bmatrix}\text{ for }n=2$$
+$$\begin{bmatrix}1&0&0\\0&1&0\\0&0&1\end{bmatrix}\text{ for }n=3$$
+$$etc..$$
+</p>
+</div>
+</li></ol>
+</li>
+<li><a id="sec-1-3-2-8" name="sec-1-3-2-8"></a><span class="done DONE">DONE</span> Inverse Matrix<br  /><div class="outline-text-5" id="text-1-3-2-8">
+<p>
+Any matrix factor when multiplied by matrix A resulting in an identity matrix is the inverse of such a matrix following the mathematical definition of an inverse. Therefore symbolically speaking \(A(A^{-1})=A^{-1}A=I\)
+</p>
+</div>
+<ol class="org-ol"><li><a id="sec-1-3-2-8-1" name="sec-1-3-2-8-1"></a>Example<br  /><div class="outline-text-6" id="text-1-3-2-8-1">
+<p>
+\begin{bmatrix}
+3 &amp; 4\\ 2 &amp; 16 
+\end{bmatrix}&times;
+</p>
+<p>
+\begin{bmatrix}
+0.4 &amp; -0.1\\ -0.05 &amp; 0.025
+\end{matrix}=
+</p>
+<p>
+\begin{bmatrix}
+1 &amp; 0 \\ 0 &amp; 1
+\end{bmatrix}=I<sub>2 &times; 2</sub>
+$$
+</p>
+
+<p>
+Note that matrices that do not have an inverse factor are known as singular matrices or degenerate matrices.
+</p>
+</div>
+</li></ol>
+</li>
+<li><a id="sec-1-3-2-9" name="sec-1-3-2-9"></a><span class="done DONE">DONE</span> Euclidean Norms<br  /><div class="outline-text-5" id="text-1-3-2-9">
+<p>
+Also known as the \(L_2\) Norm of a vector is the square root dot product of the vector by itself. i.e. Given vector A, it's Euclidean Norm is \(\sqrt{A\dot A}\).
+</p>
+</div>
+</li></ol>
+</div>
+<div id="outline-container-sec-1-3-3" class="outline-4">
+<h4 id="sec-1-3-3"><span class="section-number-4">1.3.3</span> <span class="todo TODO">TODO</span> Linear Algebra using Python</h4>
+<div class="outline-text-4" id="text-1-3-3">
+</div><ol class="org-ol"><li><a id="sec-1-3-3-1" name="sec-1-3-3-1"></a><span class="todo TODO">TODO</span> Example 1<br  /><div class="outline-text-5" id="text-1-3-3-1">
+<p>
+Given a Vector $$, find the Euclidean norm of A.
+</p>
+</div>
+</li>
+<li><a id="sec-1-3-3-2" name="sec-1-3-3-2"></a><span class="todo TODO">TODO</span> Example 2<br  /><div class="outline-text-5" id="text-1-3-3-2">
+<p>
+Solve the following equation
+$\begin{bmatrix}5&amp;2\&#x00ad;2&amp;4\end{bmatrix}
+</p>
+<p>
+\begin{bmatrix}5\\2 \end{bmatrix}$
+</p>
+</div>
+</li></ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> <span class="todo TODO">TODO</span> Session Challenge: Linear Discriminant Analysis</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+LDA is a method developed by R. A. Fisher to perform classification task based on the statistical properties namely mean and variance of a data set.  As simple as this technique may look it performs a relatively decent job when the data is in the right format.  So what do we mean by the right format?  The LDA criterion makes two assumptions:
+</p>
+<ol class="org-ol">
+<li>That the dataset is Gaussian, i.e. one that has a uniform mean and standard deviation that tends zero the further away from the mean the values are.
+</li>
+<li>That each attribute has roughly the same variance on average. In other words there should be very few or eliminated outliers.
+</li>
+</ol>
+
+<p>
+Therefore once we have been able to remove outliers, ensure a standard normal distribution of the data having roughly same variance, the linear discriminant function becomes:
+$$D_k(x)=x\times\frac{\mu_k}{\sigma^2_k}-\frac{\mu_k^2}{2\times\sigma^2_k}+\ln(P(k)) - - - (1)$$
+where
+$$\begin{matrix}
+ D_k(x)&=&\text{Classification of data, x}& \\
+ k&=&\text{class k}\end{matrix}& \\
+ \mu_k &=& \frac{1}{n_k}\sum_{i=1}^nx_i
+& \text{mean of class k}\end{matrix} - - - (2)$$
+$$\begin{matrix}
+ \sigma^2 &=& \frac{1}{n-K}\sum_{i=1}^n(x_i-\mu_k)^2 & \text{variance of class k}
+\end{matrix} - - - (3)$$
+</p>
+
+<p>
+Note that for x having more than one feature, the average of the means of each feature will be used and the covariance matrix of the features  will also be applied instead of the variance.
+</p>
+
+<p>
+One major advantage of LDA is the fact that it still performs reasonably accurately for small amounts of data as well.  In addition, it can be used for multinomial classification as opposed to logistic regression which is suited for binary classification.
+</p>
+</div>
+
+<div id="outline-container-sec-1-4-1" class="outline-4">
+<h4 id="sec-1-4-1"><span class="section-number-4">1.4.1</span> <span class="todo TODO">TODO</span> LDA Lab</h4>
+</div>
+<div id="outline-container-sec-1-4-2" class="outline-4">
+<h4 id="sec-1-4-2"><span class="section-number-4">1.4.2</span> <span class="done DONE">DONE</span> Lab Challenge:LDA alternative</h4>
+<div class="outline-text-4" id="text-1-4-2">
+<p>
+There is another presentation of the LDA algorithm found at <a href="http://www.saedsayad.com/lda.htm">http://www.saedsayad.com/lda.htm</a>.  This is a slightly more convoluted approach than the one previously described.  In this method, the coefficients of the linear combination of variables (predictors) that best separates two classes (targets) are first determined.
+$$\beta=C^{-1}(\mu_k-\Sigma_{i=1}^m\mu_i/m$$
+where
+$$\beta=Coefficients, \mu=\text{average values in class k}$$
+$$\begin{aligned}C&=&\text{pooled covariance matrix}\\
+		&=&(\Sigma n_k)^{-1}(\Sigma n_kC_k)\end{aligned}$$
+ Next, to capture the notion of separability, the following score function is derived.
+<img src="./LDA_score.png" alt="LDA_score.png" />
+</p>
+
+<p>
+The score function estimates the linear coefficients that maximize the score.
+Ultimately, the effectiveness of the discrimination is determined the Mahalanobis distance between two groups. A distance greater than 3 means that in two averages differ by more than 3 standard deviations. This means that probability of misclassification is quite small.
+</p>
+
+<p>
+Finally, a new point is classified by projecting it onto the maximally separating direction and classifying it as C1 if:
+$$\beta^\top(x-\Sigma x_k/m)>\log{\frac{p(c_k)}{p(~c_k)}}$$
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4-3" class="outline-4">
+<h4 id="sec-1-4-3"><span class="section-number-4">1.4.3</span> <span class="done DONE">DONE</span> Lab Exercises:</h4>
+<div class="outline-text-4" id="text-1-4-3">
+<ol class="org-ol">
+<li>Implement a more efficient initial LDA algorithm
+</li>
+<li>Implement the alternative LDA algorithm and compare your answers.  If they are different, explain why this could be. Which algorithm is better based on
+a. Accuracy
+b. Ease of implementation
+c. Computation Resource efficiency (time &amp; space complexity)
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4-4" class="outline-4">
+<h4 id="sec-1-4-4"><span class="section-number-4">1.4.4</span> Predictors Contribution</h4>
+<div class="outline-text-4" id="text-1-4-4">
+<p>
+A simple linear correlation between the model scores and predictors can be used to test which predictors contribute significantly to the discriminant function. Correlation varies from -1 to 1, with -1 and 1 meaning the highest contribution but in different directions and 0 means no contribution at all. 
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> <span class="todo TODO">TODO</span> References</h3>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> <span class="todo TODO">TODO</span> Day 2: Using Python &amp; ML Stack(word vectors vs CBOW model)</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> <span class="todo TODO">TODO</span> ML Pipeline</h3>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> <span class="todo TODO">TODO</span> Feature Extraction vs Data Cleaning</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Feature extraction and data cleaning could almost be used interchangeably, however, there is a fine difference between the two.  While data cleaning is a procedural concept, feature engineering requires skills acquistion by experience and experimentation. In other words, data cleaning operations are mostly bye-products of the feature engineering process. These feature engineering tips will be highlighted as we walk through the data cleaning process.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> <span class="todo TODO">TODO</span> Session Challenge Word Vectors vs Bag of Words</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+In tasks in which words are features, the bag-of-words model can be used to create a feature vector when the number of features (words) is not known in advance, with the assumption that their order is not important. Each word is represented by a one-hot vector - a sparse vector in the size of the vocabulary, with 1 in the entry representing the word and 0 in all other entries. The bag-of-words feature vector is the sum of all one-hot vectors of the words, and therefore has a non-zero value for every word that occurred. In the weighted variation, it is a weighted sum according to frequency or TF-IDF scores.
+</p>
+
+<p>
+Continuous bag-of-words (CBOW) is exactly the same, but instead of using sparse vectors to represent words, it uses dense vectors (continuous distributional "embeddings").  See (Mikolov et. al, 2013).
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> <span class="todo TODO">TODO</span> Day 3: Linear &amp; Logistic regression (PCA)</h2>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> <span class="todo TODO">TODO</span> Day 4: Naive Bayes and K nearest neighbours (k means)</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> <span class="todo TODO">TODO</span> Introduction</h3>
+</div>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> <span class="todo TODO">TODO</span> Naive Bayes Model</h3>
+<div class="outline-text-3" id="text-4-2">
+</div><div id="outline-container-sec-4-2-1" class="outline-4">
+<h4 id="sec-4-2-1"><span class="section-number-4">4.2.1</span> <span class="todo TODO">TODO</span> Conditional Probability</h4>
+</div>
+<div id="outline-container-sec-4-2-2" class="outline-4">
+<h4 id="sec-4-2-2"><span class="section-number-4">4.2.2</span> <span class="todo TODO">TODO</span> Bayes Rule</h4>
+</div>
+<div id="outline-container-sec-4-2-3" class="outline-4">
+<h4 id="sec-4-2-3"><span class="section-number-4">4.2.3</span> <span class="todo TODO">TODO</span> Naive Bayes</h4>
+</div>
+</div>
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> <span class="todo TODO">TODO</span> K-Nearest Neigbours</h3>
+<div class="outline-text-3" id="text-4-3">
+</div><div id="outline-container-sec-4-3-1" class="outline-4">
+<h4 id="sec-4-3-1"><span class="section-number-4">4.3.1</span> <span class="todo TODO">TODO</span> KNN Representation</h4>
+</div>
+<div id="outline-container-sec-4-3-2" class="outline-4">
+<h4 id="sec-4-3-2"><span class="section-number-4">4.3.2</span> <span class="todo TODO">TODO</span> KNN Distance measures</h4>
+</div>
+</div>
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> Session Challenge: K-means Clustering</h3>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> <span class="todo TODO">TODO</span> Day 5: Classification &amp; regression trees &amp; SVM(advanced topics)</h2>
+</div>
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> <span class="done DONE">DONE</span> Appendix</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> <span class="done DONE">DONE</span> Appendix I</h3>
+<div class="outline-text-3" id="text-6-1">
+</div><div id="outline-container-sec-6-1-1" class="outline-4">
+<h4 id="sec-6-1-1"><span class="section-number-4">6.1.1</span> Frequently Asked Questions</h4>
+<div class="outline-text-4" id="text-6-1-1">
+</div><ol class="org-ol"><li><a id="sec-6-1-1-1" name="sec-6-1-1-1"></a>What is FMLP-Cubed?<br  /><div class="outline-text-5" id="text-6-1-1-1">
+<p>
+Faster Machine Learning for Programmers and Professionals with Python (FMLP3), is an intensive online course that uses a unique method to get programmers and professionals quickly started with Machine Learning using the Python Machine Learning platform.  This commercialised version is streamlined and focused on this methodology and because it's just a 5 day intensive not all the topics in machine learning are covered but a working knowledge of python applied to data science is assured.  If your interested, PM me and I shall get you set up.
+</p>
+</div>
+</li>
+
+<li><a id="sec-6-1-1-2" name="sec-6-1-1-2"></a>Mode of Delivery and Assessment<br  /><div class="outline-text-5" id="text-6-1-1-2">
+<p>
+This is the interesting part.  Each participant will have his/her 
+own ML project that he will be working on through out the course.  Each day will have a 2-3 hour online webinar where programming walkthroughs will be provided.  These recipes can be used to implement daily assignments that would need to be ready before the next class.  Each session will have elements that can be used in the individual's personal project and the group project.  Assessment will be based on satisfactory completion of daily assignments and group projects.  A whatsapp group will be used at the group level to discuss assignment and group projects and will be open for discussions 24/7 subject to everyones availability.
+</p>
+
+<p>
+At the end of the course, the participants are to have 2 working ML projects along with mini projects completed with assignments.  Lecture notes and Materials will be sent over via email or group chat.  
+</p>
+</div>
+</li>
+
+<li><a id="sec-6-1-1-3" name="sec-6-1-1-3"></a>Course Requisites<br  /><div class="outline-text-5" id="text-6-1-1-3">
+<p>
+The course is a commercial version of an advanced python course in machine learning I have been teaching Post Graduate Computer Science students. The course became quite popular some tutors from other departments started joining the course.  This course therefore is not for novices. The course assumes you already have a working knowledge of basic programming concepts such as loops, arrays and classes as well as a working knowledge of basic calculus.  In addition, as this course is an online course, participants will be required to have  a solid internet connection during webinars and fairly good internet for group chats.  Also to facilitate online support it is advised to have TeamViewer(R) installed on your computer.
+</p>
+</div>
+</li>
+
+<li><a id="sec-6-1-1-4" name="sec-6-1-1-4"></a>What does FMLP3 cover?<br  /><div class="outline-text-5" id="text-6-1-1-4">
+<p>
+This introductory datascience course covers python basics and fundamental machine learning algorithms that form the building blocks of Machine Learning techniques used in industry practice.
+</p>
+<ul class="org-ul">
+<li>Introduction to ML and Linear Algebra (LDA)
+</li>
+<li>Using Python &amp; ML Stack (word vectors)
+</li>
+<li>Linear &amp; Logistic regression (PCA)
+</li>
+<li>Naive Bayes and K nearest neighbours (k means)
+</li>
+<li>Classification &amp; regression trees &amp; SVM(ensemble &amp; advanced methods introduction)
+</li>
+</ul>
+</div>
+</li>
+
+<li><a id="sec-6-1-1-5" name="sec-6-1-1-5"></a>FMLP3 Duration<br  /><div class="outline-text-5" id="text-6-1-1-5">
+<p>
+FMLP3 is a Five-day intensive course that can span over 5 weeks or 5 days.
+</p>
+</div>
+</li>
+
+<li><a id="sec-6-1-1-6" name="sec-6-1-1-6"></a>FMLP3 Cost and Payment<br  /><div class="outline-text-5" id="text-6-1-1-6">
+<p>
+Pay NGN45,000 to:
+Iyalla John Alamina
+FBN: 3024252015
+</p>
+</div>
+</li>
+
+<li><a id="sec-6-1-1-7" name="sec-6-1-1-7"></a>Current session schedule<br  /><div class="outline-text-5" id="text-6-1-1-7">
+<p>
+Start Date Schedule: Monday 27 Nov 2017, 11am - 2pm (NGR time for 5 weeks subject to rescheduling due to availability)
+Registration end Date: Fri 24 Nov 2017
+</p>
+</div>
+</li></ol>
+</div>
+</div>
+
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> <span class="done DONE">DONE</span> Appendix II</h3>
+<div class="outline-text-3" id="text-6-2">
+
+<div class="figure">
+<p><img src="./fmlp3.PNG" alt="fmlp3.PNG" />
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6-2-1" class="outline-4">
+<h4 id="sec-6-2-1"><span class="section-number-4">6.2.1</span> Assignment 0: Welcome &amp; System Setup</h4>
+<div class="outline-text-4" id="text-6-2-1">
+<p>
+Hello and welcome to this course Faster Machine Learning for Programmers and Professionals using python.  The essence of this taster session is to get you up and running with your machine learning environment.  It is this environment that all our work is to get done in.  This python/scripting environment is a free cloud environment known as azure notebooks which is Microsoft's Jupyter notebooks cloud computing platform.  Before we dive into this platform a little note about python and Jupyter notebooks.
+</p>
+</div>
+
+<ol class="org-ol"><li><a id="sec-6-2-1-1" name="sec-6-2-1-1"></a>Ways to Run Python<br  /><div class="outline-text-5" id="text-6-2-1-1">
+<p>
+There are four ways in which to run python on your computer.  The four ways are listed below.
+</p>
+<ol class="org-ol">
+<li>Executing a Python Script
+</li>
+<li>The Python script Shell
+</li>
+<li>The interactive python shell
+</li>
+<li>Jupyter notebooks
+</li>
+</ol>
+
+<p>
+The first method is done using the 'python' command to execute a previously edited python script file.  This can also be achieved if you are using a python integrated developer environment such as active python or pycharm by JetBrains.
+</p>
+
+<p>
+The remaining methods include interactive methods of using python so that results of commands can be seen simultaneously at time of writing just by pressing enter.  As we shall see, items 2 to 4 are with increasing order of interactivity and nifty features.  So the interactive python shell has more features than the python script shell and the Jupyter notebooks has the most features integrating a web interface IDE along with interactive shell features into one environment.  The Jupyter notebooks is fast becoming the defacto standard  used by the science and technology community to share computation-intensive knowledge to a wide range of audiences.  Jupyter Notebooks is therefore the method we will be adopting to perform machine learning using the azure notebooks cloud platform and the python machine learning stack.
+</p>
+</div>
+</li>
+
+<li><a id="sec-6-2-1-2" name="sec-6-2-1-2"></a>Steps to setup Azure Notebooks<br  /><div class="outline-text-5" id="text-6-2-1-2">
+<ol class="org-ol">
+<li>On any web browser, log on to <i>notebooks.azure.com</i> using your Microsoft(R) passport or register a new Microsoft account if you don't have one to log on with.
+</li>
+<li>Create A new Library within your Azure notebooks cloud environment.
+</li>
+<li>Open the newly created library and upload the 'pythintro.ipynb' file that came with this laboratory assignment.
+</li>
+<li>Open the 'pythintro.ipynb' ipython notebook file and run the interactive code step-by-step using the 'play' button located on the tool bar at the top within the browser.
+</li>
+</ol>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-6-2-2" class="outline-4">
+<h4 id="sec-6-2-2"><span class="section-number-4">6.2.2</span> A brief History of Jupyter Notebooks</h4>
+<div class="outline-text-4" id="text-6-2-2">
+<p>
+There may be a little bit of confusion with the 'ipynb' file because sometimes we refer to it as an ipython notebook file and at other times we refer to it as a Jupyter notebook file.  They are one and the same thing.  Initially the kernel for ipython notebooks supported the python interpreter only.  However, the developers were able to develop methods of adding other computer languages into the platform hence the change of name from ipython notebooks to jupyter notebooks.  Note also that the ipython notebook files is not the same thing as the interactive python (ipython) shell. Ipython notebook files or jupyter notebook files can only be run on the Jupyter notebook environment.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6-2-3" class="outline-4">
+<h4 id="sec-6-2-3"><span class="section-number-4">6.2.3</span> Session Challenge: Setting up Jupyter Notebooks on your system</h4>
+<div class="outline-text-4" id="text-6-2-3">
+<p>
+It is possible to run ipython notebook on your computer without having to use cloud computing.  However the process of setting up can be quite involving.  Fire up a browser and navigate to <i>www.firstpythonnotebook.org</i> and follow the instructions up to the end of chapter 2 in order to install jupyter notebooks to your local computer or laptop.
+</p>
+
+<p>
+We have now come to the end of this laboratory assignment.  Hopefully you have been able to create a notebooks.azure.com account and run your first ipython notebook.  In the sessions to come we shall be using this environment to create Machine Learning programs to work on big Data.  All the assignments shall be performed from this envinronment as well.  Stay Tuned!
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> <span class="todo TODO">TODO</span> Appendix III</h3>
+<div class="outline-text-3" id="text-6-3">
+</div><div id="outline-container-sec-6-3-1" class="outline-4">
+<h4 id="sec-6-3-1"><span class="section-number-4">6.3.1</span> Math: Matrix Inverse Methods</h4>
+<div class="outline-text-4" id="text-6-3-1">
+</div><ol class="org-ol"><li><a id="sec-6-3-1-1" name="sec-6-3-1-1"></a>Engineering method<br  /></li>
+<li><a id="sec-6-3-1-2" name="sec-6-3-1-2"></a>Co-factor/Determinant Method<br  /><div class="outline-text-5" id="text-6-3-1-2">
+<p>
+<h1 class='org-ref-bib-h1'>Bibliography</h1>
+<ul class='org-ref-bib'><li><a id="marsland2009">[marsland2009]</a> Marsland, Machine learning: an algorithmic perspective, Chapman & Hall/CRC (2009).</li>
+<li><a id="geron2017">[geron2017]</a> Géron, Hands-on machine learning with Scikit-Learn and TensorFlow: concepts, tools, and techniques to build intelligent systems, O'Reilly (2017).</li>
+</ul> 
+</p>
+</div>
+</li></ol>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2017-11-10 Fri</p>
+<p class="author">Author: John Alamina</p>
+<p class="date">Created: 2017-11-26 Sun 22:57</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
+>>>>>>> 3ef68fb5b75bb45286846e57bc17926fa30d5ad1
