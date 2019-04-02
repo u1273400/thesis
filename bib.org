@@ -1,5 +1,37 @@
 * Bibliography 
 
+@inproceedings{gehring2017convolutional,
+  title={Convolutional sequence to sequence learning},
+  author={Gehring, Jonas and Auli, Michael and Grangier, David and Yarats, Denis and Dauphin, Yann N},
+  booktitle={Proceedings of the 34th International Conference on Machine Learning-Volume 70},
+  pages={1243--1252},
+  year={2017},
+  organization={JMLR. org}
+}
+
+@article{kalchbrenner2016neural,
+  title={Neural machine translation in linear time},
+  author={Kalchbrenner, Nal and Espeholt, Lasse and Simonyan, Karen and Oord, Aaron van den and Graves, Alex and Kavukcuoglu, Koray},
+  journal={arXiv preprint arXiv:1610.10099},
+  year={2016}
+}
+
+@inproceedings{kaiser2016can,
+  title={Can active memory replace attention?},
+  author={Kaiser, {\L}ukasz and Bengio, Samy},
+  booktitle={Advances in Neural Information Processing Systems},
+  pages={3781--3789},
+  year={2016}
+}
+
+@inproceedings{vaswani2017attention,
+  title={Attention is all you need},
+  author={Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N and Kaiser, {\L}ukasz and Polosukhin, Illia},
+  booktitle={Advances in Neural Information Processing Systems},
+  pages={5998--6008},
+  year={2017}
+}
+
 @book{mcloughlin2009applied,
   title={Applied speech and audio processing: with Matlab examples},
   author={McLoughlin, Ian},
