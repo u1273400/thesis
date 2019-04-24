@@ -1,5 +1,13 @@
 * Bibliography 
 
+@article{anden2014scatnet,
+  title={Scatnet (v0. 2)},
+  author={And{\'e}n, J and Sifre, L and Mallat, S and Kapoko, M and Lostanlen, V and Oyallon, E},
+  journal={Computer Software. Available: http://www. di. ens. fr/data/software/scatnet/.[Accessed: December 10, 2013]},
+  volume={0.2},
+  year={2014}
+}
+
 @inproceedings{gehring2017convolutional,
   title={Convolutional sequence to sequence learning},
   author={Gehring, Jonas and Auli, Michael and Grangier, David and Yarats, Denis and Dauphin, Yann N},
