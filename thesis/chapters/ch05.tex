@@ -6,3 +6,48 @@ The Wakirike new testament bible served as the source of data for the deep neura
 During data preparation, the dataset was first striped off all punctuation marks such that only characters and spaces are selected. Next, each character in the dataset was substituted with its equivalent Unicode numeric representation. Finally the numeric values were one-hot encoded deriving a sparse array of values having unique indexes set to one for each unique Unicode value and zero every where else. One-hot encoded array therefore, for each character input.
 \section{GPU Training}
 GRUs have been shown to give similar performance to regular LSTMs with a lighter system resource consumption foot print \cite{cho2014learning}. The internal network size of the GRU was 256 nodes and the number of GRUs representing each time step in the recurrent input sequence was 30 GRUs; one GRU per time step. In addition, each unrolled sequence was layered 3 times. Therefore the unrolled 30-GRU-sequence long network was also 3-layers deep. Due to the multi-layered high-dimensional depth of this neural network, there was a tendency for the network to over fit the data, hence, a small learning rate of 0.001 was used. To further reduce the risk of over fitting the popular and effective dropout method for regularising deep neural networks kept at 80\% of activations while deactivating the rest.
+\subsection{GRU Output Language Generation}
+Once training of the neural network as described above is completed after several epochs or training cycles to an acceptable margin of error. It is possible to seed the network with an input character and the model samples from the top-N most likely candidates. We thus have instructed the language model developed to immanently construct its own sentences. The output language should therefore be intelligible similar to the training data.
+
+In this work, the output language generated was used to generate a corpus that measured the perplexity and compared the result with the perplexity based on an n-gram model applied to the original training data. The results discussed below showed that the LSTM model generated a superior model compared to the n-gram model that better matched the training data.
+
+\begin{table}
+  \caption{Perplexity Calculation results}
+  \label{tab:example}
+\begin{tabular}{lr}
+\toprule
+Language Model & Perplexity\\
+\midrule
+LSTM RNN & 2.6\\
+3-gram with Keysner Soothing and interpolation & 3.3\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+The result of the training of the Long-short-term-memory (LSTM)-Cell Recurrent Neural Network on low-resourced Wakirike Language gave impressive and intelligible results and showed better results when measured with standard n-gram language models. The results showed that it is indeed possible to use an LSTM on a low resource character sequence corpus to produce an Wakirike language model.
+
+The evaluation of the LSTM language model of the Wakirike language was performed using a perplexity measurement metric. The Perplexity metric applies the language model to a test dataset and measures how probable the test dataset is. Perplexity is a relative measure given by the formula:
+
+%
+\begin{equation}
+PP(W)=P(w_1,w_2\dots w_N)^\frac{1}{N}
+\label{eq6}
+\end{equation}
+%
+%
+\begin{equation}
+PP(W)=\sqrt[N]{\prod_{i=1}^N\frac{1}{P(w_i|w_{i-1})}}
+\label{eq7}
+\end{equation}
+%
+
+Where $w_1,\dots,w_N$ are the sequence of words. The language model with the lower relative perplexity score is therefore expected to yield better approximation of the data when applied to unseen data generally.
+
+There was no way however to directly measure perplexity on a character sequence model because perplexity is usually used to evaluate word-based models.  However, this limitation was overcome by performing n-gram analysis on the corpus entirely generated from the LSTM network. The generated n-gram model from the generated corpus is then applied to test data and the perplexity is measured.
+
+Table ~\ref{tab:example} below shows the Results of the Perplexity model of the LSTM Wakirike Language model and an equivalent Trigram Language model with interpolation and Keysner smoothing \cite{chen1996empirical}.
+Table 1 below shows the Results of the Perplexity model of the LSTM Wakirike Language model and an equivalent Tri-gram Language model with interpolation and Keysner smoothing.
+
+
+It can be inferred that the LSTM character-model developed has an improved language model and because it is based on a character-model, which is fine-grained when compared to a word model, it is likely to generalise data better when used in practice is and less biased than a word-based model.  This can be observed from the fact that the output corpus produced a larger vocabulary size.
