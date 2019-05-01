@@ -1021,18 +1021,17 @@ references:bib.bib
 ### Chapter 5
 * Grapheme to Phoneme - todo
 ### Chapter 6
-* hannun2014deep training data
-* hannun2014deep results
+* hannun2014deep training data - done
+* hannun2014deep results - done
 ### Chapter 7 conclusion/discussion
 * hannun2014deep results/conclusion
 * Various strategies for speech recog
-** Kernel based methods
 
 ### Chapter 8 Future
-* Various strategies for speech recog
-* Kernel based methods
-* OCR - todo
-* GAN - todo
+* Various strategies for speech recog - todo
+* Kernel based methods - todo
+* OCR - done
+* GAN - done
 
 ## Questions
 ### Chap 1
