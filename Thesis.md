@@ -324,6 +324,130 @@ The roots are $$2+\sqrt{3}$$ and $$2−\sqrt{3}$$. After factorisation, we have 
 (5.27)
 The discrete-time domain representation is
 (5.28)
+The  result  is  the  minimum  size  filter  with  2  vanishing  moments  and  the corresponding  filter  size  is  4.  Recall  the  conclusion  mentioned  above,  the  filter size  is  two  times  the  vanishing  moment.  Higher  order  Daubechies  wavelets are  derived  at  similar  way.
+
+#### Symlets
+Take  a  look  at  the  discrete  filters  and  the  scaling/wavelet  functions  of  Daubechies wavelets.  These  functions  are  far  from  symmetry.  That’s  because  Daubechies wavelets  select  the  minimum  phase  square  root  such  that  the  energy  concentrates  near  the  starting  point  of  their  support.  Symmlets  select  other  set  of roots  to  have  closer  symmetry  but  with  linear  complex  phase. 
+
+#### Coiflets
+For  an  application  in  numerical  analysis,  Coifman  asked  Daubechies  [9]  to construct  a  family  of  waveletsψthat  have p vanishing  moments,  minimum-size  support  and
+ - - - (5.29)
+ - - - (5.30)
+The  equation  above  can  be  taken  as  some  requirement  about  vanishing  moments  of  the  scaling  function.  The  resulting  coiflets  has  a  support  of  size3 p−1.
+
+# References
+references:bib.bib
+
+<!--[Highland-ScratchPad-Start]
+
+# Highland Scratchpad
+
+## Thesis notes
+### Chapter 1
+* BiRNN - done
+* GRU ref
+* Scatnet references - done
+* OOV ref?
+* enhances - enhancement or advances
+* emission, glossary beginning
+* larger image - p18
+* CNN are restricted DSS (Mallat, 2016)
+* Deng2003 Language models
+* Sample HMM-DNN system pipeline to show simplicity
+* Deepspeech refs
+
+### Chapter 2
+* discriminative AM models -- done!
+* Low resource Language models - attention models
+* Low resource AM - RNN speech models
+* check young 2008 for OOV term
+* HMM problems expanded -> ch3 possibly.
+
+### Low resource speech recognition
+* explanation of bottleneck features
+* HMM recognition weakness
+#### Low resource AM 
+* MLLR/MAP adaptation of SGMM models
+
+#### Contribution to knowledge
+1. BRNN simplifies processing
+2. Scattering network increases feature representation for discrimination
+3. Light weight CNN reduces training time
+#### Methodology
+1. Bleu ref 
+
+### Chapter 3
+#### Perceptron
+* Affine transformations - done
+#### MLP
+* Check that definition of discriminative and generative approach is consistent with chapter 1
+#### DNN
+* We use rectifier non-linearities and thus choose $\sigma(z)=max(z,0)$.
+* Equation error
+#### RNN
+* In our experiments we always compute the gradient completely through time rather than truncating to obtain an approximate subgradient.
+#### BPTT algorithm
+* Correction in p2
+* When working with RDNNs, we found it important to use a modified version of the rectifier nonlinearity. This modified function selects $$\sigma(z) = min(max(z, 0), 20)$$ which clips large activations to prevent divergence during network training. Setting the maximum allowed activation to $$20$$ results in the clipped rectifier acting as a normal rectifier function in all but the most extreme cases.
+#### GRU paragraph
+* LSTM Ref, GRU ref
+#### Deepspeech rewrite
+#### CTC algorithm - todo
+
+### Chapter 4
+* Invariance introduction - done
+* Fourier analysis - done
+* Continuous wavelets - done
+* wavelet types - done
+* Multiresolution analysis - done
+* Fast wavelet transform - done
+### Chapter 5
+* Grapheme to Phoneme - todo
+### Chapter 6
+* hannun2014deep training data - done
+* hannun2014deep results - done
+### Chapter 7 conclusion/discussion
+* hannun2014deep results/conclusion
+* Various strategies for speech recog
+
+### Chapter 8 Future
+* Various strategies for speech recog - todo
+* Kernel based methods - todo
+* OCR - done
+* GAN - done
+
+## Questions
+### Chap 1
+1. What is the aims and objectives
+2. What is the contribution to knowledge
+
+### Chap 2
+1. Why is Bleu not explained or used?
+2. Why is ABX not explained
+
+### Chap 3
+1. What about sequence models?
+2. MRF vs CRF
+3. How does this chapter relate to your work?
+
+### Chap 4
+1. How does this chapter relate to your work?
+2. Where is the Fast Scattering algorithm? Is it in a later chapter?
+
+## Other Questions
+1. What about chapter summaries
+2. Should equation references be big or small caps
+3. To read and summarise \cite{maas2017building}
+4. Publication rejection notes to be considered
+5. Fast Fourier transform?
+6. Chapter summaries
+7. Search for duplicate words
+[Highland-ScratchPad-End]-->
+
+<!--[Highland-Bin-Start]
+
+
+[Highland-Bin-End]-->
 The result is the minimum size filter with 2 vanishing moments and the corresponding filter size is 4. Recall the conclusion mentioned above, the filter size is two times the vanishing moment. Higher order Daubechies wavelets are derived at similar way.
 Symlets
 Take a look at the discrete filters and the scaling/wavelet functions of Daubechies wavelets. These functions are far from symmetry. That’s because Daubechies wavelets select the minimum phase square root such that the energy concentrates near the starting point of their support. Symmlets select other set of roots to have closer symmetry but with linear complex phase.
