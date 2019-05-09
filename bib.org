@@ -1,5 +1,22 @@
 * Bibliography 
 
+@article{sak2014long,
+  author    = {Hasim Sak and
+               Andrew W. Senior and
+               Fran{\c{c}}oise Beaufays},
+  title     = {Long Short-Term Memory Based Recurrent Neural Network Architectures
+               for Large Vocabulary Speech Recognition},
+  journal   = {CoRR},
+  volume    = {abs/1402.1128},
+  year      = {2014},
+  url       = {http://arxiv.org/abs/1402.1128},
+  archivePrefix = {arXiv},
+  eprint    = {1402.1128},
+  timestamp = {Mon, 13 Aug 2018 16:47:37 +0200},
+  biburl    = {https://dblp.org/rec/bib/journals/corr/SakSB14},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
 @article{anden2014scatnet,
   title={Scatnet (v0. 2)},
   author={And{\'e}n, J and Sifre, L and Mallat, S and Kapoko, M and Lostanlen, V and Oyallon, E},
