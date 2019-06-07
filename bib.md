@@ -1,5 +1,12 @@
 * Bibliography
 
+@article{sak2014long,
+  title={Long short-term memory based recurrent neural network architectures for large vocabulary speech recognition},
+  author={Sak, Ha{\c{s}}im and Senior, Andrew and Beaufays, Fran{\c{c}}oise},
+  journal={arXiv preprint arXiv:1402.1128},
+  year={2014}
+}
+
 @article{anden2014scatnet,
   title={Scatnet (v0. 2)},
   author={And{\'e}n, J and Sifre, L and Mallat, S and Kapoko, M and Lostanlen, V and Oyallon, E},

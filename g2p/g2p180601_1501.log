@@ -1,0 +1,1055 @@
+E c:\tf_jenkins\home\workspace\release-win\device\cpu\os\windows\tensorflow\core\framework\op_kernel.cc:943] OpKernel ('op: "BestSplits" device_type: "CPU"') for unknown op: BestSplits
+E c:\tf_jenkins\home\workspace\release-win\device\cpu\os\windows\tensorflow\core\framework\op_kernel.cc:943] OpKernel ('op: "CountExtremelyRandomStats" device_type: "CPU"') for unknown op: CountExtremelyRandomStats
+E c:\tf_jenkins\home\workspace\release-win\device\cpu\os\windows\tensorflow\core\framework\op_kernel.cc:943] OpKernel ('op: "FinishedNodes" device_type: "CPU"') for unknown op: FinishedNodes
+E c:\tf_jenkins\home\workspace\release-win\device\cpu\os\windows\tensorflow\core\framework\op_kernel.cc:943] OpKernel ('op: "GrowTree" device_type: "CPU"') for unknown op: GrowTree
+E c:\tf_jenkins\home\workspace\release-win\device\cpu\os\windows\tensorflow\core\framework\op_kernel.cc:943] OpKernel ('op: "ReinterpretStringToFloat" device_type: "CPU"') for unknown op: ReinterpretStringToFloat
+E c:\tf_jenkins\home\workspace\release-win\device\cpu\os\windows\tensorflow\core\framework\op_kernel.cc:943] OpKernel ('op: "SampleInputs" device_type: "CPU"') for unknown op: SampleInputs
+E c:\tf_jenkins\home\workspace\release-win\device\cpu\os\windows\tensorflow\core\framework\op_kernel.cc:943] OpKernel ('op: "ScatterAddNdim" device_type: "CPU"') for unknown op: ScatterAddNdim
+E c:\tf_jenkins\home\workspace\release-win\device\cpu\os\windows\tensorflow\core\framework\op_kernel.cc:943] OpKernel ('op: "TopNInsert" device_type: "CPU"') for unknown op: TopNInsert
+E c:\tf_jenkins\home\workspace\release-win\device\cpu\os\windows\tensorflow\core\framework\op_kernel.cc:943] OpKernel ('op: "TopNRemove" device_type: "CPU"') for unknown op: TopNRemove
+E c:\tf_jenkins\home\workspace\release-win\device\cpu\os\windows\tensorflow\core\framework\op_kernel.cc:943] OpKernel ('op: "TreePredictions" device_type: "CPU"') for unknown op: TreePredictions
+E c:\tf_jenkins\home\workspace\release-win\device\cpu\os\windows\tensorflow\core\framework\op_kernel.cc:943] OpKernel ('op: "UpdateFertileSlots" device_type: "CPU"') for unknown op: UpdateFertileSlots
+Preparing G2P data
+Loading vocabularies from okd
+Reading development and training data.
+Creating 3 layers of 512 units.
+Reading model parameters from okd
+Prev min epoch eval loss: inf, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 1
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: inf, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 2
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: inf, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 3
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: inf, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 4
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: inf, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 5
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: inf, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 6
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: inf, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 7
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: inf, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 8
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: inf, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 9
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: inf, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 10
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: inf, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 11
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: inf, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 12
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: inf, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 13
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: inf, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 14
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: inf, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 15
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: inf, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 16
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: inf, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 17
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: inf, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 18
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: inf, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 19
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: inf, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 20
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: inf, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 21
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: inf, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 22
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: inf, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 23
+Max allowable number of epochs for improvement: 200
+global step 232 learning rate 0.5000 step-time 7.61 perplexity 7.045
+  eval: perplexity 5.480
+should save model
+Prev min epoch eval loss: inf, curr epoch eval loss: 1.701076
+Improved during the last epoch.
+Number of the epochs passed from the last improvement: 0
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.701076, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 1
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.701076, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 2
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.701076, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 3
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.701076, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 4
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.701076, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 5
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.701076, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 6
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.701076, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 7
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.701076, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 8
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.701076, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 9
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.701076, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 10
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.701076, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 11
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.701076, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 12
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.701076, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 13
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.701076, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 14
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.701076, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 15
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.701076, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 16
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.701076, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 17
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.701076, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 18
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.701076, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 19
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.701076, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 20
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.701076, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 21
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.701076, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 22
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.701076, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 23
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.701076, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 24
+Max allowable number of epochs for improvement: 200
+global step 432 learning rate 0.5000 step-time 7.51 perplexity 3.077
+  eval: perplexity 5.227
+should save model
+Prev min epoch eval loss: 1.701076, curr epoch eval loss: 1.653895
+Improved during the last epoch.
+Number of the epochs passed from the last improvement: 0
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 1
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 2
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 3
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 4
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 5
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 6
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 7
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 8
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 9
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 10
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 11
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 12
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 13
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 14
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 15
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 16
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 17
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 18
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 19
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 20
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 21
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 22
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 23
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 24
+Max allowable number of epochs for improvement: 200
+global step 632 learning rate 0.5000 step-time 7.84 perplexity 1.986
+  eval: perplexity 5.802
+should save model
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: 1.758160
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 25
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 26
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 27
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 28
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 29
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 30
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 31
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 32
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 33
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 34
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 35
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 36
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 37
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 38
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 39
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 40
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 41
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 42
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 43
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 44
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 45
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 46
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 47
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 48
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 49
+Max allowable number of epochs for improvement: 200
+global step 832 learning rate 0.5000 step-time 7.67 perplexity 1.408
+  eval: perplexity 10.940
+should save model
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: 2.392442
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 50
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 51
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 52
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 53
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 54
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 55
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 56
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 57
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 58
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 59
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 60
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 61
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 62
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 63
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 64
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 65
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 66
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 67
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 68
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 69
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 70
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 71
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 72
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 73
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 74
+Max allowable number of epochs for improvement: 200
+global step 1032 learning rate 0.5000 step-time 7.72 perplexity 1.073
+  eval: perplexity 16.522
+should save model
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: 2.804710
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 75
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 76
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 77
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 78
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 79
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 80
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 81
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 82
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 83
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 84
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 85
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 86
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 87
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 88
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 89
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 90
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 91
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 92
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 93
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 94
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 95
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 96
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 97
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 98
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 99
+Max allowable number of epochs for improvement: 200
+global step 1232 learning rate 0.5000 step-time 7.61 perplexity 1.022
+  eval: perplexity 24.860
+should save model
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: 3.213244
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 100
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 101
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 102
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 103
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 104
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 105
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 106
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 107
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 108
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 109
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 110
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 111
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 112
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 113
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 114
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 115
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 116
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 117
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 118
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 119
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 120
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 121
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 122
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 123
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 124
+Max allowable number of epochs for improvement: 200
+global step 1432 learning rate 0.5000 step-time 7.46 perplexity 1.010
+  eval: perplexity 32.093
+should save model
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: 3.468633
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 125
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 126
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 127
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 128
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 129
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 130
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 131
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 132
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 133
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 134
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 135
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 136
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 137
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 138
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 139
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 140
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 141
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 142
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 143
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 144
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 145
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 146
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 147
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 148
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 149
+Max allowable number of epochs for improvement: 200
+global step 1632 learning rate 0.5000 step-time 7.56 perplexity 1.005
+  eval: perplexity 38.882
+should save model
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: 3.660519
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 150
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 151
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 152
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 153
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 154
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 155
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 156
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 157
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 158
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 159
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 160
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 161
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 162
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 163
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 164
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 165
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 166
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 167
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 168
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 169
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 170
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 171
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 172
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 173
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 174
+Max allowable number of epochs for improvement: 200
+global step 1832 learning rate 0.5000 step-time 7.72 perplexity 1.003
+  eval: perplexity 43.634
+should save model
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: 3.775836
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 175
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 176
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 177
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 178
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 179
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 180
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 181
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 182
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 183
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 184
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 185
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 186
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 187
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 188
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 189
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 190
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 191
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 192
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 193
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 194
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 195
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 196
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 197
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 198
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 199
+Max allowable number of epochs for improvement: 200
+global step 2032 learning rate 0.5000 step-time 7.52 perplexity 1.002
+  eval: perplexity 48.238
+should save model
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: 3.876147
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 200
+Max allowable number of epochs for improvement: 200
+Prev min epoch eval loss: 1.653895, curr epoch eval loss: inf
+No improvement during the last epoch.
+Number of the epochs passed from the last improvement: 201
+Max allowable number of epochs for improvement: 200
+Training done.
+Loading vocabularies from okd
+Creating 3 layers of 512 units.
+Reading model parameters from okd
+Beginning calculation word error rate (WER) on test sample.
+Words: 46
+Errors: 41
+WER: 0.891
+Accuracy: 0.109
