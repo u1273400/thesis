@@ -1,5 +1,17 @@
 * Bibliography
 
+@misc{common voice by mozilla_2019,
+url={https://voice.mozilla.org/en},
+journal={Voice.mozilla.org},
+year={2019}
+},
+
+@misc{mozilla/deepspeech_2019,
+url={https://github.com/mozilla/DeepSpeech#common-voice-training-data},
+journal={GitHub},
+year={2019}
+}
+
 @article{sak2014long,
   title={Long short-term memory based recurrent neural network architectures for large vocabulary speech recognition},
   author={Sak, Ha{\c{s}}im and Senior, Andrew and Beaufays, Fran{\c{c}}oise},
