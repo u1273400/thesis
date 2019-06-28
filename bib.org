@@ -314,6 +314,13 @@ year={2019}
 	doi={10.1109/79.536824}
 }
 
+@book{graves_2014,
+ title={Supervised sequence labelling with recurrent neural networks},
+ publisher={Springer},
+ author={Graves, Alex},
+ year={2014}
+}
+
 @article{1976jelinekcontinuous,
 	author={F. Jelinek},
 	year={1976},
