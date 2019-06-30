@@ -99,7 +99,7 @@ Where $\tau$ is the iteration and $\eta$ is a constant learning rate which is a 
 \section{RNN, LSTM and GRU Networks}
 Neural networks have become increasingly popular due to their ability to model non-linear system dynamics. Since their inception, there have been many modifications made to the original design of having linear affine transformations terminated with a nonlinear functions as the means to capture both linear and non-linear features of the target system. In particular, one of such neural network  modifications, namely the recurrent neural network, has been shown to overcome the limitation of varying lengths in the inputs and outputs of the classic feed-forward neural network.  In addition the RNN is not only able to learn non-linear features of a system but has also been shown to be effective at capturing the patterns in sequential data.  This section develops recurrent neural networks (RNNs) from a specialised multi-layer Perceptron (MLP) or the deep neural network (DNN).
 
-\subsection{Deep Neural Networks (DNNs)}
+\subsection{Deep Neural Networks (DNNs)}\label{dnn}
 
 Deep neural networks have been accepted to be networks having multiple layers and capable of hierarchical knowledge representation \citep{yu2016automatic}.
  This will therefore include multi-layer Perceptrons (MLPs) having more than one hidden layer \citep{dahl2012context} as well as deep belief networks (DBNs)\citep{mohamed2009deep,yu2010roles} having a similar structure.  Therefore, following the MLP architecture, A DNN uses multiple hidden layers and generates distribution function, $p(c|x_t)$ on the output layer when an input vector $\mathbf{x}_t$ is applied.  At the first hidden layer, activations are vectors evaluated using
@@ -108,7 +108,7 @@ Deep neural networks have been accepted to be networks having multiple layers an
 
 The matrix $\mathbf{W}^{(1)}$ is the weight matrix and vector $b^{(1)}$, the bias vector for the layer.  The function $\sigma(\cdot)$ is the point-wise non-linear function.
 
-DNNs activations  $$h^{(i)}$$ at layer i, at arbitrarily many hidden layers after the first hidden layer, are subsequently hidden activations are determined from
+DNNs activations  $h^{(i)}$ at layer i, at arbitrarily many hidden layers after the first hidden layer, are subsequently hidden activations are determined from
 
 \begin{equation}\mathbf{h}^{(1)}=\sigma(\mathbf{W}^{(1)T}\mathbf{h}^{(i-1)}+\mathbf{b}^{(1)})
 \label{eqn_c3_dnn02}\end{equation}
