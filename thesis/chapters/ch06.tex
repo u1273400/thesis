@@ -3,7 +3,7 @@ This work explores the prospects of deep recurrent end-to-end architectures appl
 Earlier in chapter one, deep learning was defined as a type of representational learning whereby different levels of complexity are captured in internal layer-wise encapsulations. It has also been noted that layer-wise stacking of neural and neural network type architectures such as the Restricted Boltzmann Machine (RBM) deep belief networks (DBMs) are used to implement such representations. In this chapter, the end-to-end Bi-directional Recurrent Neural Network model is described. Here, the development of the features using the deep scattering convolution network is first elaborated on. The model parameters and architecture is described and the decoding algorithm is detailed.
 
 \section{Deep Scattering Features}
-The fast wavelet transformed is derived in Chapter 4 from a low pass filter and a high pass filter.  The speech features used in this research using a deep scattering network 2 layers deep was created using the wavelet modulus operator comprising a low pass filter and a band pass filter.   Hyper parameters of the system included the window period for each sampled sub section, T;  The Q-band value for the band pass filter and the number of wavelets $$J$$ at each scattering layer for the total number of layers, $$M=2$$.
+The fast wavelet transformed is derived in Chapter 4 from a low pass filter and a high pass filter.  The speech features used in this research using a deep scattering network 2 layers deep was created using the wavelet modulus operator comprising a low pass filter and a band pass filter.   Hyper parameters of the system included the window period for each sampled sub section, T;  The Q-band value for the band pass filter and the number of wavelets $J$ at each scattering layer for the total number of layers, $M=2$.
 
 The matlab scatnet toolbox \citep{anden2014scatnet}, used to determine the scatter coefficient features for this research, provides optimal values for hyper parameters for audio signal processing into scatter features.  In this regime the value for the hyper parameter $T$, the number of samples per window, = $512$ samples per window. This approximates a window of $50 milliseconds$ for the audio signals sampled at $8000 Hz$.  For the first scattering layer the parameter, $Q=8$ and for the second scattering layer, the $Q=1$.  Finally $J$ is pre-calculated based on the value of $T$.  These after scatnet processing, eventually produce a feature-vector $165$ coefficients long.  These feature vectors in turn are used as inputs to the bi-direction neural network model whose architecture is explained in the succeeding sections.
 
@@ -37,4 +37,31 @@ where $h^{(4)} = h^{(f)} + h^{(b)}$. The output of the Bi-RNN on layer 6 is a st
 h^{(6)}_{t,k} = \hat{y}_{t,k} \equiv \mathbb{P}(c_t = k \mid x) = \frac{\exp{ \left( (W^{(6)} h^{(5)}_t)_k + b^{(6)}_k \right)}}{\sum_j \exp{\left( (W^{(6)} h^{(5)}_t)_j + b^{(6)}_j \right)}})    \label{ch06_05_l6}
 \end{equation}
 
-$b^{(6)}_k$ takes on the -th bias and $(W^{(6)} h^{(5)}_t)_k$ is the matrix product of the $k$-th element.  The error of the outputs are then computed using the CTC loss function \cite{graves_2014} described in chapter \ref{ch3DNN}.  A summary of our model is illustrated in figure \ref{ch06_01_ctc_scatter}.
+$b^{(6)}_k$ takes on the -th bias and $(W^{(6)} h^{(5)}_t)_k$ is the matrix product of the $k$-th element.  The error of the outputs are then computed using the CTC loss function \cite{graves_2014} described in chapter \ref{ch3DNN}.  A summary of our model is illustrated in figure \ref{fig_6_1_ctc_scatter}.
+\begin{figure}
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=14cm]{thesis/images/ctc_scatter.png}\\
+  \caption{Deep scattering Bi-RNN Model} \label{fig_6_1_ctc_scatter}
+\end{figure}
+
+\section{Model Hyper parameters}
+The hidden layer matrix for each layer comprised 1024 hidden units (6.6M free parameters).  The weights are initialised from a uniform random distribution having a standard deviation of 0.046875.  Adam optimisation algorithm \citep{kingma2014adam} was used with initial learning rate of , and a momentum of 0.95 was deployed to optimise the learning rate.
+
+The network for network was trained for a total of five to fifty epochs over the training set for experiments conducted. The training time for Python GPU implementation is shown in Table \ref{ch06_tab_01}.  For decoding with prefix search we use a beam size of 200 and cross-validated with a held-out set to find a good setting of the parameters α and β. Table 1 shows word error rates for various GPU configurations and audio dataset sizes
+
+
+\begin{table}
+  \caption{Perplexity Calculation results}
+  \label{tab:example}
+\begin{tabular}{lr}
+\toprule
+Language Model & Perplexity\\
+\midrule
+LSTM RNN & 2.6\\
+3-gram with Keysner Soothing and interpolation & 3.3\\
+\bottomrule
+\end{tabular}
+\end{table}
+\section{CTC Decoding}
+
