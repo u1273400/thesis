@@ -103,4 +103,18 @@ A total of four experiments were carried out on two different GPU configurations
 The output of the training produced mostly gibberish when trained in both configurations using only just one hour of training data.  Training loss reduced significantly once the data was increased to ten hours of training.  However word error rates (WER) only showed improvement on the 40 hours dataset.
 
 The results showed that the training of the model was heading towards a very slow convergence as indicated by the slow decrements in training loss.  However, we perceive that given the complete dataset to train the model will not only converge but show improvements in word error rates.
+\begin{figure}
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=14cm]{thesis/images/res00.png}\\
+  \caption{Training Loss, where $w<x<y<z$ are taken arbitrarily across the
+total number of epochs} \label{fig_6_2_loss}
+\end{figure}
+\begin{figure}
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=14cm]{thesis/images/res01.png}\\
+  \caption{WER, where w<x<y<z are taken arbitrarily across the total
+number of epochs} \label{fig_6_3_wer}
+\end{figure}
 
