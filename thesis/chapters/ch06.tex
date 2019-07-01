@@ -52,16 +52,55 @@ The network for network was trained for a total of five to fifty epochs over the
 
 
 \begin{table}
-  \caption{Perplexity Calculation results}
-  \label{tab:example}
-\begin{tabular}{lr}
+  \caption{GPU Experiments}
+  \label{tab_c6_01_training}
+\begin{tabular}{lccc}
 \toprule
-Language Model & Perplexity\\
+Experiment & Hours of speech & Total training time & Estimated training\\
 \midrule
-LSTM RNN & 2.6\\
-3-gram with Keysner Soothing and interpolation & 3.3\\
+1. 2xGPU 10GB RAM & 1 & 7 days & Completed\\
+2. 2xGPU 10GB RAM & 10 & 150+ days & 300 days\\
+3. 5xGPU 15GB RAM & 10 & 17 hours & Completed\\
+4. 5xGPU 15GB RAM & 40 & 5+ days & 10 days\\
 \bottomrule
 \end{tabular}
 \end{table}
 \section{CTC Decoding}
+
+Assuming an input of length $T$, the output of the neural network will be $p(c|c_t)$ for $t=1,\dots,T$. Again $p(c|c_t)$ is a distribution over possible characters in alphabet $\Sigma$, which includes the blank symbol, given audio input $x_t$. In order to recover a character string from the output of the neural network, as a first approximation, we take the $arg\max$ at each time step. Let $S=(s_1,\dots,s_T)$ be the character sequence where $s_t=arg\max_{c\in\Sigma}p(c|x_t)$. The sequence $S$ is mapped to a transcription by collapsing repeat characters and removing blanks. This gives a sequence which can be scored against reference transcription using both CER and WER.
+
+The first approximation lacks the ability to include the constraint of either a lexicon or language model. We propose a generic algorithm which is capable of incorporating such constraints. Taking X to be acoustic input of time T, we seek a transcription W which maximises the probability.
+The first approximation lacks the ability to include the constraint of either a lexicon or language model. We propose a generic algorithm which is capable of incorporating such constraints. Taking X to be acoustic input of time T, we seek a transcription W which maximises the probability.
+\begin{equation}
+$$p_{net}(W;X)p_{lm}(W)$$
+\label{eqn_c6_brnn06}
+\end{equation}
+
+Here the overall probability of the transcription is modeled as the product of two factors: pnet given by the network and plm given by the language model prior. In practice the prior plm(W), when given by an n-gram language model, is too constraining and thus we down-weight it and include a word insertion penalty or bonus as
+\begin{equation}
+p_{net}(W;X)p_{lm}(W)^\alpha|W|^\beta
+\label{eqn_c6_brnn07}
+\end{equation}
+
+Algorithm 1 attempts to find a word string W which maximizes equation 8. The algorithm maintains two separate probabilities for each prefix,  and . Respectively, these are the probability of the prefix ending in blank or not ending in blank given the first  time steps of the audio input .
+
+Algorithm 1 Prefix Beam Search: The algorithm initializes the previous set of prefixes  to the empty string. For each time step and every prefix  currently in , we propose adding a character from the alphabet  to the prefix. If the character is a blank, we do not extend the prefix. If the character is a space, we incorporate the language model constraint. Otherwise we extend the prefix and incorporate the output of the network. All new active prefixes are added to . We then set  to include only the  most probable prefixes of . The output is the 1 most probable transcript, although the this can easily be extended to return an n-best list.
+
+The sets  and  maintain a list of active prefixes at the previous time step and a proposed prefixes at the next time step respectively. Note that the size of  is never larger than the beam width . The overall probability of a prefix is the product of a word insertion term and the sum of the blank and non-black ending probabilities.
+\begin{equation}
+p(\ell;x_{1:t})=(p_b(\ell;x_{1:6})+p_{nb}(\ell;x_{1:t}))|W(\ell)|^\beta
+\label{eqn_c6_brnn08}
+\end{equation}
+
+Where  is a set of words in the sequence . When taking the  most probable prefixes of , we sort each prefix using the probability given in equation (\ref{eqn_c6_brnn08}).
+The variable  is the last character in the label sequence . The function , which converts  into a string of words, segments the sequence  at each space character and truncates any characters trailing the last space.
+
+We incorporate a lexicon or language model constraint by including the probability  whenever the algorithm proposes appending a space character to . By setting  to 1 if the last word of  is in the lexicon and 0 otherwise, the probability acts a a constraint forcing all character strings to consists of words only in the lexicon.  Furthermore,  can represent an n-gram language model by considering only the last n-1 words in .
+
+\section{Results}
+A total of four experiments were carried out on two different GPU configurations. A set of experiments was performed a GPU configuration consisting of 2 GPUs having a total of 10 gigabytes of memory. The second set of experiments was carried out on a GPU configuration comprising 5 GPUs having a total of 15 gigabytes of memory.  For each configuration two experiments were carried out on a small subset of the dataset then on a larger subset of the common voice dataset being used.   The various GPU configurations along with the training times is shown in Table 1.
+
+The output of the training produced mostly gibberish when trained in both configurations using only just one hour of training data.  Training loss reduced significantly once the data was increased to ten hours of training.  However word error rates (WER) only showed improvement on the 40 hours dataset.
+
+The results showed that the training of the model was heading towards a very slow convergence as indicated by the slow decrements in training loss.  However, we perceive that given the complete dataset to train the model will not only converge but show improvements in word error rates.
 
