@@ -6,6 +6,13 @@ journal={Voice.mozilla.org},
 year={2019}
 },
 
+@article{kingma2014adam,
+  title={Adam: A method for stochastic optimization},
+  author={Kingma, Diederik P and Ba, Jimmy},
+  journal={arXiv preprint arXiv:1412.6980},
+  year={2014}
+}
+
 @misc{mozilla/deepspeech_2019,
 url={https://github.com/mozilla/DeepSpeech#common-voice-training-data},
 journal={GitHub},
@@ -312,6 +319,13 @@ year={2019}
 	isbn={1053-5888},
 	language={English},
 	doi={10.1109/79.536824}
+}
+
+@book{graves_2014,
+ title={Supervised sequence labelling with recurrent neural networks},
+ publisher={Springer},
+ author={Graves, Alex},
+ year={2014}
 }
 
 @article{1976jelinekcontinuous,
