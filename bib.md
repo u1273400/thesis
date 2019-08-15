@@ -6,6 +6,17 @@ journal={Voice.mozilla.org},
 year={2019}
 },
 
+@article{srivastava2014dropout,
+  title={Dropout: a simple way to prevent neural networks from overfitting},
+  author={Srivastava, Nitish and Hinton, Geoffrey and Krizhevsky, Alex and Sutskever, Ilya and Salakhutdinov, Ruslan},
+  journal={The journal of machine learning research},
+  volume={15},
+  number={1},
+  pages={1929--1958},
+  year={2014},
+  publisher={JMLR. org}
+}
+
 @article{saito2017statistical,
   title={Statistical parametric speech synthesis incorporating generative adversarial networks},
   author={Saito, Yuki and Takamichi, Shinnosuke and Saruwatari, Hiroshi},
