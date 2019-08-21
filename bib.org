@@ -6,6 +6,35 @@ journal={Voice.mozilla.org},
 year={2019}
 },
 
+@article{gales2008application,
+  title={The application of hidden Markov models in speech recognition},
+  author={Gales, Mark and Young, Steve and others},
+  journal={Foundations and Trends{\textregistered} in Signal Processing},
+  volume={1},
+  number={3},
+  pages={195--304},
+  year={2008},
+  publisher={Now Publishers, Inc.}
+}
+
+@article{becchetti1999behaviour,
+  title={The behaviour of financial time series: stylised features, theoretical interpretations and proposals for Hidden Markov Model applications},
+  author={Becchetti, L},
+  journal={Speech recognition. Theory and C++ implementation},
+  year={1999}
+}
+
+@article{stevens1937scale,
+  title={A scale for the measurement of the psychological magnitude pitch},
+  author={Stevens, Stanley Smith and Volkmann, John and Newman, Edwin B},
+  journal={The Journal of the Acoustical Society of America},
+  volume={8},
+  number={3},
+  pages={185--190},
+  year={1937},
+  publisher={ASA}
+}
+
 @inproceedings{Heafield-estimate,
   author = {Kenneth Heafield and Ivan Pouzyrevsky and Jonathan H. Clark and Philipp Koehn},
   title = {Scalable Modified {Kneser-Ney} Language Model Estimation},
