@@ -6,6 +6,14 @@ journal={Voice.mozilla.org},
 year={2019}
 },
 
+@misc{lyons_2012,
+title={Mel Frequency Cepstral Coefficient (MFCC) tutorial},
+url={http://practicalcryptography.com/miscellaneous/machine-learning/guide-mel-frequency-cepstral-coefficients-mfccs/},
+journal={Practicalcryptography.com},
+author={Lyons, J},
+year={2012}
+}
+
 @article{gales2008application,
   title={The application of hidden Markov models in speech recognition},
   author={Gales, Mark and Young, Steve and others},
