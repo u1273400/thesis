@@ -132,7 +132,7 @@ M^{−1}(m)=700\exp(m/1125)−1
 \end{equation}
 A simple approximation for the Mel scale is obtained by applying linear scale for the first ten filters and for the first 1kHz of the speech frequency range then applying the following formula for the rest (Becchetti, 1999)\citep{becchetti1999behaviour}:
 \begin{equation}
-\Delta_m=1.2\times \Delta_{m−1}
+\Delta_m=1.2\times \Delta_{m-1}
 \label{eqn_c4_mel03}
 \end{equation}
 where $m$ is the frequency bin index and  $\Delta_m$ is the frequency range between the start and end frequencies for the $m$-th bin. The resulting filters are overlapping filters shown in the figure \ref{{fig_4_3_mfilt}}.
@@ -140,26 +140,18 @@ where $m$ is the frequency bin index and  $\Delta_m$ is the frequency range betw
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=14cm]{thesis/images/m-filters}\\
-  \caption{Mel filter plot}\label{fig_4_3_mfilt}
+  \caption{Mel filter plot \citep{lyons_2012}}\label{fig_4_3_mfilt}
 \end{figure}
 For speech recognition, we compute a statistical value or coefficient for each Mel frequency bin from the inverse discrete fourier transform (IDFT) of the Mel filters.  The coefficients are also concatenated with their delta and delta-delta values.  The delta and delta-delta values are determined from the following equation:
- - - - (4)
-where  is the x-th coefficient and 2n is the delta range which is usually 2-4. The delta values are first order derived coefficients obtained from the original Mel filter coefficients while the delta-delta values are second-order derived coefficients obtained from the first-order derived delta coefficients.
+ \begin{equation}
+d_t=\frac{\sum_{n=1}^Nn(c_{t+n}−c_{t−n})}{2\sum_{n=1}^Nn^2}
+\label{eqn_c4_mel04}
+\end{equation}
+where $c_x$ is the $x$-th coefficient and $2n$ is the delta range which is usually $2-4$. The delta values are first order derived coefficients obtained from the original Mel filter coefficients while the delta-delta values are second-order derived coefficients obtained from the first-order derived delta coefficients.
 
-There are two reasons for obtaining the IDFT from the filter banks.  The first is that since the bins use overlapping windows, the filter bin outputs tend to be correlated and obtaining the IDFT helps to decorrelate the outputs.  Secondly, decorelated signals optimise algorithm computation efficiency involving matrix operations such that rather than using full covariance matrix, it is much simpler to compute the matrix operations from the matrix diagonal.  Also note that for cepstral values obtained from taking the log of the power power spectrum, the discrete cosine transform (DCT) is used to obtain the IDFT.  This is as a result of the cepstral values being real and symmetric\citep{gales2008application}.
+There are two reasons for obtaining the IDFT from the filter banks.  The first is that since the bins use overlapping windows, the filter bin outputs tend to be correlated and obtaining the IDFT helps to decorrelate the outputs.  Secondly, decorrelated signals optimise algorithm computation efficiency involving matrix operations such that rather than using full co variance matrix, it is much simpler to compute the matrix operations from the matrix diagonal.  Also note that for cepstral values obtained from taking the log of the power power spectrum, the discrete cosine transform (DCT) is used to obtain the IDFT.  This is as a result of the cepstral values being real and symmetric\citep{gales2008application}.
 
-As an attempt for MFCCs to incorporate dynamic frequency changes of the signal, the deltas and the delta-deltas are obtained from the coefficient computation in equation (4).  However, it is worthy to note that only the first 13 of the coefficients and the resulting dynamic coefficients are used as speech features as it is observed that higher frequency dynamic coefficients rather degrade ASR performance \citep{gales2008application}.
- 
-
-An audio signal is constantly changing, so to simplify things we assume that on short time scales the audio signal doesn't change much (when we say it doesn't change, we mean statistically i.e. statistically stationary, obviously the samples are constantly changing on even short time scales). This is why we frame the signal into 20-40ms frames. If the frame is much shorter we don't have enough samples to get a reliable spectral estimate, if it is longer the signal changes too much throughout the frame.
-
-The next step is to calculate the power spectrum of each frame. This is motivated by the human cochlea (an organ in the ear) which vibrates at different spots depending on the frequency of the incoming sounds. Depending on the location in the cochlea that vibrates (which wobbles small hairs), different nerves fire informing the brain that certain frequencies are present. Our periodogram estimate performs a similar job for us, identifying which frequencies are present in the frame.
-
-The periodogram spectral estimate still contains a lot of information not required for Automatic Speech Recognition (ASR). In particular the cochlea can not discern the difference between two closely spaced frequencies. This effect becomes more pronounced as the frequencies increase. For this reason we take clumps of periodogram bins and sum them up to get an idea of how much energy exists in various frequency regions. This is performed by our Mel filter bank: the first filter is very narrow and gives an indication of how much energy exists near 0 Hertz. As the frequencies get higher our filters get wider as we become less concerned about variations. We are only interested in roughly how much energy occurs at each spot. The Mel scale tells us exactly how to space our filter banks and how wide to make them. 
-
-Once we have the filter bank energies, we take the logarithm of them. This is also motivated by human hearing: we don't hear loudness on a linear scale. Generally to double the perceived volume of a sound we need to put 8 times as much energy into it. This means that large variations in energy may not sound all that different if the sound is loud to begin with. This compression operation makes our features match more closely what humans actually hear. Why the logarithm and not a cube root? The logarithm allows us to use cepstral mean subtraction, which is a channel normalisation technique.
-
-The final step is to compute the DCT of the log filterbank energies. There are 2 main reasons this is performed. Because our filterbanks are all overlapping, the filterbank energies are quite correlated with each other. The DCT decorrelates the energies which means diagonal co-variance matrices can be used to model the features in e.g. a HMM classifier. But notice that only 12 of the 26 DCT coefficients are kept. This is because the higher DCT coefficients represent fast changes in the filterbank energies and it turns out that these fast changes actually degrade ASR performance, so we get a small improvement by dropping them.
+As an attempt for MFCCs to incorporate dynamic frequency changes of the signal, the deltas and the delta-deltas are obtained from the coefficient computation in equation \ref{eqn_c4_mel04}.  However, it is worthy to note that only the first 13 of the coefficients and the resulting dynamic coefficients are used as speech features as it is observed that higher frequency dynamic coefficients rather degrade ASR performance \citep{gales2008application}.
 
 \section{Deep scattering spectrum}
 In this section reference is made to \citep{anden2011multiscale, anden2014deep, zeghidour2016deep}. For a signal $x$ we define the following transform $W_x$ as a convolution with a low-pass filter $\phi$ and higher frequency complex analytic wavelets $\psi_{\lambda_1}$:
