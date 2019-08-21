@@ -113,7 +113,31 @@ For analysis of the Haar wavelet and the derivation of equations (\ref{eqn_c4_dw
 
 \section{Mel filter banks}
 
-Mel Frequency Cepstral Coefficients (MFCCs) are a feature widely used in automatic speech and speaker recognition. They were introduced by Davis and Mermelstein in the 1980's, and have been state-of-the-art ever since. Prior to the introduction of MFCCs, Linear Prediction Coefficients (LPCs) and Linear Prediction Cepstral Coefficients (LPCCs) and were the main feature type for automatic speech recognition (ASR), especially with HMM classifiers. 
+The Fourier and wavelet transform are general means of extracting information from continuous signals using the frequency domain and in the case of the Wavelet transform using both time and frequency domain.  The objective in machine learning, however, is to extract patterns from the derived information.  In this chapter, in particular, the Mel filter bank and the scatter transform are elaborated on as speech feature extractors.  They process high dimensional information obtained from the Fourier and wavelet transform signal processing techniques and reducing the information obtained as lower dimension features.  All this aimed towards loss-less encoding of speech signals relevant for speech recognition.
+
+The Mel filter banks form the basis of the Mel Frequency Cepstral Coefficients (MFCCs) described by \citep{davis1980comparison}.  MFCCs are state-of-the-art speech feature engineering drivers behind automatic speech recognition acoustic models.  Other common speech features used in speech recognition include, Linear Prediction Coefficients (LPCs) and Linear Prediction Cepstral Coefficients (LPCCs),Perceptual Linear Prediction coefficients (PLP),  \citep{mcloughlin2009applied, dines2010measuring}.  The following paragraphs describe how the Mel filters are derived. 
+
+The Mel scale as described by \cite{stevens1937scale} is a perceptual scale which measures sound frequencies as perceived by human subjects equidistant from a sound source as compared to the actual frequency.  This scale is non-linear as the human ear processes sound non-linearly both in frequency as well as amplitude.
+
+For the case of frequency, the human ear can discriminate lower frequencies more accurately than the higher frequencies.  The Mel scale model this behaviour by utilising frequency bins.  The frequency bin ranges are narrow at low frequencies and become wide in higher frequencies. In the case of amplitude a similar behaviour is observed where the ear discriminates softer sounds better than louder sounds.  Generally sound will be required to be 8 times as loud for a significant perception  While the mel scales handle the frequency non-linearity in the speech signal, the signal amplitude is linearised during feature extraction by further processing the log of the frequency spectrum of the signal.  Furthermore, using a log scale also allows for a channel normalisation technique that employs cepstral mean subtraction.  Note that taking  the log of the power spectrum gives cepstral equivalents \citep{becchetti1999behaviour}.
+
+The minimum frequency number of bins used for the Mel scale is 26 bins. In order to determine the frequency ranges we use the following formula to convert between the Mel scale and the regular frequency scale:
+ - - - (1)
+ - - - (2)
+
+A simple approximation for the Mel scale is obtained by applying linear scale for the first ten filters and for the first 1kHz of the speech frequency range then applying the following formula for the rest (Becchetti, 1999)\citep{becchetti1999behaviour}:
+ - - - (3)
+where m is the frequency bin index and  is the frequency range between the start and end frequencies for the m-th bin. The resulting filters are overlapping filters shown in the figure below.
+
+
+For speech recognition, we compute a statistical value or coefficient for each Mel frequency bin from the inverse discrete fourier transform (IDFT) of the Mel filters.  The coefficients are also concatenated with their delta and delta-delta values.  The delta and delta-delta values are determined from the following equation:
+ - - - (4)
+where  is the x-th coefficient and 2n is the delta range which is usually 2-4. The delta values are first order derived coefficients obtained from the original Mel filter coefficients while the delta-delta values are second-order derived coefficients obtained from the first-order derived delta coefficients.
+
+There are two reasons for obtaining the IDFT from the filter banks.  The first is that since the bins use overlapping windows, the filter bin outputs tend to be correlated and obtaining the IDFT helps to decorrelate the outputs.  Secondly, decorelated signals optimise algorithm computation efficiency involving matrix operations such that rather than using full covariance matrix, it is much simpler to compute the matrix operations from the matrix diagonal.  Also note that for cepstral values obtained from taking the log of the power power spectrum, the discrete cosine transform (DCT) is used to obtain the IDFT.  This is as a result of the cepstral values being real and symmetric\citep{gales2008application}.
+
+As an attempt for MFCCs to incorporate dynamic frequency changes of the signal, the deltas and the delta-deltas are obtained from the coefficient computation in equation (4).  However, it is worthy to note that only the first 13 of the coefficients and the resulting dynamic coefficients are used as speech features as it is observed that higher frequency dynamic coefficients rather degrade ASR performance \citep{gales2008application}.
+ 
 
 An audio signal is constantly changing, so to simplify things we assume that on short time scales the audio signal doesn't change much (when we say it doesn't change, we mean statistically i.e. statistically stationary, obviously the samples are constantly changing on even short time scales). This is why we frame the signal into 20-40ms frames. If the frame is much shorter we don't have enough samples to get a reliable spectral estimate, if it is longer the signal changes too much throughout the frame.
 
