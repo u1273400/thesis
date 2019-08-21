@@ -119,17 +119,29 @@ The Mel filter banks form the basis of the Mel Frequency Cepstral Coefficients (
 
 The Mel scale as described by \cite{stevens1937scale} is a perceptual scale which measures sound frequencies as perceived by human subjects equidistant from a sound source as compared to the actual frequency.  This scale is non-linear as the human ear processes sound non-linearly both in frequency as well as amplitude.
 
-For the case of frequency, the human ear can discriminate lower frequencies more accurately than the higher frequencies.  The Mel scale model this behaviour by utilising frequency bins.  The frequency bin ranges are narrow at low frequencies and become wide in higher frequencies. In the case of amplitude a similar behaviour is observed where the ear discriminates softer sounds better than louder sounds.  Generally sound will be required to be 8 times as loud for a significant perception  While the mel scales handle the frequency non-linearity in the speech signal, the signal amplitude is linearised during feature extraction by further processing the log of the frequency spectrum of the signal.  Furthermore, using a log scale also allows for a channel normalisation technique that employs cepstral mean subtraction.  Note that taking  the log of the power spectrum gives cepstral equivalents \citep{becchetti1999behaviour}.
+For the case of frequency, the human ear can discriminate lower frequencies more accurately than the higher frequencies.  The Mel scale model this behaviour by utilising frequency bins.  The frequency bin ranges are narrow at low frequencies and become wide in higher frequencies. In the case of the speech signal amplitude, a similar process is observed where the ear discriminates softer sounds better than louder sounds.  Generally, sound will be required to be 8 times as loud for significant perception by the ear.  While the Mel scales handle the frequency non-linearity in the speech signal, the signal amplitude is linearised during feature extraction by taking the log of the power spectrum of the signal, also known as the cepstral values.  Furthermore, using a log scale also allows for a channel normalisation technique that employs cepstral mean subtraction. \citep{becchetti1999behaviour}.
 
 The minimum frequency number of bins used for the Mel scale is 26 bins. In order to determine the frequency ranges we use the following formula to convert between the Mel scale and the regular frequency scale:
- - - - (1)
- - - - (2)
-
+\begin{equation}
+M(f)=1125\ln(1+f/700)
+\label{eqn_c4_mel01}
+\end{equation}
+\begin{equation}
+M^{−1}(m)=700\exp(m/1125)−1
+\label{eqn_c4_mel02}
+\end{equation}
 A simple approximation for the Mel scale is obtained by applying linear scale for the first ten filters and for the first 1kHz of the speech frequency range then applying the following formula for the rest (Becchetti, 1999)\citep{becchetti1999behaviour}:
- - - - (3)
-where m is the frequency bin index and  is the frequency range between the start and end frequencies for the m-th bin. The resulting filters are overlapping filters shown in the figure below.
-
-
+\begin{equation}
+\Delta_m=1.2\times \Delta_{m−1}
+\label{eqn_c4_mel03}
+\end{equation}
+where $m$ is the frequency bin index and  $\Delta_m$ is the frequency range between the start and end frequencies for the $m$-th bin. The resulting filters are overlapping filters shown in the figure \ref{{fig_4_3_mfilt}}.
+\begin{figure}
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=14cm]{thesis/images/m-filters}\\
+  \caption{Mel filter plot}\label{fig_4_3_mfilt}
+\end{figure}
 For speech recognition, we compute a statistical value or coefficient for each Mel frequency bin from the inverse discrete fourier transform (IDFT) of the Mel filters.  The coefficients are also concatenated with their delta and delta-delta values.  The delta and delta-delta values are determined from the following equation:
  - - - (4)
 where  is the x-th coefficient and 2n is the delta range which is usually 2-4. The delta values are first order derived coefficients obtained from the original Mel filter coefficients while the delta-delta values are second-order derived coefficients obtained from the first-order derived delta coefficients.
