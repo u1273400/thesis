@@ -289,7 +289,7 @@ Given two symbols $A$ and $\mathcal{B}$ such that $A$ has a many to one relation
 
 This output models the probability distribution of a complete sequence of arbitrary length $|A|$ over all possible labels in $A$ from activations within $|A|$. An extra activation is given to represent the probability of outputting a $blank$, or no label. At each time-step leading up to the final step, the probability distribution estimated as distribution over all possible label sequences of length leading up to that of the input sequence.
 
-It is now possible to define the extended alphabet $A' = A \cup \{blank\}$, also, $y_{t,p}$ as the activation of network output $p$ at time $t$.  Therefore $y_{t,p}$  is the probability that the network will output element $p \in A'$ at time $t$ given that $x$ is the input sequence of length $T$.  The distribution sought after $Pr(\pi|x)$, is the conditionally independent distribution over the subset $A'^T$ where $A'^T$ denotes the set of length $T$ sequences in $A'$. 
+It is now possible to define the extended alphabet $A' = A \cup \{blank\}$, also, $y_{t,p}$ as the activation of network output $p$ at time $t$.  Therefore $y_{t,p}$  is the probability that the network will output element $p \in A'$ at time $t$ given that $x$ is the input sequence of length $T$.  The distribution sought after $Pr(\pi|x)$, is the conditionally-independent distribution over the subset $A'^T$ where $A'^T$ denotes the set of length $T$ sequences in $A'$. 
 \begin{equation}
 \Pr( \pi \, | \, x ) = \prod_{t=1}^{T} y_{t,\pi_t}
 \label{eqn_c3_ctc01}\end{equation}
