@@ -557,6 +557,15 @@ month={March},}
   organization={ACM}
 }
 
+@inproceedings{graves2013speech,
+  title={Speech recognition with deep recurrent neural networks},
+  author={Graves, Alex and Mohamed, Abdel-rahman and Hinton, Geoffrey},
+  booktitle={2013 IEEE international conference on acoustics, speech and signal processing},
+  pages={6645--6649},
+  year={2013},
+  organization={IEEE}
+}
+
 @inproceedings{graves2014towards,
   title={Towards end-to-end speech recognition with recurrent neural networks},
   author={Graves, Alex and Jaitly, Navdeep},

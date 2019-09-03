@@ -96,6 +96,15 @@ year={2012}
  year={2014}
 }
 
+@inproceedings{graves2013speech,
+  title={Speech recognition with deep recurrent neural networks},
+  author={Graves, Alex and Mohamed, Abdel-rahman and Hinton, Geoffrey},
+  booktitle={2013 IEEE international conference on acoustics, speech and signal processing},
+  pages={6645--6649},
+  year={2013},
+  organization={IEEE}
+}
+
 @misc{mozilla/deepspeech_2019,
 url={https://github.com/mozilla/DeepSpeech#common-voice-training-data},
 journal={GitHub},
