@@ -66,19 +66,8 @@ Here, the Bayes product of language model prior $p_{lm}$ and the network output 
 
 The second strategy adopted by the prefix beam search which improves the decoding algorithm is the beam search strategy.  With this approach, the search maintains all possible paths however retains only $k$ number paths which maximise the output sequence probability.  Improvements gained with this method are seen when certain maximal paths are made obsolete owing to new information derived from the multiple paths in being maintained in memory. 
 
-The recursive prefix beam search algorithm illustrated in figure \ref{fig_c6_decoder01} attempts to find the string formulated in equation \ref{eqn_c6_decoder02}.  Two sets prefixes $A_{prev}$ and $A_{nxet}$ are initialised, such that at $A_{nxet}$ maintains the prefixes in the current time-step while $A_{prev}$ maintains only $k$-prefixes from the previous time-step.  Note that at the end of each time step  is updated with only -most probable prefixes from . Therefore while,  contains all the possible new paths from based on  as a cartesian product of  where  is the length of . The probabilities of each prefix obtained at each time step is the sum of the probability of non-blank plus the probability of a blank symbol.
+The recursive prefix beam search algorithm illustrated in figure \ref{fig_c6_decoder01} attempts to find the string formulated in equation \ref{eqn_c6_decoder02}.  Two sets prefixes $A_{prev}$ and $A_{nxet}$ are initialised, such that at $A_{nxet}$ maintains the prefixes in the current time-step while $A_{prev}$ maintains only $k$-prefixes from the previous time-step.  Note that at the end of each time step $A_{prev}$ is updated with only -most probable prefixes from $A_{nxet}$. Therefore while,  $A_{nxet}$ contains all the possible new paths from based on $A_{prev}$ as a Cartesian product of $A_{prev} \times \Sigma \in \mathcal{Z}^k\times\mathcal{Z}^{|\Sigma|}$ where $|\Sigma|$ is the length of $\Sigma$. The probabilities of each prefix obtained at each time step is the sum of the probability of non-blank plus the probability of a blank symbol.
 
-
-The sets  and  maintain a list of active prefixes at the previous time step and a proposed prefixes at the next time step respectively. Note that the size of  is never larger than the beam width . The overall probability of a prefix is the product of a word insertion term and the sum of the blank and non-black ending probabilities.
-\begin{equation}
-p(\ell;x_{1:t})=(p_b(\ell;x_{1:6})+p_{nb}(\ell;x_{1:t}))|W(\ell)|^\beta
-\label{eqn_c6_brnn08}
-\end{equation}
-
-Where  is a set of words in the sequence . When taking the  most probable prefixes of , we sort each prefix using the probability given in equation (\ref{eqn_c6_brnn08}).
-The variable  is the last character in the label sequence . The function , which converts  into a string of words, segments the sequence  at each space character and truncates any characters trailing the last space.
-
-We incorporate a lexicon or language model constraint by including the probability  whenever the algorithm proposes appending a space character to . By setting  to 1 if the last word of  is in the lexicon and 0 otherwise, the probability acts a a constraint forcing all character strings to consists of words only in the lexicon.  Furthermore,  can represent an n-gram language model by considering only the last n-1 words in .
 
 \section{Model Hyper parameters}
 The hidden layer matrix for each layer comprised 1024 hidden units (6.6M free parameters).  The weights are initialised from a uniform random distribution having a standard deviation of 0.046875.  Adam optimisation algorithm \citep{kingma2014adam} was used with initial learning rate of , and a momentum of 0.95 was deployed to optimise the learning rate.
