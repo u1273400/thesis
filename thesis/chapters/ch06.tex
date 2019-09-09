@@ -62,12 +62,32 @@ Prefix beam search algorithm \cite{hannun2014first} adopted in this work incorpo
 W_i=arg\max_{W_i \in \Sigma_W} p_{net}(W;X)p_{lm}(W)
 \label{eqn_c6_decoder01}
 \end{equation}
-Here, the Bayes product of language model prior $p_{lm}$ and the network output $p_{net}$ is utilised to maximise the probability of a particular character-word sequence in the lexicon given by $\Sigma_W$.  The overall calculation used to derive the final posterior distribution includes word insertion factors ($\alpha$ and $\beta$) used to balance the highly constrained n-gram language model.
+In equation \ref{eqn_c6_decoder01}, the Bayes product of language model prior $p_{lm}$ and the network output $p_{net}$ are utilised to maximise the probability of a particular character-word sequence in the lexicon given by $\Sigma_W$.  The overall calculation used to derive the final posterior distribution includes word insertion factors ($\alpha$ and $\beta$) used to balance the highly constrained n-gram language model.
 
 The second strategy adopted by the prefix beam search which improves the decoding algorithm is the beam search strategy.  With this approach, the search maintains all possible paths however retains only $k$ number paths which maximise the output sequence probability.  Improvements gained with this method are seen when certain maximal paths are made obsolete owing to new information derived from the multiple paths in being maintained in memory. 
 
-The recursive prefix beam search algorithm illustrated in figure \ref{fig_c6_decoder01} attempts to find the string formulated in equation \ref{eqn_c6_decoder02}.  Two sets prefixes $A_{prev}$ and $A_{nxet}$ are initialised, such that at $A_{nxet}$ maintains the prefixes in the current time-step while $A_{prev}$ maintains only $k$-prefixes from the previous time-step.  Note that at the end of each time step $A_{prev}$ is updated with only -most probable prefixes from $A_{nxet}$. Therefore while,  $A_{nxet}$ contains all the possible new paths from based on $A_{prev}$ as a Cartesian product of $A_{prev} \times \Sigma \in \mathcal{Z}^k\times\mathcal{Z}^{|\Sigma|}$ where $|\Sigma|$ is the length of $\Sigma$. The probabilities of each prefix obtained at each time step is the sum of the probability of non-blank plus the probability of a blank symbol.
+The recursive prefix beam search algorithm illustrated in figure \ref{fig_c6_decoder01} attempts to find the string formulated in equation \ref{eqn_c6_decoder01}.  Two sets prefixes $A_{prev}$ and $A_{nxet}$ are initialised, such that at $A_{nxet}$ maintains the prefixes in the current time-step while $A_{prev}$ maintains only $k$-prefixes from the previous time-step.  Note that at the end of each time step $A_{prev}$ is updated with only -most probable prefixes from $A_{nxet}$. Therefore while,  $A_{nxet}$ contains all the possible new paths from based on $A_{prev}$ as a Cartesian product of $A_{prev} \times \Sigma \in \mathcal{Z}^k\times\mathcal{Z}^{|\Sigma|}$ where $|\Sigma|$ is the length of $\Sigma$. The probabilities of each prefix obtained at each time step is the sum of the probability of non-blank plus the probability of a blank symbol.
+\begin{sidewaysfigure}[ht]
+    \includegraphics[width=22cm]{ctc}
+    \caption{Prefix beam search algorithm}
+    \label{fig_c6_decoder01}
+\end{sidewaysfigure}
 
+At every  time step and for every prefix $\ell$ currently in $A_{prev}$, a character from the alphabet $\Sigma$ is presented to the prefix. The prefix is only extended only when the presented symbol is not a blank or a space. $A_{nxet}$and  $A_{prev}$ maintain a list of active prefixes at the previous time step and proposed prefixes at the next time step respectively, The prefix probability is given by multiplying the word insertion term by the sum of the blank and non-blank symbol probabilities.
+\begin{equation}
+p(\ell|x_{1:t})=(p_{nb}(\ell|x_{1:t})+p_b(\ell|x_{1:t}))|W(\ell)|^\beta
+\label{eqn_c6_decoder03}
+\end{equation}
+
+$W(\cdot)$ is obtained by segmenting all the characters in the sequence with the space-character symbol and truncating any characters trailing the  set of words in the sequence.  The prefix distribution however varies slightly depending on network output character being presented.
+
+$\ell_{end}$ is the variable representing the last symbol in the prefix sequence in $A_{prev}$. If the symbol presented is the same as $\ell_{end}$ then the probability of a non-blank symbol,$p_{nb}=0$ . If the symbol being presented is blank then we do not extend the prefix.  Finally, if the symbol being presented is a space then we invoke the language model as follows
+\begin{equation}
+p(\ell^+|x_{1:t})=p(W(\ell^+)|W(\ell))^\alpha(p_{nb}(\ell|x_{1:t})+p_b(\ell|x_{1:t}))|W(\ell)|^\beta
+\label{eqn_c6_decoder03}
+\end{equation}
+
+Note that $p(W(\ell^+)|W(\ell))$ is set to $0$ if the current word $W(\ell^+)$ is not in the lexicon. This becomes a constraint to enforce all character strings to constitute of words only in the lexicon.  Furthermore,  $p(W(\ell^+)|W(\ell))$ is extended to include all the character sequences representing number of words considered by the n-gram language model by constituting the last $n-1$ words in character sequence $W(\ell)$.
 
 \section{Model Hyper parameters}
 The hidden layer matrix for each layer comprised 1024 hidden units (6.6M free parameters).  The weights are initialised from a uniform random distribution having a standard deviation of 0.046875.  Adam optimisation algorithm \citep{kingma2014adam} was used with initial learning rate of , and a momentum of 0.95 was deployed to optimise the learning rate.
