@@ -1,5 +1,14 @@
 * Bibliography
 
+@inproceedings{panayotov2015librispeech,
+  title={Librispeech: an ASR corpus based on public domain audio books},
+  author={Panayotov, Vassil and Chen, Guoguo and Povey, Daniel and Khudanpur, Sanjeev},
+  booktitle={2015 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+  pages={5206--5210},
+  year={2015},
+  organization={IEEE}
+}
+
 @misc{mozilla_2019,
 url={https://voice.mozilla.org/en},
 journal={Voice.mozilla.org},
