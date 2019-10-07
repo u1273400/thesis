@@ -1,5 +1,12 @@
 * Bibliography 
 
+@article{besacier2014introduction,
+  title={Introduction to the special issue on processing under-resourced languages},
+  author={Besacier, Laurent and Barnard, Etienne and Karpov, Alexey and Schultz, Tanja},
+  year={2014},
+  publisher={Speech Communications}
+}
+
 @inproceedings{panayotov2015librispeech,
   title={Librispeech: an ASR corpus based on public domain audio books},
   author={Panayotov, Vassil and Chen, Guoguo and Povey, Daniel and Khudanpur, Sanjeev},
