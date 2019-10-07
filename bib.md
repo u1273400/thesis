@@ -1,5 +1,21 @@
 * Bibliography
 
+@article{goldman2011easyalign,
+  title={EasyAlign: an automatic phonetic alignment tool under Praat},
+  author={Goldman, Jean-Philippe},
+  year={2011}
+}
+
+@article{stan2016alisa,
+  title={ALISA: An automatic lightly supervised speech segmentation and alignment tool},
+  author={Stan, Adriana and Mamiya, Yoshitaka and Yamagishi, Junichi and Bell, Peter and Watts, Oliver and Clark, Robert AJ and King, Simon},
+  journal={Computer Speech \& Language},
+  volume={35},
+  pages={116--133},
+  year={2016},
+  publisher={Elsevier}
+}
+
 @article{besacier2014introduction,
   title={Introduction to the special issue on processing under-resourced languages},
   author={Besacier, Laurent and Barnard, Etienne and Karpov, Alexey and Schultz, Tanja},
