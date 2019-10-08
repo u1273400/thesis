@@ -6,6 +6,17 @@
   year={2011}
 }
 
+@book{becchetti1998,
+    author={Becchetti,Claudio and Ricotti,Lucio P.},
+    year={1998},
+    title={Speech recognition: theory and C++ implementation},
+    publisher={Wiley},
+    address={New York},
+    keywords={C (Computer program language); Automatic speech recognition},
+    isbn={0471977306;9780471977308;},
+    language={English},
+}
+
 @article{stan2016alisa,
   title={ALISA: An automatic lightly supervised speech segmentation and alignment tool},
   author={Stan, Adriana and Mamiya, Yoshitaka and Yamagishi, Junichi and Bell, Peter and Watts, Oliver and Clark, Robert AJ and King, Simon},
