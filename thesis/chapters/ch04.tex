@@ -30,7 +30,7 @@ Recall that $x(t)$ is the original signal while $a_k$ is the Fourier Series coef
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=7cm]{thesis/images/spectral.png}\\
-  \caption{Sample Spectrogram} \cite{}\label{fig_4_2_spectral}
+  \caption{Sample Spectrogram} \cite{cwt_lecture}\label{fig_4_2_spectral}
 \end{figure}
 
 The Fourier transform discussed in the preceding paragraph constitutes a valuable tool for the analysis of the frequency component of a signal.  However is not able to determine when in time a frequency occurs hence is not able to analyse time related signal deformations.  The Short-time Fourier Transform (STFT) attempts to salvage this by windowing the signal in time signal and performing Fourier transforms over sliding windows sections of the original signal rather than the whole signal.  There is however, a resolution trade off that ensues from this operation such that, the higher the resolution in time accuracy, the lower the frequency accuracy and vice versa.  In the next section on the continuous wavelet transform, how the wavelet transform improves on the weaknesses of the Fourier Transform and the STFT is reviewed.
