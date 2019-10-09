@@ -1,4 +1,4 @@
-Curve fitting is a very common theme in pattern recognition. The concept of invariant functions convey mapping functions that approximate a discriminating function when a parent function is reduced from a high dimensional space to a low dimensional space \cite{mallat2016understanding}.  In this chapter an invariance function called a scattering transform  enables invariance of groups of deformations that could apply to speech signals thereby preserving higher level characterisations useful for classifying speech sounds. Works done by \citep{peddinti2014deep,zeghidour2016deep,anden2011multiscale,sainath2014deep} have shown that when the scattering spectrum are applied to speech signals and used as input to speech systems have state of the art performance.  In particular \cite{sainath2014deep} shows 4-7\% relative improvement in word error rates (WER) over Mel frequencies cepstral coefficients (MFCCs) for 50 and 430 hours of English Broadcast News speech corpus.  While experiments have been performed with hybrid HMM-DNN systems in the past, this thesis focuses on the use of scatter transforms in end-to-end RNN speech models.
+Curve fitting is a very common theme in pattern recognition. The concept of invariant functions convey mapping functions that approximate a discriminating function when a parent function is reduced from a high dimensional space to a low dimensional space \cite{mallat2016understanding}.  In this chapter an invariance function called a scattering transform enables invariance of groups of deformations that could apply to speech signals thereby preserving higher level characterisations useful for classifying speech sounds. Works done by \citep{peddinti2014deep,zeghidour2016deep,anden2011multiscale,sainath2014deep} have shown that when the scattering spectrum are applied to speech signals and used as input to speech systems have state of the art performance.  In particular \cite{sainath2014deep} shows 4-7\% relative improvement in word error rates (WER) over Mel frequencies cepstral coefficients (MFCCs) for 50 and 430 hours of English Broadcast News speech corpus.  While experiments have been performed with hybrid HMM-DNN systems in the past, this thesis focuses on the use of scatter transforms in end-to-end RNN speech models.
 
 This chapter iterates the use of the Fourier transform as the starting analysis function for building invariant functions and then discusses the Mel filter bank solution and then establishes why the scattering transform through the wavelet modulus operator provides better invariance features over the Mel filters.
 
@@ -30,7 +30,7 @@ Recall that $x(t)$ is the original signal while $a_k$ is the Fourier Series coef
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=7cm]{thesis/images/spectral.png}\\
-  \caption{Sample Spectrogram} \cite{xxx}\label{fig_4_2_spectral}
+  \caption{Sample Spectrogram} \cite{}\label{fig_4_2_spectral}
 \end{figure}
 
 The Fourier transform discussed in the preceding paragraph constitutes a valuable tool for the analysis of the frequency component of a signal.  However is not able to determine when in time a frequency occurs hence is not able to analyse time related signal deformations.  The Short-time Fourier Transform (STFT) attempts to salvage this by windowing the signal in time signal and performing Fourier transforms over sliding windows sections of the original signal rather than the whole signal.  There is however, a resolution trade off that ensues from this operation such that, the higher the resolution in time accuracy, the lower the frequency accuracy and vice versa.  In the next section on the continuous wavelet transform, how the wavelet transform improves on the weaknesses of the Fourier Transform and the STFT is reviewed.
@@ -135,7 +135,7 @@ A simple approximation for the Mel scale is obtained by applying linear scale fo
 \Delta_m=1.2\times \Delta_{m-1}
 \label{eqn_c4_mel03}
 \end{equation}
-where $m$ is the frequency bin index and  $\Delta_m$ is the frequency range between the start and end frequencies for the $m$-th bin. The resulting filters are overlapping filters shown in the figure \ref{{fig_4_3_mfilt}}.
+where $m$ is the frequency bin index and  $\Delta_m$ is the frequency range between the start and end frequencies for the $m$-th bin. The resulting filters are overlapping filters shown in figure \ref{fig_4_3_mfilt}.
 \begin{figure}
 \centering
   % Requires \usepackage{graphicx}
