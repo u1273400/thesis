@@ -25,7 +25,7 @@ x(t)=\sum_{k=-\infty}^{\infty}a_ke^{\left(j\frac{2\pi kt}{T}\right)}
 \label{eqn_c4_fourier02}
 \end{equation}
 
-Recall that $x(t)$ is the original signal while $a_k$ is the Fourier Series coefficient.  This coefficient indicates the amplitude and phase of the original signal's higher order harmonics indexed by $k$ such that higher values of $k$ correspond to higher frequency components.  In a typical spectrogram (Figure \ref{fig_4_2_spectral}), it can be seen that the energy of the signal is concentrated about a central region and then harmonic spikes of energy content exponentially decrease and taper off.  Therefore in Figure \ref{fig_4_2_spectral}, the energies are concentrated at frequencies of about 100, 150 and 400 hertz.
+Recall that $x(t)$ is the original signal while $a_k$ is the Fourier Series coefficient.  This coefficient indicates the amplitude and phase of the original signal's higher order harmonics indexed by $k$ such that higher values of $k$ correspond to higher frequency components.  In a typical spectrogram (figure \ref{fig_4_2_spectral}), it can be seen that the energy of the signal is concentrated about a central region and then harmonic spikes of energy content exponentially decrease and taper off.  Therefore in figure \ref{fig_4_2_spectral}, the energies are concentrated at frequencies of about 100, 150 and 400 hertz.
 \begin{figure}
 \centering
   % Requires \usepackage{graphicx}
@@ -36,7 +36,7 @@ Recall that $x(t)$ is the original signal while $a_k$ is the Fourier Series coef
 The Fourier transform discussed in the preceding paragraph constitutes a valuable tool for the analysis of the frequency component of a signal.  However is not able to determine when in time a frequency occurs hence is not able to analyse time related signal deformations.  The Short-time Fourier Transform (STFT) attempts to salvage this by windowing the signal in time signal and performing Fourier transforms over sliding windows sections of the original signal rather than the whole signal.  There is however, a resolution trade off that ensues from this operation such that, the higher the resolution in time accuracy, the lower the frequency accuracy and vice versa.  In the next section on the continuous wavelet transform, how the wavelet transform improves on the weaknesses of the Fourier Transform and the STFT is reviewed.
 
 \section{Wavelet transform}
-The continuous wavelet transform can be defined as a signal multiplied by scaled and shifted version of a wavelet function $\psi(t)$ referred to as the mother wavelet. The time-frequency tile-allocation of the three basic transforms examined in the first part of this chapter is illustrated in Figure \ref{fig_4_2_tftile}
+The continuous wavelet transform can be defined as a signal multiplied by scaled and shifted version of a wavelet function $\psi(t)$ referred to as the mother wavelet. The time-frequency tile-allocation of the three basic transforms examined in the first part of this chapter is illustrated in figure \ref{fig_4_2_tftile}
 
 \begin{figure}
 \centering
@@ -135,7 +135,7 @@ A simple approximation for the Mel scale is obtained by applying linear scale fo
 \Delta_m=1.2\times \Delta_{m-1}
 \label{eqn_c4_mel03}
 \end{equation}
-where $m$ is the frequency bin index and  $\Delta_m$ is the frequency range between the start and end frequencies for the $m$-th bin. The resulting filters are overlapping filters shown in Figure \ref{fig_4_3_mfilt}.
+where $m$ is the frequency bin index and  $\Delta_m$ is the frequency range between the start and end frequencies for the $m$-th bin. The resulting filters are overlapping filters shown in figure \ref{fig_4_3_mfilt}.
 \begin{figure}
 \centering
   % Requires \usepackage{graphicx}
