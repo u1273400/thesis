@@ -32,7 +32,7 @@ A HMM represents a finite state machine where a process transits a sequence of s
   \caption{HMM Generative Model}\cite{young2002htk}\label{fig_2_1_hmm}
 \end{figure}
 
-In an HMM represented in figure \ref{fig_2_1_hmm} there are two important probabilities.  The first is the state transition probability given by $a_{ij}$ this is the probability to move from state $i$ to state $j$.  The second probability $b_j$ is the probability that an output observation is emitted when in a particular state.
+In an HMM represented in Figure \ref{fig_2_1_hmm} there are two important probabilities.  The first is the state transition probability given by $a_{ij}$ this is the probability to move from state $i$ to state $j$.  The second probability $b_j$ is the probability that an output observation is emitted when in a particular state.
 
 Where $\mathbf{O}$, are the output observations and $M$ is the HMM.  Given that $X$ represents the sequence of states transitioned by a process, a HMM defines the joint probability of $X$ and the output probabilities given the HMM in the following representation:
 \begin{equation}P(\mathbf{O}|M)=\sum_Xa_{x(0)x(1)}\prod_{t=1}^Tb_{x(t)}(\mathbf{o}_t)a_{x(t)x(t+1)}
@@ -142,7 +142,7 @@ Introduction of the unique scattering network is discussed in the next section. 
 
 In Machine Learning, training accuracy is greatly improved through a process described as feature engineering.  In feature engineering, discriminating characteristics of the data is enhanced at the same time non-distinguishing features constituting noise is removed or attenuated to a barest minimum.  A lot of the components signal speech signal are due to noise in the environment as well as signal channel distortions such as losses due to conversion from audio signals to electrical signal in the recording system.
 
-In figure \ref{fig_2_2_asr_pipeline}, feature engineering is done at the feature extraction stage of the ASR pipeline. It has been shown that a common technique using Mel-frequency cepstral coefficients (MFCCs) \citep{davis1990comparison} can represent speech in a stable fashion that approximate how the working of the human auditory speech processing and is able to filter useful components in the speech signal required for human speech hearing. Similar feature processing schemes have been developed include Perceptual Linear Prediction (PLP) \citep{hermansky1990perceptual} and RASTA \citep{hermansky1994rasta}. 
+In Figure \ref{fig_2_2_asr_pipeline}, feature engineering is done at the feature extraction stage of the ASR pipeline. It has been shown that a common technique using Mel-frequency cepstral coefficients (MFCCs) \citep{davis1990comparison} can represent speech in a stable fashion that approximate how the working of the human auditory speech processing and is able to filter useful components in the speech signal required for human speech hearing. Similar feature processing schemes have been developed include Perceptual Linear Prediction (PLP) \citep{hermansky1990perceptual} and RASTA \citep{hermansky1994rasta}. 
 
 The scattering spectrum defines a locally translation invariant representation of a signal resistant to signal deformation over extended periods of time spanning seconds of the signal \citep{anden2014deep}. While Mel-frequency cepstral coefficients (MFCCs) are cosine transforms of Mel-frequency spectral coefficients (MFSCs), the scattering operator consists of a composite wavelet and modulus operation on input signals. 
 

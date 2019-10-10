@@ -37,7 +37,7 @@ where $h^{(4)} = h^{(f)} + h^{(b)}$. The output of the Bi-RNN on layer 6 is a st
 h^{(6)}_{t,k} = \hat{y}_{t,k} \equiv \mathbb{P}(c_t = k \mid x) = \frac{\exp{ \left( (W^{(6)} h^{(5)}_t)_k + b^{(6)}_k \right)}}{\sum_j \exp{\left( (W^{(6)} h^{(5)}_t)_j + b^{(6)}_j \right)}})    \label{ch06_05_l6}
 \end{equation}
 
-$b^{(6)}_k$ takes on the -th bias and $(W^{(6)} h^{(5)}_t)_k$ is the matrix product of the $k$-th element.  The error of the outputs are then computed using the CTC loss function \cite{graves_2014} as described in chapter \ref{ch3RNN}.  A summary of our model is illustrated in figure \ref{fig_6_1_ctc_scatter}.
+$b^{(6)}_k$ takes on the -th bias and $(W^{(6)} h^{(5)}_t)_k$ is the matrix product of the $k$-th element.  The error of the outputs are then computed using the CTC loss function \cite{graves_2014} as described in chapter \ref{ch3RNN}.  A summary of our model is illustrated in Figure \ref{fig_6_1_ctc_scatter}.
 \begin{figure}
 \centering
   % Requires \usepackage{graphicx}
@@ -66,7 +66,7 @@ In equation \ref{eqn_c6_decoder01}, the Bayes product of language model prior $p
 
 The second strategy adopted by the prefix beam search which improves the decoding algorithm is the beam search strategy.  With this approach, the search maintains all possible paths however retains only $k$ number paths which maximise the output sequence probability.  Improvements gained with this method are seen when certain maximal paths are made obsolete owing to new information derived from the multiple paths in being maintained in memory. 
 
-The recursive prefix beam search algorithm illustrated in figure \ref{fig_c6_decoder01} attempts to find the string formulated in equation \ref{eqn_c6_decoder01}.  Two sets prefixes $A_{prev}$ and $A_{nxet}$ are initialised, such that at $A_{nxet}$ maintains the prefixes in the current time-step while $A_{prev}$ maintains only $k$-prefixes from the previous time-step.  Note that at the end of each time step $A_{prev}$ is updated with only -most probable prefixes from $A_{nxet}$. Therefore while,  $A_{nxet}$ contains all the possible new paths from based on $A_{prev}$ as a Cartesian product of $A_{prev} \times \Sigma \in \mathcal{Z}^k\times\mathcal{Z}^{|\Sigma|}$ where $|\Sigma|$ is the length of $\Sigma$. The probabilities of each prefix obtained at each time step is the sum of the probability of non-blank plus the probability of a blank symbol.
+The recursive prefix beam search algorithm illustrated in Figure \ref{fig_c6_decoder01} attempts to find the string formulated in equation \ref{eqn_c6_decoder01}.  Two sets prefixes $A_{prev}$ and $A_{nxet}$ are initialised, such that at $A_{nxet}$ maintains the prefixes in the current time-step while $A_{prev}$ maintains only $k$-prefixes from the previous time-step.  Note that at the end of each time step $A_{prev}$ is updated with only -most probable prefixes from $A_{nxet}$. Therefore while,  $A_{nxet}$ contains all the possible new paths from based on $A_{prev}$ as a Cartesian product of $A_{prev} \times \Sigma \in \mathcal{Z}^k\times\mathcal{Z}^{|\Sigma|}$ where $|\Sigma|$ is the length of $\Sigma$. The probabilities of each prefix obtained at each time step is the sum of the probability of non-blank plus the probability of a blank symbol.
 \begin{sidewaysfigure}[ht]
     \includegraphics[width=22cm]{ctc}
     \caption{Prefix beam search algorithm}
