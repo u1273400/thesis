@@ -1,8 +1,8 @@
-The HMM model described in the Chapter \ref{c02} uses a divide and conquer strategy which has also been described as a generative Machine Learning algorithm in which we use the smaller components represented by the HMM to learn the entire speech process.   In previous chapters, this was referred to as the bottom-top strategy.  The discriminative method however uses the opposite mechanism.  Instead of using the building blocks of speech to determine speech parameters of a HMM, the discriminative strategy determines the posterior probability directly using the joint probability distribution of the parameters involved in the discriminative process.  The discriminative approach, discussed in this chapter focuses in on Neural network architectures.
+The HMM model described in Chapter \ref{c02} uses a divide and conquer strategy which has also been described as a generative Machine Learning algorithm in which we use the smaller components’ representations as modelled by the HMM to learn the entire speech process.   In previous chapters, this was referred to as the bottom-top strategy.  The discriminative method however uses the opposite mechanism.  Instead of using the building blocks of speech to determine speech parameters of a HMM, the discriminative strategy determines the posterior probability directly using the joint probability distribution of the parameters involved in the discriminative process.  The discriminative approach, discussed in this chapter focuses in on Neural network architectures.
 
 \section{Neural network architecture}
 
-The building block of a neural network simulates a combination of two consecutive linear and non-linear operations having many inputs interconnected with the linear portion of the network.  This rudimentary structure is described by McCullough and Pitts (1942) in  \cite{cowan1990discussion} as the Perceptron in Figure \ref{fig_3_1_ptron} 
+The building block of a neural network simulates a combination of two consecutive linear and non-linear operations having many inputs interconnected with the linear portion of the network.  This rudimentary structure is described by McCullough and Pitts (1942) and in  \cite{cowan1990discussion} as the Perceptron in Figure \ref{fig_3_1_ptron} 
 
 \begin{figure}
 \centering
@@ -20,7 +20,7 @@ The linear operation is the sum of the products of the input feature and a  weig
   \caption{Neural network} \label{fig_3_2_nn}
 \end{figure}
 
-In this regime each combination of linear operation followed by a non linear operation is called a neuron and the total number of neurons in the layer formed is termed as $M$-number of neurons in the layer.
+From the preceding paragraph, each combination of linear operation followed by a non linear operation is called a neuron and the total number of neurons in the layer formed is termed as $M$-number of neurons in the layer.
 
 \subsection{Multi-layer Perceptron (MLP)}
 The multilayer Perceptron or MLP extends the basic Perceptron structure by adding one or more hidden layers.  These hidden layers comprise the outputs of one layer becoming the input of the next layer. In the simplest case having one hidden layer, the output of layer 1 becomes the input of the final output layer.  In comparison, the Perceptron is a one dimensional structure having one or more linear and non linear combination outputs, while the multilayer Perceptron is a 2-dimensional structure having one or more hidden layers of $N$ linear and non-linear combination outputs.  Mathematically speaking the output of each layer of an MLP having $N$ inputs and $M$ neurons is given by
