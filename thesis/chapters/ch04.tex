@@ -181,3 +181,10 @@ Repeating these successive steps of computing invariant features and retrieving 
   \includegraphics[width=14cm]{thesis/images/scatter.png}\\
   \caption{Scattering network - 2 layers deep} \cite{zeghidour2016deep}\label{fig_4_3_scatter}
 \end{figure}
+
+\section{Chapter Summary}
+This chapter highlights the characteristics of the Deep Scattering Network that enable it as a candidate rich in pattern recognition discriminators for speech recognition. It is shown also that features required for speech feature invariance is recovered through successive layers of the deep scattering network.  
+
+The development of this model in this chapter introduces the Fourier transform as a means of determining frequency contents in a speech wave.  While the Fourier transform has high resolution for frequency, it has no temporal resolution and temporal frequencies or the instantaneous frequency within speech signals therefore cannot be resolved in the Fourier Transform.   The Short-time Fourier Transform (STFT) attempts to solve this but there is a trade-off to be made between temporal resolution and frequency resolution.  Better resolutions of time and frequencies however, can be obtained using the Wavelet transform.  This chapter also discussed the characteristics of the Wavelet transform that enable better time and frequency filtering.
+
+Finally MFCCs and Deep Scattering Networks (DSNs) are discussed and compared. It was shown here that through wavelet operations employed by the Deep Scattering Networks frequency resolution lost in MFCC is gained by the DSN and these frequencies contain information relevant for speech invariance. In turn, invariance information is highly useful for speech discrimination
