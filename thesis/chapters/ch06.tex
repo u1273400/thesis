@@ -119,8 +119,6 @@ Word Error Rates by this model were optimised after 75 epochs, learning rate of 
 A total of four experiments were carried out on two different GPU configurations. A set of experiments was performed a GPU configuration consisting of 2 GPUs having a total of 10 gigabytes of memory. The second set of experiments was carried out on a GPU configuration comprising 5 GPUs having a total of 15 gigabytes of memory.  For each configuration two experiments were carried out on a small subset of the dataset then on a larger subset of the common voice dataset being used.   The various GPU configurations along with the training times are shown in Table 1.
 
 The output of the training produced mostly gibberish when trained in both configurations using only just one hour of training data.  Training loss reduced significantly once the data was increased to ten hours of training.  However word error rates (WER) only showed improvement on the 40 hours dataset.
-
-The results showed that the training of the model was moving towards a very slow convergence as indicated by the slow decrements in training loss.  However, we speculate that on the complete data-set, the model will not only converge but show improvements in word error rates.
 \begin{figure}
 \centering
   % Requires \usepackage{graphicx}
@@ -140,3 +138,4 @@ number of epochs} \label{fig_6_3_wer}
 
 In this chapter the details of the novel structure having the end-to-end deep bi-RNN architecture and deep scattering features were elaborated on.  The architecture which follows a five-layer structure consisting of a feed-forward neural network in the first three layers and the last two consisting of recurrent structures flowing in two different directions.  The network is then fed in with a 165-dimension feature vector containing deep-scattering encoding derived from a sampled raw audio file.
 
+The results showed that the training of the model was moving towards a very slow convergence as indicated by the slow decrements in training loss.  However, we speculate that on the complete data-set, the model will not only converge but show improvements in word error rates.
