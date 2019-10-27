@@ -24,6 +24,13 @@ The mother wavelet of the Haar wavelet has only two coefficients $c_0=c_1=1$ and
 
 Observe here that $c_0+c_1=2$, i.e. dyadic.  The solution to this recurrence equation and the resulting plot is given in Figure \ref{haar}. 
 
+\begin{figure}
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=14cm]{thesis/images/haar.png}\\
+  \caption{Haar wavelet} \label{haar}
+\end{figure}
+
 Through multi-resolution analysis, the following reconstruction of the Haar wavelet is derived:
 
 \begin{equation}
@@ -32,3 +39,10 @@ Through multi-resolution analysis, the following reconstruction of the Haar wave
 \end{equation}
 
 The parameter $j$, controls the resolution of the signal reconstruction and the following wavelets and function representation are given in Figure \ref{multires}
+
+\begin{figure}
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=14cm]{thesis/images/multires.png}\\
+  \caption{Multi resolution analysis of Haar wavelets} \label{multires}
+\end{figure}
