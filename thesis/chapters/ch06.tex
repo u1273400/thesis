@@ -1,6 +1,6 @@
 This work explores the prospects of deep recurrent end-to-end architectures applied to speech recognition. Complementary aspects of developing speech recognition systems are eliminated by focusing on end-to-end speech units as a two-step process requiring a Connectionist Temporal Character Classification (CTC)\citep{graves2006connectionist} model and Language Model (LM) rather than a three-step process requiring an Acoustic model(AM), LM and phonetic dictionary. Employing a two-step process rather than a three-step process is particularly desirable for low resource languages as less effort is required developing fewer simplified models.
 
-Earlier in chapter one, deep learning was defined as a type of representational learning whereby different levels of complexity are captured in internal layer-wise encapsulations. It has also been noted that layer-wise stacking of neural and neural network type architectures such as the Restricted Boltzmann Machine (RBM) deep belief networks (DBMs) were used to implement such representations. In this chapter, the end-to-end Bi-directional Recurrent Neural Network model is described. Here, the development of the features using the deep scattering convolution network is first elaborated on. The model parameters and architecture are described and the decoding algorithm is detailed.
+Earlier in chapter one, deep learning was defined as a type of representational learning whereby different levels of complexity are captured in internal layer-wise encapsulations. It has also been noted that layer-wise stacking of neural and neural network type architectures such as the Restricted Boltzmann Machine (RBM) deep belief networks (DBMs) were used to implement such representations. In this chapter, the end-to-end Bi-directional Recurrent Neural Network model is described. Here, the development of the features using the deep scattering convolution network is first elaborated on. The model parameters and architecture are described and the decoding algorithm are all detailed in sections contained within this chapter.
 
 \section{Deep Scattering Features}
 The fast wavelet transform is derived in Chapter \ref{ch4DSN} from a low pass filter and a high pass filter.  The speech features used in this research using a deep scattering network $2$ layers deep was created using the wavelet modulus operator comprising a low pass filter and a band pass filter.  Hyper parameters of the system included the window period for each sampled sub section, $T$;  The Q-band value for the band pass filter and the number of wavelets $J$ at each scattering layer for the total number of layers, $M=2$.
@@ -119,8 +119,6 @@ Word Error Rates by this model were optimised after 75 epochs, learning rate of 
 A total of four experiments were carried out on two different GPU configurations. A set of experiments was performed a GPU configuration consisting of 2 GPUs having a total of 10 gigabytes of memory. The second set of experiments was carried out on a GPU configuration comprising 5 GPUs having a total of 15 gigabytes of memory.  For each configuration two experiments were carried out on a small subset of the dataset then on a larger subset of the common voice dataset being used.   The various GPU configurations along with the training times are shown in Table 1.
 
 The output of the training produced mostly gibberish when trained in both configurations using only just one hour of training data.  Training loss reduced significantly once the data was increased to ten hours of training.  However word error rates (WER) only showed improvement on the 40 hours dataset.
-
-The results showed that the training of the model was moving towards a very slow convergence as indicated by the slow decrements in training loss.  However, we speculate that on the complete data-set, the model will not only converge but show improvements in word error rates.
 \begin{figure}
 \centering
   % Requires \usepackage{graphicx}
@@ -136,3 +134,8 @@ total number of epochs} \label{fig_6_2_loss}
 number of epochs} \label{fig_6_3_wer}
 \end{figure}
 
+\section{Chapter Summary}
+
+In this chapter the details of the novel structure having the end-to-end deep bi-RNN architecture and deep scattering features were elaborated on.  The architecture which follows a five-layer structure consisting of a feed-forward neural network in the first three layers and the last two consisting of recurrent structures flowing in two different directions.  The network is then fed in with a 165-dimension feature vector containing deep-scattering encoding derived from a sampled raw audio file.
+
+The results showed that the training of the model was moving towards a very slow convergence as indicated by the slow decrements in training loss.  However, we speculate that on the complete data-set, the model will not only converge but show improvements in word error rates.

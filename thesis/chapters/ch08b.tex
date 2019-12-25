@@ -1,0 +1,57 @@
+
+\section*{Appendix II - Matlab listing for scattering network}
+\begin{lstlisting}[language=Matlab]
+function scatter()
+    %UNTITLED Summary of this function goes here
+    %   Detailed explanation goes here
+    T = readtable('data/cv-valid-dev.xlsx','ReadRowNames',true);
+    F=table2cell(T(:,{'scatterc','wav_filename'}));
+    all_files=size(F,1);
+    ofm='hh:mm:ss';
+    ifm='dd-mmm-yy HH:MM:SS.FFF';
+    tic;
+    for i = 1:all_files
+      wav_file=strjoin(F(i,2));
+      dss_file=strjoin(F(i,1));
+      if exist(wav_file,'file')>0
+      	if exist(dss_file,'file')==0
+        	st = transpose(scatter_audio(wav_file));
+        	csvwrite(dss_file,st);
+      	end
+      else
+      	fprintf('\nNot found:%s',wav_file);
+      end
+ 
+      pg=i/all_files*100;
+      ts=datestr(now,ifm);
+      tv=toc;
+      d=duration(seconds(tv),'Format',ofm);
+      pc=(all_files/i*tv)-tv;
+      eta=duration(seconds(pc),'Format',ofm);
+ 
+      if mod(i,500)==0 || i==1 || i==10 || i==100
+      	fileID = fopen('log/dss180625.log','w+');
+      	s=sprintf('\n%s: processing file  %s',ts,wav_file);
+      	fprintf(fileID,'%s',s);
+      	fprintf('%s',s);
+      	s=sprintf('\n%s : processing %d of %d files  %3.2f%% complete.. time elapsed = %s, eta = %s',ts,i,all_files,pg,d,eta);
+      	fprintf(fileID,'%s',s);
+      	fprintf('%s',s);
+      	fclose(fileID);
+      end
+    end
+end
+ 
+function st= scatter_audio(inputArg1)
+    y=audioread(inputArg1);
+    N=length(y);
+    T=2^9;
+    filt_opt=default_filter_options('audio',T);
+    Wop=wavelet_factory_1d(N,filt_opt);
+    S=scat(y,Wop);
+    S=renorm_scat(S);
+    S=log_scat(S);
+    st=format_scat(S);
+end
+
+\end{lstlisting}
