@@ -1,10 +1,41 @@
 * Bibliography
 
+@article{abadi2016tensorflow,
+  title={Tensorflow: Large-scale machine learning on heterogeneous distributed systems},
+  author={Abadi, Mart{\'\i}n and Agarwal, Ashish and Barham, Paul and Brevdo, Eugene and Chen, Zhifeng and Citro, Craig and Corrado, Greg S and Davis, Andy and Dean, Jeffrey and Devin, Matthieu and others},
+  journal={arXiv preprint arXiv:1603.04467},
+  year={2016}
+}
+
+@article{abadi2016tensorflow,
+  title={Tensorflow: Large-scale machine learning on heterogeneous distributed systems},
+  author={Abadi, Mart{\'\i}n and Agarwal, Ashish and Barham, Paul and Brevdo, Eugene and Chen, Zhifeng and Citro, Craig and Corrado, Greg S and Davis, Andy and Dean, Jeffrey and Devin, Matthieu and others},
+  journal={arXiv preprint arXiv:1603.04467},
+  year={2016}
+}
+
 @article{goldman2011easyalign,
   title={EasyAlign: an automatic phonetic alignment tool under Praat},
   author={Goldman, Jean-Philippe},
   year={2011}
 }
+
+@inproceedings{krizhevsky2012imagenet,
+  title={Imagenet classification with deep convolutional neural networks},
+  author={Krizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E},
+  booktitle={Advances in neural information processing systems},
+  pages={1097--1105},
+  year={2012}
+}
+
+@Misc{numpy,
+  author =    {Travis Oliphant},
+  title =     {{NumPy}: A guide to {NumPy}},
+  year =      {2006--},
+  howpublished = {USA: Trelgol Publishing},
+  url = "http://www.numpy.org/",
+  note = {[Online; accessed <today>]}
+ }
 
 @inproceedings{novotney2009analysis,
   title={Analysis of low-resource acoustic model self-training},
