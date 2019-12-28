@@ -1,6 +1,11 @@
 * Bibliography
 
-
+@article{al2016theano,
+  title={Theano: A Python framework for fast computation of mathematical expressions},
+  author={Al-Rfou, Rami and Alain, Guillaume and Almahairi, Amjad and Angermueller, Christof and Bahdanau, Dzmitry and Ballas, Nicolas and Bastien, Fr{\'e}d{\'e}ric and Bayer, Justin and Belikov, Anatoly and Belopolsky, Alexander and others},
+  journal={arXiv preprint arXiv:1605.02688},
+  year={2016}
+}
 
 @article{goldsborough2016tour,
   title={A tour of tensorflow},
