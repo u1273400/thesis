@@ -16,6 +16,16 @@
   year={2016}
 }
 
+@inproceedings{abadi2017computational,
+  title={A computational model for TensorFlow: an introduction},
+  author={Abadi, Mart{\'\i}n and Isard, Michael and Murray, Derek G},
+  booktitle={Proceedings of the 1st ACM SIGPLAN International Workshop on Machine Learning and Programming Languages},
+  pages={1--7},
+  year={2017},
+  organization={ACM}
+}
+
+
 @article{goldman2011easyalign,
   title={EasyAlign: an automatic phonetic alignment tool under Praat},
   author={Goldman, Jean-Philippe},
