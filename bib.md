@@ -13,6 +13,15 @@
   year={2009}
 }
 
+@incollection{ketkar2017introduction,
+  title={Introduction to pytorch},
+  author={Ketkar, Nikhil},
+  booktitle={Deep learning with python},
+  pages={195--208},
+  year={2017},
+  publisher={Springer}
+}
+
 @article{schluter2001model,
   title={Model-based MCE bound to the true Bayes' error},
   author={Schluter, Ralf and Ney, Hermann},

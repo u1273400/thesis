@@ -8,6 +8,15 @@
   year={2018}
 }
 
+@incollection{ketkar2017introduction,
+  title={Introduction to pytorch},
+  author={Ketkar, Nikhil},
+  booktitle={Deep learning with python},
+  pages={195--208},
+  year={2017},
+  publisher={Springer}
+}
+
 @inproceedings{novotney2009analysis,
   title={Analysis of low-resource acoustic model self-training},
   author={Novotney, Scott and Schwartz, Richard},
