@@ -1,6 +1,30 @@
 \section{Speech Processing software and tools}
+\subsection{Alisa}\label{c3sec_alisa}
+Alisa tool is a lightly supervised sentence segmentation tool based on Voice Activity Detection (VAD) algorithms \citep{stan2016alisa}.  It is so called lightly supervised because it requires small amounts of training data.  Generally the tool was asserted to be optimised for sentence segmentation and offered assistance in the creation of new speech corpora in a language-independent fashion. 
+
+The Alisa tool researchers deploy a two-step method for aligning speech, and claim performance up to 70\% imperfect transcriptions often found in online resources can be successfully aligned with a word error rate of less than 0.5\%.  This tool is therefore said to be suitable for development multilingual and under-resourced language aligned speech-corpora.
+
+The motivation behind Alisa was to reduce the time and effort used to gather a large amount of large amounts of quality data as well as actively eliminate the domain knowledge required to phonetically transcribe speech data.  In addition, and as a bonus to achieving the first objective, is the ability to migrate speech technology fairly seamlessly from one language to another and therefore realise the rather tedious task of automatic transcription of a new language.
+
+\subsubsection{Alisa Architecture}
+The goal of automatic transcription of new language with low resource constraint is particularly valuable to this research and as such, it would be relevant to review the enhancements introduced to Alisa.  The two step-method consists of a GMM-based sentence level segmenter and also an iterative grapheme acoustic model used for alignment.  The sentence level GMM-based speech segmenter is used to automatically segment speech into utterances which as discussed earlier forms the basic unit of processing within any ASR system.  This attempts to relieve the researcher off the manual process of segmenting the continuous audio file manually. This process included a GMM-based voice activity detector trained from about 10 minutes of manually labeled data. The second step grapheme based acoustic model is supplemented with a highly restricted word network they referred to as a skip network.  Together an iterative acoustic modelling training procedure is formulated.  The method described required the initial training data and a minimal labelling procedure that involved simple letter to sound rules and inter-sentence silence segments to provide an orthographic transcript of the initial 10 minute recording data.  Therefore, this process is resource-effective because non-experts can also provide this data.  The actual alignment process made use of a grapheme level Viterbi decoder to drive the iteratively self-trained grapheme models.  The model architecture is shown in the figure below.
+\begin{figure}
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=9cm]{thesis/images/alisa}\\
+  \caption{Original waveform input for auto-correlation}\label{fig_c3_alisa00}
+\end{figure}
+
+Figure 3-5 Alisa Overview (Stan et al., 2016)
+Figure 3-5 above shows a block diagram of the steps involved in the alignment.  The method can be applied to any language with an alphabetic writing system, given the availability of speech resource and its corresponding approximate script.
+
+We have earlier mentioned that the downside of using grapheme based acoustic model is the increase in the error margin or trade of accuracy.  Several steps were introduced in Alisa to minimise this margin, the chief being the introduction of a tri-grapheme acoustic model which is modeled after using context dependent triphones in traditional acoustic modelling.  Other methods used drop down the error margin include the use of discriminative training with the Maximum Mutual Information (MMI) criterion (Schluter & Ney, 2001; Bouchard & Triggs, 2004) and methods described in (Novotney & Schwartz, 2009; Lamel, Gauvain & Adda, 2002). Finally, it was observed that Alisa provided good alignment but was not fully featured. For instance it had no way of adding insertions and substitutions in the audio data not provided in the transcription.  Secondly, Alisa is restricted to languages that can utilise the english alphabet.
+
 \section{Initial Experiments}
-The experiments in the following sections describe initial experiments based on the initial study of a language learning companion before the research was narrowed down to a low resource speech recognition.  These paragraphs describe analysis of raw wave-forms using auto-correlation signal processing in Matlab and experiments made with the Nao robot speech processing engine and experiments with speech recognition toolkit and speech processing tasks.  These tasks include digit recognition systems using CMUSphinx and Kaldi speech recognition toolkits and speech alignment tasks using Alisa tool.
+The experiments in the following sections describe initial experiments based on the initial study of a language learning companion before the research was narrowed down to a low resource speech recognition.  These preliminary experiments in addition to a preliminary Language Learning Survey helped to narrow down the Research to the specific speech processing task of Low Resource Automatic Speech Recognition (LR-ASR).
+
+The following sections describe analysis of raw wave-forms using auto-correlation signal processing in Matlab and experiments made with the Nao robot speech processing engine and experiments with speech recognition toolkit and speech processing tasks.  These tasks include digit recognition systems using CMUSphinx and Kaldi speech recognition toolkits and speech alignment tasks using Alisa tool.
+
 \subsection{Auto-correlation Experiments}
 Preliminary experiments were carried out on raw speech signals in an attempt to quickly segment individual phonemes based on a basic threshold algorithm.  Further experiments designed an autocorrelation algorithm to attempt to discover a phoneme alphabets in a particular dataset in a semi-supervised fashion.
  
@@ -21,13 +45,17 @@ This two stage procedure performs segmentation of phonemes and then discovery of
 \end{figure}
 
 \subsubsection{Segmentation}
-Figure 4-2 describes the various steps of the segmentation phase while Figure 4-1 shows the original audio file. At the segmentation phase, we first of all adjust the scale of the original raw audio file to have only positive values rather than having it centred on zero (Figure 4-2a).  At the next step a smoothing filter based on experimentation is used to perform both smoothing as well as determining the peaks and trough (Figure 4-2b).  Then a threshold is applied to segment the waveform based on discovered inflection points (Figure 4-2c).  
+Figure \ref{fig_c3_exp02} describes the various steps of the segmentation phase while Figure \ref{fig_c3_exp01} shows the original audio file. At the segmentation phase, we first of all adjust the scale of the original raw audio file to have only positive values rather than having it centred on zero (Figure \ref{fig_c3_exp02}a).  At the next step a smoothing filter based on experimentation is used to perform both smoothing as well as determining the peaks and trough (Figure \ref{fig_c3_exp02}b).  Then a threshold is applied to segment the waveform based on discovered inflection points (Figure \ref{fig_c3_exp02}c).  
 \begin{figure}
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=9cm]{thesis/images/corr00}\\
   \caption{Original waveform input for auto-correlation}\label{fig_c3_exp02}
 \end{figure}
+\subsubsection{Auto-correlation}
+At the auto-correlation stage estimated phoneme segment boundaries are stored in an array and cross-correlated with the original signal.  Even though at a top-level view, the entire signal is auto-correlated, at the individual segment level, the signals are cross correlated against one another.  Furthermore, to achieve a ‘fair’ correlation estimate, individual segments representing estimated phonemes need to be re-sampled to eliminate mismatching of contour representations of the individual phonemes.
+
+The proposed auto-correlation algorithm performs both top-down and bottom-top processing.  In the first stage it does bottom-top segmentation, while in the second phase top-bottom auto-correlation.   The major weakness is this auto-correlation method the segmentation algorithm, data filtering and the feature representation.  The Bayesian method of segmentation \citep{kamper2016unsupervised} which is related to this method also improved on these weaknesses was able to improve on these weakness by using ASR feature preprocessing and a combination of acoustic embedding Dynamic Time Warping (DTW) for clustering rather than auto-correlation.  In effect using the extracted features for clustering is in theory a better speech estimate with less intrinsic noise for classification than using an only smoothed audio data.
 
 \subsection{Experiments with Nao robot}
 Nao is a humanoid robot developed mainly for deployment in environments for robotics education and development purposes.  Nao comes with a speech recognition software that offers features such as language settings and recognition sensitivity.  However it was understandably found to be limited because the Nao robot itself does not possess the processing power to perform CPU intensive training of acoustic models.  The now robot did however offer a level of support for using the pocketsphinx system. The pocketsphinx system is the C-language equivalent of CMUSphinx speech recognizer system also by Carnegie Mellon University.  Using the pocketsphinx method, acoustic models trained high performance systems can then be deployed to Nao for fast decoding within the Nao.  
