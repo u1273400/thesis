@@ -16,10 +16,16 @@ Data dependencies and control edges, dictate the order of execution. Often, a gr
 \subsubsection{Programming Model}
 In this section we give examples of execution data flow graphs and in the following sections we highlight the other major special features of TensorFlow including automatic differentiation and back-prop algorithm implementation, control flow, check pointing, programming interface, sample implementation and graph visualisation.
 
-A computational or dataflow graph is a form of directed graph where vertices or nodes describe operations, while edges represent data flowing between these operations. If an output variable z is the result of applying a binary operation to two inputs x and y, then we draw directed edges from x and y to an output node representing z and annotate the vertex with a label describing the performed computation. Examples for computational graphs are given in Figure 2. 
-
-In Figure 2, the left graph displays a very simple computation, consisting of just an addition of the two input variables $x$ and $y$.  In this case, $z$ results of the operation $+$, as the annotation suggests.  The right graph gives a more complex example of computing a logistic regression variable $\hat{y}$ in for some example vector $\mathbf{x}$, weight vector $\mathbf{w}$ as well as scalar bias $b$.  As shown in the graph, $\hat{y}$ is the result of the sigmoid or logistic function $\sigma$
+A computation or data flow graph is illustrated in Figure \ref{fig_c3_tfg}. 
+\begin{figure}
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=9cm]{thesis/images/tfgraph}\\
+  \caption{Alisa Architecture\citep{stan2016alisa}}\label{fig_c3_tfg}
+\end{figure}
+The left graph displays a basic compute graph consisting of an addition operator having two input variables $x$ and $y$.  The result, $z$ is the output the $+$ operation.  The right graph gives a more complex example of computing a logistic regression variable $\hat{y}$ in for some example vector $\mathbf{x}$, weight vector $\mathbf{w}$ as well as scalar bias $b$.  As shown in the graph, $\hat{y}$ is the result of the sigmoid or logistic function $\sigma$
 \subsubsection{Backprop nodes}
+
 \subsubsection{Control flow}
 TensorFlow also supports control-flow operations.  For this reason TensorFlow is not a directed acyclic graph (DAG) but can support cyclic structures. If the number of loops required by the computation graph is known at graph construction.  It is easy to maintain a DAG structure simply by unrolling the number of loops specified.  However, this is not always the case.  There are instances in which a variable number of loops is required at runtime.  Hence, the computation graph becomes increasingly complex.  This is particularly the case for back gradient descent and back propagation of errors (see section \ref{sec_c3_tfwf} for a  walk through).  The process of stepping back through a loop in reverse to compute gradients is known as back-propagation through time \citep{al2016theano}.
 
@@ -38,8 +44,7 @@ Given an example matrix $\mathbf{X}\in\mathbb{R}^{n\times 784}$ containing  imag
 softmax(\mathbf{x})_i=\frac{\exp(\mathbf{x}_i)}{\Sigma_j\exp(\mathbf{x}_j)}\label{eqn_c3_smax00}
 \end{equation} 
 
-
-The objective function is pcomputed to give the error or loss of the model given its current trainable parameters $\mathbf{W}$ and $\mathbf{b}$.  This is obtained by  calculating the  cross entropy     $H(\mathbf{L,Y})_i=−\Sigma_j\mathbf{L}_{i,j}\cdot\log(\mathbf{Y}_{i,j})$
+The objective function is computed to give the error or loss of the model given its current trainable parameters $\mathbf{W}$ and $\mathbf{b}$.  This is obtained by  calculating the  cross entropy     $H(\mathbf{L,Y})_i=−\Sigma_j\mathbf{L}_{i,j}\cdot\log(\mathbf{Y}_{i,j})$
 between the probability distributions of our estimates $\mathbf{Y}$ and the one-hot-encoded labels $\mathbf{L}$.  More precisely, the mean cross entropy over all examples as the loss.
 
 Next, the stochastic gradient descent (SGD) is run to update the weights of our model.  A tensorflow class is provided and will be initialised with a learning rate.  The minimise function of this class takes the loss tensor as parameter used for minimisation.
