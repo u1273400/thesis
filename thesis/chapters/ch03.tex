@@ -1,43 +1,55 @@
 \section{Speech Processing software and tools}
 \subsection{TensorFlow}
 
-The paragraphs and subsections that follow under this topic give an overview of the TensorFlow library as described by \cite{}
+The paragraphs and subsections that follow under this topic give an overview of the TensorFlow library as outlined by the following authors \cite{goldsborough2016tour,abadi2016tensorflow,abadi2017computational}
 
-Deep learning is a branch of artificial intelligence employing deep neural network architectures that has significantly advanced the state-of-the-art in computer vision, speech recognition, natural language processing and other domains. In November 2015, Google released TensorFlow, an open source deep learning software library for defining, training and deploying
-machine learning models.
+TensorFlow is a state-of-the-art high performance library by Google for Deep learning.  Deep learning is a branch of artificial intelligence which acquires learning from deep neural network architectures. Deep learning has significantly advanced in various application domains and by far out-performed traditional approaches.  TensorFlow, offers researchers and enthusiasts an open source software library for use in defining, training and deploying deep learning models.
 
-TensorFlow relies on dataflow graphs with mutable state.  Tensorflow was initially written in TLA[14].  A dataflow graph consists of nodes and edges, where each node represents an instantiation of an operation, and values flow along the edges. The operations are implemented by kernels that can be run on particular types of devices (for instance, CPUs or GPUs). 
+TensorFlow works by defining dataflow graphs with mutable state.  A dataflow graph consists of nodes and edges, where each node represents an instantiation of an operation, and values flow along the edges. The operations are implemented by kernels that represent abstractions for particular types of interchangeable devices (such as CPUs and GPUs).
 
-The main values of interest are tensors: arrays of arbitrary dimensionality where the underlying element type is specified or inferred at graph-construction time. Accordingly, many of the operations are mathematical functions such as matrix multiplication. 
+There are three main concepts TensorFlow's core.  They are tensors, operations and mutability.  Tensors are arrays of arbitrary dimensions where the underlying data type is either specified or inferred at graph-construction time. Operations process data and constitute nodes within the compute graph. Basic operations invariably are mathematical functions such as vector dot products.  However, some of the operations indeed may be associated with a read or state update. Such tensor which permit run-time updates in TensorFlow are referred to as variables.  Finally, there may be edges for communicating and constrain the order of execution. These structures invariably affect the observable graph semantics and may also affect the computation performance. 
 
-In addition, some of the operations may read or update state. In TensorFlow, a variable is a special kind of operation that returns a handle to a tensor.  For example, the tensor may contain the weights of a layer in a neural network, which are updated during the training process.
+Once a client constructs a graph using a front-end interface such the Python API, the client can send messages to the graph, by “feeding” inputs and “fetching” outputs. TensorFlow then propagates the input values, through the execution graph and performing  operations called by the client code, until all nodes instructed to run returned with their outputs. 
 
-Moreover, in addition to edges for communicating tensors, a graph may include control edges that constrain the order of execution. This order can affect the observable semantics in the presence of mutable state, and it can also affect performance. 
-
-A client typically constructs a graph using a front-end language such as Python. Then the client can make a call to run the graph, specifying which inputs to “feed” and which outputs to “fetch”. TensorFlow propagates the input values, repeatedly applying the operations prescribed by the graph, until no more nodes can fire. The order in which nodes fire is constrained by data dependencies and control edges, but is not necessarily unique. The execution ends with values on the graph’s output edges. In these respects, TensorFlow graphs are similar to expressions in programming languages. 
-
-Often, a graph is executed multiple times. Most tensors do not survive past a single execution of the graph. However, mutable state does persist across executions. In a typical application, a graph represents a step of training for a machine-learning model, the parameters of the model are stored in tensors held in variables, and they are updated as part of running the graph.
+Data dependencies and control edges, dictate the order of execution. Often, a graph is executed severally and tensors declared as placeholders or constants are used once. However, variable tensors have mutable state which allow persistence across multiple executions. The parameters of the model stored in variables variables are usually updated as part of running the graph.
 
 \subsubsection{Programming Model}
+In this section we give examples of execution data flow graphs and in the following sections we highlight the other major special features of TensorFlow including automatic differentiation and back-prop algorithm implementation, control flow, check pointing, programming interface, sample implementation and graph visualisation.
+
+A computation or data flow graph is illustrated in Figure \ref{fig_c3_tfg}. 
+\begin{figure}
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=9cm]{thesis/images/tfgraph}\\
+  \caption{Alisa Architecture\citep{stan2016alisa}}\label{fig_c3_tfg}
+\end{figure}
+The left graph displays a basic compute graph consisting of an addition operator having two input variables $x$ and $y$.  The result, $z$ is the output the $+$ operation.  The right graph gives a more complex example of computing a logistic regression variable $\hat{y}$ in for some example vector $\mathbf{x}$, weight vector $\mathbf{w}$ as well as scalar bias $b$.  As shown in the graph, $\hat{y}$ is the result of the sigmoid or logistic function $\sigma$
+\subsubsection{Backprop nodes}
+
+\subsubsection{Control flow}
+TensorFlow also supports control-flow operations.  For this reason TensorFlow is not a directed acyclic graph (DAG) but can support cyclic structures. If the number of loops required by the computation graph is known at graph construction.  It is easy to maintain a DAG structure simply by unrolling the number of loops specified.  However, this is not always the case.  There are instances in which a variable number of loops is required at runtime.  Hence, the computation graph becomes increasingly complex.  This is particularly the case for back gradient descent and back propagation of errors (see section \ref{sec_c3_tfwf} for a  walk through).  The process of stepping back through a loop in reverse to compute gradients is known as back-propagation through time \citep{al2016theano}.
+
+\subsubsection{Checkpoints}
+One can add Save a node to a compute graph, connecting them to variables whose tensors can then be serialized. At another instance one may connect the same variable to a Restore operation. This operation deserializes the stored tensor at another point within the execution graph. This is especially useful over long periods of training to keep track of the model’s variable parameters. These elements form part of distributed TensorFlow's fault tolerance ecosystem.
+
 \subsubsection{Programming Interface}
 TensorFlow implementation provides two developer interfaces which include the Python interface and the C++ interface.  While the python interface offers a rich feature set for creation and execution of computation graphs, the C++ interface is primarily a back end implementation with a much more limited API primarily used for executing graphs built with Python and serialised to Google’s protocol buffer.
 
 It is worth noting that unlike PyTorch \citep{ketkar2017introduction}, the Python API handshakes very well with NumPy\citep{numpy} numeric and scientific open source programming library. As such, TensorFlow tensors can be naturally substituted with NumPy ndarrays without any need for type-conversion seen in PyTorch tensors.
-\subsubsection{Typical TensorFlow Workflow using MNIST digit handwriting recognition Data set}
+\subsubsection{Typical TensorFlow Workflow using MNIST digit handwriting recognition Data set}\label{sec_c3_tfwf}
 We train a simple multi-layer perceptron (MLP) with one input and one output layer to classify hand-writtin digits in the MNIST\citep{krizhevsky2012imagenet} dataset.   In this dataset, the examples are small images 28 x 28 pixels depicting handwritten digits from 0 to 9.
 
-Given an example matrix $\mathbf{X}\in\mathbb{R}^{n\times 784}$ containing  images, the learning task then applies an affine transformation $\mathbf{X\cdot W+b}$, where $\mathbf{W}$ is a weight matrix $\in \mathbb{R}^{784 \times 10}$, and a bias vector $\in R^{10}$.  This yields a new matrix $\mathbf{Y}\in \mathbb{R}^{n\times 10}$, containing the scores or logits of our model for each example and each possible digit.  These scores are more or less arbitrary.  To transform the ligits to valid probability distribution, giving the likelihood $Pr[x=i]$ that the -th example represents the digit $i$, we make use of a softmax function in the equation below
+Given an example matrix $\mathbf{X}\in\mathbb{R}^{n\times 784}$ containing  images, the learning task then applies an affine transformation $\mathbf{X\cdot W+b}$, where $\mathbf{W}$ is a weight matrix $\in \mathbb{R}^{784 \times 10}$, and a bias vector $\in R^{10}$.  This yields a new matrix $\mathbf{Y}\in \mathbb{R}^{n\times 10}$, containing the scores or logits of our model for each example and each possible digit.  These scores are more or less arbitrary.  To transform the logits to valid probability distribution, giving the likelihood $Pr[x=i]$ that the -th example represents the digit $i$, we make use of a softmax function in the equation below
 \begin{equation}
 softmax(\mathbf{x})_i=\frac{\exp(\mathbf{x}_i)}{\Sigma_j\exp(\mathbf{x}_j)}\label{eqn_c3_smax00}
 \end{equation} 
 
-
-The objective function is pcomputed to give the error or loss of the model given its current trainable parameters $\mathbf{W}$ and $\mathbf{b}$.  This is obtained by  calculating the  cross entropy     $H(\mathbf{L,Y})_i=−\Sigma_j\mathbf{L}_{i,j}\cdot\log(\mathbf{Y}_{i,j})$
+The objective function is computed to give the error or loss of the model given its current trainable parameters $\mathbf{W}$ and $\mathbf{b}$.  This is obtained by  calculating the  cross entropy     $H(\mathbf{L,Y})_i=−\Sigma_j\mathbf{L}_{i,j}\cdot\log(\mathbf{Y}_{i,j})$
 between the probability distributions of our estimates $\mathbf{Y}$ and the one-hot-encoded labels $\mathbf{L}$.  More precisely, the mean cross entropy over all examples as the loss.
 
 Next, the stochastic gradient descent (SGD) is run to update the weights of our model.  A tensorflow class is provided and will be initialised with a learning rate.  The minimise function of this class takes the loss tensor as parameter used for minimisation.
 
-The operations run repeatedly within a tf.Session context manager.
+The operations run repeatedly within a tf.Session context manager. Refer to Appendix \ref{app2_01_tfcode} for the complete code listing.
 
 \subsubsection{Visualisation}
 TensorFlow interface offers the option of visualising computation graphs. Complex topologies consisting various sub-layers can be presented in a lucid form, offering the user to congruent, organised picture of exactly how data is consumed. Sub-graphs may be grouped into visual blocks and referred to in name scopes.  For example a single neural network layer may take up such a named scope. The name scopes are then interactively expanded on to give the detailed group visualisation.
