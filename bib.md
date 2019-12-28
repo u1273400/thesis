@@ -6,6 +6,17 @@
   year={2011}
 }
 
+@article{schluter2001model,
+  title={Model-based MCE bound to the true Bayes' error},
+  author={Schluter, Ralf and Ney, Hermann},
+  journal={IEEE Signal Processing Letters},
+  volume={8},
+  number={5},
+  pages={131--133},
+  year={2001},
+  publisher={IEEE}
+}
+
 @article{kamper2016unsupervised,
   title={Unsupervised word segmentation and lexicon discovery using acoustic word embeddings},
   author={Kamper, Herman and Jansen, Aren and Goldwater, Sharon},
