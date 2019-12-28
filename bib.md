@@ -166,6 +166,13 @@ year={2012}
   publisher={IEEE}
 }
 
+@article{picone1996fundamentals,
+  title={Fundamentals of speech recognition: A short course},
+  author={Picone, Joseph},
+  journal={Institute for Signal and Information Processing, Mississippi State University},
+  year={1996}
+}
+
 @article{ragni2014data,
   title={Data augmentation for low resource languages},
   author={Ragni, Anton and Knill, Katherine Mary and Rath, Shakti P and Gales, Mark John},
