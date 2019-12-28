@@ -45,7 +45,7 @@ A thesis submitted to the University of Huddersfield in partial fulfilment of th
 \chapter*{Abstract}
 This thesis investigates and acknowledges the various limitations of Deep Neural Network (DNN) techniques when applied to low resource speech recognition.   Various aspects of developing corpora for speech recognition systems are explored.  In particular various recurrent neural network (RNN) techniques were explored to implement end-to-end speech and language models (LM). Gated Recurrent Units (GRU) RNNs were used employed for the language model for a low resourced Wakirike language while bidirectional recurrent neural networks (bi-RNNs) were used to create end-to-end speech recognition model for English language.
 
-Previous systems employed for low resource speech recognition involving deep networks included various knowledge transfer mechanisms including hybrid hidden markov models (HMM) to deep neural networks (HMM-DNN) models and those that are HMM alone-based include subspace Gaussian Mixture Models (GMMs).   These models are based on the HMM generative model and N-gram language models.  However, the model developed in this thesis makes use of an end-to-end discriminative model using the Bi-RNN acoustic/speech model augmented using speech features from a specialised light weight convolution network-the deep scattering network (DSN).  While the light weight DSN helped to reduce the training complexity, at the same time by focusing on end-to-end with Connectionist Temporal Classification (CTC) decoding, the speech model was compressed into a one step process rather than a three-step process requiring an Acoustic Model (AM), Language Model (LM) and phonetic dictionary. The research therefore shows that it is possible to use this compact strategy and improve upon speech features required for speech pattern recognition by deploying deep scattering network features with  higher dimensional vectors when compared to traditional speech features. 
+Previous systems employed for low resource speech recognition involving deep networks included various knowledge transfer mechanisms including hybrid hidden markov models (HMM) to deep neural networks (HMM-DNN) models and those that are HMM alone-based include subspace Gaussian Mixture Models (GMMs).   These models are based on the HMM generative model and N-gram language models.  However, the model developed in this thesis makes use of an end-to-end discriminative model using the Bi-RNN acoustic/speech model augmented using speech features from a specialised light weight convolution network-the deep scattering network (DSN).  While the light weight DSN helped to reduce the training complexity, at the same time by focusing on end-to-end with Connectionist Temporal Classification (CTC) decoding, the speech model was compressed into a one step process rather than a three-step process requiring an Acoustic Model (AM), Language Model (LM) and phonetic dictionary. The research therefore shows that it is possible to use this compacting strategy in addition to augmented speech features required for speech pattern recognition by deploying deep scattering network features with  higher dimensional vectors when compared to traditional speech features. 
 
 \chapter*{Dedication}
 To the praise and glory of our God and of His Christ.
@@ -78,13 +78,13 @@ iii.	The ownership of any patents, designs, trademarks and any and all other int
 \chapter{Deep Scattering network}\label{ch4DSN}
 \input{chapters/ch05}
 
-\chapter{Wakirike Language Model}
+\chapter{Wakirike Language Model}\label{ch6_wlm}
 \input{chapters/ch06}
 
 \chapter{Deep Learning Speech Model}\label{ch6_speech}
 \input{chapters/ch07}
 
-\chapter{Future study}
+\chapter{Future study}\label{ch8_future}
 \input{chapters/ch08}
 \chapter*{Appendices}
 \input{chapters/ch08a}\label{ch08furtherstudy}
