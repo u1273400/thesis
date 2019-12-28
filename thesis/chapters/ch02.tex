@@ -154,42 +154,6 @@ By computing multi-scale co-occurrence coefficients from a wavelet-modulus opera
 
 The premise for this work is that low speech recognition can be achieved by having higher resolution features for discrimination as well as using an end-to-end framework to replace some of the cumbersome and time-consuming hand-engineered domain knowledge required in the standard ASR pipeline.  In addition, this research work makes contributions to the requirements for the two tracks specified in the Zero Resource challenge of 2015 \citep{versteegh2015zero}.  The first requirement is sub-word modelling satisfied by using deep scattering network and the second that of spoken term discovery criteria being satisfied by the end-to-end speech model supplemented with a language model.
 
-\section{Methodology}
-System building methodology \citep{nunamaker1990systems} for speech recognition systems requires models to be evaluated against speech recognition Machine Learning metrics.  For language models, perplexity metric was used for evaluation.  Bleu has also been used as a metric for evaluating language models.
-
-Perplexity measures the complexity of a language that the language model is designed to represent \citep{1976jelinekcontinuous}. In practice, the entropy of a language with an N-gram language model $P_N(W)$ is measured from a set of sentences and is defined as
-\begin{equation}H=\sum_{\mathbf{W}\in\Omega}P_N(\mathbf{W})
-\label{eqn_c2_lm05}
-\end{equation}
-
-where $\Omega$ is a set of sentences of the language. The perplexity, which is interpreted as the average word-branching factor, is defined as
-\begin{equation}PP(W)=2^H
-\label{eqn_c2_lm06}
-\end{equation}
-where H is the average entropy of the system or the average log probability defined as
-\begin{equation}
-H=-\frac{1}{N}\sum_{i=1}^N[log_2P(w_1,w_2\dots w_N)]
-\label{eqn_c2_lm07}
-\end{equation}
-For a bi gram model therefore, equation (\ref{eqn_c2_lm07}) becomes
-\begin{equation}
-PP(W)=2^H=2^{-\frac{1}{N}\sum_{i=1}^N[log_2P(w_1,w_2\dots w_N)]}
-\label{eqn_c2_lm08}
-\end{equation}
-After simplifying we have
-\begin{equation}
-PP(W)=\sqrt[N]{\prod_{i=1}^N\frac{1}{P(w_i|w_{i-1})}}
-\label{eqn_c2_lm09}
-\end{equation}
-
-
-Full speech recognition pipelines are usually evaluated against the Word Error Rate (WER).  WER is computed as follows:
-\begin{equation}\label{eqn_2_3_wer}
-WER=\frac{I+D+R}{WC}\times 100
-\end{equation}
-Here $I,D,$ and $R$ are wrong insertions, deletions and replacements respectively and $WC$ is the word count.
-
-Metrics used for low speech recognition in the zero speech challenge \citep{versteegh2015zero} include the ABX metric. Other common speech recognition error metrics following a similar definition as the Word Error Rate (WER) are Character Error Rate (CER), Phoneme Error Rate (PER) and Syllabic Error Rate (SyER) and sentence error rate (SER).
 
 \section{Chapter Summary}
 Chapter \ref{ch1_intro} introduces the key terms Discriminative and Generative classification.  In this Chapter, these two different classification mechanisms are compared and contrasted as they relate to speech recognition.  The Hidden Markov Model (HMM) is considered as the key Generative algorithm used in speech recognition.  This chapter discusses the HMM algorithm and outlines its limitations in speech recognition.  Other challenges associated with speech recognition and low speech recognition are discussed.  

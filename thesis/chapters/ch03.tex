@@ -1,0 +1,37 @@
+
+\section{Method of evaluation}
+System building methodology \citep{nunamaker1990systems} for speech recognition systems requires models to be evaluated against speech recognition Machine Learning metrics.  For language models, perplexity metric was used for evaluation.  Bleu has also been used as a metric for evaluating language models.
+
+Perplexity measures the complexity of a language that the language model is designed to represent \citep{1976jelinekcontinuous}. In practice, the entropy of a language with an N-gram language model $P_N(W)$ is measured from a set of sentences and is defined as
+\begin{equation}H=\sum_{\mathbf{W}\in\Omega}P_N(\mathbf{W})
+\label{eqn_c2_lm05}
+\end{equation}
+
+where $\Omega$ is a set of sentences of the language. The perplexity, which is interpreted as the average word-branching factor, is defined as
+\begin{equation}PP(W)=2^H
+\label{eqn_c2_lm06}
+\end{equation}
+where H is the average entropy of the system or the average log probability defined as
+\begin{equation}
+H=-\frac{1}{N}\sum_{i=1}^N[log_2P(w_1,w_2\dots w_N)]
+\label{eqn_c2_lm07}
+\end{equation}
+For a bi gram model therefore, equation (\ref{eqn_c2_lm07}) becomes
+\begin{equation}
+PP(W)=2^H=2^{-\frac{1}{N}\sum_{i=1}^N[log_2P(w_1,w_2\dots w_N)]}
+\label{eqn_c2_lm08}
+\end{equation}
+After simplifying we have
+\begin{equation}
+PP(W)=\sqrt[N]{\prod_{i=1}^N\frac{1}{P(w_i|w_{i-1})}}
+\label{eqn_c2_lm09}
+\end{equation}
+
+
+Full speech recognition pipelines are usually evaluated against the Word Error Rate (WER).  WER is computed as follows:
+\begin{equation}\label{eqn_2_3_wer}
+WER=\frac{I+D+R}{WC}\times 100
+\end{equation}
+Here $I,D,$ and $R$ are wrong insertions, deletions and replacements respectively and $WC$ is the word count.
+
+Metrics used for low speech recognition in the zero speech challenge \citep{versteegh2015zero} include the ABX metric. Other common speech recognition error metrics following a similar definition as the Word Error Rate (WER) are Character Error Rate (CER), Phoneme Error Rate (PER) and Syllabic Error Rate (SyER) and sentence error rate (SER).
