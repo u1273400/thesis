@@ -1,3 +1,12 @@
+\subsection{Post-Alignment Research Experiments}\label{sec_postalign}
+The main challenges of speech recognition using HMM-based toolkits such as Kaldi, is the requirement for aligned speech.  In more recent endeavours, there has been efforts towards automatic alignment of transcribed audio speech recordings through successive Baum-Welch estimation techniques \cite{gales2014speech,ragni2018automatic,ragni2014data}. However, this technique is not particularly compatible with end-to-end goals adopted for this research as it would require preprocessing and successive pre-training of the data set.
+
+The following section describes the post-alignment experiments and in a later Chapter, how these methods deal with the problem of automatic speech alignment in a fashion which was compatible with end-to-end speech processing.  The end-to-end requirements were desirable for low-resource speech recognition as it introduces a simpler speech model design.  The downside however to the end-to-end approach is the dependency on very deep recurrent neural network structures which require large volumes of data for successful training.
+
+\subsubsection{Bi-Directional LSTM-based end-to-end speech model}
+
+\subsubsection{ESPNet Experiments}
+The ESPNet (End-to-end SPeech Network) toolkit \citep{watanabe2018espnet}, is a speech processing toolkit that was of interest to this research because it offers end-to-end capabilities not only in Automatic Speech Recognition (ASR) but also in Text-To-Speech (TTS) or speech synthesis and other speech-sequence-processing related tasks.  In addition, the toolkit offered multi-modal training combining both Attention networks \cite{vaswani2017attention} with CTC networks as well as multi-channel feature representation that is, the fusing together of multiple feature representations of data.  Only preliminary experiments were carried out using ESPNet and is discussed in Chapter \ref{ch08furtherstudy} of this work.
 
 \section{Method of evaluation}
 System building methodology \citep{nunamaker1990systems} for speech recognition systems requires models to be evaluated against speech recognition Machine Learning metrics.  For language models, perplexity metric was used for evaluation.  Bleu has also been used as a metric for evaluating language models.
@@ -35,3 +44,8 @@ WER=\frac{I+D+R}{WC}\times 100
 Here $I,D,$ and $R$ are wrong insertions, deletions and replacements respectively and $WC$ is the word count.
 
 Metrics used for low speech recognition in the zero speech challenge \citep{versteegh2015zero} include the ABX metric. Other common speech recognition error metrics following a similar definition as the Word Error Rate (WER) are Character Error Rate (CER), Phoneme Error Rate (PER) and Syllabic Error Rate (SyER) and sentence error rate (SER).
+
+\section{Summary of Methodology}
+In this chapter we outline how this research set about to achieve its objectives.  The main claim of this research is that by building a speech model that combines knowledge of end-to-end processing along with state of the art signal processing the overall complexity and time build new ASR systems can be reduced.
+
+This chapter also reviews the technologies utilised by this research in order to arrive at the research outputs and briefly describes the experiments performed.  Within this space we describe CMUSphinx, Kaldi, Mozilla Deepspeech, Tensorflow, Matlab and Scatnet as major libraries used.   The first two being Hidden Markov Model (HMM)-based libraries and the latter being used either integrally or as part of end-to-end  and signal processing systems used to build Deep Recurrent Neural Network (RNN) models. Finally, we mention metrics for the evaluation of the models built in this work.
