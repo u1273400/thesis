@@ -1,9 +1,11 @@
 * Bibliography
 
-@article{abadi2016tensorflow,
-  title={Tensorflow: Large-scale machine learning on heterogeneous distributed systems},
-  author={Abadi, Mart{\'\i}n and Agarwal, Ashish and Barham, Paul and Brevdo, Eugene and Chen, Zhifeng and Citro, Craig and Corrado, Greg S and Davis, Andy and Dean, Jeffrey and Devin, Matthieu and others},
-  journal={arXiv preprint arXiv:1603.04467},
+
+
+@article{goldsborough2016tour,
+  title={A tour of tensorflow},
+  author={Goldsborough, Peter},
+  journal={arXiv preprint arXiv:1610.01178},
   year={2016}
 }
 
