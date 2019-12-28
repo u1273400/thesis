@@ -1,0 +1,23 @@
+The advancement of Machine Learning has a direct impact on the development of more efficient speech recognition algorithms and at the same time the advancement of speech recognition helps with the improvement of Machine Learning algorithms, as in general, the methods used in Machine Learning usually are directly transferable to speech processing and vice-versa.  This mutual relationship implies that speech recognition is a blossoming research field because there is a tremendous amount of work being done in the Machine Learning community.   Particularly in the area of deep learning and neural networks, there is quite a vast array of neural network solutions that have been applied or are yet to be applied to speech recognition.  Two models worthy of mentioning are Generative Adversarial Networks (GANs) and Attention-based models. 
+
+
+\section{Generative adversarial networks (GAN)}
+
+GANs consists of two Networks working as adversaries to one another.  The first, being a generative network, generates content.  The second network is a discriminative network intended to determine the accuracy of the first generative network.  Hence the generative network is generating output less distinguishable for the discriminator while the discriminator uses output from the generator to improve the ability to discriminate output from the generator with the original source data.
+
+GAN networks can have applications where the generative network consists of a speech synthesis network and the discriminating network is  a speech recogniser.  However successive training of these two networks from a data-resource perspective would require an immense amount of data resources for expected performances. 
+
+\section{Attention-based Models}
+
+The objective of attention-based networks highlighted by  \cite{vaswani2017attention} is to reduce sequential computation while attaining hidden representation across arbitrary lengths of sequential input. Mechanisms which have been deployed to achieve this includes a combination of convolutional and recurrent schemes \citep{kaiser2016can,kalchbrenner2016neural, gehring2017convolutional}. \cite{vaswani2017attention} introduces a transduction model known as a Transformer based on self attention network with the ability to compute long term dependencies while eliminating sequence aligned RNN and convolutional architectures.
+
+Self attention is a network that intrinsically reduces the need for intensive resource training.  \cite{vaswani2017attention} reports that state of the art BLEU score of 41.0 having used a small fraction of training resources.  While GANs might not be attractive for low resource speech recognition, they still remain an important tool for verification of the output of other networks.  At the same time self attention networks can help to reduce the resource requirements of GANs when used within the context of a GAN.
+
+As a study to further this thesis, these networks are likely candidates for network training using scatter features as input discriminatory functions.  Attention based networks as a means reduce training resources required, while GANs can be used as a means to generate training data.
+
+\section{Conclusion}
+End-to-end discriminative neural network speech models have now become a well established method in Automatic Speech Recognition. 
+
+Our Bi-directional Recurrent neural network (Bi-RNN) end-to-end system, is augmented by features derived from a deep scattering network as opposed to the standard Mel Frequency Cepstral Coefficients(MFCC) features used in state of the art acoustic models.  These specialised deep scattering features, consumed by the Bi-RNN, model a light-weight convolution network. This work shows that it is possible to build a speech model from a combination of deep scattering features and a Bi-RNN. There has been no record of deep scattering features being used in end-to-end bi-RNN speech models as far as we are aware.  
+
+We show in this work that Deep Scattering features derived from wavelet filter operations on audio data produce viable candidates for end-to-end training of Automatic speech recognition models.

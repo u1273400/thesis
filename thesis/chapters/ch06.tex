@@ -1,141 +1,67 @@
-This work explores the prospects of deep recurrent end-to-end architectures applied to speech recognition. Complementary aspects of developing speech recognition systems are eliminated by focusing on end-to-end speech units as a two-step process requiring a Connectionist Temporal Character Classification (CTC)\citep{graves2006connectionist} model and Language Model (LM) rather than a three-step process requiring an Acoustic model(AM), LM and phonetic dictionary. Employing a two-step process rather than a three-step process is particularly desirable for low resource languages as less effort is required developing fewer simplified models.
+Neural networks have become increasingly popular due to their ability to model non-linear system dynamics. Since their inception, there have been many modifications made to the original design of having linear affine transformations terminated with a nonlinear functions as the means to capture both linear and non-linear features of the target system. In particular, one of such neural network  modifications, namely the recurrent neural network, has been shown to overcome the limitation of varying lengths in the inputs and outputs of the classic feed-forward neural network.  In addition the RNN is not only able to learn non-linear features of a system but has also been shown to be effective at capturing the patterns in sequential data.
 
-Earlier in chapter one, deep learning was defined as a type of representational learning whereby different levels of complexity are captured in internal layer-wise encapsulations. It has also been noted that layer-wise stacking of neural and neural network type architectures such as the Restricted Boltzmann Machine (RBM) deep belief networks (DBMs) were used to implement such representations. In this chapter, the end-to-end Bi-directional Recurrent Neural Network model is described. Here, the development of the features using the deep scattering convolution network is first elaborated on. The model parameters and architecture are described and the decoding algorithm are all detailed in sections contained within this chapter.
+A language model for the Wakirike language is developed in this chapter.  This model draws upon the premise that the grammar of a language is expressed in the character sequence pattern ultimately revealed in the words rendered by the character sequences.  Therefore, abstract grammar rules can be extracted and learned by a character-based RNN neural network.  Specialised implementations of the RNN called the Long Short Term Memory (LSTM) and also the Gated Recurrent Unit (GRU), discussed in chapter \ref{ch3RNN}, are designed to capture patterns over particularly long data sequences and are thus, ideal candidates for generating character sequences while preserving syntactic language rules in the words formed from generated character sequences.  These long-term relationships and patterns are learned by the neural network model from the training data it ingests.
 
-\section{Deep Scattering Features}
-The fast wavelet transform is derived in Chapter \ref{ch4DSN} from a low pass filter and a high pass filter.  The speech features used in this research using a deep scattering network $2$ layers deep was created using the wavelet modulus operator comprising a low pass filter and a band pass filter.  Hyper parameters of the system included the window period for each sampled sub section, $T$;  The Q-band value for the band pass filter and the number of wavelets $J$ at each scattering layer for the total number of layers, $M=2$.
+\section{Data Preparation}
+The Wakirike New Testament Bible served as the source of data for the deep neural network training.  There is no readily available soft or on-line copy of the Wakirike new testament bible. As such, the Wakirike New Testament Bible was typed to form a text corpus, giving rise to a complete corpus word size of 668,522 words and a character count of 6,539,176 characters.  The data set was then divided into 11 parts. Two parts dedicated for testing and validation and the remaining nine parts were used for training.
 
-The matlab scatnet toolbox \citep{anden2014scatnet}, used to determine the scatter coefficient features for this research, provides optimal values for hyper parameters for audio signal processing into scatter features.  In this regime the value for the hyper parameter $T=512$ samples per window. This corresponds to a window of $50 milliseconds$ for the audio signals sampled at $8000 Hz$.  For the first scattering layer the $Q$-band parameter was $Q=8$ and the second scattering layer took the value  $Q=1$.  Finally $J$ is pre-calculated based on the value of $T$.  These after Scat-Net processing produce a feature-vector having $165$  dimensions.  These feature vectors in turn are used as inputs to the bi-direction neural network model whose architecture is described in  succeeding sections.
+The Unicode representations of the character set consisting of letters and punctuation marks are one-hot encoded and batched for sequential input, each batch having a character sequence length of 30 characters.
 
-\section{CTC-BiRNN Architecture}
-The core of the system is a bidirectional recurrent neural network (BiRNN) trained to ingest scatter coefficients described in the previous section, in order to generate English text transcriptions.  An end-to-end system therefore specifies that utterances $x$ and the corresponding label $y$ be sampled from a training set such that the sample $S = {(x^{(1)}, y^{(1)}), (x^{(2)}, y^{(2)}), . . .}$.   In our end-to-end model, each utterance, $x^{(i)}$ is a processed feature vector consisting of $165$ dimensions.  Recall, every window passes through a scattering transform to yield an input of vector of $p=165$ features; consequently,   $x^{(i)}_{t,p}$ denotes the $p$-th feature in a scatter transform at time $t$.  
 
-GPU training of the speech model architecture developed above was conducted using Mozilla deepspeech \citep{mozilla/deepspeech_2019} CTC bi-directional RNN implementation along with the accompanying Mozilla Common voice dataset  \citep{mozilla_2019}.  The Common Voice Dataset project consists of voice samples in short recordings approximately $4$ seconds each.  The complete dataset is about $250$ hours of recording divided into training, test and development subsets.  The BiRNN, given the input sequence, $x$, outputs a sequence of probabilities $y_t=\mathbb{P}(c_t|x)$,  where $c_t \in a,b,c,\dots,z,space,apostrophe,blank$. 
+\section{GRU Training}
 
-The actual architecture of our core Bi-RNN is similar to the deepspeech system described in \cite{hannun2014deep}. This structure constitutes 5 hidden layers and one output layer.  The first three layers are regular DNNs followed by a bi-directional recurrent layer. As such, the output of the first three layers are computed by:
+The modified LSTM RNN known as the Gated Recurrent Unit (GRU) is employed for the neural network model built in this work, in order to optimise network performance while conserving computation resources.  GRUs have been shown to give similar performance to regular LSTMs however, with a lighter system resource footprint \citep{cho2014learning}. The GRU RNN used to train the Wakirike text corpus comprised an internal network size of 512 nodes for each layer and was 3 layers deep. Externally, 30 GRUs represented  the number of recurrent connections each connection representing a time step bearing contextual for the recurrent input sequence. 
+
+To mitigate for over-fitting, due to the multi-layered high-dimensional depth of this neural network, a small learning rate of 0.001 was used. To further marginalise over-fitting the popular and effective dropout method \citep{srivastava2014dropout} for regularising deep neural networks was kept at 20\% such that only 80\% of neural network activations are propagated from one layer to the next, whereas the remaining 20\% were randomly zeroed out.
+
+\section{Output Language Generation}
+The neural network was trained for 10 epochs and achieved a prediction accuracy of 85\% on held-out data.  With this GRU character-based language model, it is possible to seed this network with an input character and select from the top-N candidates thus causing the Neural network to generate its own sentences.  In this scenario, the network is said to perform language generation by immanently constructing its own sentences.  The generated language output from the GRU language model was found to be intelligible and a reflection of the overall context of the training data.
+
+A clever use of this new corpus generated by the GRU language model of this work was to determine a word-based perplexity metric for the GRU neural language model. In this work, the word-based perplexity metric was determined from the output language generated by first estimating the word based perplexity on the training data.  The same perplexity calculation was then used on the generated neural language model corpus. The corpus size of the neural language model was made to be equivalent to that of the training data, that is containing 6,539,176 characters.  The perplexity calculation was based on a modified Kneser-Key 5-gram model with smoothing \citep{Heafield-estimate}.  The results discussed below showed that the GRU-based RNN model generated a superior model compared to the n-gram model that better matched the training data.
+
+The evaluation of the GRU language model of the Wakirike language was performed using a perplexity measurement metric. The Perplexity metric applies the language model to a test data-set and measures how probable the test data-set is. Perplexity is a relative measure given by the formula:
+%
 \begin{equation}
-    h^{(l)}_t = g(W^{(l)} h^{(l−1)}_t + b^{(l)})\label{ch06_01_l1-3}
+PP(W)=P(w_1,w_2\dots w_N)^\frac{1}{N}
+\label{ch5_eq1_ppx}
+\end{equation}
+%
+%
+\begin{equation}
+PP(W)=\sqrt[N]{\prod_{i=1}^N\frac{1}{P(w_i|w_{i-1})}}
+\label{ch5_eq2_ppx}
+\end{equation}
+%
+Where $w_1,\dots,w_N$ are the sequence of words. The language model with the lower relative perplexity score is therefore expected to yield better approximation of the data when applied to unseen data generally.
+
+The result of the training of the GRU-Cell Recurrent Neural Network on low-resourced Wakirike Language gave impressive and intelligible results and showed better results when measured with standard n-gram language models. The results showed that it is indeed possible to derive a language model using a GRU-cell RNN on a low resource character sequence corpus for the Wakirike language.
+
+A character based perplexity metric is possible using  the negative log likelihood of the character sequence.
+\begin{equation}
+    PP(X)=exp\left\{−\frac{\sum_{t=1}^T\log P(x_t|x_{1:t−1})}{T}\right\}
+\label{ch5_eq3_ppx}
 \end{equation}
 
-$g(\cdot) = min\{max\{0,z\},20\}$  is the clipped rectified linear unit and $W^{(l)},b^{(l)}$ are weight matrix and bias parameters for layer  as described in sections \ref{dnn} and \ref{deepspeech} respectively.
+However, our base-line language model is a 5-gram word-based language model.  Therefore, comparing a word based model to a character based model requires a conversion step. In this work, the conversion step involved using the GRU language model generated a corpus which was rescored by re-estimating with a 5-gram word-based language model
 
-It was shown in chapter \ref{ch3RNN} the recurrent layer comprise a forward and backward RNNs whose equations are repeated here for reference
-\begin{equation}
-    h^{(f)}_t = g(W^{(4)} h^{(3)}_t + W^{(f)}_r h^{(f)}_{t−1} + b^{(4)})
-    \label{ch06_02_fwd}
-\end{equation}
-\begin{equation}
-h^{(b)}_t = g(W^{(4)} h^{(3)}_t + W^{(b)}_r h^{(b)}_{t+1} + b^{(4)})    \label{ch06_03_bwd}
-\end{equation}
+Table ~\ref{tab:example} shows the Results of the Perplexity model of the LSTM Wakirike Language model and an equivalent 5-gram Language model with interpolation and Keysner smoothing \citep{Heafield-estimate} for various lengths of the held-out data.
 
-Consequently, $h^{(f)}$ is the sequential computation from $t=1$ to $t=T^{(i)}$ for the $i$-th utterance and $h^{(b)}$ is the reverse computation from $t=T^{(i)}$ to $t=1$.  In addition the output from layer five is summarily given as the combined outputs from the recurrent layer:
-\begin{equation}
-h^{(5)} = g(W^{(5)} h^{(4)} + b^{(5)})    \label{ch06_04_l5}
-\end{equation}
-where $h^{(4)} = h^{(f)} + h^{(b)}$. The output of the Bi-RNN on layer 6 is a standard soft-max layer that outputs a predicted character over probabilities for each time slice $t$ and character $k$ in the alphabet:
-\begin{equation}
-h^{(6)}_{t,k} = \hat{y}_{t,k} \equiv \mathbb{P}(c_t = k \mid x) = \frac{\exp{ \left( (W^{(6)} h^{(5)}_t)_k + b^{(6)}_k \right)}}{\sum_j \exp{\left( (W^{(6)} h^{(5)}_t)_j + b^{(6)}_j \right)}})    \label{ch06_05_l6}
-\end{equation}
-
-$b^{(6)}_k$ takes on the -th bias and $(W^{(6)} h^{(5)}_t)_k$ is the matrix product of the $k$-th element.  The error of the outputs are then computed using the CTC loss function \cite{graves_2014} as described in chapter \ref{ch3RNN}.  A summary of our model is illustrated in Figure \ref{fig_6_1_ctc_scatter}.
-\begin{figure}
-\centering
-  % Requires \usepackage{graphicx}
-  \includegraphics[width=14cm]{thesis/images/ctc_scatter.png}\\
-  \caption{Deep scattering Bi-RNN Model} \label{fig_6_1_ctc_scatter}
-\end{figure}
-
-\section{CTC Decoding}
-
-In chapter three the CTC loss function algorithm was established as being able to maximise the probability of two cases.  The first case of transiting to a blank and the second case of transiting to a non blank.  In this section, this concept is used to enable decoding of the network output from posterior distribution output to character sequences which can be measured against a reference transcription using either character error rate (CER) or word error rate (WER).
-
-Recall, all the output symbols are in the alphabet $\Sigma$ and augmented with the blank symbol. The posterior output of the CTC network is the probability of the symbol given the speech feature input $p(c|x_t)$ at time $t$ for $t=1,\dots,T$ and $T$ is the length of the input sequence.  Also recall two further sets of probabilities also being maintained by the model are the probability of a blank character $p_b$ and that of a non blank character $p_{nb}$.
-
-Several strategies have been employed to obtain a translation string from the output of the deep neural network.  The prefix beam search employed by the CTC decoder of this research is derived from an initial greedy approximation, where at each time step determine the argument that maximises the  probability $p(c|x_t)$ at each time step. Let $C=(c_1,\dots,c_T$ be the character string then, the greedy approach has 
-\begin{equation}
-    c_t=arg\max_{c\in\Sigma}p(c|x_t)
-\end{equation}
-However, this simple approximation is unable to collapse repeating sequences and remove blank symbols. In addition, the approximation is unable to include the constraint of a lexicon or language model.
-
-The prefix beam search algorithm \cite{hannun2014first} adopted in this work incorporates a language model derived from a lexicon in addition to keeping track of the various likelihoods used for decoding.  For the language model constraint, the transcription $W$ is recovered from acoustic input $X$ at time $t$ by choosing the word which maximising the posterior probability:
-\begin{equation}
-W_i=arg\max_{W_i \in \Sigma_W} p_{net}(W;X)p_{lm}(W)
-\label{eqn_c6_decoder01}
-\end{equation}
-In equation \ref{eqn_c6_decoder01}, the Bayes product of language model prior $p_{lm}$ and the network output $p_{net}$ are utilised to maximise the probability of a particular character-word sequence in the lexicon given by $\Sigma_W$.  The overall calculation used to derive the final posterior distribution includes word insertion factors ($\alpha$ and $\beta$) used to balance the highly constrained n-gram language model.
-
-The second strategy adopted by the prefix beam search which improves the decoding algorithm is the beam search strategy.  With this approach, the search maintains all possible paths; however, it retains only $k$ number paths which maximise the output sequence probability.  Improvements gained with this method are seen when certain maximal paths are made obsolete owing to new information derived from the multiple paths in being maintained in memory. 
-
-The recursive prefix beam search algorithm illustrated in Figure \ref{fig_c6_decoder01} attempts to find the string formulated in equation \ref{eqn_c6_decoder01}.  Two sets prefixes $A_{prev}$ and $A_{nxet}$ are initialised, such that at $A_{nxet}$ maintains the prefixes in the current time-step while $A_{prev}$ maintains only $k$-prefixes from the previous time-step.  Note that at the end of each time step $A_{prev}$ is updated with only -most probable prefixes from $A_{nxet}$. Therefore while,  $A_{nxet}$ contains all the possible new paths from based on $A_{prev}$ as a Cartesian product of $A_{prev} \times \Sigma \in \mathcal{Z}^k\times\mathcal{Z}^{|\Sigma|}$ where $|\Sigma|$ is the length of $\Sigma$. The probabilities of each prefix obtained at each time step are the sum of the probability of non-blank plus the probability of a blank symbol.
-\begin{sidewaysfigure}[ht]
-    \includegraphics[width=22cm]{ctc}
-    \caption{Prefix beam search algorithm}
-    \label{fig_c6_decoder01}
-\end{sidewaysfigure}
-
-At every  time step and for every prefix $\ell$ currently in $A_{prev}$, a character from the alphabet $\Sigma$ is presented to the prefix. The prefix is only extended only when the presented symbol is not a blank or a space. $A_{nxet}$and  $A_{prev}$ maintain a list of active prefixes at the previous time step and proposed prefixes at the next time step respectively, The prefix probability is given by multiplying the word insertion term by the sum of the blank and non-blank symbol probabilities.
-\begin{equation}
-p(\ell|x_{1:t})=(p_{nb}(\ell|x_{1:t})+p_b(\ell|x_{1:t}))|W(\ell)|^\beta
-\label{eqn_c6_decoder03}
-\end{equation}
-
-$W(\cdot)$ is obtained by segmenting all the characters in the sequence with the space-character symbol and truncating any characters trailing the  set of words in the sequence.  The prefix distribution however varies slightly depending on network output character being presented.
-
-$\ell_{end}$ is the variable representing the last symbol in the prefix sequence in $A_{prev}$. If the symbol presented is the same as $\ell_{end}$ then the probability of a non-blank symbol,$p_{nb}=0$ . If the symbol being presented is blank then we do not extend the prefix.  Finally, if the symbol being presented is a space then we invoke the language model as follows
-\begin{equation}
-p(\ell^+|x_{1:t})=p(W(\ell^+)|W(\ell))^\alpha(p_{nb}(\ell|x_{1:t})+p_b(\ell|x_{1:t}))|W(\ell)|^\beta
-\label{eqn_c6_decoder03}
-\end{equation}
-
-Note that $p(W(\ell^+)|W(\ell))$ is set to $0$ if the current word $W(\ell^+)$ is not in the lexicon. This becomes a constraint to enforce all character strings to consist only of words in the lexicon.  Furthermore,  $p(W(\ell^+)|W(\ell))$ is extended to include all the character sequences representing number of words considered by the n-gram language model by constituting the last $n-1$ words in character sequence $W(\ell)$.
-
-\section{Model Hyper parameters}
-The hidden layer matrix for each layer comprised 1024 hidden units (6.6M free parameters).  The weights are initialised from a uniform random distribution having a standard deviation of 0.046875.  The Adam optimisation algorithm \citep{kingma2014adam} was used with initial learning rate of , and a momentum of 0.95 was deployed to optimise the learning rate.
-
-The network was trained for a total of five to fifty epochs over the training set for experiments conducted. The training time for Python GPU implementation is shown in Table \ref{tab_c6_01_training}.  For decoding with prefix search we use a beam size of $200$ and cross-validated with a held-out set to find optimal settings for the parameters $\alpha$ and $\beta$. Figure \ref{fig_6_3_wer} shows word error rates for various GPU configurations and audio data-set sizes.
 
 \begin{table}
-  \caption{GPU Experiments}
-  \label{tab_c6_01_training}
-\begin{tabular}{lccc}
+  \caption{Perplexity Calculation results}
+  \label{tab:example}
+\begin{tabular}{lrr}
 \toprule
-Experiment & Hours of speech & Total training time & Estimated training\\
+Language Model & Perplexity  \\
 \midrule
-1. 2xGPU 10GB RAM & 1 & 7 days & Completed\\
-2. 2xGPU 10GB RAM & 10 & 150+ days & 300 days\\
-3. 5xGPU 15GB RAM & 10 & 17 hours & Completed\\
-4. 5xGPU 15GB RAM & 40 & 5+ days & 10 days\\
+Held-out data size (characters) & 998 & 99\\
+\midrule
+LSTM RNN & 1.6398 & 1.7622\\
+3-gram with Keysner Soothing and interpolation & 1.8046 & 1.9461\\
 \bottomrule
 \end{tabular}
 \end{table}
-
-\section{Model Baseline}
-The study by \cite{hannun2014first} reported successful character error rate (CER)  using deep neural network (DNN), recurrent deep neural network with only forward temporal connections (RDNN), and also bi-directional recurrent neural networks (BRDNN). The models used in this their study had 5 hidden layers having either 1,824 or 2,048 hidden units in each hidden layer.  For a baseline, we use a model having a similar architecture of 5 hidden units and 2048 hidden units trained on the Librespeech corpus \citep{panayotov2015librispeech, mozilla/deepspeech_2019}. 
-
-Word Error Rates by this model were optimised after 75 epochs, learning rate of 0.0001 and a dropout rate of 15\%.  In addition, the language model hyper parameters for alpha and beta were 0.75 and 1.85 respectively.  This achieved 8\% WER. This was done using MFCC features of the training corpus.
-
-
-\section{Results}
-A total of four experiments were carried out on two different GPU configurations. A set of experiments was performed a GPU configuration consisting of 2 GPUs having a total of 10 gigabytes of memory. The second set of experiments was carried out on a GPU configuration comprising 5 GPUs having a total of 15 gigabytes of memory.  For each configuration two experiments were carried out on a small subset of the dataset then on a larger subset of the common voice dataset being used.   The various GPU configurations along with the training times are shown in Table 1.
-
-The output of the training produced mostly gibberish when trained in both configurations using only just one hour of training data.  Training loss reduced significantly once the data was increased to ten hours of training.  However word error rates (WER) only showed improvement on the 40 hours dataset.
-\begin{figure}
-\centering
-  % Requires \usepackage{graphicx}
-  \includegraphics[width=14cm]{thesis/images/res00.PNG}\\
-  \caption{Training Loss, where $w<x<y<z$ are taken arbitrarily across the
-total number of epochs} \label{fig_6_2_loss}
-\end{figure}
-\begin{figure}
-\centering
-  % Requires \usepackage{graphicx}
-  \includegraphics[width=14cm]{thesis/images/res01.PNG}\\
-  \caption{WER, where w<x<y<z are taken arbitrarily across the total
-number of epochs} \label{fig_6_3_wer}
-\end{figure}
-
 \section{Chapter Summary}
+This chapter shows the application of a character-based Gated Recurrent Unit RNN on the low resource language of Wakirike to generate a language model for the Wakirike language.  The data-set and preparation and the details of the network were discussed.  The output of this model was used to hallucinate the Wakirike language which was then scored against word-based perplexity to obtain a metric against the baseline language model.
 
-In this chapter the details of the novel structure having the end-to-end deep bi-RNN architecture and deep scattering features were elaborated on.  The architecture which follows a five-layer structure consisting of a feed-forward neural network in the first three layers and the last two consisting of recurrent structures flowing in two different directions.  The network is then fed in with a 165-dimension feature vector containing deep-scattering encoding derived from a sampled raw audio file.
-
-The results showed that the training of the model was moving towards a very slow convergence as indicated by the slow decrements in training loss.  However, we speculate that on the complete data-set, the model will not only converge but show improvements in word error rates.
+It can be inferred that the GRU character-model developed has an improved language model and because it is based on a character-model, which is fine-grained when compared to a word model, it is likely to generalise data better when used in practice and is less biased than a word-based model.  This can be observed from the fact that the output corpus produced a larger vocabulary size.
