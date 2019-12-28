@@ -6,6 +6,17 @@
   year={2011}
 }
 
+@article{kamper2016unsupervised,
+  title={Unsupervised word segmentation and lexicon discovery using acoustic word embeddings},
+  author={Kamper, Herman and Jansen, Aren and Goldwater, Sharon},
+  journal={IEEE/ACM Transactions on Audio, Speech and Language Processing (TASLP)},
+  volume={24},
+  number={4},
+  pages={669--679},
+  year={2016},
+  publisher={IEEE Press}
+}
+
 @inproceedings{ragni2018automatic,
   title={Automatic Speech Recognition System Development in the" Wild".},
   author={Ragni, Anton and Gales, Mark JF},
