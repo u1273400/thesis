@@ -166,6 +166,12 @@ year={2012}
   publisher={IEEE}
 }
 
+@article{ragni2014data,
+  title={Data augmentation for low resource languages},
+  author={Ragni, Anton and Knill, Katherine Mary and Rath, Shakti P and Gales, Mark John},
+  year={2014}
+}
+
 @inproceedings{gales2014speech,
   title={Speech recognition and keyword spotting for low-resource languages: BABEL project research at CUED},
   author={Gales, Mark JF and Knill, Kate M and Ragni, Anton and Rath, Shakti P},
