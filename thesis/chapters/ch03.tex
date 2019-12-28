@@ -1,4 +1,56 @@
 \section{Speech Processing software and tools}
+\subsection{TensorFlow}
+
+The paragraphs and subsections that follow under this topic give an overview of the TensorFlow library as described by \cite{}
+
+Deep learning is a branch of artificial intelligence employing deep neural network architectures that has significantly advanced the state-of-the-art in computer vision, speech recognition, natural language processing and other domains. In November 2015, Google released TensorFlow, an open source deep learning software library for defining, training and deploying
+machine learning models.
+
+TensorFlow relies on dataflow graphs with mutable state.  Tensorflow was initially written in TLA[14].  A dataflow graph consists of nodes and edges, where each node represents an instantiation of an operation, and values flow along the edges. The operations are implemented by kernels that can be run on particular types of devices (for instance, CPUs or GPUs). 
+
+The main values of interest are tensors: arrays of arbitrary dimensionality where the underlying element type is specified or inferred at graph-construction time. Accordingly, many of the operations are mathematical functions such as matrix multiplication. 
+
+In addition, some of the operations may read or update state. In TensorFlow, a variable is a special kind of operation that returns a handle to a tensor.  For example, the tensor may contain the weights of a layer in a neural network, which are updated during the training process.
+
+Moreover, in addition to edges for communicating tensors, a graph may include control edges that constrain the order of execution. This order can affect the observable semantics in the presence of mutable state, and it can also affect performance. 
+
+A client typically constructs a graph using a front-end language such as Python. Then the client can make a call to run the graph, specifying which inputs to “feed” and which outputs to “fetch”. TensorFlow propagates the input values, repeatedly applying the operations prescribed by the graph, until no more nodes can fire. The order in which nodes fire is constrained by data dependencies and control edges, but is not necessarily unique. The execution ends with values on the graph’s output edges. In these respects, TensorFlow graphs are similar to expressions in programming languages. 
+
+Often, a graph is executed multiple times. Most tensors do not survive past a single execution of the graph. However, mutable state does persist across executions. In a typical application, a graph represents a step of training for a machine-learning model, the parameters of the model are stored in tensors held in variables, and they are updated as part of running the graph.
+
+\subsubsection{Programming Model}
+\subsubsection{Programming Interface}
+TensorFlow implementation provides two developer interfaces which include the Python interface and the C++ interface.  While the python interface offers a rich feature set for creation and execution of computation graphs, the C++ interface is primarily a back end implementation with a much more limited API primarily used for executing graphs built with Python and serialised to Google’s protocol buffer.
+
+It is worth noting that unlike PyTorch \citep{ketkar2017introduction}, the Python API handshakes very well with NumPy\citep{numpy} numeric and scientific open source programming library. As such, TensorFlow tensors can be naturally substituted with NumPy ndarrays without any need for type-conversion seen in PyTorch tensors.
+\subsubsection{Typical TensorFlow Workflow using MNIST digit handwriting recognition Data set}
+We train a simple multi-layer perceptron (MLP) with one input and one output layer to classify hand-writtin digits in the MNIST\citep{krizhevsky2012imagenet} dataset.   In this dataset, the examples are small images 28 x 28 pixels depicting handwritten digits from 0 to 9.
+
+Given an example matrix $\mathbf{X}\in\mathbb{R}^{n\times 784}$ containing  images, the learning task then applies an affine transformation $\mathbf{X\cdot W+b}$, where $\mathbf{W}$ is a weight matrix $\in \mathbb{R}^{784 \times 10}$, and a bias vector $\in R^{10}$.  This yields a new matrix $\mathbf{Y}\in \mathbb{R}^{n\times 10}$, containing the scores or logits of our model for each example and each possible digit.  These scores are more or less arbitrary.  To transform the ligits to valid probability distribution, giving the likelihood $Pr[x=i]$ that the -th example represents the digit $i$, we make use of a softmax function in the equation below
+\begin{equation}
+softmax(\mathbf{x})_i=\frac{\exp(\mathbf{x}_i)}{\Sigma_j\exp(\mathbf{x}_j)}\label{eqn_c3_smax00}
+\end{equation} 
+
+
+The objective function is pcomputed to give the error or loss of the model given its current trainable parameters $\mathbf{W}$ and $\mathbf{b}$.  This is obtained by  calculating the  cross entropy     $H(\mathbf{L,Y})_i=−\Sigma_j\mathbf{L}_{i,j}\cdot\log(\mathbf{Y}_{i,j})$
+between the probability distributions of our estimates $\mathbf{Y}$ and the one-hot-encoded labels $\mathbf{L}$.  More precisely, the mean cross entropy over all examples as the loss.
+
+Next, the stochastic gradient descent (SGD) is run to update the weights of our model.  A tensorflow class is provided and will be initialised with a learning rate.  The minimise function of this class takes the loss tensor as parameter used for minimisation.
+
+The operations run repeatedly within a tf.Session context manager.
+
+\subsubsection{Visualisation}
+TensorFlow interface offers the option of visualising computation graphs. Complex topologies consisting various sub-layers can be presented in a lucid form, offering the user to congruent, organised picture of exactly how data is consumed. Sub-graphs may be grouped into visual blocks and referred to in name scopes.  For example a single neural network layer may take up such a named scope. The name scopes are then interactively expanded on to give the detailed group visualisation.
+
+Two types of metrics are obtainable from the TensorBoard. These are summary operations, when attached as nodes in the graph, permit the user to monitor individual tensor values over time.   The first is the scalar summaries which capture tensor values and can be sampled at certain points within training epochs. One can now, for example, observe the trend of the accuracy loss of the training model over time.
+
+The other summary operation offers the user the ability to track distributions, such as final soft-max densities or the distribution of neural network weights. 
+
+Lastly, sample images can be visualised on the TensorBoard graph. This way kernel filters of a convolutional neural network can also be visualised.  In addition to all of these, one can perform zooming and panning actions directly on TensorBoard's web interface including expansion and collapsing of individual name scopes
+
+\subsection{Choregraphe}
+The Choregraphe software tool is a high-level language used for programming of Nao humanoid robots.  This is built on top of the Naoqi/Gentoo Unix/Robot Operating System(ROS) \ref{pot2009choregraphe}.  Speech recognition and processing modules of the Choregraphe tool were explored and expanded at the initial stages of the research.  However the Choregraphe software tool for the Nao robot was found to be unsuitable in speech recognition at the level of research that aligned with the research objectives and therefore was not utilised in this work.
+
 \subsection{Alisa}\label{c3sec_alisa}
 Alisa tool is a lightly supervised sentence segmentation tool based on Voice Activity Detection (VAD) algorithms \citep{stan2016alisa}.  It is so called lightly supervised because it requires small amounts of training data.  Generally the tool was asserted to be optimised for sentence segmentation and offered assistance in the creation of new speech corpora in a language-independent fashion. 
 
@@ -15,9 +67,9 @@ The goal of automatic transcription of new language with low resource constraint
   \caption{Alisa Architecture\citep{stan2016alisa}}\label{fig_c3_alisa00}
 \end{figure}
 
-Figure \ref{fig_c3_alisa00} above shows a block diagram of the steps involved in the alignment.  The method can be applied to any language with an alphabetic writing system, given the availability of speech resource and its corresponding approximate script.
+Figure \ref{fig_c3_alisa00} shows a block diagram of the steps involved in the alignment.  The method can be applied to any language with an alphabetic writing system, given the availability of speech resource and its corresponding approximate script.
 
-There is an option of using a grapheme based acoustic model. This however increases the margin for error.  Several steps were introduced in the Alisa tool to minimise this error margin. The chief being the introduction of a tri-grapheme acoustic model which is modeled after using context dependent triphones in traditional acoustic modelling.  Other techniques deployed to crash the error margin include the use of discriminative training with the Maximum Mutual Information (MMI) criterion \citep{schluter2001model} and methods described in \citep{novotney2009analysis}. Finally, it was observed that Alisa provided good alignment but was not fully featured. For instance it had no way of adding insertions and substitutions in the audio data not provided in the transcription.  Secondly, Alisa is restricted to languages that can utilise the english alphabet.
+There is an option of using a grapheme based acoustic model. This however increases the margin for error.  Several steps were introduced in the Alisa tool to minimise this error margin. The chief being the introduction of a tri-grapheme acoustic model which is modeled after using context dependent triphones in traditional acoustic modelling.  Other techniques deployed to crash the error margin include the use of discriminative training with the Maximum Mutual Information (MMI) criterion \citep{schluter2001model} and methods described in \citep{novotney2009analysis}. It was observed that Alisa provided good alignment but was not fully featured. For instance it had no way of adding insertions and substitutions in the audio data not provided in the transcription.  Finally, Alisa was found to be restricted to only languages that can utilise the English alphabet.
 
 \section{Initial Experiments}
 The experiments in the following sections describe initial experiments based on the initial study of a language learning companion before the research was narrowed down to a low resource speech recognition.  These preliminary experiments in addition to a preliminary Language Learning Survey helped to narrow down the Research to the specific speech processing task of Low Resource Automatic Speech Recognition (LR-ASR).
@@ -62,8 +114,7 @@ Nao is a humanoid robot developed mainly for deployment in environments for robo
 \subsection{Digit Speech Recognition and Alignment Experiments}\label{sec_digitspeech}
 These experiments were performed using CMU Sphinx4 recognition system and Kaldi speech recognition software.  While CMU Sphinx and pocketsphinx delivered standard interface for speech recognition using generative hybrid models, Kaldi speech in addition also offered advanced methods such as subspace Gaussian mixture model used to develop cross-lingual acoustic models and deep architectures for hybrid generative-discriminative models for speech recognition.   The main challenge with Kaldi was that it was CPU intensive and required a reasonable amount of parallel processing to achieve good results within a reasonable time period. 
 
-Speech alignment experiments were performed using the Alisa \cite{stan2016alisa} tool which is a python based tool with calls made to the HMM toolkit \cite{young2002htk}.  The Alisa tool alignment process undergoes a semi-supervised process and requires an error prone time-intensive manual pre-alignment procedure.  The tool itself was found to be quite unstable and the output results were not very easily reproducible for further tests to be carried out on different datasets.  In addition to the time-intensive pre-alignment procedure made the tool not very useful for this research. Had the tool been more successful, the tool, which utilises Voice Activity Detection (VAD) algorithms, would have been especially useful for sentence segmentation of long sequences of transcribed audio speech.  This tool however still lacked in alignment at either a word-level or sub-word level of alignment required in ASR pipelines.
-
+Speech alignment experiments were performed using the Alisa \cite{stan2016alisa} tool which is a python based tool with calls made to the HMM toolkit \cite{young2002htk}.  The Alisa tool alignment process undergoes a semi-supervised process and requires an error prone time-intensive manual pre-alignment procedure.  The tool itself was found to be quite unstable and the output results were not very easily reproducible for further tests to be carried out on different data sets.  In addition to the time-intensive pre-alignment procedure made the tool not very useful for this research. Had the tool been more successful, the tool, which utilises Voice Activity Detection (VAD) algorithms, would have been especially useful for sentence segmentation of long sequences of transcribed audio speech.  This tool however still lacked in alignment at either a word-level or sub-word level of alignment required in ASR pipelines.
 
 \section{End-to-end Research Experiments}\label{sec_postalign}
 The main challenges of speech recognition using HMM-based toolkits such as Kaldi, is the requirement for aligned speech.  In more recent endeavours, there has been efforts towards automatic alignment of transcribed audio speech recordings through successive Baum-Welch estimation techniques \cite{gales2014speech,ragni2018automatic,ragni2014data}. However, this technique is not particularly compatible with end-to-end goals adopted for this research as it would require preprocessing and successive pre-training of the data set.
@@ -74,7 +125,7 @@ Experiments performed in this and the next three sections are all based on seque
 
 The character-to-diacritically labelled character model was a sequence-to-sequence diacritically labeled experiment to automatically infer diacritic transcriptions of the Wakirike language given the plain unmarked Wakirike language text as input.  This is a task, when achieved successfully is a sub task towards developing a phonetic dictionary for the Wakirike Language which in turn can be used in HMM speech recognition or equivalent  end-to-end models.  This experiment was a precursor experiment, the results of which were reserved for further study.
 \subsection{Sequence-to-sequence Grapheme-to-Phoneme (G2P) model}
-This is a follow up experiment to the previous experiment in section \ref{sec_c2d}. This model attempts to automatically generate a phonetic dictionary from graphemes in a text corpus. Grapheme-to-phoneme experiments come in two flavours. The first being a continuation of the previous experiment, that is, using diacritically marked symbols and the second flavour using non-marked graphemes as input.  The experiments we performed used the latter non-marked graphemes as input. As this experiment was also a subtask in HMM speech model building,  the results of these experiments were reserved for further study.  
+This is a follow up experiment to the previous experiment in section \ref{sec_c2d}. This model attempts to automatically generate a phonetic dictionary from graphemes in a text corpus. Grapheme-to-phoneme experiments come in two flavours. The first being a continuation of the previous experiment, that is, using diacritically marked symbols and the second flavour using non-marked graphemes as input.  The experiments we performed used the latter non-marked graphemes as input. As this experiment was also a subtask in HMM speech model building,  the results of these experiments were reserved for further study.
 
 What follows in the next three sections are sequence-to-sequence experiments actively developed in this research and are detailed in chapters (\ref{ch6_wlm,ch6_speech,ch8_future}).  A brief summary of the experiments are highlighted in the following sections (\ref{sec_grulm,sec_be2e,c3sec_espnet}).  Note that these models all utilise TensorFlow deep learning library including the Bi-directional speech model (section \ref{sec_be2e}) which is built on top of Mozilla DeepSpeech with the exception of section \ref{c3sec_espnet} which is based on pytorch; a similar deep learning library (see table \ref{tab_tfstats} for comparison).
 
@@ -127,6 +178,6 @@ Here $I,D,$ and $R$ are wrong insertions, deletions and replacements respectivel
 Metrics used for low speech recognition in the zero speech challenge \citep{versteegh2015zero} include the ABX metric. Other common speech recognition error metrics following a similar definition as the Word Error Rate (WER) are Character Error Rate (CER), Phoneme Error Rate (PER) and Syllabic Error Rate (SyER) and sentence error rate (SER).
 
 \section{Summary of Methodology}
-In this chapter we outline how this research set about to achieve its objectives.  The main claim of this research is that by building a speech model that combines knowledge of end-to-end processing along with state of the art signal processing the overall complexity and time build new ASR systems can be reduced.
+In this chapter we outline how this research set about to achieve its objectives.  The main claim of this research is that by building a speech model that combines knowledge of end-to-end processing along with state of the art signal processing the overall training complexity and build time for new ASR systems can be improved.  This research aims to deliver this through by the unique combination of a CTC-based deep recurrent bi-directional neural network with high performance feature processing of Deep Scattering Networks (DSNs).
 
 This chapter also reviews the technologies utilised by this research in order to arrive at the research outputs and briefly describes the experiments performed.  Within this space we describe CMUSphinx, Kaldi, Mozilla Deepspeech, Tensorflow, Matlab and Scatnet as major libraries used.   The first two being Hidden Markov Model (HMM)-based libraries and the latter being used either integrally or as part of end-to-end  and signal processing systems used to build Deep Recurrent Neural Network (RNN) models. Finally, we mention metrics for the evaluation of the models built in this work.
