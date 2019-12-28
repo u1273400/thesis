@@ -6,6 +6,24 @@
   year={2011}
 }
 
+@inproceedings{ragni2018automatic,
+  title={Automatic Speech Recognition System Development in the" Wild".},
+  author={Ragni, Anton and Gales, Mark JF},
+  booktitle={Interspeech},
+  pages={2217--2221},
+  year={2018}
+}
+
+@inproceedings{watanabe2018espnet,
+  author={Shinji Watanabe and Takaaki Hori and Shigeki Karita and Tomoki Hayashi and Jiro Nishitoba and Yuya Unno and Nelson {Enrique Yalta Soplin} and Jahn Heymann and Matthew Wiesner and Nanxin Chen and Adithya Renduchintala and Tsubasa Ochiai},
+  title={ESPnet: End-to-End Speech Processing Toolkit},
+  year=2018,
+  booktitle={Interspeech},
+  pages={2207--2211},
+  doi={10.21437/Interspeech.2018-1456},
+  url={http://dx.doi.org/10.21437/Interspeech.2018-1456}
+}
+
 @inproceedings{pot2009choregraphe,
   title={Choregraphe: a graphical tool for humanoid robot programming},
   author={Pot, Emmanuel and Monceaux, J{\'e}r{\^o}me and Gelin, Rodolphe and Maisonnier, Bruno},
