@@ -12,13 +12,12 @@ The goal of automatic transcription of new language with low resource constraint
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=9cm]{thesis/images/alisa}\\
-  \caption{Original waveform input for auto-correlation}\label{fig_c3_alisa00}
+  \caption{Alisa Architecture\citep{stan2016alisa}}\label{fig_c3_alisa00}
 \end{figure}
 
-Figure 3-5 Alisa Overview (Stan et al., 2016)
-Figure 3-5 above shows a block diagram of the steps involved in the alignment.  The method can be applied to any language with an alphabetic writing system, given the availability of speech resource and its corresponding approximate script.
+Figure \ref{fig_c3_alisa00} above shows a block diagram of the steps involved in the alignment.  The method can be applied to any language with an alphabetic writing system, given the availability of speech resource and its corresponding approximate script.
 
-We have earlier mentioned that the downside of using grapheme based acoustic model is the increase in the error margin or trade of accuracy.  Several steps were introduced in Alisa to minimise this margin, the chief being the introduction of a tri-grapheme acoustic model which is modeled after using context dependent triphones in traditional acoustic modelling.  Other methods used drop down the error margin include the use of discriminative training with the Maximum Mutual Information (MMI) criterion (Schluter & Ney, 2001; Bouchard & Triggs, 2004) and methods described in (Novotney & Schwartz, 2009; Lamel, Gauvain & Adda, 2002). Finally, it was observed that Alisa provided good alignment but was not fully featured. For instance it had no way of adding insertions and substitutions in the audio data not provided in the transcription.  Secondly, Alisa is restricted to languages that can utilise the english alphabet.
+There is an option of using a grapheme based acoustic model. This however increases the margin for error.  Several steps were introduced in the Alisa tool to minimise this error margin. The chief being the introduction of a tri-grapheme acoustic model which is modeled after using context dependent triphones in traditional acoustic modelling.  Other techniques deployed to crash the error margin include the use of discriminative training with the Maximum Mutual Information (MMI) criterion \citep{schluter2001model} and methods described in (Novotney & Schwartz, 2009; Lamel, Gauvain & Adda, 2002). Finally, it was observed that Alisa provided good alignment but was not fully featured. For instance it had no way of adding insertions and substitutions in the audio data not provided in the transcription.  Secondly, Alisa is restricted to languages that can utilise the english alphabet.
 
 \section{Initial Experiments}
 The experiments in the following sections describe initial experiments based on the initial study of a language learning companion before the research was narrowed down to a low resource speech recognition.  These preliminary experiments in addition to a preliminary Language Learning Survey helped to narrow down the Research to the specific speech processing task of Low Resource Automatic Speech Recognition (LR-ASR).
