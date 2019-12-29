@@ -14,17 +14,22 @@ Once a client constructs a graph using a front-end interface such the Python API
 Data dependencies and control edges, dictate the order of execution. Often, a graph is executed severally and tensors declared as placeholders or constants are used once. However, variable tensors have mutable state which allow persistence across multiple executions. The parameters of the model stored in variables variables are usually updated as part of running the graph.
 
 \subsubsection{Programming Model}
-In this section we give examples of execution data flow graphs and in the following sections we highlight the other major special features of TensorFlow including automatic differentiation and back-prop algorithm implementation, control flow, check pointing, programming interface, sample implementation and graph visualisation.
+In this section examples of execution data flow graphs are given; and in the following sections we highlight the other major special features of TensorFlow including automatic differentiation and back-prop algorithm implementation, control flow, check pointing, programming interface, sample implementation and graph visualisation.
 
-A computation or data flow graph is illustrated in Figure \ref{fig_c3_tfg}. 
+In a TensorFlow computational data flow graph, vertices or nodes of the directed graph represent operations, while edges signify flow of data between these vertices or operations. Thus labels on nodes are representative of the actions taken at that node.  Similarly, labels representing values flow in the direction of the edges. The inputs to a labeled operation are therefore the labels which have edges directed towards the operation. A computation or data flow graph is illustrated in Figure \ref{fig_c3_tfg}. 
 \begin{figure}
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=9cm]{thesis/images/tfgraph}\\
-  \caption{Alisa Architecture\citep{stan2016alisa}}\label{fig_c3_tfg}
+  \caption{Sample TensorFlow computation graphs\citep{goldsborough2016tour}}\label{fig_c3_tfg}
 \end{figure}
-The left graph displays a basic compute graph consisting of an addition operator having two input variables $x$ and $y$.  The result, $z$ is the output the $+$ operation.  The right graph gives a more complex example of computing a logistic regression variable $\hat{y}$ in for some example vector $\mathbf{x}$, weight vector $\mathbf{w}$ as well as scalar bias $b$.  As shown in the graph, $\hat{y}$ is the result of the sigmoid or logistic function $\sigma$
+
+The left graph displays a basic compute graph consisting of an addition operator having two input variables $x$ and $y$.  The result, $z$ is the output of the $+$ operation.  The right graph gives an example logistic regression function. $\hat{y}$ is the final output of the function for some sample vector $\mathbf{x}$, weight vector $\mathbf{w}$ and scalar bias $b$.  As shown in the graph, $\hat{y}$ is the output of the sigmoid or logistic function $\sigma$
+
 \subsubsection{Backprop nodes}
+If a neural network consists of two hidden layers represented by functions $$f(x;w)=f_x(w)$$ and $$g(x;w)=g_x(w)$$ with internal weights $$w$$, we can express the cost for that example as $$c=(f_x \circ g_x)(w)=f_x(g_x(w))$$.  We would then typically calculate the gradient $$dc/dw$$ of the cost with respect to the weights and use it to update $$w$$.  The backprop algorithm traverses the graph in reverse to compute the cost using the chain rule $$[f_x(g_x(w))]‘=f‘_x(g_x(w))\cdot g‘x(w)$$.
+
+When TensorFlow needs to compute the gradient of a particular node ν with respect to some other tensor α, it traverses the graph in reverse order from ν to α. Each operation o encountered during this traversal represents a function depending on α and is one of the “links” in the chain (ν ◦ . . . ◦ o ◦ . . .)(α) producing the output tensor of the graph. Therefore, TensorFlow adds a gradient node for each such operation o that takes the gradient of the previous link (the outer function) and multiplies it with its own gradient. At the end of the traversal, there will be a node providing a symbolic handle to the overall target derivative dν/dα , which implicitly implements the back-propagation algorithm. It should now be clear that back-propagation in this symbol-to-symbol approach is just another operation, requiring no exceptional handling. Figure 7 shows how a computational graph may look before and after gradient nodes are added. 
 
 \subsubsection{Control flow}
 TensorFlow also supports control-flow operations.  For this reason TensorFlow is not a directed acyclic graph (DAG) but can support cyclic structures. If the number of loops required by the computation graph is known at graph construction.  It is easy to maintain a DAG structure simply by unrolling the number of loops specified.  However, this is not always the case.  There are instances in which a variable number of loops is required at runtime.  Hence, the computation graph becomes increasingly complex.  This is particularly the case for back gradient descent and back propagation of errors (see section \ref{sec_c3_tfwf} for a  walk through).  The process of stepping back through a loop in reverse to compute gradients is known as back-propagation through time \citep{al2016theano}.
