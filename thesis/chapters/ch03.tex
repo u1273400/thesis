@@ -1,6 +1,105 @@
-\section{Speech Processing software and tools}
-\subsection{TensorFlow}
+This chapter describes the system building methodology  \citep{nunamaker1990systems} as applied to deep recurrent architectures for speech recognition.  As this approach involves theory building, system development, experimentation and observation, this chapter describes the procedures which were incorporated in order to achieve the aims and objectives of this research.
 
+In order to arrive at the initial research questions and hypothesis a literature survey  of speech processing advances was carried out.  
+
+The initial research topic was centred around a language learning companion.  Thus, a mini survey was conducted on recipients use of technology in general learning.  However, after the literature survey, the research was narrowed down core language technology assistive features whereby speech recognition for low resource languages was chosen as the area this research focused on.
+
+This research develops several software systems based on knowledge acquired from the literature survey in order to gain deeper understanding into the state of the art research results as well as building upon baseline systems in order to achieve the research aims and objectives.  It was through this methodology that the final systems developed in chapters six and seven were designed and developed as a unique combination of existing research systems.  While the system built in chapter seven is a combination of systems in order to generate knowledge in the field of speech recognition, the value added from the system built in chapter six relates to using already successful methods in speech recognition on a new language having linguistic data challenges. 
+\section{Hypotheses and assumptions}
+This research makes the following assumptions and claims.
+\begin{enumerate}
+    \item The first hypothesis is that Software engineering systems are successfully developed using an incremental and iterative manner of increasing complexity.
+    \item End-to-end speech models are more conservative on actual software engineering complexity and in that respect are said to be utilised towards low resource speech recognition.
+    \item End-to-end speech recognition has been made possible using recurrent neural networks (RNNs) and connectionist temporal classification (CTC) algorithm.
+    \item By having a higher number of features, Deep scattering networks (DSNs) can better detect speech than state of the art Mel Frequency Cepstral Coefficients (MFCCs).
+    \item There is knowledge to be gained in the application of speech models to new languages.
+\end{enumerate}
+
+Based on the above assumptions this research proposes that there is much knowledge to be gained from combining the use of Scatter transform features with RNNs and application of current deep RNNs in the modelling of the Wakirike language.
+
+\section{Speech Processing software and tools}
+This research set out to build and evaluate several speech processing systems.  Some of the systems were built by hand from scratch however, the end products were adaptations of already existing open source speech recognition research codebases.  The systems and platforms adapted for this research include the following:
+\begin{itemize}
+    \item CMUSphinx
+    \item Kaldi
+    \item Mozilla DeepSpeech
+    \item Scatternet toolbox
+    \item Matlab
+    \item Tensorflow
+    \item Choregraphe
+\end{itemize}
+
+While the research sought to focus on speech models for the Wakirike language, several other sub systems were required for but development of the baseline models in addition to the final model the following system development steps were taken to arrive at the final output models:
+\begin{itemize}
+    \item Auto-correlation experiments
+    \item Experiments with Nao robot
+    \item CMUSphinx Digits speech recogniser
+    \item Digit speech recogniser using Kaldi
+    \item Python based speech alignment experiments
+    \item Sequence-to-sequence grapheme-to-phoneme (G2P) model
+    \item TensorFlow sequence-to-sequence character-to-diacritically-labelled-character model
+    \item GRU language model for Wakirike language based on TensorFlow
+    \item Bi-Directional LSTM-based end-to-end speech model
+    \item ESP-Net experiments
+\end{itemize}
+
+In the following sections, the tools utilised for the systems developed and how they were utilised is discussed.  Subsequently, the actual systems developed incrementally towards the final models are described.
+\subsection{CMUSphinx}
+The CMU Sphinx recogniser system is illustrated in Figure \ref{fig_c3_sphinx}.  In a speech application or experiment, the recogniser is called within the user application and is fed with input and other control parameters that determines the recogniser behaviour.  From the illustration, it is observed how the components of feature extraction, acoustic modelling, language modelling and decoding are linked within the CMU Sphinx system.  Note that for identification and clarity classes/modules are capitalised in the following paragraphs.
+\begin{figure}
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=9cm]{thesis/images/sphinx}\\
+  \caption{CMU Sphinx4 recogniser system }\label{fig_c3_sphinx}
+\end{figure}
+In the CMU Sphinx realisation, the FrontEnd module implements feature extraction.  The Linguist module implements the acoustic modelling and the language model component. Finally, the Decoder module implements a decoder.  The ConfigurationManager class is used to determine the behaviour of the recogniser by specifying  the parameters of the other modules.   
+
+From this implementation, the FrontEnd processor is the signal processing unit of Sphinx-4 parameterising signals using various implementations into a final sequence of Features.  The Linguist is in charge of language and pronunciation modelling.  This includes phonetic information from the Dictionary and structural information from one or more sets of LanguageModels and AcousticModels.  The output of the Linguist is a SearchGraph.  The Features output from the FrontEnd and the SearchGraph output from the Linguist become the input for the SearchManager in the Decoder.  The output of the decoder are Results objects.  At any time prior to or during the recognition process, the researcher can via his application application issue Controls  through the ConfigurationManager to each of the modules, and become a partner in the recognition process.  The following subsections summarises the submodules \cite{walker2004sphinx}.
+\subsubsection{FrontEnd Module}
+\subsubsection{Linguist}
+\subsubsection{Decoder}
+\subsubsection{Other modules}
+ConfigurationManager allows various module implementations to be combined in various ways.  Finally, we illustrate how the ConfigurationManager creates Automatic Speech Recognition (ASR) experiments using the CMU-sphinx4 objects described above in the sample code from \citep{Lamere03thecmu} 
+\begin{lstlisting}[language=Java]
+package com.example;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+
+import edu.cmu.sphinx.api.Configuration;
+import edu.cmu.sphinx.api.SpeechResult;
+import edu.cmu.sphinx.api.StreamSpeechRecognizer;
+
+public class TranscriberDemo {                                  
+    public static void main(String[] args) throws Exception {      
+        Configuration configuration = new Configuration();
+        configuration
+        .setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
+        configuration
+		  .setDictionaryPath("resource:/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict");
+        configuration
+        .setLanguageModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us.lm.bin");
+
+        StreamSpeechRecognizer recognizer = new StreamSpeechRecognizer(
+                configuration);
+        InputStream stream = new FileInputStream(new File("test.wav"));
+
+        recognizer.startRecognition(stream);
+        SpeechResult result;
+        while ((result = recognizer.getResult()) != null) {
+            System.out.format("Hypothesis: %s\n", result.getHypothesis());
+        }
+        recognizer.stopRecognition();
+    }
+}
+\end{lstlisting}
+The above java code sample represents a user application.  We see three classes being imported. The Configuration, SpeechResult, and StreamSpeechRecognizer class.  The Configuration object holds resources for the acoustic model, language model and phonetic dictionary.  The SpeechRecognizer object has different implementations representing the source of the speech signal.  In the above sample the StreamSpeechRecogniser class is used to load the speech signal from a wave (.wav) file.  However other speech signal sources are available such as the LiveSpeechRecogniser which implements loading the speech sound signal from a microphone device if available.  In addition, (Walker et al., 2004) 4 claims that the Sphinx-4 system provides additional tools and utilities that contain helper classes for computing recognition statistics such as Word Error Rate (WER), phoneme error rates (PER) etc.
+
+\subsection{Kaldi}
+\subsubsection{Feature Extraction}
+\subsubsection{Acoustic Modelling}
+\subsubsection{Language Modelling and Deconding Graphs}
+\subsection{TensorFlow}
 The paragraphs and subsections that follow under this topic give an overview of the TensorFlow library as outlined by the following authors \cite{goldsborough2016tour,abadi2016tensorflow,abadi2017computational}
 
 TensorFlow is a state-of-the-art high performance library by Google for Deep learning.  Deep learning is a branch of artificial intelligence which acquires learning from deep neural network architectures. Deep learning has significantly advanced in various application domains and by far out-performed traditional approaches.  TensorFlow, offers researchers and enthusiasts an open source software library for use in defining, training and deploying deep learning models.
@@ -27,9 +126,9 @@ In a TensorFlow computational data flow graph, vertices or nodes of the directed
 The left graph displays a basic compute graph consisting of an addition operator having two input variables $x$ and $y$.  The result, $z$ is the output of the $+$ operation.  The right graph gives an example logistic regression function. $\hat{y}$ is the final output of the function for some sample vector $\mathbf{x}$, weight vector $\mathbf{w}$ and scalar bias $b$.  As shown in the graph, $\hat{y}$ is the output of the sigmoid or logistic function $\sigma$
 
 \subsubsection{Backprop nodes}
-If a neural network consists of two hidden layers represented by functions $$f(x;w)=f_x(w)$$ and $$g(x;w)=g_x(w)$$ with internal weights $$w$$, we can express the cost for that example as $$c=(f_x \circ g_x)(w)=f_x(g_x(w))$$.  We would then typically calculate the gradient $$dc/dw$$ of the cost with respect to the weights and use it to update $$w$$.  The backprop algorithm traverses the graph in reverse to compute the cost using the chain rule $$[f_x(g_x(w))]‘=f‘_x(g_x(w))\cdot g‘x(w)$$.
+If a neural network consists of two hidden layers represented by functions $f(x;w)=f_x(w)$ and $g(x;w)=g_x(w)$ with internal weights $w$, we can express the cost for that example as $c=(f_x \circ g_x)(w)=f_x(g_x(w))$.  We would then typically calculate the gradient $dc/dw$ of the cost with respect to the weights and use it to update $w$.  The backprop algorithm traverses the graph in reverse to compute the cost using the chain rule $[f_x(g_x(w))]‘=f‘_x(g_x(w))\cdot g‘x(w)$.
 
-When TensorFlow needs to compute the gradient of a particular node ν with respect to some other tensor α, it traverses the graph in reverse order from ν to α. Each operation o encountered during this traversal represents a function depending on α and is one of the “links” in the chain (ν ◦ . . . ◦ o ◦ . . .)(α) producing the output tensor of the graph. Therefore, TensorFlow adds a gradient node for each such operation o that takes the gradient of the previous link (the outer function) and multiplies it with its own gradient. At the end of the traversal, there will be a node providing a symbolic handle to the overall target derivative dν/dα , which implicitly implements the back-propagation algorithm. It should now be clear that back-propagation in this symbol-to-symbol approach is just another operation, requiring no exceptional handling. Figure 7 shows how a computational graph may look before and after gradient nodes are added. 
+When TensorFlow needs to compute the gradient of a particular node $\nu$ with respect to some other tensor $\alpha$, it traverses the graph in reverse order from $\nu$ to $\alpha$. Each operation $\circ$ encountered during this traversal represents a function depending on $\alpha$ and is one of the “links” in the chain $(\nu \circ \dots \circ o \circ \dots)(\alpha)$ producing the output tensor of the graph. Therefore, TensorFlow adds a gradient node for each such operation o that takes the gradient of the previous link (the outer function) and multiplies it with its own gradient. At the end of the traversal, there will be a node providing a symbolic handle to the overall target derivative $d\nu/d\alpha$ , which implicitly implements the back-propagation algorithm. It should now be clear that back-propagation in this symbol-to-symbol approach is just another operation, requiring no exceptional handling. Figure 7 shows how a computational graph may look before and after gradient nodes are added. 
 
 \subsubsection{Control flow}
 TensorFlow also supports control-flow operations.  For this reason TensorFlow is not a directed acyclic graph (DAG) but can support cyclic structures. If the number of loops required by the computation graph is known at graph construction.  It is easy to maintain a DAG structure simply by unrolling the number of loops specified.  However, this is not always the case.  There are instances in which a variable number of loops is required at runtime.  Hence, the computation graph becomes increasingly complex.  This is particularly the case for back gradient descent and back propagation of errors (see section \ref{sec_c3_tfwf} for a  walk through).  The process of stepping back through a loop in reverse to compute gradients is known as back-propagation through time \citep{al2016theano}.
