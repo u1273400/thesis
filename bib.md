@@ -1,5 +1,14 @@
 * Bibliography
 
+@inproceedings{povey2011kaldi,
+  title={The Kaldi speech recognition toolkit},
+  author={Povey, Daniel and Ghoshal, Arnab and Boulianne, Gilles and Burget, Lukas and Glembek, Ondrej and Goel, Nagendra and Hannemann, Mirko and Motlicek, Petr and Qian, Yanmin and Schwarz, Petr and others},
+  booktitle={IEEE 2011 workshop on automatic speech recognition and understanding},
+  number={CONF},
+  year={2011},
+  organization={IEEE Signal Processing Society}
+}
+
 @article{walker2004sphinx,
   title={Sphinx-4: A flexible open source framework for speech recognition},
   author={Walker, Willie and Lamere, Paul and Kwok, Philip and Raj, Bhiksha and Singh, Rita and Gouvea, Evandro and Wolf, Peter and Woelfel, Joe},
