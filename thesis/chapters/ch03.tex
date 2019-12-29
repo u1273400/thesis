@@ -85,11 +85,11 @@ public class TranscriberDemo {
     public static void main(String[] args) throws Exception {      
         Configuration configuration = new Configuration();
         configuration
-        .setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
+        .setAcousticModelPath("resource:en-us");
         configuration
-		  .setDictionaryPath("resource:/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict");
+		  .setDictionaryPath("resource:cmudict-en-us.dict");
         configuration
-        .setLanguageModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us.lm.bin");
+        .setLanguageModelPath("resource:en-us.lm.bin");
 
         StreamSpeechRecognizer recognizer = new StreamSpeechRecognizer(
                 configuration);
@@ -107,7 +107,7 @@ public class TranscriberDemo {
 The above java code sample represents a user application.  We see three classes being imported. The Configuration, SpeechResult, and StreamSpeechRecognizer class.  The Configuration object holds resources for the acoustic model, language model and phonetic dictionary.  The SpeechRecognizer object has different implementations representing the source of the speech signal.  In the above sample the StreamSpeechRecogniser class is used to load the speech signal from a wave (.wav) file.  However other speech signal sources are available such as the LiveSpeechRecogniser which implements loading the speech sound signal from a microphone device if available.  In addition, \cite{walker2004sphinx} 4 asserts that the Sphinx-4 system provides additional tools and utilities that contain helper classes for computing recognition statistics such as Word Error Rate (WER), phoneme error rates (PER) etc.
 
 \subsection{Kaldi}
-CMU Sphinx provides an object-oriented approach to speech recognition. Kaldi \cite{povey2011subspace} on the other hand is a highly modularised library written in C++. Kaldi is based on weighted finite state transducers (WFSTs) used for inference graphs and decoding. The Kaldi WFSTs utilises OpenFst, an open source library, at its core. Together with a collection of configuration scripts for building complete recognition systems, Kaldi supports modeling of a variety of speech model variations with vast support for linear and affine transforms of speech features of arbitrary phonetic-context sizes.  Kaldi is specifically suited for acoustic modeling with subspace Gaussian Mixture Models (SGMM) in addition to the standard Gaussian Mixture Models (GMMs).
+CMU Sphinx provides an object-oriented approach to speech recognition. Kaldi \cite{povey2011kaldi} on the other hand is a highly modularised library written in C++. Kaldi is based on weighted finite state transducers (WFSTs) used for inference graphs and decoding. The Kaldi WFSTs utilises OpenFst, an open source library, at its core. Together with a collection of configuration scripts for building complete recognition systems, Kaldi supports modeling of a variety of speech model variations with vast support for linear and affine transforms of speech features of arbitrary phonetic-context sizes.  Kaldi is specifically suited for acoustic modeling with subspace Gaussian Mixture Models (SGMM) in addition to the standard Gaussian Mixture Models (GMMs).
 \subsubsection{Architecture}
 The component architecture of Kaldi is illustrated in the figure below.  Modules can be divided into those that utilise the linear algebra libraries and those that use OpenFST.  The decodable class forms the link between these two scopes.  The rest of the modules lower down the hierarchy are based on modules higher up hierarchy according to this divide.
 \begin{figure}
@@ -125,20 +125,191 @@ Full covariance as well as diagonal covariance GMM modelling is implemented in K
 Using the FST back in addition to third party language modelling software, Kaldi is able infer sentence estimations using n-gram language models. During decoding, transition-ids are created and attached to corresponding pdf-ids as a result of tied-state nature of phones where different phones are allowed to have share the same distribution.  The transition-id therefore encapsulates the shared pdf-id and the arc (transition) of phone-specific topology. This way transitions are fine-grained without adding complexity to the decoding graph
 
 Core decoding algorithms are implemented using C++ classes one per decoder.  Decoders implement an interface which accepts an acoustic model score for a particular input-symbol and frame.  While single-pass decoding is achieved through C++ classes, multi-pass decoding is realised using the supporting configuration scripts.
-\subsection{Mozilla DeepSpeech}
 
-\subsection{TensorFlow}
+\subsection{Mozilla DeepSpeech}\label{sec_c3_moz}
+The DeepSpeech speech-to-text engine is an ASR speech model and model generator built by Mozilla is based on Baidu's Deep Speech research paper \citep{hannun2014deep}.  The system comes in two forms;  an installable speech-to-text engine based on the English language and the model trainer. These components were created and run effectively on unix/linux based systems and to a limited extent on Microsoft Windows systems.  Various options for installing the speech to text engine includes either command line based or as an application programming interface (API) using python or NodeJS.  In addition, the speech-to-text (STT) engine API also supports bindings for the Rust language, GoLang and GStreamer.  This thesis however, did not rely on the STT engine nor API, but rather on the model trainer which was adapted in this research for scattering transform feature-based end-to-end speech recognition.
+
+Runtime library dependencies of both the STT engine and the model trainer include libsox,2 for sound processing of audio; libstdc++6, libgomp1 and libpthread are used to compile the Connectionist Temporal Classification (CTC) decoder implementation which incorporates the KenLM trained language model \cite{Heafield-estimate}.
+\subsubsection{Graphics Processor Unit (GPU)-Enabled Speech Model Training}
+The model trainer of the Mozilla DeepSpeech platform is facilitated by the ability to train models on a highly parallel processing Graphics Processing Unit (GPU).  This enables model training-time speed-ups over traditional CPU machines.  The Mozilla DeepSpeech platform recommends Nvidia Graphics 10 series processor with a system requirement of 8GB of Random Access Memory (RAM). In section \ref{sec_c3_tf} we introduce TensorFlow python library.  Mozilla DeepSpeech platform is able to utilise the GPU using the Nvidia GPU library, CUDA.  This is achieved through the python TensorFlow library created by Google as discussed in section \ref{sec_c3_tf}.
+\subsubsection{Common Voice training}
+The speech corpora used for training in this research was obtained from the Mozilla Common Voice Initiative speech corpora.  This consists of over 250 hours of speech data that is subdivided into test, development and training data sets.  In addition, the data was subdivided into clean data, that is, clean audio recording with accurate translation and a small subset containing skewed data, that is, audio recording which was either noisy or not having accurate transcriptions.  The skewed data subset consisted 15-25 percent of the training corpus and was incorporated so that the neural network speech model could simulate and learn real world noisy audio speech-to-text translation.  The Mozilla DeepSpeech model trainer provided bash scripts for importing the Common Voice speech corpora as well as converting the files into the appropriate formats and provision of mapping files for the model trainer.
+\subsubsection{Mozilla DeepSpeech model parameters}
+The model trainer consists of a root python script “DeepSpeech.py” with various calls to other python scripts responsible for things like audio processing, distributed training, GPU configuration, training coordination.  Other accessory bash scripts also present are responsible for downloading and training for different kinds of speech corpora including Mozilla Common Voice and the Wall Street Journal (WSJ).  These sets of scripts are referred to as speech corpus importers. 
+
+In order to supply the model trainer with a set of hyper parameters for tuning various aspects of the Mozilla DeepSpeech platform, the following categories arguments passed to the root script ensue:
+\begin{itemize}
+    \item Geometry - Defines the number of neurons in the hidden layers of the neural network
+    \item Cluster configuration - Parameters responsible for distributed training of the speech model across various nodes.
+    \item Global constants - These include all other parameters to gain fine control of the training process.  These parameters include how much of the training corpus will be used and which subset should be included; early stopping for pre-trained models that have already been trained to saturation, that is to a stopping condition; the dropout rate for neural network regularisation.  This is a strategy to overcome over-fitting where instead of learning inference features the data, the neural network memorizes the training data.
+    \item Global constants - These include all other parameters to gain fine control of the training process.  These parameters include how much of the training corpus will be used and which subset should be included; early stopping for pre-trained models that have already been trained to saturation, that is to a stopping condition; the dropout rate for neural network regularisation.  This is a strategy to overcome over-fitting where instead of learning inference features the data, the neural network memorizes the training data.
+    \item Adam optimiser - parameters for the Adam optimiser
+    \item Batching - set the number of batches during training.
+    \item Weight Initialisation - standard deviation coefficients for initialising weights.
+    \item Checkpointing - this includes the number of seconds before saving the current model parameter values to the disk.  This enables resumption of training in instances where the training was interrupted. For training to resume successfully, the resuming training geometry parameter must be exactly the same as the interrupted geometry training parameter.
+    \item Exporting - Includes parameters for saving a saturated model for inference.
+    \item Reporting - Includes options for setting the log-level however reports are only sent to the standard console output.
+    \item Decoder - These parameters include the path to the alphabet symbols and that of the custom CTC decoder used during decoding of the neural network output.
+    \item Inference - It is possible to use a model trainer to either perform a one-shot inference or resume training from an already exported model. The parameters used for inference are responsible for performing these stated tasks.
+\end{itemize}
+
+In addition to the above configuration there are other accessory scripts that can be used for TensorFlow specific tasks such as conversion of the output model graph to several exportable formats.
+
+\subsection{Matlab and ScatNet toolbox}
+In this research, feature processing of audio files to obtain their deep scattering transforms was achieved using a MATLAB toolbox known as ScatNet \citep{anden2014scatnet}.  The ScatNet toolbox in general analyses time-series sampled analog signals and has been used successfully for music genre classification, texture and image classification \cite{anden2014scatnet}.  In particular, the scattering transforms produced are signal processing layers of increasing width where each layer constitutes the convolution of a linear filter bank wavelet operator (Wop) with a non linear complex modulus.  
+\begin{equation}
+    ||\text{complex signal}|\star \mathbf{Wop}|\star(\text{low-pass filter})$$ - \label{eqn_c3_scat00}
+\end{equation}
+
+It is the scattering transforms of the audio files that were fed into the DeepSpeech model trainer discussed in Section \ref{sec_c3_moz}.  The architecture of a scattering networks resembles a deep convolutional network in the sense that each subsequent layer is a mapping of all possible paths from the previous layer.
+
+ScatNet provides default options for most of the parameters that require tuning in order to derive the scattering coefficients for an input signal.  In particular, for audio signals, the most important hyper-parameters set by the library is the number of scattering layers that captures the entire audio spectrum which is set at 2.  In addition to this default, the only other parameter to set is the window period of the signal to be analysed per time.  A suitable value for the window can be derived from the sampling rate of the input signal.  The toolbox function S=scat(x,Wop) takes a an input signal, x,  and an array of linear wavelet operators, Wop, in order to compute the scattering coefficients of the input signal.   The resulting network, S is a cell array whose length M+1 is equivalent to that of the linear filter operator.  
+
+\subsubsection{Wavelet Factories} 
+By providing optimal defaults for linear operators, ScatNet provides wavelet factories especially suited for efficient signal processing of images and sounds.  Therefore, linear wavelet operators are built in one line of code through built-in “factories”, which perform wavelet analysis tasks.
+
+Again, the maximum number of wavelets J is automatically derived from the sampling from the sampling period T.  The filter banks are formed by dilating the mother wavelet ($\psi$) by the dyadic factor ($2^{1/Q}$).  In the Fourier domain this is expressed as
+\begin{equation}
+     \hat\psi_j(\omega) = \hat\psi(2^{j/Q}\omega)
+     \label{eqn_c3_scat01}
+\end{equation}
+To ensure optimize frequency coverage without frequency-overlapping or getting redundant, the mother wavelet $\( \psi \)$ is chosen such that  $(Q_1 = 8)$ and $(Q_2 = 1)$ by default. This also means that the first order filter will be of a higher frequency resolution when compared to the second order filter. 
+\subsubsection{Filter banks}
+You may recall that scattering coefficients are defined by 
+\begin{equation}
+    S_1x(t,j_1) = |x\star\psi_{j_1}|\star\phi(t)
+    \label{eqn_c3_scat02}
+\end{equation}
+\begin{equation}
+    S_2x(t,j_1,j_2) = ||x\star\psi_{j_1}|\star\psi_{j_2}|\star\phi(t) \label{eqn_c3_scat03}
+\end{equation}
+and so on, where $\( \psi_{j} \)$ are band-pass filters and  a low-pass filter.
+
+The wavelet transforms Wop provided by wavelet_factory_1d are merely function handles, with no actual data in them. Instead, they rely on a cell array named filters, which can be extracted from the factory as an optional second output argument:
+
+[Wop,filters] = wavelet_factory_1d(N, filt_opt);
+
+Like a scattering network, each element in the cell array corresponds to a layer ; however, while S has $\( M+1 \)$ elements, filters has only $\( M \)$ elements, as there is no filter bank at the root.
+The psi.filter field of filters{m} contains the band-pass filters $\(\psi_\lambda\)$. These filters are expressed in the Fourier domain, and only their nonzero coefficients are stored. For visualization purposes, one may use realize_filter to convert them to arrays of length N by padding them with zeros. 
+
+Here is a short script to display the filter banks at both orders $\(M = 1\)$ and $\(M = 2\)$.
+
+\begin{lstlisting}[language=Matlab]
+figure;
+for m = 1:2
+    subplot(1,2,m);
+    hold on;
+    for k = 1:length(filters{m}.psi.filter)
+        plot(realize_filter(filters{m}.psi.filter{k}, N));
+    end
+    hold off;
+    ylim([0 1.5]);
+    xlim([1 5*N/8]);
+end
+\end{lstlisting}
+
+This should result in the following figure.
+
+\subsubsection{Using the Matlab API}
+This section describes how to compute the scattering spectrum of an audio signal with just three instructions to ScatNet.
+The sound file we propose to use for this tutorial is an excerpt of Handel's Messiah, available in all versions of MATLAB. Once loaded the handel.mat file, we choose a length T for the averaging window. Since the signal y is encoded at the sampling rate of  setting T to 4096 corresponds to about half a second.
+load handel;	% loads the signal into y
+N = length(y);
+T = 2^12;   	% length of the averaging window
+Before computing the scattering transform of y, we need to define the linear operators that will make up the layers of the scattering networks. In audio processing, these linear operators are constant-Q filter banks. In most experiments, two layers are sufficient, as they capture almost the whole energy in the signal, along an averaging window of up to one second. By default, the quality factors of these two layers are  and . By calling default_filter_options with the label 'audio', these parameters are automatically integrated into the structure filt_opt, which contains the options related to the construction of the filter banks.
+
+filt_opt = default_filter_options('audio', T);
+
+
+Scattering networks rely on a set of built-in "wavelet factories", which are suited to specific classes of signals. For translation-invariant representations in one dimension, one may call wavelet_factory_1d in the following way :
+
+Wop = wavelet_factory_1d(N, filt_opt);
+
+
+The previous instruction may take a few seconds on a personal computer, as it requires to build many filters at once. 
+
+Note : with the new version of ScatNet, the length N of the signal y no longer needs to be a multiple of the length T of the averaging window.
+
+Finally, the scattering transform of y is computed with the generic function scat, which is at the core of the ScatNet toolbox.
+
+S = scat(y, Wop);
+
+Most often, scat requires less computer time than wavelet_factory_1d. Once the factory has been run, scattering transforms may be calculated iteratively with the same operators Wop, provided the input signals have the same length. More information about the vectorisation of several scattering transforms of one-dimensional signals may be found in the Batch processing section of this tutorial.
+
+\subsubsection{Enhancing the Network and Batch processing}
+The scattergram built-in function in ScatNet provides a spectrogram-like visualization of the second-order, translation-invariant scattering transform of one-dimensional signals. The top image is made of first-order coefficients, organized in a time-scale matrix. Very low frequencies, i.e. large scales, appear at the bottom of the image. For its part, the second-order coefficients , for a fixed scale j1, are shown in the bottom image, again in a time-scale matrix. 
+
+In the following example, one displays the first-order coefficients and second-order coefficients for an arbitrary j1 = 23. Note that the wildcard [] means that all paths are gathered at the first order.
+
+j1 = 23;
+scattergram(S{2},[],S{3},j1);
+
+
+This should give the figure below.
+
+To improve visualization or classification performance, ScatNet offers utility functions to manipulate a scattering representation, such as renormalisation (renorm_scat) and logarithmic transformation (log_scat). The former renormalizes second-order coefficients by dividing them by the corresponding first-order coefficients to decorrelate the two : -order coefficients are similarly renormalized by dividing by -order coefficients. The latter computes the logarithm of the coefficients at each point. Both of these functions use the format described above for the scattering transform for both input and output.
+
+Let's renormalize the coefficients and compute the logarithm.
+S = renorm_scat(S);
+S = log_scat(S);
+ 
+scattergram(S{2},[],S{3},j1);
+
+
+This results in a figure where much more details are noticeable.
+
+In order to use the scattering coefficients for classification or other tasks, we need to assemble them together in vector form. To do this, we use the function format_scat.
+
+[S_table, meta] = format_scat(S);
+
+
+Here, S_table will be a P-by-N table, where P is the total number of scattering coefficients (all orders combined) and N is the number of time points. Now, S_table can be fed into a classifier for training or testing.
+
+The ScatNet toolbox also contains a pipeline for classification using an affine space classifier or a support vector machine (SVM). To use it, we need to create a database of feature vectors by calculating the scattering coefficients of a collection of audio files. Here, we shall consider theGTZAN dataset for musical genre classification.
+
+First, we create the list of files accompanied by their class labels using the gtzan_src function.
+
+src = gtzan_src('/path/to/gtzan/dataset');
+Second, we need to specify the feature transform to use. This is done, as before, using wavelet_factory_1d and the scattering transform functions.
+N = 5*2^17;
+T = 8192;
+ 
+filt_opt.Q = [8 1];
+filt_opt.J = T_to_J(T, filt_opt);
+ 
+scat_opt.M = 2;
+ 
+Wop = wavelet_factory_1d(N, filt_opt, scat_opt);
+ 
+feature_fun = @(x)(format_scat( ...
+    log_scat(renorm_scat(scat(x, Wop)))));
+
+
+Note that we must specify N = 5*2^17, corresponding to 29.72 s, because the files in src have been truncated to this length. Finally, we can to specify additional options for generating the features. Here, to speed up training and testing, we decide to only keep every eighth frame of the scattering transform.
+
+database_options.feature_sampling = 8;
+
+
+Now we use the prepare_database function to calculate the scattering coefficients of the files in src.
+
+database = prepare_database(src, feature_fun, database_options);
+
+
+Depending on the speed of the machine, this can take some time. If you have access to the distributed computing toolbox, invoking matlabpool open before calling prepare_database allows the function to use multiple cores simultaneously.
+
+
+\subsection{TensorFlow}\label{sec_c3_tf}
 The paragraphs and subsections that follow under this topic give an overview of the TensorFlow library as outlined by the following authors \cite{goldsborough2016tour,abadi2016tensorflow,abadi2017computational}
 
 TensorFlow is a state-of-the-art high performance library by Google for Deep learning.  Deep learning is a branch of artificial intelligence which acquires learning from deep neural network architectures. Deep learning has significantly advanced in various application domains and by far out-performed traditional approaches.  TensorFlow, offers researchers and enthusiasts an open source software library for use in defining, training and deploying deep learning models.
 
-TensorFlow works by defining dataflow graphs with mutable state.  A dataflow graph consists of nodes and edges, where each node represents an instantiation of an operation, and values flow along the edges. The operations are implemented by kernels that represent abstractions for particular types of interchangeable devices (such as CPUs and GPUs).
+TensorFlow works by defining data flow graphs with mutable state.  A data flow graph consists of nodes and edges, where each node represents an instantiation of an operation, and values flow along the edges. The operations are implemented by kernels that represent abstractions for particular types of interchangeable devices (such as CPUs and GPUs).
 
 There are three main concepts TensorFlow's core.  They are tensors, operations and mutability.  Tensors are arrays of arbitrary dimensions where the underlying data type is either specified or inferred at graph-construction time. Operations process data and constitute nodes within the compute graph. Basic operations invariably are mathematical functions such as vector dot products.  However, some of the operations indeed may be associated with a read or state update. Such tensor which permit run-time updates in TensorFlow are referred to as variables.  Finally, there may be edges for communicating and constrain the order of execution. These structures invariably affect the observable graph semantics and may also affect the computation performance. 
 
-Once a client constructs a graph using a front-end interface such the Python API, the client can send messages to the graph, by “feeding” inputs and “fetching” outputs. TensorFlow then propagates the input values, through the execution graph and performing  operations called by the client code, until all nodes instructed to run returned with their outputs. 
+Once a client program constructs a graph using a front-end interface such the Python API, the client program can send messages to the graph, by “feeding” it inputs and “fetching” outputs from it. TensorFlow then propagates the input values through the execution graph performing  operations called by the client code, until all nodes instructed to run returned with their outputs. 
 
-Data dependencies and control edges, dictate the order of execution. Often, a graph is executed severally and tensors declared as placeholders or constants are used once. However, variable tensors have mutable state which allow persistence across multiple executions. The parameters of the model stored in variables variables are usually updated as part of running the graph.
+Data dependencies and control edges, dictate the order of execution. Often, a graph is executed severally and tensors declared as placeholders or constants are used once. However, variable tensors have mutable state which allow persistence across multiple executions. The parameters of the model stored in variables are usually updated as part of running the graph.
 
 \subsubsection{Programming Model}
 In this section examples of execution data flow graphs are given; and in the following sections we highlight the other major special features of TensorFlow including automatic differentiation and back-prop algorithm implementation, control flow, check pointing, programming interface, sample implementation and graph visualisation.
@@ -321,7 +492,7 @@ Here $I,D,$ and $R$ are wrong insertions, deletions and replacements respectivel
 
 Metrics used for low speech recognition in the zero speech challenge \citep{versteegh2015zero} include the ABX metric. Other common speech recognition error metrics following a similar definition as the Word Error Rate (WER) are Character Error Rate (CER), Phoneme Error Rate (PER) and Syllabic Error Rate (SyER) and sentence error rate (SER).
 
-\section{Summary of Methodology}
+\section{Chapter Summary}
 In this chapter we outline how this research set about to achieve its objectives.  The main claim of this research is that by building a speech model that combines knowledge of end-to-end processing along with state of the art signal processing the overall training complexity and build time for new ASR systems can be improved.  This research aims to deliver this through by the unique combination of a CTC-based deep recurrent bi-directional neural network with high performance feature processing of Deep Scattering Networks (DSNs).
 
-This chapter also reviews the technologies utilised by this research in order to arrive at the research outputs and briefly describes the experiments performed.  Within this space we describe CMUSphinx, Kaldi, Mozilla Deepspeech, Tensorflow, Matlab and Scatnet as major libraries used.   The first two being Hidden Markov Model (HMM)-based libraries and the latter being used either integrally or as part of end-to-end  and signal processing systems used to build Deep Recurrent Neural Network (RNN) models. Finally, we mention metrics for the evaluation of the models built in this work.
+This chapter also reviews the technologies utilised by this research in order to arrive at the research outputs and briefly describes the experiments performed.  Within this space we describe CMUSphinx, Kaldi, Mozilla DeepSpeech, TensorFlow, Matlab and ScatNet as major libraries used.   The first two being Hidden Markov Model (HMM)-based libraries and the latter being used either integrally or as part of end-to-end  and signal processing systems used to build Deep Recurrent Neural Network (RNN) models. Finally, we mention metrics for the evaluation of the models built in this work.
