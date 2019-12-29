@@ -1,5 +1,20 @@
 * Bibliography 
 
+@article{walker2004sphinx,
+  title={Sphinx-4: A flexible open source framework for speech recognition},
+  author={Walker, Willie and Lamere, Paul and Kwok, Philip and Raj, Bhiksha and Singh, Rita and Gouvea, Evandro and Wolf, Peter and Woelfel, Joe},
+  year={2004},
+  publisher={Sun Microsystems, Inc.}
+}
+
+@MISC{Lamere03thecmu,
+    author = {Paul Lamere and Philip Kwok and Evandro Gouvêa and Bhiksha Raj and Rita Singh and William Walker and Manfred Warmuth and Peter Wolf},
+    title = {The CMU SPHINX-4 Speech Recognition System },
+    year = {2003}
+    url = "https://cmusphinx.github.io",
+    note = {[Online; accessed <today>]}
+}
+
 @article{al2016theano,
   title={Theano: A Python framework for fast computation of mathematical expressions},
   author={Al-Rfou, Rami and Alain, Guillaume and Almahairi, Amjad and Angermueller, Christof and Bahdanau, Dzmitry and Ballas, Nicolas and Bastien, Fr{\'e}d{\'e}ric and Bayer, Justin and Belikov, Anatoly and Belopolsky, Alexander and others},
