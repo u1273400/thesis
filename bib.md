@@ -1,5 +1,13 @@
 * Bibliography
 
+@article{sifre2014rigid,
+  title={Rigid-motion scattering for image classification},
+  author={Sifre, Laurent and Mallat, St{\'e}phane},
+  journal={Ph. D. dissertation},
+  year={2014},
+  publisher={Citeseer}
+}
+
 @inproceedings{sturm2012analysis,
   title={An analysis of the GTZAN music genre dataset},
   author={Sturm, Bob L},
