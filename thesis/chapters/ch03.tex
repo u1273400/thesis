@@ -207,44 +207,54 @@ for m = 1:2
 end
 \end{lstlisting}
 
-This should result in the following figure.
+\begin{figure}
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=9cm]{thesis/images/wfplot}\\
+  \caption{Scatter transform wavelet filters}\label{fig_c3_wplot}
+\end{figure}
 
 \subsubsection{Using the Matlab API}
-This section describes how to compute the scattering spectrum of an audio signal with just three instructions to ScatNet.
-The sound file we propose to use for this tutorial is an excerpt of Handel's Messiah, available in all versions of MATLAB. Once loaded the handel.mat file, we choose a length T for the averaging window. Since the signal y is encoded at the sampling rate of  setting T to 4096 corresponds to about half a second.
+In the previous sections it was seen how the ScatNet toolbox calculates scatter coefficients based on wavelet theory.  In this section, how the scattering spectrum of an audio signal is implemented with just three instructions to ScatNet is described.
+
+The three steps taken in this section are as follows.  First load the audio file and set the properties of the audio file required for audio processing of the signal within ScatNet.  Note that to do this the sampling rate of the input signal is required.  A clip of Handel’s Messiah, available in all versions of Matlab is loaded into a “y” variable by default with the “load handel” command.
+
+Given that the sampling rate of the loaded clip is , the parameters set are 
+\begin{enumerate}
+    \item N - the number of samples in the signal, and  
+    \item T - the window size.  Here, T is set to 4096 which corresponds to about half a second.
+\end{enumerate}
 load handel;	% loads the signal into y
 N = length(y);
 T = 2^12;   	% length of the averaging window
-Before computing the scattering transform of y, we need to define the linear operators that will make up the layers of the scattering networks. In audio processing, these linear operators are constant-Q filter banks. In most experiments, two layers are sufficient, as they capture almost the whole energy in the signal, along an averaging window of up to one second. By default, the quality factors of these two layers are  and . By calling default_filter_options with the label 'audio', these parameters are automatically integrated into the structure filt_opt, which contains the options related to the construction of the filter banks.
+
+The second step is to create the filter operators for which the type of filter signal length, and the window length are passed in as parameters.  It has been shown in the preceding sections that two layers are sufficient to capture energy contained in an audio signal and by default the quality factors of the two layers are $\( Q_1 = 8 \)$ and $\( Q_2 = 1 \)$. These default_filter_options are automatically integrated with the 'audio', filter type option.
 
 filt_opt = default_filter_options('audio', T);
-
-
-Scattering networks rely on a set of built-in "wavelet factories", which are suited to specific classes of signals. For translation-invariant representations in one dimension, one may call wavelet_factory_1d in the following way :
-
 Wop = wavelet_factory_1d(N, filt_opt);
 
+Note that the wavelet_factory_ functions is an intensive operations because many filters are being built at once  in batch processing of signals discussed in Section \ref{sec_c3_sbatch}, we therefore only perform this as part of the initialisation and the returned wavelet operators (Wop) can be reused without having to recreate them.
 
-The previous instruction may take a few seconds on a personal computer, as it requires to build many filters at once. 
-
-Note : with the new version of ScatNet, the length N of the signal y no longer needs to be a multiple of the length T of the averaging window.
-
-Finally, the scattering transform of y is computed with the generic function scat, which is at the core of the ScatNet toolbox.
+Having all the parameters required, in the third and final step , call the scattering transform of y generic function scat, to derive the scatter coefficients.
 
 S = scat(y, Wop);
 
-Most often, scat requires less computer time than wavelet_factory_1d. Once the factory has been run, scattering transforms may be calculated iteratively with the same operators Wop, provided the input signals have the same length. More information about the vectorisation of several scattering transforms of one-dimensional signals may be found in the Batch processing section of this tutorial.
+\subsubsection{Scatter Feature Enhancements and Batch Processing}
+Having obtained the scatter coefficients, further feature enhancement is achieved by taking the log of the normalised coefficients.  This can be visualised using the  built-in scattergram function which produces a translation-invariant, second-order, spectrogram-like visualization of the  scattering transform a one-dimensional audio signal. 
 
-\subsubsection{Enhancing the Network and Batch processing}
-The scattergram built-in function in ScatNet provides a spectrogram-like visualization of the second-order, translation-invariant scattering transform of one-dimensional signals. The top image is made of first-order coefficients, organized in a time-scale matrix. Very low frequencies, i.e. large scales, appear at the bottom of the image. For its part, the second-order coefficients , for a fixed scale j1, are shown in the bottom image, again in a time-scale matrix. 
-
-In the following example, one displays the first-order coefficients and second-order coefficients for an arbitrary j1 = 23. Note that the wildcard [] means that all paths are gathered at the first order.
+In the code snippet below, j_1 is the second-order coefficients arbitrarily chosen to equal 23.  The first parameter to scattergram are the first-order coefficients and the second wildcard [] parameters gathers all paths from the first order.  
 
 j1 = 23;
 scattergram(S{2},[],S{3},j1);
 
+\begin{figure}
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=9cm]{thesis/images/wscat0}\\
+  \caption{Scatter transform wavelet filters}\label{fig_c3_wplot}
+\end{figure}
 
-This should give the figure below.
+The resulting illustration in figure \ref{ref_c3_sgram00} is the unnormalised scattergram
 
 To improve visualization or classification performance, ScatNet offers utility functions to manipulate a scattering representation, such as renormalisation (renorm_scat) and logarithmic transformation (log_scat). The former renormalizes second-order coefficients by dividing them by the corresponding first-order coefficients to decorrelate the two : -order coefficients are similarly renormalized by dividing by -order coefficients. The latter computes the logarithm of the coefficients at each point. Both of these functions use the format described above for the scattering transform for both input and output.
 
@@ -264,7 +274,7 @@ In order to use the scattering coefficients for classification or other tasks, w
 
 Here, S_table will be a P-by-N table, where P is the total number of scattering coefficients (all orders combined) and N is the number of time points. Now, S_table can be fed into a classifier for training or testing.
 
-The ScatNet toolbox also contains a pipeline for classification using an affine space classifier or a support vector machine (SVM). To use it, we need to create a database of feature vectors by calculating the scattering coefficients of a collection of audio files. Here, we shall consider theGTZAN dataset for musical genre classification.
+The ScatNet toolbox also contains a pipeline for classification using an affine space classifier or a support vector machine (SVM). To use it, we need to create a database of feature vectors by calculating the scattering coefficients of a collection of audio files. Here, we shall consider the GTZAN dataset for musical genre classification.
 
 First, we create the list of files accompanied by their class labels using the gtzan_src function.
 
