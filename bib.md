@@ -1,5 +1,14 @@
 * Bibliography
 
+@inproceedings{sturm2012analysis,
+  title={An analysis of the GTZAN music genre dataset},
+  author={Sturm, Bob L},
+  booktitle={Proceedings of the second international ACM workshop on Music information retrieval with user-centered and multimodal strategies},
+  pages={7--12},
+  year={2012},
+  organization={ACM}
+}
+
 @inproceedings{povey2011kaldi,
   title={The Kaldi speech recognition toolkit},
   author={Povey, Daniel and Ghoshal, Arnab and Boulianne, Gilles and Burget, Lukas and Glembek, Ondrej and Goel, Nagendra and Hannemann, Mirko and Motlicek, Petr and Qian, Yanmin and Schwarz, Petr and others},
