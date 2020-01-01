@@ -166,16 +166,16 @@ It is the scattering transforms of the audio files that were fed into the DeepSp
 ScatNet provides default options for most of the parameters that require tuning in order to derive the scattering coefficients for an input signal.  In particular, for audio signals, the most important hyper-parameters set by the library is the number of scattering layers that captures the entire audio spectrum which is set at 2.  In addition to this default, the only other parameter to set is the window period of the signal to be analysed per time.  A suitable value for the window can be derived from the sampling rate of the input signal.  The toolbox function S=scat(x,Wop) takes a an input signal, x,  and an array of linear wavelet operators, Wop, in order to compute the scattering coefficients of the input signal.   The resulting network, S is a cell array whose length M+1 is equivalent to that of the linear filter operator.  
 
 \subsubsection{Wavelet Factories} 
-By providing optimal defaults for linear operators, ScatNet provides wavelet factories especially suited for efficient signal processing of images and sounds.  Therefore, linear wavelet operators are built in one line of code through built-in “factories”, which perform wavelet analysis tasks.
+By providing optimal defaults for linear operators, ScatNet provides wavelet factories especially suited for efficient signal processing of images and sounds.  Therefore, linear wavelet operators are built in a single command function through built-in “factories”, which perform wavelet analysis tasks.
 
-Again, the maximum number of wavelets J is automatically derived from the sampling from the sampling period T.  The filter banks are formed by dilating the mother wavelet ($\psi$) by the dyadic factor ($2^{1/Q}$).  In the Fourier domain this is expressed as
+Further, the maximum number of wavelets $J$ is automatically derived from the sampling from the sampling period $T$.  The filter banks are formed by dilating the mother wavelet ($\psi$) by the dyadic factor ($2^{1/Q}$).  In the Fourier domain this is expressed as
 \begin{equation}
      \hat\psi_j(\omega) = \hat\psi(2^{j/Q}\omega)
      \label{eqn_c3_scat01}
 \end{equation}
-To ensure optimize frequency coverage without frequency-overlapping or getting redundant, the mother wavelet $\( \psi \)$ is chosen such that  $(Q_1 = 8)$ and $(Q_2 = 1)$ by default. This also means that the first order filter will be of a higher frequency resolution when compared to the second order filter. 
+For audio application, to ensure optimize frequency coverage without frequency-overlapping or getting redundant, the mother wavelet $\( \psi \)$ is chosen such that  $(Q_1 = 8)$ and $(Q_2 = 1)$ by default. This also means that the first order filter will be of a higher frequency resolution when compared to the second order filter. 
 \subsubsection{Filter banks}
-You may recall that scattering coefficients are defined by 
+In order to visualise the filters being used by the wavelet operations and referring to Sections (\ref{sec_c5_wproof} and \ref{sec_c7_wparams}) where it is shown that the first and second order scattering coefficients are respectively defined by the following forms
 \begin{equation}
     S_1x(t,j_1) = |x\star\psi_{j_1}|\star\phi(t)
     \label{eqn_c3_scat02}
@@ -183,16 +183,15 @@ You may recall that scattering coefficients are defined by
 \begin{equation}
     S_2x(t,j_1,j_2) = ||x\star\psi_{j_1}|\star\psi_{j_2}|\star\phi(t) \label{eqn_c3_scat03}
 \end{equation}
-and so on, where $\( \psi_{j} \)$ are band-pass filters and  a low-pass filter.
+and so on, where $\( \psi_{j} \)$ are band-pass filters and ($\phi$) is a low-pass filter.
 
-The wavelet transforms Wop provided by wavelet_factory_1d are merely function handles, with no actual data in them. Instead, they rely on a cell array named filters, which can be extracted from the factory as an optional second output argument:
+Furthermore, the wavelet transform operators(Wop) created by the wavelet_factory_1d function are only function handles and do not have any data in themselves. A second return value may be retrieved from the wavelet factory which contains the set of filters returned as a cell array by the wavelet factory.
 
 [Wop,filters] = wavelet_factory_1d(N, filt_opt);
 
-Like a scattering network, each element in the cell array corresponds to a layer ; however, while S has $\( M+1 \)$ elements, filters has only $\( M \)$ elements, as there is no filter bank at the root.
-The psi.filter field of filters{m} contains the band-pass filters $\(\psi_\lambda\)$. These filters are expressed in the Fourier domain, and only their nonzero coefficients are stored. For visualization purposes, one may use realize_filter to convert them to arrays of length N by padding them with zeros. 
+The filters return argument has a similar structure to the scattering network where each element in the cell array corresponds to the layer order in the scatter network hierarchy. Moreover, similar to the the scatter network, the filters cell array hierarchy has $M+1$ elements, where only $M$ elements are utilised and no filters exist at $M=0$. The non-zero coefficients of the band pass filters expressed in the Fourier domain, are held in filters{m}.psi.filter field. When plotting these filters, they are first padded with zeros to the length of N which is the entire spectrum.  Below is the sample plot made against default filters obtained by the wavelet_factory_1d filter.
 
-Here is a short script to display the filter banks at both orders $\(M = 1\)$ and $\(M = 2\)$.
+Here is a short script to display the filter banks at both orders $\(M = 1\)$ and $\(M = 2\)$.  The resulting plot is displayed in Figure \ref{fig_c3_wplot}.
 
 \begin{lstlisting}[language=Matlab]
 figure;
