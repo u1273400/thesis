@@ -8,6 +8,14 @@
   publisher={Citeseer}
 }
 
+@inproceedings{sifre2013rotation,
+  title={Rotation, scaling and deformation invariant scattering for texture discrimination},
+  author={Sifre, Laurent and Mallat, St{\'e}phane},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  pages={1233--1240},
+  year={2013}
+}
+
 @inproceedings{sturm2012analysis,
   title={An analysis of the GTZAN music genre dataset},
   author={Sturm, Bob L},
