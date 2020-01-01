@@ -121,7 +121,7 @@ Kaldi supports various speech feature outputs including the standard Mel Frequen
 \subsubsection{Acoustic Modelling}
 Full covariance as well as diagonal covariance GMM modelling is implemented in Kaldi. Efficient log-likelihoods are computed using simple dot products of mean times invariance and invariance covariance.  The DiagGmm class is responsible for storing covariances of Gaussian densities. The Acoustic Modelling (AM) class represented by the AMDiagGmm class comprise a set of DiagGmm objects.  These objects which represent Gaussian Mixture Models (GMMs) are in turn represented Probability Density Function (PDF) indices which are then mapped to Hidden Markov Model (HMM) states. There are classes to represent HMM topology as well as the overarching topology representing transition modelling. These two sets of classes provide information required for developing decoding graphs.  Rather than using conventional approach for HMM modelling using hand-made decision tree for left and right phones in a monophone model, tree-clustering algorithms automatically generate the decision tree.
 
-\subsubsection{Language Modelling and Deconding Graphs}
+\subsubsection{Language Modelling and Decoding Graphs}
 Using the FST back in addition to third party language modelling software, Kaldi is able infer sentence estimations using n-gram language models. During decoding, transition-ids are created and attached to corresponding pdf-ids as a result of tied-state nature of phones where different phones are allowed to have share the same distribution.  The transition-id therefore encapsulates the shared pdf-id and the arc (transition) of phone-specific topology. This way transitions are fine-grained without adding complexity to the decoding graph
 
 Core decoding algorithms are implemented using C++ classes one per decoder.  Decoders implement an interface which accepts an acoustic model score for a particular input-symbol and frame.  While single-pass decoding is achieved through C++ classes, multi-pass decoding is realised using the supporting configuration scripts.
@@ -156,7 +156,7 @@ In order to supply the model trainer with a set of hyper parameters for tuning v
 In addition to the above configuration there are other accessory scripts that can be used for TensorFlow specific tasks such as conversion of the output model graph to several exportable formats.
 
 \subsection{Matlab and ScatNet toolbox}
-In this research, feature processing of audio files to obtain their deep scattering transforms was achieved using a MATLAB toolbox known as ScatNet \citep{anden2014scatnet}.  The ScatNet toolbox in general analyses time-series sampled analog signals and has been used successfully for music genre classification, texture and image classification \cite{anden2014scatnet}.  In particular, the scattering transforms produced are signal processing layers of increasing width where each layer constitutes the convolution of a linear filter bank wavelet operator (Wop) with a non linear complex modulus.  
+In this research, feature processing of audio files to obtain their deep scattering transforms was achieved using a MATLAB toolbox known as ScatNet \citep{anden2014scatnet}.  The ScatNet toolbox in general analyses time-series sampled analog signals and has been used successfully for music genre classification, texture and image classification \cite{anden2011multiscale,sifre2013rotation,sifre2014rigid}.  In particular, the scattering transforms produced are signal processing layers of increasing width where each layer constitutes the convolution of a linear filter bank wavelet operator (Wop) with a non linear complex modulus.  
 \begin{equation}
     ||\text{complex signal}|\star \mathbf{Wop}|\star(\text{low-pass filter})$$ - \label{eqn_c3_scat00}
 \end{equation}
@@ -342,6 +342,7 @@ It is worth noting that unlike PyTorch \citep{ketkar2017introduction}, the Pytho
 \subsubsection{Typical TensorFlow Workflow using MNIST digit handwriting recognition Data set}\label{sec_c3_tfwf}
 We train a simple multi-layer perceptron (MLP) with one input and one output layer to classify hand-writtin digits in the MNIST\citep{krizhevsky2012imagenet} dataset.   In this dataset, the examples are small images 28 x 28 pixels depicting handwritten digits from 0 to 9.
 
+\subsubsection{Tensorflow client model walk through}
 Given an example matrix $\mathbf{X}\in\mathbb{R}^{n\times 784}$ containing  images, the learning task then applies an affine transformation $\mathbf{X\cdot W+b}$, where $\mathbf{W}$ is a weight matrix $\in \mathbb{R}^{784 \times 10}$, and a bias vector $\in R^{10}$.  This yields a new matrix $\mathbf{Y}\in \mathbb{R}^{n\times 10}$, containing the scores or logits of our model for each example and each possible digit.  These scores are more or less arbitrary.  To transform the logits to valid probability distribution, giving the likelihood $Pr[x=i]$ that the -th example represents the digit $i$, we make use of a softmax function in the equation below
 \begin{equation}
 softmax(\mathbf{x})_i=\frac{\exp(\mathbf{x}_i)}{\Sigma_j\exp(\mathbf{x}_j)}\label{eqn_c3_smax00}
@@ -355,7 +356,7 @@ Next, the stochastic gradient descent (SGD) is run to update the weights of our 
 The operations run repeatedly within a tf.Session context manager. Refer to Appendix \ref{app2_01_tfcode} for the complete code listing.
 
 \subsubsection{Visualisation}
-TensorFlow interface offers the option of visualising computation graphs. Complex topologies consisting various sub-layers can be presented in a lucid form, offering the user to congruent, organised picture of exactly how data is consumed. Sub-graphs may be grouped into visual blocks and referred to in name scopes.  For example a single neural network layer may take up such a named scope. The name scopes are then interactively expanded on to give the detailed group visualisation.
+TensorFlow interface offers the option of visualising computation graphs. Complex topologies consisting of various sub-layers can be presented in a lucid form, offering the user a congruent, organised picture of exactly how data is consumed in a compute graph. Sub-graphs may be grouped into visual blocks and referred to in name scopes.  For example a single neural network layer may take up such a named scope. The name scopes are then interactively expanded on to give the detailed group visualisation.
 
 Two types of metrics are obtainable from the TensorBoard. These are summary operations, when attached as nodes in the graph, permit the user to monitor individual tensor values over time.   The first is the scalar summaries which capture tensor values and can be sampled at certain points within training epochs. One can now, for example, observe the trend of the accuracy loss of the training model over time.
 
