@@ -135,7 +135,7 @@ The model trainer of the Mozilla DeepSpeech platform is facilitated by the abili
 \subsubsection{Common Voice training}
 The speech corpora used for training in this research was obtained from the Mozilla Common Voice Initiative speech corpora.  This consists of over 250 hours of speech data that is subdivided into test, development and training data sets.  In addition, the data was subdivided into clean data, that is, clean audio recording with accurate translation and a small subset containing skewed data, that is, audio recording which was either noisy or not having accurate transcriptions.  The skewed data subset consisted 15-25 percent of the training corpus and was incorporated so that the neural network speech model could simulate and learn real world noisy audio speech-to-text translation.  The Mozilla DeepSpeech model trainer provided bash scripts for importing the Common Voice speech corpora as well as converting the files into the appropriate formats and provision of mapping files for the model trainer.
 \subsubsection{Mozilla DeepSpeech model parameters}
-The model trainer consists of a root python script “DeepSpeech.py” with various calls to other python scripts responsible for things like audio processing, distributed training, GPU configuration, training coordination.  Other accessory bash scripts also present are responsible for downloading and training for different kinds of speech corpora including Mozilla Common Voice and the Wall Street Journal (WSJ).  These sets of scripts are referred to as speech corpus importers. 
+The model trainer consists of a root python script “DeepSpeech.py” with various calls to other python scripts responsible for things like audio processing, distributed training, GPU configuration, training coordination.  Other accessory bash scripts also present are responsible for downloading and training for different kinds of speech corpora including Mozilla Common Voice and the Wall Street Journal (WSJ)\citep{paul1992design}.  These sets of scripts are referred to as speech corpus importers. 
 
 In order to supply the model trainer with a set of hyper parameters for tuning various aspects of the Mozilla DeepSpeech platform, the following categories arguments passed to the root script ensue:
 \begin{itemize}
@@ -156,9 +156,9 @@ In order to supply the model trainer with a set of hyper parameters for tuning v
 In addition to the above configuration there are other accessory scripts that can be used for TensorFlow specific tasks such as conversion of the output model graph to several exportable formats.
 
 \subsection{Matlab and ScatNet toolbox}
-In this research, feature processing of audio files to obtain their deep scattering transforms was achieved using a MATLAB toolbox known as ScatNet \citep{anden2014scatnet}.  The ScatNet toolbox in general analyses time-series sampled analog signals and has been used successfully for music genre classification, texture and image classification \cite{anden2011multiscale,sifre2013rotation,sifre2014rigid}.  In particular, the scattering transforms produced are signal processing layers of increasing width where each layer constitutes the convolution of a linear filter bank wavelet operator (Wop) with a non linear complex modulus.  
+In this research, feature processing of audio files to obtain their deep scattering transforms was achieved using a MATLAB toolbox known as ScatNet \citep{anden2014scatnet}.  The ScatNet toolbox in general analyses time-series sampled analog signals and has been used successfully for music genre classification, texture and image classification \citep{anden2011multiscale,sifre2013rotation,sifre2014rigid}.  In particular, the scattering transforms produced are signal processing layers of increasing width where each layer constitutes the convolution of a linear filter bank wavelet operator (Wop) with a non linear complex modulus.  
 \begin{equation}
-    ||\text{complex signal}|\star \mathbf{Wop}|\star(\text{low-pass filter})$$ - \label{eqn_c3_scat00}
+    ||\text{complex signal}|\star \mathbf{Wop}|\star(\text{low-pass filter}) \label{eqn_c3_scat00}
 \end{equation}
 
 It is the scattering transforms of the audio files that were fed into the DeepSpeech model trainer discussed in Section \ref{sec_c3_moz}.  The architecture of a scattering networks resembles a deep convolutional network in the sense that each subsequent layer is a mapping of all possible paths from the previous layer.
@@ -173,7 +173,7 @@ Further, the maximum number of wavelets $J$ is automatically derived from the sa
      \hat\psi_j(\omega) = \hat\psi(2^{j/Q}\omega)
      \label{eqn_c3_scat01}
 \end{equation}
-For audio application, to ensure optimize frequency coverage without frequency-overlapping or getting redundant, the mother wavelet $\( \psi \)$ is chosen such that  $(Q_1 = 8)$ and $(Q_2 = 1)$ by default. This also means that the first order filter will be of a higher frequency resolution when compared to the second order filter. 
+For audio application, to ensure optimize frequency coverage without frequency-overlapping or getting redundant, the mother wavelet $(\psi)$ is chosen such that  $(Q_1 = 8)$ and $(Q_2 = 1)$ by default. This also means that the first order filter will be of a higher frequency resolution when compared to the second order filter. 
 \subsubsection{Filter banks}
 In order to visualise the filters being used by the wavelet operations and referring to Sections (\ref{sec_c5_wproof} and \ref{sec_c7_wparams}) where it is shown that the first and second order scattering coefficients are respectively defined by the following forms
 \begin{equation}
@@ -183,15 +183,16 @@ In order to visualise the filters being used by the wavelet operations and refer
 \begin{equation}
     S_2x(t,j_1,j_2) = ||x\star\psi_{j_1}|\star\psi_{j_2}|\star\phi(t) \label{eqn_c3_scat03}
 \end{equation}
-and so on, where $\( \psi_{j} \)$ are band-pass filters and ($\phi$) is a low-pass filter.
+where $(\psi_{j})$ are band-pass filters and $(\phi)$ is  a low-pass filter.
 
-Furthermore, the wavelet transform operators(Wop) created by the wavelet_factory_1d function are only function handles and do not have any data in themselves. A second return value may be retrieved from the wavelet factory which contains the set of filters returned as a cell array by the wavelet factory.
+Furthermore, the wavelet transform operators(Wop) created by the wavelet\_factory\_1d function are only function handles and do not have any data in themselves. A second return value may be retrieved from the wavelet factory which contains the set of filters returned as a cell array by the wavelet factory.
+\begin{verbatim}
+    [Wop,filters] = wavelet_factory_1d(N, filt_opt);
+\end{verbatim}
 
-[Wop,filters] = wavelet_factory_1d(N, filt_opt);
+The filters return argument has a similar structure to the scattering network where each element in the cell array corresponds to the layer order in the scatter network hierarchy. Moreover, similar to the the scatter network, the filters cell array hierarchy has $M+1$ elements, where only $M$ elements are utilised and no filters exist at $M=0$. The non-zero coefficients of the band pass filters expressed in the Fourier domain, are held in filters{m}.psi.filter field. When plotting these filters, they are first padded with zeros to the length of N which is the entire spectrum.  Below is the sample plot made against default filters obtained by the wavelet\_factory\_1d filter.
 
-The filters return argument has a similar structure to the scattering network where each element in the cell array corresponds to the layer order in the scatter network hierarchy. Moreover, similar to the the scatter network, the filters cell array hierarchy has $M+1$ elements, where only $M$ elements are utilised and no filters exist at $M=0$. The non-zero coefficients of the band pass filters expressed in the Fourier domain, are held in filters{m}.psi.filter field. When plotting these filters, they are first padded with zeros to the length of N which is the entire spectrum.  Below is the sample plot made against default filters obtained by the wavelet_factory_1d filter.
-
-Here is a short script to display the filter banks at both orders $\(M = 1\)$ and $\(M = 2\)$.  The resulting plot is displayed in Figure \ref{fig_c3_wplot}.
+Here is a short script to display the filter banks at both orders $(M = 1)$ and $(M = 2)$.  The resulting plot is displayed in Figure \ref{fig_c3_wplot}.
 
 \begin{lstlisting}[language=Matlab]
 figure;
@@ -224,28 +225,32 @@ Given that the sampling rate of the loaded clip is , the parameters set are
     \item N - the number of samples in the signal, and  
     \item T - the window size.  Here, T is set to 4096 which corresponds to about half a second.
 \end{enumerate}
-load handel;	% loads the signal into y
-N = length(y);
-T = 2^12;   	% length of the averaging window
+\begin{verbatim}
+    load handel;	% loads the signal into y
+    N = length(y);
+    T = 2^12;   	% length of the averaging window
+\end{verbatim}
 
-The second step is to create the filter operators for which the type of filter signal length, and the window length are passed in as parameters.  It has been shown in the preceding sections that two layers are sufficient to capture energy contained in an audio signal and by default the quality factors of the two layers are $\( Q_1 = 8 \)$ and $\( Q_2 = 1 \)$. These default_filter_options are automatically integrated with the 'audio', filter type option.
-
-filt_opt = default_filter_options('audio', T);
-Wop = wavelet_factory_1d(N, filt_opt);
-
-Note that the wavelet_factory_ functions is an intensive operations because many filters are being built at once  in batch processing of signals discussed in Section \ref{sec_c3_sbatch}, we therefore only perform this as part of the initialisation and the returned wavelet operators (Wop) can be reused without having to recreate them.
+The second step is to create the filter operators for which the type of filter signal length, and the window length are passed in as parameters.  It has been shown in the preceding sections that two layers are sufficient to capture energy contained in an audio signal and by default the quality factors of the two layers are $(Q_1 = 8)$ and $(Q_2 = 1)$. These default\_filter\_options are automatically integrated with the 'audio', filter type option.
+\begin{verbatim}
+    filt_opt = default_filter_options('audio', T);
+    Wop = wavelet_factory_1d(N, filt_opt);
+\end{verbatim}
+Note that the wavelet\_factory\_ functions is an intensive operations because many filters are being built at once  in batch processing of signals discussed in Section \ref{sec_c3_sbatch}, we therefore only perform this as part of the initialisation and the returned wavelet operators (Wop) can be reused without having to recreate them.
 
 Having all the parameters required, in the third and final step , call the scattering transform of y generic function scat, to derive the scatter coefficients.
-
-S = scat(y, Wop);
+\begin{verbatim}
+    S = scat(y, Wop);
+\end{verbatim}
 
 \subsubsection{Scatter Feature Enhancements and Batch Processing}
 Having obtained the scatter coefficients, further feature enhancement is achieved by taking the log of the normalised coefficients.  This can be visualised using the  built-in scattergram function which produces a translation-invariant, second-order, spectrogram-like visualization of the  scattering transform a one-dimensional audio signal. 
 
-In the code snippet below, j_1 is the second-order coefficients arbitrarily chosen to equal 23.  The first parameter to scattergram are the first-order coefficients and the second wildcard [] parameters gathers all paths from the first order.  
-
-j1 = 23;
-scattergram(S{2},[],S{3},j1);
+In the code snippet below, j1 is the second-order coefficients arbitrarily chosen to equal 23.  The first parameter to scattergram are the first-order coefficients and the second wildcard [] parameters gathers all paths from the first order.  
+\begin{verbatim}
+    j1 = 23;
+    scattergram(S{2},[],S{3},j1);
+\end{verbatim}
 
 \begin{figure}
 \centering
@@ -255,10 +260,11 @@ scattergram(S{2},[],S{3},j1);
 \end{figure}
 
 The following functions in the code snippet below are applied to realise the log of the normalised scattergram.
-S = renorm_scat(S);
-S = log_scat(S);
- 
-scattergram(S{2},[],S{3},j1);
+\begin{verbatim}
+    S = renorm_scat(S);
+    S = log_scat(S);
+    scattergram(S{2},[],S{3},j1);
+\end{verbatim}
 
 \begin{figure}
 \centering
@@ -270,51 +276,52 @@ scattergram(S{2},[],S{3},j1);
 With the corresponding scattergram illustrated in figure \ref{fig_c3_sgram01}.
 
 Finally, to utilise the scattering coefficients as features for classification tasks, we extract the vector form using format_scat function.
+\begin{verbatim}
+    [S_table, meta] = format_scat(S);
+\end{verbatim}
 
-[S_table, meta] = format_scat(S);
-
-The, S_table ia a P-by-N table, where P is the flattened total of all the scattering combined coefficients within each layer of the Deep Scattering Network (DSN) and N is the number of time points. The network is now feature ready for classification tasks using an affine space classifier.
+The S\_table is a P-by-N table, where P is the flattened total of all the scattering combined coefficients within each layer of the Deep Scattering Network (DSN) and N is the number of time points. The network is now feature ready for classification tasks using an affine space classifier.
 
 For batch processing ScatNet provides a database feature which can accept a collection of input vectors rather than a single input signal.  Consider the GTZAN dataset used in musical genre classification.  The snippet following shows the steps for batch processing
 
 First, specify the path to the audio target.
+\begin{verbatim}
+    src = gtzan_src('/path/to/dataset');
+\end{verbatim}
 
-src = gtzan_src('/path/to/dataset');
 Next all the defaults for ScatNet analysis and processing are set as explained in the previous Sections \ref{sec_c3_scat00,sec_c3_scat01} and \ref{sec_c3_scat02} above.
-N = 5*2^17;
-T = 8192;
- 
-filt_opt.Q = [8 1];
-filt_opt.J = T_to_J(T, filt_opt);
- 
-scat_opt.M = 2;
- 
-Wop = wavelet_factory_1d(N, filt_opt, scat_opt);
- 
-feature_fun = @(x)(format_scat( ...
+\begin{verbatim}
+    N = 5*2^17;
+    T = 8192;
+    filt_opt.Q = [8 1];
+    filt_opt.J = T_to_J(T, filt_opt);
+    scat_opt.M = 2;
+    Wop = wavelet_factory_1d(N, filt_opt, scat_opt);
+    feature_fun = @(x)(format_scat( ...
     log_scat(renorm_scat(scat(x, Wop)))));
+\end{verbatim}
+
+It is possible to optimise the training by sub-sampling each signal.  The feature\_sampling option is used to specify sub-sampling.
+\begin{verbatim}
+    database_options.feature_sampling = 8;
+\end{verbatim}
 
 
-It is possible to optimise the training by subsampling each signal.  The feature_sampling option is used to specify subsampling.
-
-database_options.feature_sampling = 8;
-
-
-Finally, a call is made to prepare_database function to compute all the scattering coefficients of the src database.
-
-database = prepare_database(src, feature_fun, database_options);
-
+Finally, a call is made to prepare\_database function to compute all the scattering coefficients of the src database.
+\begin{verbatim}
+    database = prepare_database(src, feature_fun, database_options);
+\end{verbatim}
 
 In this research, further speed up was achieved by utilising Matlab’s parallel processing on the for loop (see appendix \ref{app_scatcode}) thus bypassing the batch processing utility of ScatNet.
 
 \subsection{TensorFlow}\label{sec_c3_tf}
-The paragraphs and subsections that follow under this topic give an overview of the TensorFlow library as outlined by the following authors \cite{goldsborough2016tour,abadi2016tensorflow,abadi2017computational}
+TensorFlow is a state-of-the-art high performance library by Google for Deep learning.  Deep learning is a branch of artificial intelligence which acquires learning from deep neural network architectures.  The paragraphs and subsections that follow under this topic give an overview of the TensorFlow library as outlined by the following authors \cite{goldsborough2016tour,abadi2016tensorflow} and \cite{abadi2017computational}.
 
-TensorFlow is a state-of-the-art high performance library by Google for Deep learning.  Deep learning is a branch of artificial intelligence which acquires learning from deep neural network architectures. Deep learning has significantly advanced in various application domains and by far out-performed traditional approaches.  TensorFlow, offers researchers and enthusiasts an open source software library for use in defining, training and deploying deep learning models.
+Deep learning has significantly advanced in various application domains and by far out-performed traditional approaches.  TensorFlow, offers researchers and enthusiasts an open source software library for use in defining, training and deploying deep learning models.
 
 TensorFlow works by defining data flow graphs with mutable state.  A data flow graph consists of nodes and edges, where each node represents an instantiation of an operation, and values flow along the edges. The operations are implemented by kernels that represent abstractions for particular types of interchangeable devices (such as CPUs and GPUs).
 
-There are three main concepts TensorFlow's core.  They are tensors, operations and mutability.  Tensors are arrays of arbitrary dimensions where the underlying data type is either specified or inferred at graph-construction time. Operations process data and constitute nodes within the compute graph. Basic operations invariably are mathematical functions such as vector dot products.  However, some of the operations indeed may be associated with a read or state update. Such tensor which permit run-time updates in TensorFlow are referred to as variables.  Finally, there may be edges for communicating and constrain the order of execution. These structures invariably affect the observable graph semantics and may also affect the computation performance. 
+There are three main concepts at TensorFlow's core.  These concepts are tensors, operations and mutability.  Tensors are arrays of arbitrary dimensions where the underlying data type is either specified or inferred at graph-construction time. Operations process data and constitute nodes within the compute graph. Basic operations invariably are mathematical functions such as vector dot products.  However, some of the operations indeed may be associated with a read or state update. Such tensor which permit run-time updates in TensorFlow are referred to as variables.  Finally, there may be edges for communicating and constrain the order of execution. These structures invariably affect the observable graph semantics and may also affect the computation performance. 
 
 Once a client program constructs a graph using a front-end interface such the Python API, the client program can send messages to the graph, by “feeding” it inputs and “fetching” outputs from it. TensorFlow then propagates the input values through the execution graph performing  operations called by the client code, until all nodes instructed to run returned with their outputs. 
 
@@ -456,9 +463,9 @@ Experiments performed in this and the next three sections are all based on seque
 
 The character-to-diacritically labelled character model was a sequence-to-sequence diacritically labeled experiment to automatically infer diacritic transcriptions of the Wakirike language given the plain unmarked Wakirike language text as input.  This is a task, when achieved successfully is a sub task towards developing a phonetic dictionary for the Wakirike Language which in turn can be used in HMM speech recognition or equivalent  end-to-end models.  This experiment was a precursor experiment, the results of which were reserved for further study.
 \subsection{Sequence-to-sequence Grapheme-to-Phoneme (G2P) model}
-This is a follow up experiment to the previous experiment in section \ref{sec_c2d}. This model attempts to automatically generate a phonetic dictionary from graphemes in a text corpus. Grapheme-to-phoneme experiments come in two flavours. The first being a continuation of the previous experiment, that is, using diacritically marked symbols and the second flavour using non-marked graphemes as input.  The experiments we performed used the latter non-marked graphemes as input. As this experiment was also a subtask in HMM speech model building,  the results of these experiments were reserved for further study.
+This follow up experiment to the previous experiment in section \ref{sec_c2d},  attempts to automatically generate a phonetic dictionary from graphemes in a text corpus. Grapheme-to-phoneme experiments come in two flavours. The first being a continuation of the previous experiment, that is, using diacritically marked symbols and the second flavour using non-marked graphemes as input.  The experiments we performed used the latter non-marked graphemes as input. As this experiment was also a subtask in HMM speech model building,  the results of these experiments were reserved for further study.
 
-What follows in the next three sections are sequence-to-sequence experiments actively developed in this research and are detailed in chapters (\ref{ch6_wlm,ch6_speech,ch8_future}).  A brief summary of the experiments are highlighted in the following sections (\ref{sec_grulm,sec_be2e,c3sec_espnet}).  Note that these models all utilise TensorFlow deep learning library including the Bi-directional speech model (section \ref{sec_be2e}) which is built on top of Mozilla DeepSpeech with the exception of section \ref{c3sec_espnet} which is based on pytorch; a similar deep learning library (see table \ref{tab_tfstats} for comparison).
+What follows in the next three sections are sequence-to-sequence experiments actively developed in this research and are detailed in chapters (\ref{ch6_wlm},\ref{ch6_speech} and \ref{ch8_future}).  A brief summary of the experiments are highlighted in the following sections (\ref{sec_grulm}, \ref{sec_be2e} and \ref{c3sec_espnet}).  Note that these models all utilise TensorFlow deep learning library including the Bi-directional speech model (section \ref{sec_be2e}) which is built on top of Mozilla DeepSpeech with the exception of section \ref{c3sec_espnet} which is based on PyTorch; a similar deep learning library.
 
 \subsection{GRU language model for Wakirike language based on TensorFlow}\label{sec_grulm}
 The language model developed in this research is a character-based sequence-to-sequence deep recurrent neural network that maps a sequence of characters to a sequence of words found in the training data set. This model met the objective of reducing the vocabulary size required for language models as well as the text corpus required as inferences could be made over the smaller-fixed character vocabulary rather than orders or magnitude larger word corpus with the possibility of out of vocabulary terms found in the training data.  Though this may occur in the character sequence-model at the inference stage.  It would not normally happen during training.  The neural network model developed is described in Chapters \ref{}, consists of Gated Recurrent Unit (GRU) Recurrent Neural Network (RNN). The GRU is a specialised type of Long Short-Term Memory (LSTM) cell RNN.  The emphasis here is on the ability to model over particularly long sequences of the training data.  In this case, over long character sequences.  Thus, the network is able to learn long term dependencies as would be naturally required to construct grammatically correct sentences.  In essence, the RNN is able to learn grammar rules inherently from the training data.
