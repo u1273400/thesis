@@ -1,5 +1,13 @@
 * Bibliography
 
+@book{Goodfellow-et-al-2016,
+    title={Deep Learning},
+    author={Ian Goodfellow and Yoshua Bengio and Aaron Courville},
+    publisher={MIT Press},
+    note={\url{http://www.deeplearningbook.org}},
+    year={2016}
+}
+
 @inproceedings{paul1992design,
   title={The design for the Wall Street Journal-based CSR corpus},
   author={Paul, Douglas B and Baker, Janet M},
