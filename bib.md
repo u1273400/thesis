@@ -9,6 +9,13 @@
   organization={Association for Computational Linguistics}
 }
 
+@article{wang2019bridging,
+  title={Bridging the gap between pre-training and fine-tuning for end-to-end speech translation},
+  author={Wang, Chengyi and Wu, Yu and Liu, Shujie and Yang, Zhenglu and Zhou, Ming},
+  journal={arXiv preprint arXiv:1909.07575},
+  year={2019}
+}
+
 @article{sifre2014rigid,
   title={Rigid-motion scattering for image classification},
   author={Sifre, Laurent and Mallat, St{\'e}phane},
