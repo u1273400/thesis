@@ -251,35 +251,36 @@ scattergram(S{2},[],S{3},j1);
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=9cm]{thesis/images/wscat0}\\
-  \caption{Scatter transform wavelet filters}\label{fig_c3_wplot}
+  \caption{Unnormalised scattergram}\label{fig_c3_sgram00}
 \end{figure}
 
-The resulting illustration in figure \ref{ref_c3_sgram00} is the unnormalised scattergram
-
-To improve visualization or classification performance, ScatNet offers utility functions to manipulate a scattering representation, such as renormalisation (renorm_scat) and logarithmic transformation (log_scat). The former renormalizes second-order coefficients by dividing them by the corresponding first-order coefficients to decorrelate the two : -order coefficients are similarly renormalized by dividing by -order coefficients. The latter computes the logarithm of the coefficients at each point. Both of these functions use the format described above for the scattering transform for both input and output.
-
-Let's renormalize the coefficients and compute the logarithm.
+The following functions in the code snippet below are applied to realise the log of the normalised scattergram.
 S = renorm_scat(S);
 S = log_scat(S);
  
 scattergram(S{2},[],S{3},j1);
 
+\begin{figure}
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=9cm]{thesis/images/wscat1}\\
+  \caption{Log normalised scattergram}\label{fig_c3_sgram01}
+\end{figure}
 
-This results in a figure where much more details are noticeable.
+With the corresponding scattergram illustrated in figure \ref{fig_c3_sgram01}.
 
-In order to use the scattering coefficients for classification or other tasks, we need to assemble them together in vector form. To do this, we use the function format_scat.
+Finally, to utilise the scattering coefficients as features for classification tasks, we extract the vector form using format_scat function.
 
 [S_table, meta] = format_scat(S);
 
+The, S_table ia a P-by-N table, where P is the flattened total of all the scattering combined coefficients within each layer of the Deep Scattering Network (DSN) and N is the number of time points. The network is now feature ready for classification tasks using an affine space classifier.
 
-Here, S_table will be a P-by-N table, where P is the total number of scattering coefficients (all orders combined) and N is the number of time points. Now, S_table can be fed into a classifier for training or testing.
+For batch processing ScatNet provides a database feature which can accept a collection of input vectors rather than a single input signal.  Consider the GTZAN dataset used in musical genre classification.  The snippet following shows the steps for batch processing
 
-The ScatNet toolbox also contains a pipeline for classification using an affine space classifier or a support vector machine (SVM). To use it, we need to create a database of feature vectors by calculating the scattering coefficients of a collection of audio files. Here, we shall consider the GTZAN dataset for musical genre classification.
+First, specify the path to the audio target.
 
-First, we create the list of files accompanied by their class labels using the gtzan_src function.
-
-src = gtzan_src('/path/to/gtzan/dataset');
-Second, we need to specify the feature transform to use. This is done, as before, using wavelet_factory_1d and the scattering transform functions.
+src = gtzan_src('/path/to/dataset');
+Next all the defaults for ScatNet analysis and processing are set as explained in the previous Sections \ref{sec_c3_scat00,sec_c3_scat01} and \ref{sec_c3_scat02} above.
 N = 5*2^17;
 T = 8192;
  
@@ -294,18 +295,17 @@ feature_fun = @(x)(format_scat( ...
     log_scat(renorm_scat(scat(x, Wop)))));
 
 
-Note that we must specify N = 5*2^17, corresponding to 29.72 s, because the files in src have been truncated to this length. Finally, we can to specify additional options for generating the features. Here, to speed up training and testing, we decide to only keep every eighth frame of the scattering transform.
+It is possible to optimise the training by subsampling each signal.  The feature_sampling option is used to specify subsampling.
 
 database_options.feature_sampling = 8;
 
 
-Now we use the prepare_database function to calculate the scattering coefficients of the files in src.
+Finally, a call is made to prepare_database function to compute all the scattering coefficients of the src database.
 
 database = prepare_database(src, feature_fun, database_options);
 
 
-Depending on the speed of the machine, this can take some time. If you have access to the distributed computing toolbox, invoking matlabpool open before calling prepare_database allows the function to use multiple cores simultaneously.
-
+In this research, further speed up was achieved by utilising Matlab’s parallel processing on the for loop (see appendix \ref{app_scatcode}) thus bypassing the batch processing utility of ScatNet.
 
 \subsection{TensorFlow}\label{sec_c3_tf}
 The paragraphs and subsections that follow under this topic give an overview of the TensorFlow library as outlined by the following authors \cite{goldsborough2016tour,abadi2016tensorflow,abadi2017computational}
@@ -334,9 +334,15 @@ In a TensorFlow computational data flow graph, vertices or nodes of the directed
 The left graph displays a basic compute graph consisting of an addition operator having two input variables $x$ and $y$.  The result, $z$ is the output of the $+$ operation.  The right graph gives an example logistic regression function. $\hat{y}$ is the final output of the function for some sample vector $\mathbf{x}$, weight vector $\mathbf{w}$ and scalar bias $b$.  As shown in the graph, $\hat{y}$ is the output of the sigmoid or logistic function $\sigma$
 
 \subsubsection{Backprop nodes}
-If a neural network consists of two hidden layers represented by functions $f(x;w)=f_x(w)$ and $g(x;w)=g_x(w)$ with internal weights $w$, we can express the cost for that example as $c=(f_x \circ g_x)(w)=f_x(g_x(w))$.  We would then typically calculate the gradient $dc/dw$ of the cost with respect to the weights and use it to update $w$.  The backprop algorithm traverses the graph in reverse to compute the cost using the chain rule $[f_x(g_x(w))]‘=f‘_x(g_x(w))\cdot g‘x(w)$.
+The Backprop algorithm \cite{Goodfellow-et-al-2016} is an efficient method to compute error values for weights within a multilayer or deep neural network.  The algorithm is summarised as follows.  Assuming a neural network with two hidden layers. The two layers within the network respectively have output functions $f(x;w)$ and $g(x;w)$ such that $f(x;w)=f_x(w)$ and $g(x;w)=g_x(w)$.  Where  is the input from the previous layer or from the input layer and  are the weights.   The error function , is an implicit function of all the previous layers.  In the case of the 2-layer network $e=(f_x \circ g_x)(w)=f_x(g_x(w))$.  The back prop algorithm uses the chain rule to correctly assign appropriate updates to each weight at every layer within the network.  The updates which are the gradient or the error function with respect to the weights are $de_x/dw$. The backprop algorithm therefore uses the formula $[f_x(g_x(w))]‘=f‘_x(g_x(w))\cdot g‘x(w)$ as it traverses the graph in reverse to compute the updates. 
+\begin{figure}
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=9cm]{thesis/images/bprop}\\
+  \caption{Tensorflow graph with backprop nodes \citep{goldsborough2016tour}}\label{fig_c3_bprop}
+\end{figure}
 
-When TensorFlow needs to compute the gradient of a particular node $\nu$ with respect to some other tensor $\alpha$, it traverses the graph in reverse order from $\nu$ to $\alpha$. Each operation $\circ$ encountered during this traversal represents a function depending on $\alpha$ and is one of the “links” in the chain $(\nu \circ \dots \circ o \circ \dots)(\alpha)$ producing the output tensor of the graph. Therefore, TensorFlow adds a gradient node for each such operation o that takes the gradient of the previous link (the outer function) and multiplies it with its own gradient. At the end of the traversal, there will be a node providing a symbolic handle to the overall target derivative $d\nu/d\alpha$ , which implicitly implements the back-propagation algorithm. It should now be clear that back-propagation in this symbol-to-symbol approach is just another operation, requiring no exceptional handling. Figure 7 shows how a computational graph may look before and after gradient nodes are added. 
+Figure \ref{fig_c3_bprop} illustrates how tensor implements backprop by adding two extra nodes at the appropriate layers within the network to satisfy the chain rule.  For each operation encountered, there is a corresponding gradient function that reverses the output as a function of the inputs.  The output of this gradient function can then be propagated backwards to a previous operation which would represent a previous layer within a neural network.  The gradient function propagated to the previous layer is then used to complete the parameters of the chain rule by multiplying with that previous layer’s gradient.  This output is ready to be propagated down the network to the subsequent layer to perform a similar function.  This process continues until all the weights within the network have appropriate update values.
 
 \subsubsection{Control flow}
 TensorFlow also supports control-flow operations.  For this reason TensorFlow is not a directed acyclic graph (DAG) but can support cyclic structures. If the number of loops required by the computation graph is known at graph construction.  It is easy to maintain a DAG structure simply by unrolling the number of loops specified.  However, this is not always the case.  There are instances in which a variable number of loops is required at runtime.  Hence, the computation graph becomes increasingly complex.  This is particularly the case for back gradient descent and back propagation of errors (see section \ref{sec_c3_tfwf} for a  walk through).  The process of stepping back through a loop in reverse to compute gradients is known as back-propagation through time \citep{al2016theano}.
