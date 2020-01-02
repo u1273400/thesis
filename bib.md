@@ -8,6 +8,13 @@
     year={2016}
 }
 
+@inproceedings{acero1990acoustical,
+  title={Acoustical and environmental robustness in automatic speech recognition},
+  author={Acero, Alejandro},
+  booktitle={Proc. of ICASSP},
+  year={1990}
+}
+
 @inproceedings{paul1992design,
   title={The design for the Wall Street Journal-based CSR corpus},
   author={Paul, Douglas B and Baker, Janet M},
