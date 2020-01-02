@@ -110,7 +110,7 @@ Experiment & Hours of speech & Total training time & Estimated training\\
 \end{table}
 
 \section{Model Baseline}
-The study by \cite{hannun2014first} reported successful character error rate (CER)  using deep neural network (DNN), recurrent deep neural network with only forward temporal connections (RDNN), and also bi-directional recurrent neural networks (BRDNN). The models used in this their study had 5 hidden layers having either 1,824 or 2,048 hidden units in each hidden layer.  For a baseline, we use a model having a similar architecture of 5 hidden units and 2048 hidden units trained on the Librespeech corpus \citep{panayotov2015librispeech, mozilla/deepspeech_2019}. 
+The study by \cite{hannun2014first} reported successful character error rate (CER)  using deep neural network (DNN), recurrent deep neural network with only forward temporal connections (RDNN), and also bi-directional recurrent neural networks (BRDNN). The models used in this their study had 5 hidden layers having either 1,824 or 2,048 hidden units in each hidden layer.  For a baseline, we adopt the model produced by the Mozilla DeepSpeech team.  This model had a similar architecture with 5 hidden units and 2048 hidden units and was trained on the Librespeech corpus and the common voice data corpora \citep{panayotov2015librispeech, mozilla/deepspeech_2019}.
 
 Word Error Rates by this model were optimised after 75 epochs, learning rate of 0.0001 and a dropout rate of 15\%.  In addition, the language model hyper parameters for alpha and beta were 0.75 and 1.85 respectively.  This achieved 8\% WER. This was done using MFCC features of the training corpus.
 
