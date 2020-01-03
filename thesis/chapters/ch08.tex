@@ -15,9 +15,44 @@ Self attention is a network that intrinsically reduces the need for intensive re
 
 As a study to further this thesis, these networks are likely candidates for network training using scatter features as input discriminatory functions.  Attention based networks as a means reduce training resources required, while GANs can be used as a means to generate training data.
 
+\section{Joint Training with ESPNet}
+Chapter \ref{ch6_speech} has already seen promising results based on preliminary experiments using the ESPNet model.  This model does fulfil major objectives outlined by this research. The inclusion of Attention-based models and the warp-CTC decoder implemented in ESPNet ensures faster convergence and ultimately faster time to train, in addition to the end-to-end architecture presented by ESPNet. The next step required for a further study is an integration of scattering features into ESPNet.  This scattering features implementation is the subject of a paper publication immediately sought after based on this work.  The features of ESPNet include state-of-the-art end-to-end architectures including variants of Attention-Transducers and CTC-decoders.  Using a weighting function  one can control how much bias either the CTC-Transform or the Attention-Transducer will get during training.  The joint training helps to improve robustness as well as achieve fast convergence.
+\begin{equation}
+    \mathcal{L}=\alpha\mathcal{L}^{ctc}+(1-\alpha)\mathacal{L}^{att}
+    \label{eqn_c7_esp00}
+\end{equation}
+At the same time joint decoding of labels is mixed with the character based RNN-language model such that the log probability of the RNNLM is integrated with decoding as follows
+\begin{equation}
+    \log p(y_n|y_{1:n−1},\mathbf{h}_{1:T‘})=\log p^{hyp}(y_n|y_{1:n−1},\mathbf{h}_{1:T‘})+\beta\log p^{lm}(y_n|y_{1:n−1})
+    \label{eqn_c7_esp01}
+\end{equation}
+Where joint decoding, $\log p^{hyp}(y_n|y_{1:n−1},\mathbf{h}_{1:T‘})$ is given by
+\begin{equation}
+    \log p^{hyp}(y_n|y_{1:n−1},\mathbf{h}_{1:T‘})\\
+    & = \alpha\log p^{ctc}(y_n|y_{1:n-1},\mathbf{h}_{1:T'})+(1-\alpha)\log p^{att}(y_n|y_{1:n-1},\mathbf{h}_{1:T'})
+\end{equation}
+
+Furthermore, multi-channel training integrates noise robust and far-field speech recognition tasks which can Furthermore, multi-channel training integrates noise robust and far-field speech recognition tasks which can accommodate joint 83-dimension MFCC and scatter transform training in addition to speech enhancement features such as beam forming and STFT masking \cite{ochiai2017multichannel}. Both single and multi-channel scatter transform features are considered in the future paper publication. joint 83-dimension MFCC and scatter transform training in addition to speech enhancement features such as beam forming and STFT masking \cite{ochiai2017multichannel}. Both single and multi-channel scatter transform features are considered in the future paper publication.
+
+\section{Model Pretraining}
+The major setback this work suffered was from a reasonable time for training.  This work therefore recommends that speech models or indeed artificial intelligence models should be trainable within a maximum of 30 days and shouldn't generally exceed 20 days training.
+
+An area of neural network training optimisation not developed in this report is that of layer-wise greedy pre-training.  In this process, rather than train the deep neural network structure all in one stage, the network layers are successively added and trained layer by layer, one layer at a time \citep{Goodfellow-et-al-2016}.  The intuition behind this is that this makes the layers saturate much faster as the previous layer has already been saturated before the new layer is being added.
+
+This layer-wise pretraining procedure is thought to speed up training, than training when done with the fully connected network and there have been a few different approaches to pretraining in for deep neural network architectures for speech recognition. 
+\cite{hendrycks2019using} introduces an advanced pretraining method in which existing models are retrain in a Generative Adversarial Network (GAN) fashion in order to optimise performance through model robustness.  This is an instance where GANs are being deployed in speech recognition.  This method however is not likely going to help improve model training time.
+
+Another method described in \citep{ramachandran2016unsupervised,} uses a knowledge transfer mechanism. Where hidden layers in an already existing related network is re-trained with new extended layers to complete training in the new domain.  The effectiveness of such a transfer method will be measured by the how the two domains correlate with one another. It would be logical to conclude that the more the domains correlate the faster the pretraining model is likely to converge faster.
+
+Finally, \cite{wang2019bridging} proposes a Tandem Connectionist Encoding Network (TCEN) for bridging the gap for fine tuning CTC-Transformer networks along with pretraining of Attention-transducers.
+
+As a further study, the most viable method for this study is to investigate the knowledge transfer mechanism by approaching the feature engineering problem as a latent space analysis problem.  Given that during the process of mapping acoustic speech sequences to the MFCC reduced the latent space from a high dimension to a low dimension, it is reasonable to hypothesize that training from hidden layers of an MFCC deep RNN would converge faster than weights initialised through generic means.
+
 \section{Conclusion}
 End-to-end discriminative neural network speech models have now become a well established method in Automatic Speech Recognition. 
 
-Our Bi-directional Recurrent neural network (Bi-RNN) end-to-end system, is augmented by features derived from a deep scattering network as opposed to the standard Mel Frequency Cepstral Coefficients(MFCC) features used in state of the art acoustic models.  These specialised deep scattering features, consumed by the Bi-RNN, model a light-weight convolution network. This work shows that it is possible to build a speech model from a combination of deep scattering features and a Bi-RNN. There has been no record of deep scattering features being used in end-to-end bi-RNN speech models as far as we are aware.  
+Bi-directional Recurrent neural network (Bi-RNN) end-to-end system, is augmented by features derived from a deep scattering network as opposed to the standard Mel Frequency Cepstral Coefficients(MFCC) features used in state of the art acoustic models.  These specialised deep scattering features, consumed by the Bi-RNN, model a light-weight convolution network. This work shows that it is possible to build a speech model from a combination of deep scattering features and a Bi-RNN. There has been no record of deep scattering features being used in end-to-end bi-RNN speech models as far as we are aware.  
 
-We show in this work that Deep Scattering features derived from wavelet filter operations on audio data produce viable candidates for end-to-end training of Automatic speech recognition models.
+This thesis shows that Deep Scattering features derived from wavelet filter operations on audio data produce viable candidates for end-to-end training of Automatic speech recognition models.
+
+The objective of this research to facilitate fast and efficient speech recognition is achieved using the ESPNet system.  The major advantage of this system has in addition to robust end-to-end models is the intrinsic integration of a character-based language model enabling it to satisfy both low-resource challenge criteria of top level word and sentence modelling through the character-based language model and the sub-word and acoustic modelling of input features.

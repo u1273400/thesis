@@ -89,10 +89,28 @@ p(\ell^+|x_{1:t})=p(W(\ell^+)|W(\ell))^\alpha(p_{nb}(\ell|x_{1:t})+p_b(\ell|x_{1
 
 Note that $p(W(\ell^+)|W(\ell))$ is set to $0$ if the current word $W(\ell^+)$ is not in the lexicon. This becomes a constraint to enforce all character strings to consist only of words in the lexicon.  Furthermore,  $p(W(\ell^+)|W(\ell))$ is extended to include all the character sequences representing number of words considered by the n-gram language model by constituting the last $n-1$ words in character sequence $W(\ell)$.
 
+\begin{figure}
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=14cm]{thesis/images/res00.PNG}\\
+  \caption{Training Loss, where $w<x<y<z$ are taken arbitrarily across the
+total number of epochs} \label{fig_6_2_loss}
+\end{figure}
+
 \section{Model Hyper parameters}
 The hidden layer matrix for each layer comprised 1024 hidden units (6.6M free parameters).  The weights are initialised from a uniform random distribution having a standard deviation of 0.046875.  The Adam optimisation algorithm \citep{kingma2014adam} was used with initial learning rate of , and a momentum of 0.95 was deployed to optimise the learning rate.
 
 The network was trained for a total of five to fifty epochs over the training set for experiments conducted. The training time for Python GPU implementation is shown in Table \ref{tab_c6_01_training}.  For decoding with prefix search we use a beam size of $200$ and cross-validated with a held-out set to find optimal settings for the parameters $\alpha$ and $\beta$. Figure \ref{fig_6_3_wer} shows word error rates for various GPU configurations and audio data-set sizes.
+
+\section{Model Baseline}
+The study by \cite{hannun2014first} reported successful character error rate (CER)  using deep neural network (DNN), recurrent deep neural network with only forward temporal connections (RDNN), and also bi-directional recurrent neural networks (BRDNN). The models used in this their study had 5 hidden layers having either 1,824 or 2,048 hidden units in each hidden layer.  For a baseline, the model produced by the Mozilla DeepSpeech team was adopted.  This model had a similar architecture with 5 hidden units and 2048 hidden units and was trained on the Librespeech corpus and the common voice data corpora \citep{panayotov2015librispeech, mozilla/deepspeech_2019}.
+
+Word Error Rates by this model were optimised after 75 epochs, learning rate of 0.0001 and a dropout rate of 15\%.  In addition, the language model hyper parameters for alpha and beta were 0.75 and 1.85 respectively.  This achieved 8\% WER. This model was developed using MFCC features of the training corpus.
+
+\section{Results}
+Experiments were carried out on different GPU configurations. A set of experiments was performed a GPU configuration consisting of 2 GPUs having a total of 10 gigabytes of memory. The second set of experiments was carried out on a GPU configuration comprising 5 GPUs having a total of 15 gigabytes of memory. Experiments were also performed using single GPUs having 2GB and another single GPU having 8GB.  For each GPU configuration experiments were carried out on varying-size subsets of the common voice corpus being utilised.   The various GPU configurations along with the training times are shown in Table \ref{tab_c6_01_training}.
+
+In addition to the GPU configuration, experiments involving CPU and multi-node training were carried out.  Although quite a number of configuration did not reach a stopping condition, the multi node configurations which made use of Tensorflow distributed feature in particularly required regular user-intervention, and as such, was short-lived. In table \ref{tab_c6_01_training}, the first four configurations trained to saturation.  For these results, the training loss reduced significantly once the data was increased to ten hours of training.  However word error rates (WER) only showed improvement on the 40 hours dataset.
 
 \begin{table}
   \caption{GPU Experiments}
@@ -102,9 +120,9 @@ The network was trained for a total of five to fifty epochs over the training se
 Experiment & Hours of speech & Total training time & Estimated training\\
 \midrule
 1. 2xGPU 10GB RAM & 1 & 7 days & Completed\\
-2. 2xGPU 10GB RAM & 10 & 150+ days & 300 days\\
+2. 2xGPU 10GB RAM & 10 & 355 days & Completed\\
 3. 5xGPU 15GB RAM & 10 & 17 hours & Completed\\
-4. 5xGPU 15GB RAM & 40 & 5+ days & 10 days\\
+4. 5xGPU 15GB RAM & 40 & 12 days & Completed\\
 5. 1xCPU 16GB RAM & 20 & 4+ days & 70 days\\
 6. 1xGPU 2GB RAM & 20 & 17+ days & 100 days\\
 7. 1xCPU 16GB RAM & 20 & 4+ days & 70 days\\
@@ -112,34 +130,28 @@ Experiment & Hours of speech & Total training time & Estimated training\\
 \bottomrule
 \end{tabular}
 \end{table}
+\section{Preliminary ESPNet Experiment}
+Preliminary experiments were carried out using the ESPNet \citep{watanabe2018espnet} an overview of which is described in Chapter \ref{ch3Method} and detailed some more in this section and Chapter \ref{ch08furtherstudy}.  A much smaller audio corpus guaranteed to converge however was used for these experiments.  The AN4 (alphanumeric) corpus by Carnegie Mellon University \citep{acero1990acoustical}, is a small vocabulary speech corpus having only 948 training utterances and 140 test utterances.
 
-\section{Model Baseline}
-The study by \cite{hannun2014first} reported successful character error rate (CER)  using deep neural network (DNN), recurrent deep neural network with only forward temporal connections (RDNN), and also bi-directional recurrent neural networks (BRDNN). The models used in this their study had 5 hidden layers having either 1,824 or 2,048 hidden units in each hidden layer.  For a baseline, the model produced by the Mozilla DeepSpeech team was adopted.  This model had a similar architecture with 5 hidden units and 2048 hidden units and was trained on the Librespeech corpus and the common voice data corpora \citep{panayotov2015librispeech, mozilla/deepspeech_2019}.
+The corpus utterances are 16-bit linearly sampled at 16kHz, each recording made with near-field microphone quality.  The compressed tar file comes with a variety of audio formats including raw wav format, the NIST sphere format and those already encoded as Mel cepstral coefficients.
 
-Word Error Rates by this model were optimised after 75 epochs, learning rate of 0.0001 and a dropout rate of 15\%.  In addition, the language model hyper parameters for alpha and beta were 0.75 and 1.85 respectively.  This achieved 8\% WER. This model was developed using MFCC features of the training corpus.
+Experiments were carried out using ESPNet default parameters which included those for character based-Recurrent Neural Network language model RNN-LM, multi-channel feature input and multi-objective learning using both CTC-Transformer and Attention-Transducer networks.
 
+\subsection{ESPNet Speech model architecture, parameters and results}
+The end-to-end architecture at the core of ESPNet is the CTC-Transformer+Attention Transducer model.  Together these two architectures achieve joint multi-objective speech training and decoding.  The CTC-Transformer model is based on a Bi-RNN similar to what is obtainable in the DeepSpeech model.  The attention transducer model is further explained in Chapter \ref{ch8further}.  There are up to 11 variants of Attention networks implemented in ESPNet, however, the results of the ESPNet experiment performed was determined from the model described in \cite{chorowski2015attention}.  Moreover, the multi-objective training was performed with equal weights on both the CTC-transformer and the Attention-Transducer.  Finally the system was trained for 20 epochs only.
 
-\section{Results}
-A total of four experiments were carried out on two different GPU configurations. A set of experiments was performed a GPU configuration consisting of 2 GPUs having a total of 10 gigabytes of memory. The second set of experiments was carried out on a GPU configuration comprising 5 GPUs having a total of 15 gigabytes of memory.  For each configuration two experiments were carried out on a small subset of the dataset then on a larger subset of the common voice dataset being used.   The various GPU configurations along with the training times are shown in Table 1.
-
-The output of the training produced mostly gibberish when trained in both configurations using only just one hour of training data.  Training loss reduced significantly once the data was increased to ten hours of training.  However word error rates (WER) only showed improvement on the 40 hours dataset.
-\begin{figure}
-\centering
-  % Requires \usepackage{graphicx}
-  \includegraphics[width=14cm]{thesis/images/res00.PNG}\\
-  \caption{Training Loss, where $w<x<y<z$ are taken arbitrarily across the
-total number of epochs} \label{fig_6_2_loss}
-\end{figure}
-\begin{figure}
-\centering
-  % Requires \usepackage{graphicx}
-  \includegraphics[width=14cm]{thesis/images/res01.PNG}\\
-  \caption{WER, where w<x<y<z are taken arbitrarily across the total
-number of epochs} \label{fig_6_3_wer}
-\end{figure}
+With this minimal default setting, the test set had a final recognition score of 9.5\% character error rate (CER).  The next Chapter discusses how the baseline can be scaled and remodelled for integrating scattering features.
 
 \section{Chapter Summary}
 
 In this chapter the details of the novel structure having the end-to-end deep bi-RNN architecture and deep scattering features were elaborated on.  The architecture which follows a five-layer structure consisting of a feed-forward neural network in the first three layers and the last two consisting of recurrent structures flowing in two different directions.  The network is then fed in with a 165-dimension feature vector containing deep-scattering encoding derived from a sampled raw audio file.
 
-The results showed that the training of the model was moving towards a very slow convergence as indicated by the slow decrements in training loss.  However, we speculate that on the complete data-set, the model will not only converge but show improvements in word error rates.
+The results showed that the training of the model was moving towards a very slow convergence as indicated by the slow decrements in training loss.  However, we speculate that on the complete data-set, the model will not only converge but show improvements in word error rates.  Already this is seen from results from preliminary baseline experiments with ESPNet.   With an advanced architecture, yet having the CTC-Transformer Bi-RNN at its core, the ESPNet baseline model yielded a competitive 9.5\% CER using multi-channel features derived from features integrated with 83 log MFCC feature vector.
+
+\begin{figure}
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=14cm]{thesis/images/res01.PNG}\\
+  \caption{WER, where w\<x\<y\<z are taken arbitrarily across the total
+number of epochs} \label{fig_6_3_wer}
+\end{figure}
