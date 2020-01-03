@@ -8,6 +8,14 @@
     year={2016}
 }
 
+@inproceedings{chorowski2015attention,
+  title={Attention-based models for speech recognition},
+  author={Chorowski, Jan K and Bahdanau, Dzmitry and Serdyuk, Dmitriy and Cho, Kyunghyun and Bengio, Yoshua},
+  booktitle={Advances in neural information processing systems},
+  pages={577--585},
+  year={2015}
+}
+
 @inproceedings{acero1990acoustical,
   title={Acoustical and environmental robustness in automatic speech recognition},
   author={Acero, Alejandro},
