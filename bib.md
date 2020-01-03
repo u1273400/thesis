@@ -8,6 +8,15 @@
     year={2016}
 }
 
+@inproceedings{ochiai2017multichannel,
+  title={Multichannel end-to-end speech recognition},
+  author={Ochiai, Tsubasa and Watanabe, Shinji and Hori, Takaaki and Hershey, John R},
+  booktitle={Proceedings of the 34th International Conference on Machine Learning-Volume 70},
+  pages={2632--2641},
+  year={2017},
+  organization={JMLR. org}
+}
+
 @inproceedings{chorowski2015attention,
   title={Attention-based models for speech recognition},
   author={Chorowski, Jan K and Bahdanau, Dzmitry and Serdyuk, Dmitriy and Cho, Kyunghyun and Bengio, Yoshua},

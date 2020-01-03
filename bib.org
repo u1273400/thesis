@@ -73,6 +73,15 @@
   organization={IEEE Signal Processing Society}
 }
 
+@inproceedings{ochiai2017multichannel,
+  title={Multichannel end-to-end speech recognition},
+  author={Ochiai, Tsubasa and Watanabe, Shinji and Hori, Takaaki and Hershey, John R},
+  booktitle={Proceedings of the 34th International Conference on Machine Learning-Volume 70},
+  pages={2632--2641},
+  year={2017},
+  organization={JMLR. org}
+}
+
 @article{walker2004sphinx,
   title={Sphinx-4: A flexible open source framework for speech recognition},
   author={Walker, Willie and Lamere, Paul and Kwok, Philip and Raj, Bhiksha and Singh, Rita and Gouvea, Evandro and Wolf, Peter and Woelfel, Joe},
