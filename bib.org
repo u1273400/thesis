@@ -1,5 +1,12 @@
 * Bibliography 
 
+@article{hendrycks2019using,
+  title={Using pre-training can improve model robustness and uncertainty},
+  author={Hendrycks, Dan and Lee, Kimin and Mazeika, Mantas},
+  journal={arXiv preprint arXiv:1901.09960},
+  year={2019}
+}
+
 @inproceedings{acero1990acoustical,
   title={Acoustical and environmental robustness in automatic speech recognition},
   author={Acero, Alejandro},

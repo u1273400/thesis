@@ -1,5 +1,12 @@
 * Bibliography
 
+@article{hendrycks2019using,
+  title={Using pre-training can improve model robustness and uncertainty},
+  author={Hendrycks, Dan and Lee, Kimin and Mazeika, Mantas},
+  journal={arXiv preprint arXiv:1901.09960},
+  year={2019}
+}
+
 @book{Goodfellow-et-al-2016,
     title={Deep Learning},
     author={Ian Goodfellow and Yoshua Bengio and Aaron Courville},
