@@ -12,7 +12,10 @@
 % package used by \citep and \citet
 \usepackage[sort&compress,comma,authoryear]{natbib}
 \usepackage[options ]{algorithm2e}
-
+\usepackage{url}
+\def\UrlBreaks{\do\/\do-}
+\usepackage{breakurl}
+\usepackage[breaklinks]{hyperref}
 \usepackage{setspace}
 \usepackage{amsmath}
 \usepackage{booktabs}
@@ -88,11 +91,15 @@ I also acknowledge my parents (Prof. Mrs. Jane Alamina and Dr. P. T. Alamina) fo
 
 \chapter{Future study}\label{ch8_future}
 \input{chapters/ch08}
+\spacing{1.0}
 \chapter*{Appendices}
-\input{chapters/ch08a}\label{ch08furtherstudy}
+\input{chapters/ch08a}\label{app_haar}
+\chapter*{\appendix}
+\input{chapters/ch08aa}
 \chapter*{\appendix}
 \input{chapters/ch08b}
-\spacing{1.0}
+\chapter*{\appendix}
+\input{chapters/ch08c}
 \bibliographystyle{plainnat}
 
 \bibliography{bib}

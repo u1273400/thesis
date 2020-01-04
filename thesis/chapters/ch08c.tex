@@ -1,57 +1,65 @@
 
-\section*{Appendix II - Matlab listing for scattering network}
-\begin{lstlisting}[language=Matlab]
-function scatter()
-    %UNTITLED Summary of this function goes here
-    %   Detailed explanation goes here
-    T = readtable('data/cv-valid-dev.xlsx','ReadRowNames',true);
-    F=table2cell(T(:,{'scatterc','wav_filename'}));
-    all_files=size(F,1);
-    ofm='hh:mm:ss';
-    ifm='dd-mmm-yy HH:MM:SS.FFF';
-    tic;
-    for i = 1:all_files
-      wav_file=strjoin(F(i,2));
-      dss_file=strjoin(F(i,1));
-      if exist(wav_file,'file')>0
-      	if exist(dss_file,'file')==0
-        	st = transpose(scatter_audio(wav_file));
-        	csvwrite(dss_file,st);
-      	end
-      else
-      	fprintf('\nNot found:%s',wav_file);
-      end
- 
-      pg=i/all_files*100;
-      ts=datestr(now,ifm);
-      tv=toc;
-      d=duration(seconds(tv),'Format',ofm);
-      pc=(all_files/i*tv)-tv;
-      eta=duration(seconds(pc),'Format',ofm);
- 
-      if mod(i,500)==0 || i==1 || i==10 || i==100
-      	fileID = fopen('log/dss180625.log','w+');
-      	s=sprintf('\n%s: processing file  %s',ts,wav_file);
-      	fprintf(fileID,'%s',s);
-      	fprintf('%s',s);
-      	s=sprintf('\n%s : processing %d of %d files  %3.2f%% complete.. time elapsed = %s, eta = %s',ts,i,all_files,pg,d,eta);
-      	fprintf(fileID,'%s',s);
-      	fprintf('%s',s);
-      	fclose(fileID);
-      end
-    end
-end
- 
-function st= scatter_audio(inputArg1)
-    y=audioread(inputArg1);
-    N=length(y);
-    T=2^9;
-    filt_opt=default_filter_options('audio',T);
-    Wop=wavelet_factory_1d(N,filt_opt);
-    S=scat(y,Wop);
-    S=renorm_scat(S);
-    S=log_scat(S);
-    st=format_scat(S);
-end
+\section*{Appendix IV - Code listing for Section \ref{sec_c3_tfw} - Sample TensorFlow client code}
+\begin{lstlisting}[language=Python]
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+""" A one-hidden-layer-MLP MNIST-classifier. """
+from __future__ import absolute_import from __future__ import division
+from __future__ import print_function
+# Import the training data (MNIST)
+from tensorflow.examples.tutorials.mnist import input_data
+import tensorflow as tf
 
+# Possibly download and extract the MNIST data set. 
+# Retrieve the labels as one-hot-encoded vectors. 
+mnist = input_data.read_data_sets("/tmp/mnist",one_hot=True)
+
+# Create a new graph
+graph = tf.Graph()
+
+# Set our graph as the one to add nodes to
+with graph.as_default():
+
+  # Placeholder for input examples (None = variable dimension)
+  examples = tf.placeholder(shape=[None, 784], dtype=tf.float32)
+  # Placeholder for labels
+  labels = tf.placeholder(shape=[None, 10], dtype=tf.float32)
+  
+  weights = tf.Variable(tf.truncated_normal(shape=[784, 10],
+    stddev=0.1))
+  bias = tf.Variable(tf.constant(0.1, shape=[10]))
+  
+  # Apply an affine transformation to the input features
+  logits = tf.matmul(examples, weights) 
+    + bias estimates = tf.nn.softmax(logits)
+  
+  # Compute the cross-entropy
+  cross_entropy = -tf.reduce_sum(labels * tf.log(estimates),
+    reduction_indices=[1]) 
+  # And finally the loss
+  loss = tf.reduce_mean(cross_entropy)
+  
+  # Create a gradient-descent optimizer that minimizes the loss.
+  # We choose a learning rate of 0.01
+  optimizer = tf.train.GradientDescentOptimizer(0.5).minimize(loss)
+  
+  # Find the indices where the predictions were correct
+  correct_predictions = tf.equal( 
+    tf.argmax(estimates, dimension=1), 
+    tf.argmax(labels, dimension=1))
+  accuracy = tf.reduce_mean(
+    tf.cast(correct_predictions, tf.float32))
+    
+with tf.Session(graph=graph) as session: 
+  tf.initialize_all_variables().run() 
+  for step in range(1001):
+    example_batch, label_batch = mnist.train.next_batch(100)
+    feed_dict = {examples: example_batch, labels: label_batch}
+    if step % 100 == 0:
+      _, loss_value, accuracy_value =
+        session.run([optimizer, loss, accuracy], feed_dict=feed_dict)
+      print("Loss at time {0}: {1}".format(step, loss_value))
+      print("Accuracy at time {0}:{1}".format(step, accuracy_value))
+    else:
+      optimizer.run(feed_dict)
 \end{lstlisting}
