@@ -20,6 +20,10 @@
 \usepackage{amsmath}
 \usepackage{booktabs}
 \usepackage{fancyhdr}
+\usepackage[acronym, toc]{glossaries} 
+\makeglossaries
+\input{chapters/glossary.tex}
+
 \pagestyle{fancy}
 \fancyhead{}
 \fancyhead[RO,LE]{Deep Scattering and End-to-End Speech Models towards Low Resource Speech Recognition}
@@ -45,19 +49,23 @@ A thesis submitted to the University of Huddersfield in partial fulfilment of th
 \maketitle
 \spacing{1.5}
 
+\addcontentsline{toc}{section}{Abstract}
 \chapter*{Abstract}
 This thesis investigates and acknowledges the various limitations of Deep Neural Network (DNN) techniques when applied to low resource speech recognition.   Various aspects of developing corpora for speech recognition systems are explored.  In particular various recurrent neural network (RNN) techniques were explored to implement end-to-end speech and language models (LM). Gated Recurrent Units (GRU) RNNs were used employed for the language model for a low resourced Wakirike language while bidirectional recurrent neural networks (bi-RNNs) were used to create end-to-end speech recognition model for English language.
 
 Previous systems employed for low resource speech recognition involving deep networks included various knowledge transfer mechanisms including hybrid hidden markov models (HMM) to deep neural networks (HMM-DNN) models and those that are HMM alone-based include subspace Gaussian Mixture Models (GMMs).   These models are based on the HMM generative model and N-gram language models.  However, the model developed in this thesis makes use of an end-to-end discriminative model using the Bi-RNN acoustic/speech model augmented using speech features from a specialised light weight convolution network-the deep scattering network (DSN).  While the light weight DSN helped to reduce the training complexity, at the same time by focusing on end-to-end with Connectionist Temporal Classification (CTC) decoding, the speech model was compressed into a one step process rather than a three-step process requiring an Acoustic Model (AM), Language Model (LM) and phonetic dictionary. The research therefore shows that it is possible to use this compacting strategy in addition to augmented speech features required for speech pattern recognition by deploying deep scattering network features with  higher dimensional vectors when compared to traditional speech features. 
 
+\addcontentsline{toc}{section}{Dedication}
 \chapter*{Dedication}
 To the praise and glory of our God and of His Christ.
 
-\chapter*{Acknowledgement}
+\addcontentsline{toc}{section}{Acknowledgements}
+\chapter*{Acknowledgements}
 I thank the members supervisory team including Dr David Wilson and Dr Simon Parkinson for the invaluable guidance and keen interest throughout my research.  
 
 I also acknowledge my parents (Prof. Mrs. Jane Alamina and Dr. P. T. Alamina) for immense support shown.  My wife, children (Topaz and Jade) and family members have also stood by given and given all the encouragement I could ever need.  Thank you.  Finally, to all who have said a prayer and have contributed towards my studies or well being, I am grateful to you all.
 
+\addcontentsline{toc}{section}{Copyright Statement}
 \chapter*{Copyright statement}
 \renewcommand{\theenumi}{\roman{enumi}}%
 \begin{enumerate}
@@ -67,6 +75,17 @@ I also acknowledge my parents (Prof. Mrs. Jane Alamina and Dr. P. T. Alamina) fo
 \end{enumerate}
 
 \tableofcontents
+
+\addcontentsline{toc}{section}{List of Figures}
+\listoffigures
+ 
+\addcontentsline{toc}{section}{List of Tables}
+\listoftables
+
+\clearpage
+ 
+\addcontentsline{toc}{section}{Abbreviations}
+\printglossaries
 
 \chapter{Introduction}\label{ch1_intro}
 \input{chapters/ch01}
@@ -92,12 +111,16 @@ I also acknowledge my parents (Prof. Mrs. Jane Alamina and Dr. P. T. Alamina) fo
 \chapter{Future study}\label{ch8_future}
 \input{chapters/ch08}
 \spacing{1.0}
+\addcontentsline{toc}{chapter}{Appendix I - Haar wavelet}
 \chapter*{\appendix}
 \input{chapters/ch08a}\label{app_haar}
+\addcontentsline{toc}{chapter}{Appendix II - Gabor and Morlet wavelet filters}
 \chapter*{\appendix}
 \input{chapters/ch08aa}
+\addcontentsline{toc}{chapter}{Appendix III - Scatter Transform implementation}
 \chapter*{\appendix}
 \input{chapters/ch08b}
+\addcontentsline{toc}{chapter}{Appendix IV - Sample TensorFlow Client code}
 \chapter*{\appendix}
 \input{chapters/ch08c}
 \bibliographystyle{plainnat}
