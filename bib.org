@@ -1,5 +1,15 @@
 * Bibliography 
 
+@inproceedings{lasserre2006principled,
+  title={Principled hybrids of generative and discriminative models},
+  author={Lasserre, Julia A and Bishop, Christopher M and Minka, Thomas P},
+  booktitle={2006 IEEE Computer Society Conference on Computer Vision and Pattern Recognition (CVPR'06)},
+  volume={1},
+  pages={87--94},
+  year={2006},
+  organization={IEEE}
+}
+
 @article{hendrycks2019using,
   title={Using pre-training can improve model robustness and uncertainty},
   author={Hendrycks, Dan and Lee, Kimin and Mazeika, Mantas},
