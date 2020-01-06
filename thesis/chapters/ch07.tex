@@ -140,7 +140,7 @@ The corpus utterances are 16-bit linearly sampled at 16kHz, each recording made 
 Experiments were carried out using ESPNet default parameters which included those for character based-Recurrent Neural Network language model RNN-LM, multi-channel feature input and multi-objective learning using both CTC-Transformer and Attention-Transducer networks.
 
 \begin{table}
-  \caption{Summary of Experiments}
+  \caption{Summary of GPU Experiments}
   \label{tab_c6_02_training}
 \begin{tabular}{lcccc}
 \toprule
@@ -149,14 +149,14 @@ Experiment & Hours & Corpus & Metric & Score\\& of speech\\
 1. 2xGPU 10GB RAM & 1 & CV LVCSR & WER(\%) & 100+\\
 2. 2xGPU 10GB RAM & 10 & CV LVCSR & WER(\%) & 100+\\
 3. 5xGPU 15GB RAM & 10 & CV LVCSR & WER(\%) & 100\\
-4. 5xGPU 15GB RAM & 40 &  CV LVCSR & WER(\%) & 70\\
+4. 5xGPU 15GB RAM & 40 &  CV LVCSR & WER(\%) & 87\\
 5. ESPNet 1xGPU 2GB & 1 & AN4 MVCSR & CER(\%) & 9.5\\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \subsection{ESPNet Speech model architecture, parameters and results}
-The end-to-end architecture at the core of ESPNet is the CTC-Transformer+Attention Transducer model.  Together these two architectures achieve joint multi-objective speech training and decoding.  The CTC-Transformer model is based on a Bi-RNN similar to what is obtainable in the DeepSpeech model.  The attention transducer model is further explained in Chapter \ref{ch8further}.  There are up to 11 variants of Attention networks implemented in ESPNet, however, the results of the ESPNet experiment performed was determined from the model described in \cite{chorowski2015attention}.  Moreover, the multi-objective training was performed with equal weights on both the CTC-transformer and the Attention-Transducer.  Finally the system was trained for 20 epochs only.
+The end-to-end architecture at the core of ESPNet is the CTC-Transformer+Attention Transducer model.  Together these two architectures achieve joint multi-objective speech training and decoding.  The CTC-Transformer model is based on a Bi-RNN similar to what is obtainable in the DeepSpeech model.  The attention transducer model is further explained in Chapter \ref{ch8_future}.  There are up to 11 variants of Attention networks implemented in ESPNet, however, the results of the ESPNet experiment performed was determined from the model described in \cite{chorowski2015attention}.  Moreover, the multi-objective training was performed with equal weights on both the CTC-transformer and the Attention-Transducer.  Finally the system was trained for 20 epochs only.
 
 With this minimal default setting, the test set had a final recognition score of 9.5\% character error rate (CER).  The next Chapter discusses how the baseline can be scaled and remodelled for integrating scattering features.
 

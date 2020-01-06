@@ -2,7 +2,7 @@ This chapter describes the system building methodology  \citep{nunamaker1990syst
 
 In order to arrive at the initial research questions and hypothesis a literature survey  of speech processing advances was carried out.  
 
-The initial research topic was centred around a language learning companion.  Thus, a mini survey was conducted on recipients use of technology in general learning.  However, after the literature survey, the research was narrowed down core language technology assistive features whereby speech recognition for low resource languages was chosen as the area this research focused on.
+The initial research topic was centred around a language learning companion.  Thus, a mini survey was conducted on recipients use of technology in general learning.  However, after the literature survey, the research was narrowed down core language technology assistive features and and speech recognition for low resource languages was the chosen area of research focus.
 
 This research develops several software systems based on knowledge acquired from the literature survey in order to gain deeper understanding into the state of the art research results as well as building upon baseline systems in order to achieve the research aims and objectives.  It was through this methodology that the final systems developed in chapters six and seven were designed and developed as a unique combination of existing research systems.  While the system built in chapter seven is a combination of systems in order to generate knowledge in the field of speech recognition, the value added from the system built in chapter six relates to using already successful methods in speech recognition on a new language having linguistic data challenges. 
 \section{Hypotheses and assumptions}
@@ -133,7 +133,7 @@ Runtime library dependencies of both the STT engine and the model trainer includ
 \subsubsection{Graphics Processor Unit (GPU)-Enabled Speech Model Training}
 The model trainer of the Mozilla DeepSpeech platform is facilitated by the ability to train models on a highly parallel processing Graphics Processing Unit (GPU).  This enables model training-time speed-ups over traditional CPU machines.  The Mozilla DeepSpeech platform recommends Nvidia Graphics 10 series processor with a system requirement of 8GB of Random Access Memory (RAM). In section \ref{sec_c3_tf} we introduce TensorFlow python library.  Mozilla DeepSpeech platform is able to utilise the GPU using the Nvidia GPU library, CUDA.  This is achieved through the python TensorFlow library created by Google as discussed in section \ref{sec_c3_tf}.
 \subsubsection{Common Voice training}
-The speech corpora used for training in this research was obtained from the Mozilla Common Voice Initiative speech corpora.  This consists of over 250 hours of speech data that is subdivided into test, development and training data sets.  In addition, the data was subdivided into clean data, that is, clean audio recording with accurate translation and a small subset containing skewed data, that is, audio recording which was either noisy or not having accurate transcriptions.  The skewed data subset consisted 15-25 percent of the training corpus and was incorporated so that the neural network speech model could simulate and learn real world noisy audio speech-to-text translation.  The Mozilla DeepSpeech model trainer provided bash scripts for importing the Common Voice speech corpora as well as converting the files into the appropriate formats and provision of mapping files for the model trainer.
+The speech corpora used for training in this research was obtained from the Mozilla Common Voice Initiative speech corpora.  This consists of over 250 hours of speech data that is subdivided into test, development and training data sets.  In addition, the data was subdivided into clean data, that is, clean audio recording with accurate translation and a small subset containing skewed data, that is, audio recording which was either noisy or not having accurate transcriptions.  The skewed data subset consisted 15-25\% of the training corpus and was incorporated so that the neural network speech model could simulate and learn real world noisy audio speech-to-text translation.  The Mozilla DeepSpeech model trainer provided bash scripts for importing the Common Voice speech corpora as well as converting the files into the appropriate formats and provision of mapping files for the model trainer.
 \subsubsection{Mozilla DeepSpeech model parameters}
 The model trainer consists of a root python script “DeepSpeech.py” with various calls to other python scripts responsible for things like audio processing, distributed training, GPU configuration, training coordination.  Other accessory bash scripts also present are responsible for downloading and training for different kinds of speech corpora including Mozilla Common Voice\citep{mozilla/deepspeech_2019} and the Wall Street Journal (WSJ)\citep{paul1992design}.  These sets of scripts are referred to as speech corpus importers. 
 
@@ -165,7 +165,7 @@ It is the scattering transforms of the audio files that were fed into the DeepSp
 
 ScatNet provides default options for most of the parameters that require tuning in order to derive the scattering coefficients for an input signal.  In particular, for audio signals, the most important hyper-parameters set by the library is the number of scattering layers that captures the entire audio spectrum which is set at 2.  In addition to this default, the only other parameter to set is the window period of the signal to be analysed per time.  A suitable value for the window can be derived from the sampling rate of the input signal.  The toolbox function S=scat(x,Wop) takes a an input signal, x,  and an array of linear wavelet operators, Wop, in order to compute the scattering coefficients of the input signal.   The resulting network, S is a cell array whose length M+1 is equivalent to that of the linear filter operator.  
 
-\subsubsection{Wavelet Factories} 
+\subsubsection{Wavelet Factories}\label{sec_c3_scat00} 
 By providing optimal defaults for linear operators, ScatNet provides wavelet factories especially suited for efficient signal processing of images and sounds.  Therefore, linear wavelet operators are built in a single command function through built-in “factories”, which perform wavelet analysis tasks.
 
 Further, the maximum number of wavelets $J$ is automatically derived from the sampling from the sampling period $T$.  The filter banks are formed by dilating the mother wavelet ($\psi$) by the dyadic factor ($2^{1/Q}$).  In the Fourier domain this is expressed as
@@ -174,7 +174,7 @@ Further, the maximum number of wavelets $J$ is automatically derived from the sa
      \label{eqn_c3_scat01}
 \end{equation}
 For audio application, to ensure optimize frequency coverage without frequency-overlapping or getting redundant, the mother wavelet $(\psi)$ is chosen such that  $(Q_1 = 8)$ and $(Q_2 = 1)$ by default. This also means that the first order filter will be of a higher frequency resolution when compared to the second order filter. 
-\subsubsection{Filter banks}
+\subsubsection{Filter banks}\label{sec_c3_scat01}
 In order to visualise the filters being used by the wavelet operations and referring to Sections (\ref{sec_c5_wproof} and \ref{sec_c7_wparams}) where it is shown that the first and second order scattering coefficients are respectively defined by the following forms
 \begin{equation}
     S_1x(t,j_1) = |x\star\psi_{j_1}|\star\phi(t)
@@ -215,7 +215,7 @@ end
   \caption{Scatter transform wavelet filters}\label{fig_c3_wplot}
 \end{figure}
 
-\subsubsection{Using the Matlab API}
+\subsubsection{Using the Matlab API}\label{sec_c3_scat02}
 In the previous sections it was seen how the ScatNet toolbox calculates scatter coefficients based on wavelet theory.  In this section, how the scattering spectrum of an audio signal is implemented with just three instructions to ScatNet is described.
 
 The three steps taken in this section are as follows.  First load the audio file and set the properties of the audio file required for audio processing of the signal within ScatNet.  Note that to do this the sampling rate of the input signal is required.  A clip of Handel’s Messiah, available in all versions of Matlab is loaded into a “y” variable by default with the “load handel” command.
@@ -243,7 +243,7 @@ Having all the parameters required, in the third and final step , call the scatt
     S = scat(y, Wop);
 \end{verbatim}
 
-\subsubsection{Scatter Feature Enhancements and Batch Processing}
+\subsubsection{Scatter Feature Enhancements and Batch Processing}\label{sec_c3_sbatch}
 Having obtained the scatter coefficients, further feature enhancement is achieved by taking the log of the normalised coefficients.  This can be visualised using the  built-in scattergram function which produces a translation-invariant, second-order, spectrogram-like visualization of the  scattering transform a one-dimensional audio signal. 
 
 In the code snippet below, j1 is the second-order coefficients arbitrarily chosen to equal 23.  The first parameter to scattergram are the first-order coefficients and the second wildcard [] parameters gathers all paths from the first order.  
@@ -268,14 +268,13 @@ The following functions in the code snippet below are applied to realise the log
 
 \begin{figure}
 \centering
-  % Requires \usepackage{graphicx}
   \includegraphics[width=9cm]{thesis/images/wscat1}\\
   \caption{Log normalised scattergram}\label{fig_c3_sgram01}
 \end{figure}
 
 With the corresponding scattergram illustrated in figure \ref{fig_c3_sgram01}.
 
-Finally, to utilise the scattering coefficients as features for classification tasks, we extract the vector form using format_scat function.
+Finally, to utilise the scattering coefficients as features for classification tasks, we extract the vector form using format\_scat function.
 \begin{verbatim}
     [S_table, meta] = format_scat(S);
 \end{verbatim}
@@ -289,7 +288,7 @@ First, specify the path to the audio target.
     src = gtzan_src('/path/to/dataset');
 \end{verbatim}
 
-Next all the defaults for ScatNet analysis and processing are set as explained in the previous Sections \ref{sec_c3_scat00,sec_c3_scat01} and \ref{sec_c3_scat02} above.
+Next all the defaults for ScatNet analysis and processing are set as explained in the previous Sections \ref{sec_c3_scat00},\ref{sec_c3_scat01} and \ref{sec_c3_scat02} above.
 \begin{verbatim}
     N = 5*2^17;
     T = 8192;
@@ -375,7 +374,7 @@ between the probability distributions of our estimates $\mathbf{Y}$ and the one-
 
 Next, the stochastic gradient descent (SGD) is run to update the weights of our model.  A tensorflow class is provided and will be initialised with a learning rate.  The minimise function of this class takes the loss tensor as parameter used for minimisation.
 
-The operations run repeatedly within a tf.Session context manager. Refer to Appendix \ref{app2_01_tfcode} for the complete code listing.
+The operations run repeatedly within a tf.Session context manager. Refer to Appendix IV for the complete code listing.
 
 \subsubsection{Visualisation}
 TensorFlow interface offers the option of visualising computation graphs. Complex topologies consisting of various sub-layers can be presented in a lucid form, offering the user a congruent, organised picture of exactly how data is consumed in a compute graph. Sub-graphs may be grouped into visual blocks and referred to in name scopes.  For example a single neural network layer may take up such a named scope. The name scopes are then interactively expanded on to give the detailed group visualisation.
@@ -468,12 +467,12 @@ This follow up experiment to the previous experiment in section \ref{sec_c2d},  
 What follows in the next three sections are sequence-to-sequence experiments actively developed in this research and are detailed in chapters (\ref{ch6_wlm},\ref{ch6_speech} and \ref{ch8_future}).  A brief summary of the experiments are highlighted in the following sections (\ref{sec_grulm}, \ref{sec_be2e} and \ref{c3sec_espnet}).  Note that these models all utilise TensorFlow deep learning library including the Bi-directional speech model (section \ref{sec_be2e}) which is built on top of Mozilla DeepSpeech with the exception of section \ref{c3sec_espnet} which is based on PyTorch; a similar deep learning library.
 
 \subsection{GRU language model for Wakirike language based on TensorFlow}\label{sec_grulm}
-The language model developed in this research is a character-based sequence-to-sequence deep recurrent neural network that maps a sequence of characters to a sequence of words found in the training data set. This model met the objective of reducing the vocabulary size required for language models as well as the text corpus required as inferences could be made over the smaller-fixed character vocabulary rather than orders or magnitude larger word corpus with the possibility of out of vocabulary terms found in the training data.  Though this may occur in the character sequence-model at the inference stage.  It would not normally happen during training.  The neural network model developed is described in Chapters \ref{}, consists of Gated Recurrent Unit (GRU) Recurrent Neural Network (RNN). The GRU is a specialised type of Long Short-Term Memory (LSTM) cell RNN.  The emphasis here is on the ability to model over particularly long sequences of the training data.  In this case, over long character sequences.  Thus, the network is able to learn long term dependencies as would be naturally required to construct grammatically correct sentences.  In essence, the RNN is able to learn grammar rules inherently from the training data.
+The language model developed in this research is a character-based sequence-to-sequence deep recurrent neural network that maps a sequence of characters to a sequence of words found in the training data set. This model met the objective of reducing the vocabulary size required for language models as well as the text corpus required as inferences could be made over the smaller-fixed character vocabulary rather than orders or magnitude larger word corpus with the possibility of out of vocabulary terms found in the training data.  Though this may occur in the character sequence-model at the inference stage; it would not normally happen during training.  The neural network model developed is described in Chapters \ref{ch3RNN} and \ref{ch6_speech}, consists of Gated Recurrent Unit (GRU) Recurrent Neural Network (RNN). The GRU is a specialised type of Long Short-Term Memory (LSTM) cell RNN.  The emphasis here is on the ability to model over particularly long sequences of the training data.  In this case, over long character sequences.  Thus, the network is able to learn long term dependencies as would be naturally required to construct grammatically correct sentences.  In essence, the RNN is able to learn grammar rules inherently from the training data.
 
 \subsection{Bi-Directional LSTM-based end-to-end speech model}\label{sec_be2e}
 A similar LSTM sequence-to-sequence network based on Baidu Research’s original research design \citep{hannun2014deep} is developed in this research for end-to-end speech recognition.  This model, as its name implies, attempts to establish long term relationships by adding a reinforcing LSTM layer learning information but this time from the opposite direction, hence the bi-directional architecture.  
 
-In addition, the model incorporates the Connectionist Temporal Classifier (CTC) decoder. This enables the model to make run-time inferences on both the character as well as estimate audio wave to character label alignment simultaneously.  This makes this design accommodate end-to-end goals and ultimately simplifies the overall design and completely eliminates the need for either manual or semi-supervised alignments mentioned previously in sections (\ref{sec_alisa,sec_digitspeech,sec_postalign}).
+In addition, the model incorporates the Connectionist Temporal Classifier (CTC) decoder. This enables the model to make run-time inferences on both the character as well as estimate audio wave to character label alignment simultaneously.  This makes this design accommodate end-to-end goals and ultimately simplifies the overall design and completely eliminates the need for either manual or semi-supervised alignments mentioned previously in sections (\ref{sec_alisa}, \ref{sec_digitspeech} and ref{sec_postalign}).
 
 \subsection{ESP-Net Experiments}\label{c3sec_espnet}
 The ESP-Net (End-to-end Speech Network) toolkit \citep{watanabe2018espnet}, is a speech processing toolkit that was of interest to this research because it offers end-to-end capabilities not only in Automatic Speech Recognition (ASR) but also in Text-To-Speech (TTS) or speech synthesis and other speech-sequence-processing related tasks.  In addition, the toolkit offers multi-modal training combining both Attention networks \cite{vaswani2017attention} with CTC Transformer networks as well as multi-channel feature representation that is, the fusing together of multiple feature representations of an audio signal.  Only preliminary experiments were carried out using ESPNet and is discussed in Chapter \ref{ch08furtherstudy} of this work.
