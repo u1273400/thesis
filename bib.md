@@ -1,5 +1,14 @@
 * Bibliography
 
+@inproceedings{papineni2002bleu,
+  title={BLEU: a method for automatic evaluation of machine translation},
+  author={Papineni, Kishore and Roukos, Salim and Ward, Todd and Zhu, Wei-Jing},
+  booktitle={Proceedings of the 40th annual meeting on association for computational linguistics},
+  pages={311--318},
+  year={2002},
+  organization={Association for Computational Linguistics}
+}
+
 @inproceedings{szegedy2015going,
   title={Going deeper with convolutions},
   author={Szegedy, Christian and Liu, Wei and Jia, Yangqing and Sermanet, Pierre and Reed, Scott and Anguelov, Dragomir and Erhan, Dumitru and Vanhoucke, Vincent and Rabinovich, Andrew},
