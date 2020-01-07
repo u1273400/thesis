@@ -311,7 +311,7 @@ Finally, a call is made to prepare\_database function to compute all the scatter
     database = prepare_database(src, feature_fun, database_options);
 \end{verbatim}
 
-In this research, further speed up was achieved by utilising Matlab’s parallel processing on the for loop (see appendix \ref{app_scatcode}) thus bypassing the batch processing utility of ScatNet.
+In this research, further speed up was achieved by utilising Matlab’s parallel processing on the for loop (see Appendix III) thus bypassing the batch processing utility of ScatNet.
 
 \subsection{TensorFlow}\label{sec_c3_tf}
 TensorFlow is a state-of-the-art high performance library by Google for Deep learning.  Deep learning is a branch of artificial intelligence which acquires learning from deep neural network architectures.  The paragraphs and subsections that follow under this topic give an overview of the TensorFlow library as outlined by the following authors \cite{goldsborough2016tour,abadi2016tensorflow} and \cite{abadi2017computational}.
@@ -388,7 +388,7 @@ Lastly, sample images can be visualised on the TensorBoard graph. This way kerne
 \subsection{Choregraphe}
 The Choregraphe software tool is a high-level language used for programming of Nao humanoid robots.  This is built on top of the Naoqi/Gentoo Unix/Robot Operating System(ROS) \ref{pot2009choregraphe}.  Speech recognition and processing modules of the Choregraphe tool were explored and expanded at the initial stages of the research.  However the Choregraphe software tool for the Nao robot was found to be unsuitable in speech recognition at the level of research that aligned with the research objectives and therefore was not utilised in this work.
 
-\subsection{Alisa}\label{c3sec_alisa}
+\subsection{Alisa}\label{sec_c3_alisa}
 Alisa tool is a lightly supervised sentence segmentation tool based on Voice Activity Detection (VAD) algorithms \citep{stan2016alisa}.  It is so called lightly supervised because it requires small amounts of training data.  Generally the tool was asserted to be optimised for sentence segmentation and offered assistance in the creation of new speech corpora in a language-independent fashion. 
 
 The Alisa tool researchers deploy a two-step method for aligning speech, and claim performance up to 70\% imperfect transcriptions often found in online resources can be successfully aligned with a word error rate of less than 0.5\%.  This tool is therefore said to be suitable for development multilingual and under-resourced language aligned speech-corpora.
@@ -472,10 +472,10 @@ The language model developed in this research is a character-based sequence-to-s
 \subsection{Bi-Directional LSTM-based end-to-end speech model}\label{sec_be2e}
 A similar LSTM sequence-to-sequence network based on Baidu Research’s original research design \citep{hannun2014deep} is developed in this research for end-to-end speech recognition.  This model, as its name implies, attempts to establish long term relationships by adding a reinforcing LSTM layer learning information but this time from the opposite direction, hence the bi-directional architecture.  
 
-In addition, the model incorporates the Connectionist Temporal Classifier (CTC) decoder. This enables the model to make run-time inferences on both the character as well as estimate audio wave to character label alignment simultaneously.  This makes this design accommodate end-to-end goals and ultimately simplifies the overall design and completely eliminates the need for either manual or semi-supervised alignments mentioned previously in sections (\ref{sec_alisa}, \ref{sec_digitspeech} and ref{sec_postalign}).
+In addition, the model incorporates the Connectionist Temporal Classifier (CTC) decoder. This enables the model to make run-time inferences on both the character as well as estimate audio wave to character label alignment simultaneously.  This makes this design accommodate end-to-end goals and ultimately simplifies the overall design and completely eliminates the need for either manual or semi-supervised alignments mentioned previously in sections (\ref{sec_c3_alisa}, \ref{sec_digitspeech} and \ref{sec_postalign}).
 
 \subsection{ESP-Net Experiments}\label{c3sec_espnet}
-The ESP-Net (End-to-end Speech Network) toolkit \citep{watanabe2018espnet}, is a speech processing toolkit that was of interest to this research because it offers end-to-end capabilities not only in Automatic Speech Recognition (ASR) but also in Text-To-Speech (TTS) or speech synthesis and other speech-sequence-processing related tasks.  In addition, the toolkit offers multi-modal training combining both Attention networks \cite{vaswani2017attention} with CTC Transformer networks as well as multi-channel feature representation that is, the fusing together of multiple feature representations of an audio signal.  Only preliminary experiments were carried out using ESPNet and is discussed in Chapter \ref{ch08furtherstudy} of this work.
+The ESP-Net (End-to-end Speech Network) toolkit \citep{watanabe2018espnet}, is a speech processing toolkit that was of interest to this research because it offers end-to-end capabilities not only in Automatic Speech Recognition (ASR) but also in Text-To-Speech (TTS) or speech synthesis and other speech-sequence-processing related tasks.  In addition, the toolkit offers multi-modal training combining both Attention networks \cite{vaswani2017attention} with CTC Transformer networks as well as multi-channel feature representation that is, the fusing together of multiple feature representations of an audio signal.  Only preliminary experiments were carried out using ESPNet and is discussed in Chapter \ref{ch8_future} of this work.
 
 \section{Method of evaluation}
 System building methodology \citep{nunamaker1990systems} for speech recognition systems requires models to be evaluated against speech recognition Machine Learning metrics.  For language models, perplexity metric was used for evaluation.  Bleu has also been used as a metric for evaluating language models.
