@@ -146,7 +146,7 @@ Using the sum-squared error as the cost function
 \begin{equation}
 E=c\sum_{t=1}^T||\mathbf{l}_t-\mathbf{y}_t||^2=c\sum_{t=1}^T\sum_{j=1}^L(l_t(j)-y_t(j))^2 \label{eqn_c3_bptt01}\end{equation}
 
-Where $c$ is a gradient descent convenience factor, equation (\ref{eqn_c3_bptt01}). $||\mathbf{l}_t-\mathbf{y}_t||$ is the modulus of the difference between the actual output $\mathbf{y}_t$ and the label vector $\mathbf{y}_t$ at time $t$. The two-step BPTT algorithm described in \cite{yu2016automatic} is involves the recursive computation of the cost function and updating of the network weights.
+Where $c$ is a gradient descent convenience factor in Equation (\ref{eqn_c3_bptt01}). $||\mathbf{l}_t-\mathbf{y}_t||$ is the modulus of the difference between the actual output $\mathbf{y}_t$ and the label vector $\mathbf{y}_t$ at time $t$. The two-step BPTT algorithm described in \cite{yu2016automatic} is involves the recursive computation of the cost function and updating of the network weights.
 
 For each of these steps recall from equation (\ref{eqn_c3_rnn01}) the activation of a hidden layer is a result of the composition of the regular DNN activation and an activation generated from weights from the previous time step.
 
@@ -187,12 +187,31 @@ In the BPTT algorithm the sub gradients are summed over all time frames. The alg
 
 \begin{algorithm}[H]
 \SetAlgoLined
+\KwData{$\{\mathbf{x}_t,\mathbf{I}_t\} 1\le t\le T$ }
 \KwResult{Optimal weights }
+ //$\mathbf{x}_t$ is the input feature sequence
+ //$\mathbf{I}_t$ is the label sequence\;
  initialise weights randomly\;
  \For{error is significant or epochs less than maximum}{
-  forward computation \;
-  determine layer-wise error for weights and biases $\Delta_\mathbf{W}E$ and  $\Delta_\mathbf{b}E$ \;
+  \For{$t\leftarrow 1;t<=T;t\leftarrow t+1$ }{
+    //forward computation \;
+    $\mathbf{u}_t\leftarrow\mathbf{W}_{xh}+\mathbf{W}_{hh}\mathbf{h}_{t-1}$\; $\mathbf{h}_t\leftarrow f(\mathbf{u}_{t})
+    $\; $\mathbf{v}_t\leftarrow \mathbf{W}_{hy}\mathbf{h}_{t}
+    $\; $\mathbf{y}_t\leftarrow  g(\mathbf{v}_t)$
+  }
+  \Begin{//backprop through time \;
+    $\mathbf{\delta}_T^y=(\mathbf{l}_T-\mathbf{y}_T)\bullet g'(\mathbf{v}_T)$\;
+    $\delta_T^h&=\mathbf{W}_{hh}^\top\mathbf{\delta}_{t+1}^h+\mathbf{W}_{hy}^\top\mathbf{\delta}_T^y\bullet f'(\mathbf{u}_T)$\;
+    \For{$t\gets T-t; t>=1; t\gets t-1$}{
+      $\mathbf{\delta}_t^y=(\mathbf{l}_t-\mathbf{y}_t)\bullet g'(\mathbf{v}_t)$\;
+      $\delta_t^h&=\left[\mathbf{W}_{hh}^\top\mathbf{\delta}_{t+1}^h+\mathbf{W}_{hy}^\top\mathbf{\delta}_t^y\right]\bullet f'(\mathbf{u}_t)$\;
+    }
+  }
   update weights and biases according to gradient descent\;
+  \Begin{
+    $\mathbf{W}_{hy}^{new}=\mathbf{W}_{hy}+\gamma\sum_{t=1}^T\mathbf{\delta}_y^t\mathbf{h}_t^\top$\;
+    $\mathbf{W}_{hh}^{new}=\mathbf{W}_{hh}+\gamma\sum_{t=1}^T\mathbf{\delta}_h^t\mathbf{h}_{t-1}^\top$\;
+  }
  }
  \caption{RNN training algorithm}
 \end{algorithm}
@@ -287,18 +306,18 @@ This output models the probability distribution of a complete sequence of arbitr
 It is now possible to define the extended alphabet $A' = A \cup \{blank\}$, also, $y_{t,p}$ as the activation of network output $p$ at time $t$.  Therefore $y_{t,p}$  is the probability that the network will output element $p \in A'$ at time $t$ given that $x$ is the input sequence of length $T$.  The distribution sought after $Pr(\pi|x)$, is the conditionally-independent distribution over the subset $A'^T$ where $A'^T$ denotes the set of length $T$ sequences in $A'$. 
 \begin{equation}
 \Pr( \pi \, | \, x ) = \prod_{t=1}^{T} y_{t,\pi_t}
-\label{eqn_c3_ctc01}\end{equation}
+\label{eqn_c4_ctc01}\end{equation}
 
-From the above, it is now possible to define the many-to-one mapping $\mathcal{B} : A'^T \rightarrow A^{\le T}$, from the set of paths onto the set $A^{\le T}$ of possible labellings of $x$ (i.e. the set of sequences of length less than or equal to $T$ over $A$). We do this by removing first the repeated labels and then the blanks from the paths. For example,
+From Equation (\ref{eqn_c4_ctc01}), it is now possible to define the many-to-one mapping $\mathcal{B} : {A‘}^T \rightarrow A^{\le T}$.  This is the mapping of a set $A'^T$,  which indicates the paths, onto another set  $A^{\le T}$, that of possible labels in $x$.  $\mathcal{B}$ then becomes a sequence of symbols with length less than or equal to $T$ over $A$. Note that $\mathcal{B}$ is a set containing sequential symbols belonging to the set $A$ and not. $A'$ because there is no blank symbol in $\mathcal{B}$.  This is achieved when first take out all repeated labels and then take out all the blanks from the sequence $A'^T$. For instance,
 
 \begin{equation}\begin{aligned}\mathcal{B}(a - ab-) &= aab \\ \mathcal{B}(-aa - -abb) &= aab.\end{aligned} \label{eqn_c3_ctc02}
 \end{equation}
 
-Intuitively, this corresponds to outputting a new label when the network either switches from predicting no label to predicting a label, or from predicting one label to another. As $\mathcal{B}$ is many-to-one, the probability of some labelling $l \in A^{\le T}$ can be calculated by summing the probabilities of all the paths mapped onto it by $\mathcal{B}$:
+The mapping obtained by $\mathcal{B}$ is equivalent to when the output switches from not predicting a new symbol to predicting a symbol or from predicting one symbol to another symbol assuming this was also possible.  Intuitively, the probability of $\mathcal{B}$ which is the labelling of $l \in A^{\le T}$ being a many to one of $A‘^T$ is determined by summing over all the paths in $A'^T$ mapped onto it by $\mathcal{B}$.  Thus:
 \begin{equation}
 \Pr( l \, | \, x) = \sum_{\pi \in \mathcal{B}^{-1}(l)} \Pr( \pi \, | \, x)
 \label{eqn_c3_ct03}\end{equation}
-The mapping of different paths onto the same labelling is what makes it possible for CTC to use unsegmented data, because it allows the network to predict the labels without knowing in advance where they occur. In theory, it also makes CTC networks unsuitable for tasks where the location of the labels must be determined. However in practice CTC tends to output labels close to where they occur in the input sequence.
+This mapping makes CTC robust to unsegmented data as it predicts all the labels where they occur and later the ‘collapsed’ sequence will be extended over the approximate period where the previous extended sequence occurred thus aligning labels to input sequences on-the-fly without knowing in advance where label to input sequence alignments occur.
 
 \subsection{Forward-backward algorithm}
 
@@ -312,60 +331,59 @@ With CTC, consider a modified "label sequence" $l'$, that caters for blank chara
 \label{eqn_c3_ctc04}
 \end{equation}
 
-The forward variables at time $t$ can be calculated recursively from those at time $t - 1$ and expressed as the sum of the forward variables with and without the final blank at time $T$.
+The forward variables at time $t$ is calculated recursively from the preceding values at time $t - 1$ and expressed as the sum of the forward variables with and without the final blank at time $T$.
 
 \begin{equation}
 \Pr( l \, | \, x) = \alpha(T, U') + \alpha(T, U' - 1)
 \label{eqn_c3_ctc05}
 \end{equation}
 
-All correct paths must start with either a blank $(b)$ or the first symbol in $l$ $(l_1)$, yielding the following initial conditions:
+For the initial conditions, correct paths begin with a blank symbol $(b)$ and the first symbol $l$ $(l_1)$:
 \begin{equation}
 \begin{aligned}\alpha(1, 1) &= y_{1,b} \\ \alpha(1, 2) &= y_{1,l_1} \\ \alpha(1, u) &= 0, \, \forall u > 2 \end{aligned}
 \label{eqn_c3_ctc05}\end{equation}
 
-Thereafter the variables can be calculated recursively:
+The forward variable then takes the following recursive form:
 \begin{equation}
 \alpha(t,u) = y_{t, l'_u} \sum_{i = f(u)}^{u} \alpha(t-1, i)
 \label{eqn_c3_ctc06}\end{equation}
 where
 \begin{equation}
 f(u) =\begin{cases}u-1, & \text{ if } l'_u = blank \text{ or } l'_{u-2} = l'_{u} \\ u-2, & \text{otherwise}\end{cases}
-\label{eqn_c3_ctc07}\end{equation}
-Graphically we can express the recurrence relation for $\alpha(t, u)$ as follows.
+\label{eqn_c3_ctc07}
+\end{equation}
+
+Figure \ref{fig_c4_lattice} expresses the recurrence relation for $\alpha(t, u)$. While $t$ is expressed on the $x$ axis, $u$ is illustrated on the $y$ axis. The CTC algorithm assumes that outputs of the network potentially alternate between blank symbols indicated as black circles  and non-blank elements, the white circles, all in $l'$.  The sequential graph constructed from this 2-dimensional matrix show computational dependencies between sequential pairs of the recurrence relation for $\alpha(t,u)$. Therefore, the value $\alpha(2,3)$, formed from $\alpha(1,2)$, corresponds to the $blank$ symbol at $t=2$ and $u=3$, is . Also,  $\alpha(2,2)$, equivalent to the symbol $c$ at $t=2$ and $u=2$, is gotten from $\alpha(1,2)$ and $\alpha(1,1)$.  Note that there are not enough time steps when $u < U'−2(T−t)−1$, therefore, $\alpha(t,u)=0$. 
 
 \begin{figure}
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=9cm]{thesis/images/Lattice.png}
   \caption{Beam Search Lattice Structure \citep{graves2006connectionist}}
-\label{fig_3_a_lattice}
+\label{fig_c4_lattice}
 \end{figure}
 
-where $t$ runs along the $x$ axis and $u$ runs along the $y$ axis. The black circles of the diagram represent $blank$ elements of $l'$ while the white circles represent non-$blank$ elements of $l'$. The arrows represent computational dependencies derived from our recursion relation for $\alpha(t,u)$. So, for example, the value of $\alpha(2,3)$, corresponding to the $blank$ at $t=2$ and $u=3$, is derived from $\alpha(1,2)$. Similarly, the value of $\alpha(2,2)$, corresponding to the letter $c$ at $t=2$ and $u=2$, is derived from $\alpha(1,2)$ and $\alpha(1,1)$.
-\begin{equation}
-\alpha(t,u)=0 \quad \forall u < U'-2(T-t)-1
-\label{eqn_c3_ctc07}\end{equation}
-because these variables correspond to states for which there are not enough time-steps left to complete the sequence. We also impose the boundary condition
+Also note the boundary condition;
 \begin{equation}
 \alpha(t, 0) = 0 \quad \forall t
 \label{eqn_c3_ctc08}
 \end{equation}
-The backward variables $\beta(t,u)$ are defined as the summed probabilities of all paths starting at $t + 1$ that "complete" $l$ when appended to any path $\hat{\pi}$ contributing to $\alpha(t,u)$. Define $W(t,u) \equiv \{ \pi \in A'^{T-t} : \mathcal{B}(\hat{\pi} + \pi) = l \, \, \forall \hat{\pi} \in V(t,u) \}$. Then
+The backward variable $\beta(t,u)$ ais built similarly to the forward variable. Rather than moving from the start of the sequence to  we define the path starting at $t + 1$ that completes the sequence at $T$ when appended to any path $\hat{\pi}$ that generates $\alpha(t,u)$. Then, assuming $W(t,u) \equiv \{ \pi \in A'^{T-t} : \mathcal{B}(\hat{\pi} + \pi) = l \, \, \forall \hat{\pi} \in V(t,u) \}$, therefore
 \begin{equation}
 \beta(t,u) \equiv \sum_{\pi \in W(t,u)} \prod_{i=1}^{T - t} y_{t + i,\pi_i} \label{eqn_c3_ctc08}\end{equation}
 
-The rules for initialisation of the backward variables are as follows
+The backward variable is therefore equivalently initialised as thus
+
 \begin{equation} \begin{aligned}
 \beta(T, U') &= 1 \\
 \beta(T, U' - 1) &= 1 \\
 \beta(T, u) &= 0, \, \forall u < U' - 1
 \end{aligned}\label{eqn_c3_ctc09}\end{equation}
 
-The rules for recursion are as follows:
+The recursion rule is defined as follows:
 \begin{equation}
 \beta(t, u) = \sum_{i = u}^{g(u)} \beta(t+1, i) y_{t+1, l'_i}\label{eqn_c3_ctc10}\end{equation}
-where
+similarly,
 \begin{equation}
 g(u) = \begin{cases} u + 1,& \text{if } l'_u = blank \text{ or } l'_{u+2} = l'_{u} \\ u + 2,& \text{otherwise} \end{cases}   
 \end{equation}
