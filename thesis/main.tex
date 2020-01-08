@@ -11,7 +11,8 @@
 
 % package used by \citep and \citet
 \usepackage[sort&compress,comma,authoryear]{natbib}
-\usepackage[options ]{algorithm2e}
+% \usepackage[options ]{algorithm2e}
+\usepackage[linesnumbered,lined,boxed,commentsnumbered]{algorithm2e}
 \usepackage{url}
 \def\UrlBreaks{\do\/\do-}
 \usepackage{breakurl}
@@ -81,9 +82,9 @@ I also acknowledge my parents (Prof. Mrs. Jane Alamina and Dr. P. T. Alamina) fo
  
 \addcontentsline{toc}{section}{List of Tables}
 \listoftables
+\addcontentsline{toc}{section}{List of Algorithms}
+\listofalgorithms
 
-\clearpage
- 
 \addcontentsline{toc}{section}{Acronyms}
 \glsaddall
 \printglossaries
