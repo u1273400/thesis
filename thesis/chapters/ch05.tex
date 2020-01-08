@@ -139,10 +139,10 @@ where $m$ is the frequency bin index and  $\Delta_m$ is the frequency range betw
 \begin{figure}
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=14cm]{thesis/images/m-filters}\\
+  \includegraphics[width=12cm]{thesis/images/m-filters}\\
   \caption{Mel filter plot \citep{lyons_2012}}\label{fig_4_3_mfilt}
 \end{figure}
-For speech recognition, we compute a statistical value or coefficient for each Mel frequency bin from the inverse discrete fourier transform (IDFT) of the Mel filters.  The coefficients are also concatenated with their delta and delta-delta values.  The delta and delta-delta values are determined from the following equation:
+For speech recognition, we compute a statistical value or coefficient for each Mel frequency bin from the \acrfull{idft} of the Mel filters.  The coefficients are also concatenated with their delta and delta-delta values.  The delta and delta-delta values are determined from the following equation:
  \begin{equation}
 d_t=\frac{\sum_{n=1}^Nn(c_{t+n}−c_{t−n})}{2\sum_{n=1}^Nn^2}
 \label{eqn_c4_mel04}
@@ -154,32 +154,42 @@ There are two reasons for obtaining the IDFT from the filter banks.  The first i
 As an attempt for MFCCs to incorporate dynamic frequency changes of the signal, the deltas and the delta-deltas are obtained from the coefficient computation in equation \ref{eqn_c4_mel04}.  However, it is worthy to note that only the first 13 of the coefficients and the resulting dynamic coefficients are used as speech features as it is observed that higher frequency dynamic coefficients rather degrade ASR performance \citep{gales2008application}.
 
 \section{Deep scattering spectrum}\label{sec_c5_wproof}
-In this section reference is made to \citep{anden2011multiscale, anden2014deep, zeghidour2016deep}. For a signal $x$ we define the following transform $W_x$ as a convolution with a low-pass filter $\phi$ and higher frequency complex analytic wavelets $\psi_{\lambda_1}$:
+Scattering wavelets are interpreted from \acrfull{mfsc} which are the Mel filters without applying the \acrshort{idft} or the \acrshort{dct}.In this section reference is made to \citep{anden2011multiscale, anden2014deep, zeghidour2016deep} for the scattering wavelet derivation. 
+
+The Mel scale can be interpreted as dilations of a Wavelet.  In the case of the MFSC it lacks the ability to capture non-stationary structures when outside the frame window.  Such a filter is constructed by dilating one filter having an octave bandwidth of $1/Q$ as follows
 \begin{equation}
-Wx=(x\star\phi(t),x\star\psi_{\lambda_1}(t))_{t\in\mathbb{R},\lambda_1\in\Lambda_1} \label{eqn_c4_dss01}
+\psi_j(t)=a^{-j}\psi(a^{-j}t)\quad|\quad a=2^{1/Q}\text{ and }j\le J
+\label{eqn_c4_deep00}
 \end{equation}
 
-We apply a modulus operator to the wavelet coefficients to remove complex phase and extract envelopes at different resolutions
+The transfer function of the constructed filter approximately ranges between $2Q\pi-\pi$ and $\2Q\pi+\pi$. For low frequencies below $2\piQa^{-J}$ a simple low pass filter is employed. Non-linear invariance is induced by applying a contracting modulus operation and the equivalent result is similar to deriving extracting a contracted envelope at different resolutions while filtering out the complex phase information.  Therefore, for a signal $x$ we define the zeroth order Scattering transform as follows:
+
 \begin{equation}
-|W|x=\left(x\star\phi(t),|x\star\psi_{\lambda_1}(t)|\right)_{t\in\mathbb{R},\lambda_1\in\Lambda_1} \label{eqn_c4_dss02}
+|W|x=\left(x\star\phi(t),|x\star\psi_{j_1}(t)|\right)_{t\in\mathbb{R},j_1\in J_1} 
+\label{eqn_c4_dss01}
 \end{equation}
-$S_0x=x\star\phi(t)$ is locally invariant to translation thanks to the time averaging $\phi$.  This time-averaging loses the high frequency information, which is retrieved in the wavelet modulus coefficients $|x\star\psi_{\lambda_1}|$.  However, these wavelet modulus coefficients are not invariant to translation, and as for $S_0$, a local translation invariance is obtained by a time averaging which defines the first layer of scattering coefficients
+
+However, the difference between the \acrshort{mfsc} and the \acrfull{dsn} is that the \acrshort{mfsc} is a shallow architecture while the \acrshort{dsn} is a deep architecture.  Therefore, it is observed that time-averaging of the low-pass filter loses information contained in the high frequencies. Nevertheless, since the wavelet transform is invertible, the \acrshort{dsn} is able to go deeper by applying the next level scattering operation. The transform is therefore reapplied over $S_0x=x\star\phi(t)$ on the residue wavelet coefficients $x\star\psi_{\lambda_1}|$ and the process of time averaging to obtain invariant contracted envelopes reapplied.  The resulting first order scattering coefficient were obtained from
 \begin{equation}
-S_1x(t,\psi_{\lambda_1})=|x \star\psi_{\lambda_1}| \star\phi(t)\label{eqn_c4_dss03})
+S_1x(t,\psi_{j_1})=|x \star\psi_{j_1}| \star\phi(t)\label{eqn_c4_dss03})
+\label{eqn_c4_dss02}
 \end{equation}
-It is shown in \cite{anden2014deep} that if the wavelets $\psi_{\lambda_1}$ have the same frequency resolution as the standard Mel-filters, then the $S_1x$ coefficients approximate the Mel-filter coefficients.  Unlike the Mel-filter banks however, there is a strategy to recover the lost information, by passing the wavelet modulus coefficients  $|x\star\phi_{\lambda_1}|$ through a bank of higher frequency wavelets $\psi_{\lambda_2}$:
+It is shown in \cite{anden2014deep} that if the wavelets $\psi_{j_1}$ have the same frequency resolution as the standard Mel-filters, then the $S_1x$ coefficients approximate the Mel-filter coefficients.  Unlike the Mel-filter banks however, there is a means of regaining discriminating feature information, lost in high frequencies in a \acrshort{dsn}.  This can be observed when first order wavelets $\psi_{j_2}$ are applied to \acrshort{dsn} coefficients $|x\star\phi_{j_1}|$:
 \begin{equation}
-|W_2||x\star\phi_{\lambda_1}|=\left(|x\star\psi_{\lambda_1}|\star\phi,||x\star\psi_{\lambda_1}|\star\psi_{\lambda_2}|\right)_{\lambda_2\in\Lambda_2} \label{eqn_c4_dss04})\end{equation}
-This second layer of wavelet modulus coefficients is still not invariant to translation, hence we average these coefficients with a low-pass filter $\phi$ to derive a second layer of of scattering coefficients.
+|W_2||x\star\phi_{j_1}|=\left(|x\star\psi_{j_1}|\star\phi,||x\star\psi_{j_1}|\star\psi_{j_2}|\right)_{j_2\in J_2}
+\label{eqn_c4_dss04})\end{equation}
+
+The second order \acrshort{dsn} coefficients also requires time averaging to derive local invariance stability, hence the resulting coefficients are averaged again with a low-pass filter $\phi$ and the final second order \acrshort{dsn} scattering parameters are obtained.
  \begin{equation}
-|W_2||x\star\phi_{\lambda_1}|=\left(|x\star\psi_{\lambda_1}|\star\phi,||x\star\psi_{\lambda_1}|\star\psi_{\lambda_2}|\right)_{\lambda_2\in\Lambda_2}\label{eqn_c4_dss04})\end{equation}
+S_2x(t,j_1,j_2)=||x\star\psi_{j_1}|\star\psi_{j_2}|\star\phi(t)
+\label{eqn_c4_dss04}\end{equation}
 
-Repeating these successive steps of computing invariant features and retrieving lost information leads to the scattering spectrum, as seen in Figure \ref{fig_4_3_scatter}, however speech signals are almost entirely characterized by the first two layers of the spectrum, that is why a two layers spectrum is typically used for speech representation. It is shown in \citep{anden2014deep} that this representation is invariant to translations and stable to deformations, while keeping more information than the Mel-filter banks coefficients
+Figure \ref{fig_c4_scatter} shows how the process of obtaining scatter coefficients can be successively made deeper computing higher-order invariance by retrieving the lost characteristics and thus culminating a deep scattering spectrum. \cite{anden2014deep} shows that speech signals can be analysed using the first two \acrshort{dsn} layers and the coefficients obtained are generally stable to deformation and translation invariant while possessing better discriminating features than MFCCs.
 \begin{figure}
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=14cm]{thesis/images/scatter.png}\\
-  \caption{Scattering network - 2 layers deep} \cite{zeghidour2016deep}\label{fig_4_3_scatter}
+  \includegraphics[width=14cm]{thesis/images/scatter}\\
+  \caption{Scattering network - 2 layers deep} \cite{anden2011multiscale}\label{fig_c4_scatter}
 \end{figure}
 
 \section{Chapter Summary}
