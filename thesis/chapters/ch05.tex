@@ -139,10 +139,10 @@ where $m$ is the frequency bin index and  $\Delta_m$ is the frequency range betw
 \begin{figure}
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=14cm]{thesis/images/m-filters}\\
+  \includegraphics[width=12cm]{thesis/images/m-filters}\\
   \caption{Mel filter plot \citep{lyons_2012}}\label{fig_4_3_mfilt}
 \end{figure}
-For speech recognition, we compute a statistical value or coefficient for each Mel frequency bin from the inverse discrete fourier transform (IDFT) of the Mel filters.  The coefficients are also concatenated with their delta and delta-delta values.  The delta and delta-delta values are determined from the following equation:
+For speech recognition, we compute a statistical value or coefficient for each Mel frequency bin from the \acrfull{idft} of the Mel filters.  The coefficients are also concatenated with their delta and delta-delta values.  The delta and delta-delta values are determined from the following equation:
  \begin{equation}
 d_t=\frac{\sum_{n=1}^Nn(c_{t+n}−c_{t−n})}{2\sum_{n=1}^Nn^2}
 \label{eqn_c4_mel04}
@@ -154,7 +154,7 @@ There are two reasons for obtaining the IDFT from the filter banks.  The first i
 As an attempt for MFCCs to incorporate dynamic frequency changes of the signal, the deltas and the delta-deltas are obtained from the coefficient computation in equation \ref{eqn_c4_mel04}.  However, it is worthy to note that only the first 13 of the coefficients and the resulting dynamic coefficients are used as speech features as it is observed that higher frequency dynamic coefficients rather degrade ASR performance \citep{gales2008application}.
 
 \section{Deep scattering spectrum}\label{sec_c5_wproof}
-Scattering wavelets are interpreted from \acrfull{mfsc} which are the Mel filters without applying the \acrshort{idft} or the \acrshort{dct}.In this section reference is made to \citep{anden2011multiscale, anden2014deep, zeghidour2016deep} for the scattering wavelet definition. 
+Scattering wavelets are interpreted from \acrfull{mfsc} which are the Mel filters without applying the \acrshort{idft} or the \acrshort{dct}.In this section reference is made to \citep{anden2011multiscale, anden2014deep, zeghidour2016deep} for the scattering wavelet derivation. 
 
 The Mel scale can be interpreted as dilations of a Wavelet.  In the case of the MFSC it lacks the ability to capture non-stationary structures when outside the frame window.  Such a filter is constructed by dilating one filter having an octave bandwidth of $1/Q$ as follows
 \begin{equation}
