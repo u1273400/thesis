@@ -9,6 +9,13 @@
   organization={Association for Computational Linguistics}
 }
 
+@article{koushik2016understanding,
+  title={Understanding convolutional neural networks},
+  author={Koushik, Jayanth},
+  journal={arXiv preprint arXiv:1605.09081},
+  year={2016}
+}
+
 @book{ogunfunmi2015speech,
 author={Ogunfunmi,Tokunbo and Togneri,Roberto and Narasimha,Madihally},
 year={2015},
