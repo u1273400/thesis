@@ -9,6 +9,17 @@
   organization={Association for Computational Linguistics}
 }
 
+@book{
+author={Ogunfunmi,Tokunbo and Togneri,Roberto and Narasimha,Madihally},
+year={2015},
+title={Speech and audio processing for coding, enhancement and recognition},
+publisher={Springer},
+address={New York},
+keywords={Mechanical speech recognizer; Speech processing systems; Speech recognition, Automatic; Automatic speech recognition},
+isbn={1493914553;9781493914555;},
+language={English},
+}
+
 @inproceedings{szegedy2015going,
   title={Going deeper with convolutions},
   author={Szegedy, Christian and Liu, Wei and Jia, Yangqing and Sermanet, Pierre and Reed, Scott and Anguelov, Dragomir and Erhan, Dumitru and Vanhoucke, Vincent and Rabinovich, Andrew},
