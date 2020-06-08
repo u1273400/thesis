@@ -9,7 +9,7 @@
   organization={Association for Computational Linguistics}
 }
 
-@book{ogunfunmi2015speech
+@book{ogunfunmi2015speech,
 author={Ogunfunmi,Tokunbo and Togneri,Roberto and Narasimha,Madihally},
 year={2015},
 title={Speech and audio processing for coding, enhancement and recognition},
