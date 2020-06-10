@@ -16,6 +16,13 @@
   year={2016}
 }
 
+@article{zeghidour2018end,
+  title={End-to-end speech recognition from the raw waveform},
+  author={Zeghidour, Neil and Usunier, Nicolas and Synnaeve, Gabriel and Collobert, Ronan and Dupoux, Emmanuel},
+  journal={arXiv preprint arXiv:1806.07098},
+  year={2018}
+}
+
 @book{ogunfunmi2015speech,
 author={Ogunfunmi,Tokunbo and Togneri,Roberto and Narasimha,Madihally},
 year={2015},
