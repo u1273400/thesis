@@ -9,6 +9,32 @@
   organization={Association for Computational Linguistics}
 }
 
+@article{koushik2016understanding,
+  title={Understanding convolutional neural networks},
+  author={Koushik, Jayanth},
+  journal={arXiv preprint arXiv:1605.09081},
+  year={2016}
+}
+
+@article{zeghidour2018end,
+  title={End-to-end speech recognition from the raw waveform},
+  author={Zeghidour, Neil and Usunier, Nicolas and Synnaeve, Gabriel and Collobert, Ronan and Dupoux, Emmanuel},
+  journal={arXiv preprint arXiv:1806.07098},
+  year={2018}
+}
+
+
+@book{ogunfunmi2015speech,
+author={Ogunfunmi,Tokunbo and Togneri,Roberto and Narasimha,Madihally},
+year={2015},
+title={Speech and audio processing for coding, enhancement and recognition},
+publisher={Springer},
+address={New York},
+keywords={Mechanical speech recognizer; Speech processing systems; Speech recognition, Automatic; Automatic speech recognition},
+isbn={1493914553;9781493914555;},
+language={English},
+}
+
 @inproceedings{szegedy2015going,
   title={Going deeper with convolutions},
   author={Szegedy, Christian and Liu, Wei and Jia, Yangqing and Sermanet, Pierre and Reed, Scott and Anguelov, Dragomir and Erhan, Dumitru and Vanhoucke, Vincent and Rabinovich, Andrew},

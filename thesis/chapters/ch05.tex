@@ -156,20 +156,20 @@ As an attempt for MFCCs to incorporate dynamic frequency changes of the signal, 
 \section{Deep scattering spectrum}\label{sec_c5_wproof}
 Scattering wavelets are interpreted from \acrfull{mfsc} which are the Mel filters without applying the \acrshort{idft} or the \acrshort{dct}.In this section reference is made to \citep{anden2011multiscale, anden2014deep, zeghidour2016deep} for the scattering wavelet derivation. 
 
-The Mel scale can be interpreted as dilations of a Wavelet.  In the case of the MFSC it lacks the ability to capture non-stationary structures when outside the frame window.  Such a filter is constructed by dilating one filter having an octave bandwidth of $1/Q$ as follows
+The Mel scale can be interpreted as dilations of a Wavelet.  In the case of the MFSC it lacks the ability to capture non-stationary structures when outside the frame window.   Such MFSC filters are constructed by dilating the wavelet by an octave bandwidth of $1/Q$ as follows  
 \begin{equation}
 \psi_j(t)=a^{-j}\psi(a^{-j}t)\quad|\quad a=2^{1/Q}\text{ and }j\le J
 \label{eqn_c4_deep00}
 \end{equation}
 
-The transfer function of the constructed filter approximately ranges between $2Q\pi-\pi$ and $\2Q\pi+\pi$. For low frequencies below $2\piQa^{-J}$ a simple low pass filter is employed. Non-linear invariance is induced by applying a contracting modulus operation and the equivalent result is similar to deriving extracting a contracted envelope at different resolutions while filtering out the complex phase information.  Therefore, for a signal $x$ we define the zeroth order Scattering transform as follows:
+The transfer function of the constructed filter approximately ranges between $2Q\pi-\pi$ and $\2Q\pi+\pi$. For low frequencies below $2\piQa^{-J}$ a simple low pass filter is employed. Non-linear invariance is induced by applying a contracting modulus operation.  The resulting coefficients are similar to deriving extracting a contracted envelope at different resolutions while filtering out the complex phase information.  Therefore, for a signal $x$ we define the zeroth order Scattering transform as follows:
 
 \begin{equation}
 |W|x=\left(x\star\phi(t),|x\star\psi_{j_1}(t)|\right)_{t\in\mathbb{R},j_1\in J_1} 
 \label{eqn_c4_dss01}
 \end{equation}
 
-However, the difference between the \acrshort{mfsc} and the \acrfull{dsn} is that the \acrshort{mfsc} is a shallow architecture while the \acrshort{dsn} is a deep architecture.  Therefore, it is observed that time-averaging of the low-pass filter loses information contained in the high frequencies. Nevertheless, since the wavelet transform is invertible, the \acrshort{dsn} is able to go deeper by applying the next level scattering operation. The transform is therefore reapplied over $S_0x=x\star\phi(t)$ on the residue wavelet coefficients $x\star\psi_{\lambda_1}|$ and the process of time averaging to obtain invariant contracted envelopes reapplied.  The resulting first order scattering coefficient were obtained from
+However, the difference between the \acrshort{mfsc} and the \acrfull{dsn} is that the \acrshort{mfsc} is a shallow architecture while the \acrshort{dsn} is a deep architecture.  Therefore, it is observed that time-averaging of the low-pass filter loses information contained in the high frequencies. Nevertheless, since the wavelet transform is invertible, the \acrshort{dsn} is able to go deeper by applying the next level scattering operation. The transform is therefore reapplied over $S_0x=x\star\phi(t)$ on the residue wavelet coefficients $|x\star\psi_{j_1}|$ and the process of time averaging to obtain invariant contracted envelopes reapplied.  The resulting first order scattering coefficient were obtained from
 \begin{equation}
 S_1x(t,\psi_{j_1})=|x \star\psi_{j_1}| \star\phi(t)\label{eqn_c4_dss03})
 \label{eqn_c4_dss02}
