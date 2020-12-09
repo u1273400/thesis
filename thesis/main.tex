@@ -9,6 +9,7 @@
 \usepackage{rotating}
 \usepackage{epstopdf}
 \usepackage{listings}
+\usepackage[dvipsnames]{xcolor}
 
 % package used by \citep and \citet
 \usepackage[sort&compress,comma,authoryear]{natbib}
@@ -34,6 +35,7 @@
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
 
+
 \title{
     {Deep Scattering and End-to-End Speech Models towards Low Resource Speech Recognition}\\
     {\includegraphics{university.png}\\
@@ -42,20 +44,36 @@ A thesis submitted to the University of Huddersfield in partial fulfilment of th
 
 
 \author{Iyalla John Alamina}
-\date{January 8, 2020}
+\date{January 8, 2021}
 
 \begin{document}
 \makeglossaries
 \input{chapters/glossary.tex}
 
 \maketitle
-\spacing{1.5}
+\DeclareRobustCommand{\startblue}{%
+  \leavevmode
+  \color{blue}
+}
+\DeclareRobustCommand{\stopblue}{%
+  \normalcolor
+}
+
+\spacing{1}
 
 \addcontentsline{toc}{section}{Abstract}
 \chapter*{Abstract}
-This \href{https://docs.google.com/document/d/1jBp2bZf_-yWbqpSeeyGhU8uZ94o-oiHh6g_cRtjaWFQ/edit#heading=h.34qugrunyk2x}{thesis} investigates and acknowledges the various limitations of \acrfull{dnn} techniques when applied to low resource speech recognition.   Various aspects of developing corpora for speech recognition systems are explored.  In particular, various \acrfull{rnn} techniques were explored to implement end-to-end speech and \acrfull{lm}. \acrfull{gru} RNNs were used employed for the language model for a low resourced Wakirike language while bidirectional recurrent neural networks (bi-RNNs) were used to create end-to-end speech recognition model for English language.
+\startblue
+Automatic Speech Recognition (ASR) has made two major leaps in its advancement due to two disparate machine learning models; Hidden Markov Models (HMMs) and Deep Neural Networks (DNNs).  However, combining these two methods to form a hybrid system requires that various components of the speech recognizer are trained independently based on a probabilistic noisy channel model.  Although this HMM-DNN hybrid ASR method has generated state-of-the-art accuracy results, the independent development of the individual components used in hybrid HMM-DNN models makes ASR development fragile and expensive in terms of time-to-develop the various components and their associated sub-systems.  As a result of these trade-offs, ASR systems are difficult to develop and use especially for new applications and languages.
 
-Previous systems employed for low resource speech recognition involving deep networks included various knowledge transfer mechanisms including hybrid hidden markov models (HMM) to deep neural networks (HMM-DNN) models and those that are HMM alone-based include subspace Gaussian Mixture Models (GMMs).   These models are based on the HMM generative model and N-gram language models.  However, the model developed in this thesis makes use of an end-to-end discriminative model using the \acrshort{birnn} acoustic/speech model augmented using speech features from a specialised light weight convolution network-the \acrfull{dsn}.  While the light weight \acrshort{dsn} helped to reduce the training complexity, at the same time by focusing on end-to-end with \acrfull{ctc} decoding, the speech model was compressed into a one step process rather than a three-step process requiring an Acoustic Model (AM), Language Model (LM) and phonetic dictionary. The research therefore shows that it is possible to use this compacting strategy in addition to augmented speech features required for speech pattern recognition by deploying deep scattering network features with  higher dimensional vectors when compared to traditional speech features. 
+The alternative approach, known as the end-to-end paradigm, makes use of a single deep neural-network architecture used to encapsulate all the sub-components of speech recognition as a single process.  In this end-to-end paradigm, latent variables of sub-components are subsumed by the neural network sub-architectures and the associated parameters.  The end-to-end paradigm gains of a simplified ASR-development process again is traded for higher internal model complexity and more computational resources needed to train the end-to-end models. 
+
+This \href{https://docs.google.com/document/d/1ne2ctaxjpOlilMDg88aTtzOdIyP-wI2_ST5mGDvAYMw/edit?usp=sharing}{research} focuses on taking advantage of end-to-end model ASR development gains for new and low-resource languages. Using a specialised light weight convolution-like neural network called the deep scattering network (DSN) to replace the input layer of the end-to-end model, our objective was to measure the performance of the end-to-end model using these augmented speech features while checking to see if the lightweight, wavelet-based architecture added any new features that are beneficial for low resource Speech recognition. 
+
+The research showed that it is possible to use this compact strategy and improve upon speech features required for speech pattern recognition by deploying deep scattering network features with higher dimensional vectors when compared to traditional speech features.
+\stopblue
+\spacing{1.5}
+
 
 \addcontentsline{toc}{section}{Dedication}
 \chapter*{Dedication}
@@ -87,22 +105,67 @@ I also acknowledge my parents (Prof. Mrs. Jane Alamina and Dr. P. T. Alamina) fo
 \listofalgorithms
 \newpage
 \addcontentsline{toc}{section}{Acronyms}
+\clearpage
+
+\begin{table}[tp]
 \chapter*{Acronyms}
-\begin{table}
   \label{tab:acronymns}
 \begin{tabular}{ll}
-\acrshort{am} & \acrlong{am}  \\
+\acrshort{am} & \acrlong{am}\\
 \acrshort{asr} & \acrlong{asr}\\
 \acrshort{birnn} & \acrlong{birnn}\\
 \acrshort{bleu} & \acrlong{bleu}\\
 \acrshort{cfg} & \acrlong{cfg} \\
-CMU & Carnegie Mellon University \\
-CMVN & Cepstral Mean Variance Normalisation \\
-CMN & Cepstral Mean Normalisation \\
-CNN & Convolution Neural Network \\
+\acrshort{cmu} & \acrlong{cmu} \\
+\acrshort{cmvn} & acrlong{cmvn} \\
+\acrshort{cmn} & \acrlong{cmn} \\
+\acrshort{cnn} & \acrlong{cnn} \\
+\acrshort{ctc} & \acrlong{ctc} \\
+\acrshort{dbn} & \acrlong{dbn} \\
+\acrshort{dct} & \acrlong{dct} \\
+\acrshort{dnn} & \acrlong{dnn} \\
+\acrshort{dnns} & \acrlong{dnns} \\
+\acrshort{dsn} & \acrlong{dsn} \\
+\acrshort{dtw} & \acrlong{dtw} \\
+\acrshort{fsg} & \acrlong{fsg} \\
+\acrshort{fsgs} & \acrlong{fsgs} \\
+\acrshort{fst} & \acrlong{fst} \\
+\acrshort{gmm} & \acrlong{gmm} \\
+\acrshort{gru} & \acrlong{gru} \\
+\acrshort{hlda} & \acrlong{hlda} \\
+\acrshort{hmm} & \acrlong{hmm} \\
+\acrshort{idft} & \acrlong{idft} \\
+\acrshort{lda} & \acrlong{lda} \\
+\acrshort{lm} & \acrlong{lm} \\
+\acrshort{lpc} & \acrlong{lpc} \\
+\acrshort{lstm} & \acrlong{lstm} \\
+\acrshort{mfcc} & \acrlong{mfcc} \\
+\acrshort{mfsc} & \acrlong{mfsc} \\
+\acrshort{ml} & \acrlong{ml} \\
+\acrshort{mllt} & \acrlong{mllt} \\
+\acrshort{mlp} & \acrlong{mlp} \\
+\acrshort{mlps} & \acrlong{mlps} \\
+\acrshort{oov} & \acrlong{oov} \\
+\acrshort{plp} & \acrlong{plp} \\
+\acrshort{rasta} & \acrlong{rasta} \\
+\acrshort{rbm} & \acrlong{rbm} \\
+\acrshort{rnn} & \acrlong{rnn} \\
+\acrshort{rnns} & \acrlong{rnns} \\
 \end{tabular}
 \end{table}
 
+\clearpage
+\begin{table}[tp]
+  \label{tab:acronymns2}
+\section*{Acronyms contd.}
+\begin{tabular}{ll}
+\acrshort{sgmm} & \acrlong{sgmm} \\
+\acrshort{sgd} & \acrlong{sgd} \\
+\acrshort{stc} & \acrlong{stc} \\
+\acrshort{vtln} & \acrlong{vtln} \\
+\acrshort{wfst} & \acrlong{wfst} 
+\end{tabular}
+\end{table}
   
 \chapter{\href{https://docs.google.com/document/d/1h8ZEcfEUpjJM6wYkgYYH-ryuiBFYVGSQA-Sf1StQtiY/edit#heading=h.i9tlo6ovvcpr}{Introduction}}\label{ch1_intro}
 \input{chapters/ch01}
