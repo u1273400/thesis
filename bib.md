@@ -9,6 +9,22 @@
   organization={Association for Computational Linguistics}
 }
 
+@inproceedings{toshniwal2018multilingual,
+  title={Multilingual speech recognition with a single end-to-end model},
+  author={Toshniwal, Shubham and Sainath, Tara N and Weiss, Ron J and Li, Bo and Moreno, Pedro and Weinstein, Eugene and Rao, Kanishka},
+  booktitle={2018 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+  pages={4904--4908},
+  year={2018},
+  organization={IEEE}
+}
+
+@article{renals2017multilingual,
+  title={Multilingual Speech Recognition},
+  author={Renals, Steve and Lecture, Automatic Speech Recognition--ASR},
+  journal={Automatic Speech Recognition Lecture16},
+  year={2017}
+}
+
 @article{koushik2016understanding,
   title={Understanding convolutional neural networks},
   author={Koushik, Jayanth},
