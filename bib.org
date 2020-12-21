@@ -1,5 +1,12 @@
 * Bibliography
 
+@book{geron2019hands,
+  title={Hands-on machine learning with Scikit-Learn, Keras, and TensorFlow: Concepts, tools, and techniques to build intelligent systems},
+  author={G{\'e}ron, Aur{\'e}lien},
+  year={2019},
+  publisher={O'Reilly Media}
+}
+
 @inproceedings{papineni2002bleu,
   title={BLEU: a method for automatic evaluation of machine translation},
   author={Papineni, Kishore and Roukos, Salim and Ward, Todd and Zhu, Wei-Jing},
