@@ -15,7 +15,25 @@ The modified LSTM RNN known as the Gated Recurrent Unit (GRU) discussed in Chapt
 
 The architecture of the GRU RNN used to train the Wakirike text corpus had an internal network size of 512 nodes for each layer and was 3 layers deep. In a study by \citep{goodfellow2013multi}, it was shown that increasing the number of nodes in a neural network will lead to over-fitting, however, simultaneously increasing the network depth mitigates this effect.  In other words, in order to expand the degrees of freedom of a neural network and at the same time constrain the network to generalise well on unseen data, it is necessary to increase the number of neurons in both length and depth.  Experiments carried out in this chapter follow this recommendation. Initial experiments had an internal node size of 128 and a single layer deep.  While this showed promise of converging, the error rate was still high, therefore the network was expanded to the final model above.   Externally, the network model is further  sequenced 30 times, representing the input sequence length hyper-parameter and the number of recurrent connections where each connection represents a sequenced time step. 
 
-Another hyper-parameter sensitive to network size is the learning rate.  The learning rate is selected in such a manner that an increase in the network size makes the learning rate more prone to overshooting.  Therefore, increased degrees of freedom in a neural network will require the learning rate to be made smaller so that it does not overshoot the network saturation point.  Small learning rates of between 0.001 and 0.005 were used. Furthermore, the language model neural network was designed to overcome over-fitting using the dropout (Srivastava et al., 2014) method which has been shown to be effective for regularising deep neural networks.  The hyper-parameter for dropout was kept at 20\% such that only 80\% of neural network activations are propagated from one layer to the next, whereas the remaining 20\% were randomly zeroed out.  Intuitively, dropout works by forcing the remaining active neurons to infer what is missing in the activations that have been dropped and ultimately leads to better generalisations as activations are based on inference than on memory.
+Another hyper-parameter sensitive to network size is the learning rate.  The learning rate is selected in such a manner that an increase in the network size makes the learning rate more prone to overshooting.  Therefore, increased degrees of freedom in a neural network will require the learning rate to be made smaller so that it does not overshoot the network saturation point.  Small learning rates of between 0.001 and 0.005 were used. Furthermore, the language model neural network was designed to overcome over-fitting using the dropout method \citep{srivastava2014dropout} which has been shown to be effective for regularising deep neural networks.  The hyper-parameter for dropout was kept at 20\% such that only 80\% of neural network activations are propagated from one layer to the next, whereas the remaining 20\% were randomly zeroed out.  Intuitively, dropout works by forcing the remaining active neurons to infer what is missing in the activations that have been dropped and ultimately leads to better generalisations as activations are based on inference than on memory.
+
+\section{Language Model Training Experiments}
+Two sets of character-based neural network RNN-based experiments are developed in this chapter.  A third word based statistically modelled language model is also developed based on  \cite{Heafield-estimate} estimates as a baseline model. Character-based perplexity measurements were used to compare the character-based models and a conversion factor based on \citep{} is used to compare character-based models on the word-based counterparts.  Experiments for the RNN language models were majorly performed using tensorflow-MKL, which is a highly parallelised (44-threads for one of the experiments) cpu-based experiments.  The experiment with the largest number of neurons was also performed on cloud-based GPUs (Nvida Tesla T4).  Details of the experiments carried out and resulting perplexity are shown in Table \ref{tab6_1:LMX}.
+
+\begin{table}
+  \caption{Language Models comparison}
+  \label{tab6_1:LMX}
+\begin{tabular}{lrrr}
+\toprule
+Language Model & Train time & Perplexity & Epochs  \\
+\midrule
+GRU RNN 3-layer model (CPU training) & ~ 2 days & 30.920 & 75 \\
+5-gram with Keysner Soothing and interpolation & 5 minutes & 238.720 && N/A \\
+GRU RNN 3-layer model (GPU training) & 238.720 && N/A \\
+GRU RNN 3-layer model (GPU training) & ~ 2 hours & 30.920 & 75 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \stopblue
 
@@ -52,21 +70,6 @@ However, our base-line language model is a 5-gram word-based language model.  Th
 
 Table ~\ref{tab:example} shows the Results of the Perplexity model of the LSTM Wakirike Language model and an equivalent 5-gram Language model with interpolation and Keysner smoothing \citep{Heafield-estimate} for various lengths of the held-out data.
 
-
-\begin{table}
-  \caption{Perplexity Calculation results}
-  \label{tab:example}
-\begin{tabular}{lrr}
-\toprule
-Language Model & Perplexity  \\
-\midrule
-Held-out data size (characters) & 998 & 99\\
-\midrule
-LSTM RNN & 1.6398 & 1.7622\\
-5-gram with Keysner Soothing and interpolation & 1.8046 & 1.9461\\
-\bottomrule
-\end{tabular}
-\end{table}
 \section{Chapter Summary}
 This chapter shows the application of a character-based Gated Recurrent Unit RNN on the low resource language of Wakirike to generate a language model for the Wakirike language.  The data-set and preparation and the details of the network were discussed.  The output of this model was used to hallucinate the Wakirike language which was then scored against word-based perplexity to obtain a metric against the baseline language model.
 
