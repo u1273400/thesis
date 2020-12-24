@@ -7,6 +7,15 @@
   year={2013}
 }
 
+@inproceedings{hwang2017character,
+  title={Character-level language modeling with hierarchical recurrent neural networks},
+  author={Hwang, Kyuyeon and Sung, Wonyong},
+  booktitle={2017 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+  pages={5720--5724},
+  year={2017},
+  organization={IEEE}
+}
+
 @book{geron2019hands,
   title={Hands-on machine learning with Scikit-Learn, Keras, and TensorFlow: Concepts, tools, and techniques to build intelligent systems},
   author={G{\'e}ron, Aur{\'e}lien},

@@ -1,5 +1,21 @@
 * Bibliography
 
+@inproceedings{hwang2017character,
+  title={Character-level language modeling with hierarchical recurrent neural networks},
+  author={Hwang, Kyuyeon and Sung, Wonyong},
+  booktitle={2017 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+  pages={5720--5724},
+  year={2017},
+  organization={IEEE}
+}
+
+@article{goodfellow2013multi,
+  title={Multi-digit number recognition from street view imagery using deep convolutional neural networks},
+  author={Goodfellow, Ian J and Bulatov, Yaroslav and Ibarz, Julian and Arnoud, Sacha and Shet, Vinay},
+  journal={arXiv preprint arXiv:1312.6082},
+  year={2013}
+}
+
 @book{geron2019hands,
   title={Hands-on machine learning with Scikit-Learn, Keras, and TensorFlow: Concepts, tools, and techniques to build intelligent systems},
   author={G{\'e}ron, Aur{\'e}lien},
