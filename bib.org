@@ -9,6 +9,15 @@
   organization={IEEE}
 }
 
+@inproceedings{salazar2019self,
+  title={Self-attention networks for connectionist temporal classification in speech recognition},
+  author={Salazar, Julian and Kirchhoff, Katrin and Huang, Zhiheng},
+  booktitle={ICASSP 2019-2019 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+  pages={7115--7119},
+  year={2019},
+  organization={IEEE}
+}
+
 @article{goodfellow2013multi,
   title={Multi-digit number recognition from street view imagery using deep convolutional neural networks},
   author={Goodfellow, Ian J and Bulatov, Yaroslav and Ibarz, Julian and Arnoud, Sacha and Shet, Vinay},

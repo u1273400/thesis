@@ -7,6 +7,15 @@
   year={2013}
 }
 
+@inproceedings{salazar2019self,
+  title={Self-attention networks for connectionist temporal classification in speech recognition},
+  author={Salazar, Julian and Kirchhoff, Katrin and Huang, Zhiheng},
+  booktitle={ICASSP 2019-2019 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+  pages={7115--7119},
+  year={2019},
+  organization={IEEE}
+}
+
 @inproceedings{hwang2017character,
   title={Character-level language modeling with hierarchical recurrent neural networks},
   author={Hwang, Kyuyeon and Sung, Wonyong},
