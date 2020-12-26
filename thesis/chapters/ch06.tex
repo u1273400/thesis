@@ -29,7 +29,8 @@ Language Model & Train time & Perplexity & Epochs  \\
 \midrule
 GRU RNN 3-layer model (CPU training) & ~ 2 days & 30.920 & 75 \\
 5-gram with Keysner Soothing and interpolation & 5 minutes & 238.720 & N/A \\
-GRU RNN single-layer model (GPU training) & ~ 5 hours & $2.35\times10^{13}$ & 120 \\
+GRU RNN single-layer model (GPU training) & ~ 5 hours & 641491.52 & 120 \\
+Plain RNN single-layer model (GPU training) & ~ 9 hours & 27087.893 & 180 \\
 GRU RNN 3-layer model (cloud GPU training) & ~ 2 hours & 30.920 & 75 \\
 \bottomrule
 \end{tabular}
@@ -38,7 +39,7 @@ GRU RNN 3-layer model (cloud GPU training) & ~ 2 hours & 30.920 & 75 \\
 \stopblue
 
 
-\section{Output Language Model and Language Generation}
+\section{Output Language Model and Language Generation}\label{sec6_4}
 \startblue
 The 3-layer network experiments were trained on both CPU and GPU configurations. Both were trained for 75 epochs, where an epoch indicates that the model has processed all of the training data.  Recall that the model  is trained until it is saturated.  In other words, the model trains until the prediction accuracy is no longer improving.   This usually will take several epochs.
 
@@ -47,8 +48,8 @@ The loss plots for the three-layer and single layer GRU RNN are shown in Figure 
 \begin{figure}
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=14cm]{thesis/images/ctc_scatter.png}\\
-  \caption{Deep scattering Bi-RNN Model} \label{fig_ch7_00losses}
+  \includegraphics[width=14cm]{thesis/images/losses_slgru}\\
+  \caption{Loss curves for a. 3-Layer GRU and b) Single-Layer RNN} \label{fig_ch7_00losses}
 \end{figure}
 
 The evaluation of the GRU language model of the Wakirike language was performed using a perplexity measurement metric. The Perplexity metric applies the language model to a test data-set and measures how probable the test data-set is. Perplexity is a relative measure given by the formula:
@@ -66,17 +67,62 @@ PP(W)=\sqrt[N]{\prod_{i=1}^N\frac{1}{P(w_i|w_{i-1})}}
 %
 Where $w_1,\dots,w_N$ are the sequence of words. The language model with the lower relative perplexity score is therefore expected to yield better approximation of the data when applied to unseen data generally.
 
-The result of the training of the GRU-Cell Recurrent Neural Network on low-resourced Wakirike Language gave impressive and intelligible results and showed better results when measured with standard n-gram language models. The results showed that it is indeed possible to derive a language model using a GRU-cell RNN on a low resource character sequence corpus for the Wakirike language.
+Intuitively, the perplexity metric measures the ability of a language model to predict held-out data.  A character based perplexity metric is possible using  the negative log likelihood of the character sequence.  A character based perplexity metric is possible using  the negative log likelihood of the character sequence.
 
-A character based perplexity metric is possible using  the negative log likelihood of the character sequence.
 \begin{equation}
     PP(X)=exp\left\{−\frac{\sum_{t=1}^T\log P(x_t|x_{1:t−1})}{T}\right\}
 \label{ch5_eq3_ppx}
 \end{equation}
 
-However, our base-line language model is a 5-gram word-based language model.  Therefore, comparing a word based model to a character based model requires a conversion step. In this work, the conversion step involved using the GRU language model generated a corpus which was rescored by re-estimating with a 5-gram word-based language model
+However, our base-line language model is a 5-gram word-based language model.  Therefore, comparing a word based model to a character based model requires a conversion step. In this work, the conversion step involved using the GRU language model generated a corpus which was re-scored by re-estimating with a 5-gram word-based language model
 
-Table ~\ref{tab:example} shows the Results of the Perplexity model of the LSTM Wakirike Language model and an equivalent 5-gram Language model with interpolation and Keysner smoothing \citep{Heafield-estimate} for various lengths of the held-out data.
+The result of the training of the GRU-Cell Recurrent Neural Network on low-resourced Wakirike Language gave impressive and intelligible results and showed better results when measured with standard n-gram language models. The results showed that it is indeed possible to derive a language model using a GRU-cell RNN on a low resource character sequence corpus for the Wakirike language.
+\stopblue
+
+Table \ref{tab6_1:LMX} shows the Results of the Perplexity model of the LSTM Wakirike Language model and an equivalent 5-gram Language model with interpolation and Keysner smoothing \citep{chen1996empirical} for various lengths of the held-out data.
+\startblue
+\section{Discussion}
+The result of the training of the 3-layer-deep GRU-Cell Recurrent Neural Network on low-resourced Wakirike Language had decent results with an accuracy of 65\%.  Even with this accuracy, the model had shown to have learned the vocabulary and was able to construct phrases consistent with the Wakirike language structure.  The single-layer GRU cell however after 120 epochs did not learn the vocabulary and was not able to learn any words.  It can also be seen from the loss curves of the language models that the models reach saturation fairly quickly after about 20 epochs for the 3-layer GRU RNN model and after about 40 epochs for the single-layer RNN.
+
+
+The results also showed that the 3-layer GRU language model developed a better language model than the 5-gram model in terms of the perplexity metric because the perplexity of the 3-layer GRU RNN model was lower than that of the 5 gram model.  The single layer GRU model being a shallow model with a single-layer did not however learn anything having a  very high perplexity heading towards infinity.  Table \ref{tab6_2:Gen} below demonstrates output generations from the single layer and 3-layer GRU RNN language models based on the sampling procedure described in Section \ref{sec6_4}
+
+\begin{table}
+  \caption{Language Models sample generation}
+  \label{tab6_2:Gen}
+\begin{tabular}{lrrr}
+\toprule
+a) Original Wakirike Text \\
+\midrule
+\texttt{mine-o anikanika boro sobie korobo enjelapu so, we duko o piri sa ibiok-}\\
+\texttt{wein mi sikima be jinye dukobia bo, ya tamuno worinime sime inibo piri} \\
+\texttt{wa tatari duko borosam, a piki mioku bari ani dukoabe na nemikase tomonibo}\\
+\midrule
+b) GRU RNN 3-layer model (75 epochs) \\
+\midrule
+ \texttt{ani se mi be chinmgbolu mi ani se chua yee anisiki ini tamuno be bu s-}\\
+\texttt{arame, se nwo beme, a kokomaye duko o piriabe, o bi se mi mieari ye mi} \\
+\texttt{ori oria koki a kuro mi nyana yee. o bi bara mi o nwose o diebia  ani} \\
+ \midrule
+c) Plain RNN single-layer model (180 epochs) \\
+\midrule
+\texttt{min on o o bo oeuemin on o oniaia a bire nami bieee mani o onuo o be} \\
+\texttt{bo oe berimini okuma ani mani o o onuaminiana bireme,eanaminianiania b-} \\
+\texttt{i bo ono bo onia anaa beremanaa bi nao sike,einama nieiei mi niei ia } \\
+\midrule
+d) GRU RNN single-layer model (120 epochs) \\
+\midrule
+\texttt{ia iiiii  o i ii i i iiii  iii i oi oi o oiai  oi ii ii ii  iiiii  i} \\
+\texttt{iiii iiiiii  iii iii iii  ii iii  o oi i i o ii iiii  iiii  iiiii i ii} \\
+\texttt{i iii i o ii oi oia  oi iiiiii  o i o o o i oi o oi iiiii i iiiii  ii} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table \ref{tab6_2:Gen}(a) to (d) demonstrates how the language generated by various language models resembles the original training data.  The original Wakirike language is given in part (a) then, the other language model generations (following the procedure described in Section \ref{sec6_4}) are shown in order of decreasing similarity.  It can be, therefore, observed that the 3-layer GRU language model had the highest similarity to the original Wakirike language, which has also been evidenced by its low perplexity score.  The other single-layer models having higher perplexity scores showed lesser degrees of similarity to the original Wakirike language.
+
+Finally, it would be in the interest of this research to further consider increasing the number of layers to achieve higher levels of accuracy or consider optimising other parameters which may help the training results, such as the sequence length of the model.  However, this was not done as the time constraint of one day for training the language model was already stretched and we are certain that these hyper-parameters have a direct influence on the size of the model.  This in turn will affect the computing resources required and hence a trade-off of the training time required to saturate the models.
+
 \stopblue
 
 \section{Chapter Summary}

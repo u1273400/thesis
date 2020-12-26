@@ -15,23 +15,6 @@ Self attention is a network that intrinsically reduces the need for intensive re
 
 As a study to further this thesis, these networks are likely candidates for network training using scatter features as input discriminatory functions.  Attention based networks as a means reduce training resources required, while GANs can be used as a means to generate training data.
 
-\section{Joint Training with ESPNet}
-Chapter \ref{ch6_speech} has already seen promising results based on preliminary experiments using the ESPNet model.  This model does fulfil major objectives outlined by this research. The inclusion of Attention-based models and the warp-CTC decoder implemented in ESPNet ensures faster convergence and ultimately faster time to train, in addition to the end-to-end architecture presented by ESPNet. The next step required for a further study is an integration of scattering features into ESPNet.  This scattering features implementation is the subject of a paper publication immediately sought after based on this work.  The features of ESPNet include state-of-the-art end-to-end architectures including variants of Attention-Transducers and CTC-decoders.  Using a weighting function  one can control how much bias either the CTC-Transform or the Attention-Transducer will get during training.  The joint training helps to improve robustness as well as achieve fast convergence.
-\begin{equation}
-    \mathcal{L}=\alpha\mathcal{L}^{ctc}+(1-\alpha)\mathacal{L}^{att}
-    \label{eqn_c7_esp00}
-\end{equation}
-At the same time joint decoding of labels is integrated with the character based RNN-language modelling. The log probability of the RNNLM-integrated decoding of character labels is as follows
-\begin{equation}
-    \log p(y_n|y_{1:n−1},\mathbf{h}_{1:T‘})=\log p^{hyp}(y_n|y_{1:n−1},\mathbf{h}_{1:T‘})+\beta\log p^{lm}(y_n|y_{1:n−1})
-    \label{eqn_c7_esp01}
-\end{equation}
-Where joint decoding, $\log p^{hyp}(y_n|y_{1:n−1},\mathbf{h}_{1:T‘})$ is given by
-\begin{equation}
-    \log p^{hyp}(y_n|y_{1:n−1},\mathbf{h}_{1:T‘})\\
-    & = \alpha\log p^{ctc}(y_n|y_{1:n-1},\mathbf{h}_{1:T'})+(1-\alpha)\log p^{att}(y_n|y_{1:n-1},\mathbf{h}_{1:T'})
-\end{equation}
-Furthermore, multi-channel training integrates noise robust and far-field speech recognition tasks which can accommodate joint 83-dimension MFCC and scatter transform training in addition to speech enhancement features such as beam forming and STFT masking \cite{ochiai2017multichannel}. Both single and multi-channel scatter transform features are proposed as subjects in the future paper publication. 
 
 \section{Model Pretraining}
 The major setback this work suffered was from a reasonable time for training.  This work therefore recommends that speech models or indeed artificial intelligence models should be trainable within a maximum of 30 days and shouldn't generally exceed 20 days training.
