@@ -8,7 +8,7 @@ This chapter, however, first discusses speech features developed by making use o
 \section{Deep Scattering Features}\label{sec_c7_wparams}
 \textcolor{blue}{In Chapter 4, we derived a fast wavelet transform from a low pass filter and a high pass filter.  The speech features used for the BiRNN is obtained from successive wavelet-modulus operations of a deep scattering network 2 layers deep.  This 2-layer \acrshort{dsn} comprises a first-order scatter transform. The wavelet modulus operator is derived from the combination of a low pass filter and a band pass filter}.  Hyper parameters of the system included the window period for each sampled sub section, $T$;  The Q-band value for the band pass filter and the number of wavelets $J$ at each scattering layer for the total number of layers, $M=2$.
 
-\textcolor{blue}{For the second end-to-end architecture involving a transducer with attention mechanism, a period of $$T=2^16$$ is used to capture a window of 4 seconds for audio signals sampled at 16000Hz. The same Q-band parameters are used.}
+\textcolor{blue}{For the second end-to-end architecture involving a transducer with attention mechanism, a period of $T=2^{16}$ is used to capture a window of 4 seconds for audio signals sampled at 16000Hz. The same Q-band parameters are used.}
 
 The matlab scatnet toolbox \citep{anden2014scatnet}, used to determine the scatter coefficient features for this research, provides optimal values for hyper parameters for audio signal processing into scatter features.  In this regime the value for the hyper parameter $T=512$ samples per window. This corresponds to a window of $50$ milliseconds for the audio signals sampled at $8000 Hz$.  For the first scattering layer the $Q$-band parameter was $Q=8$ and the second scattering layer took the value  $Q=1$.  Finally $J$ is pre-calculated based on the value of $T$.  These after Scat-Net processing produce a feature-vector having \textcolor{red}{$165$}  dimensions.  These feature vectors in turn are used as inputs to the bi-direction neural network model whose architecture is described in  succeeding sections.
 
@@ -93,7 +93,6 @@ p(\ell^+|x_{1:t})=p(W(\ell^+)|W(\ell))^\alpha(p_{nb}(\ell|x_{1:t})+p_b(\ell|x_{1
 \end{equation}
 
 Note that $p(W(\ell^+)|W(\ell))$ is set to $0$ if the current word $W(\ell^+)$ is not in the lexicon. This becomes a constraint to enforce all character strings to consist only of words in the lexicon.  Furthermore,  $p(W(\ell^+)|W(\ell))$ is extended to include all the character sequences representing number of words considered by the n-gram language model by constituting the last $n-1$ words in character sequence $W(\ell)$.
-
 \begin{figure}
 \centering
   % Requires \usepackage{graphicx}
@@ -101,31 +100,29 @@ Note that $p(W(\ell^+)|W(\ell))$ is set to $0$ if the current word $W(\ell^+)$ i
   \caption{Training Loss, where $w<x<y<z$ are taken arbitrarily across the
 total number of epochs} \label{fig_6_2_loss}
 \end{figure}
-
 \section{Model Hyper parameters}
 The hidden layer matrix for each layer comprised 1024 hidden units (6.6M free parameters).  The weights are initialised from a uniform random distribution having a standard deviation of 0.046875.  The Adam optimisation algorithm \citep{kingma2014adam} was used with initial learning rate of, and a momentum of 0.95 was deployed to optimise the learning rate.
 
 The network was trained for a total of five to fifty epochs over the training set for experiments conducted. The training time for Python GPU implementation is shown in Table \ref{tab_c6_01_training}.  For decoding with prefix search we use a beam size of $200$ and cross-validated with a held-out set to find optimal settings for the parameters $\alpha$ and $\beta$. Figure \ref{fig_6_3_wer} shows word error rates for various GPU configurations and audio data-set sizes.
 
+\startblue
 \section{BiRNN with Transducer+Attention end-to-end Architecture}
-The end-to-end architecture at the core of ESPNet is the CTC-Transformer+Attention Transducer model.  Together these two architectures achieve joint multi-objective speech training and decoding.  The CTC-Transformer model is based on a Bi-RNN similar to what is obtainable in the DeepSpeech model.  The attention transducer model is further explained in Chapter \ref{ch8further}.  There are up to 11 variants of Attention networks implemented in ESPNet, however, the results of the ESPNet experiment performed was determined from the model described in \cite{chorowski2015attention}.  Moreover, the multi-objective training was performed with equal weights on both the CTC-transformer and the Attention-Transducer.  Finally the system was trained for 20 epochs only.
+
+The objective of attention-based networks highlighted by  \cite{vaswani2017attention} is to reduce sequential computation while attaining hidden representation across arbitrary lengths of sequential input. Mechanisms which have been deployed to achieve this includes a combination of convolutional and recurrent schemes \citep{kaiser2016can,kalchbrenner2016neural, gehring2017convolutional}. \cite{vaswani2017attention} introduces a transduction model known as a Transformer based on self attention network with the ability to compute long term dependencies while eliminating sequence aligned RNN and convolutional architectures.
+
+The end-to-end architecture at the core of ESPNet is the CTC-Transformer+Attention Transducer model.  Together these two architectures achieve joint multi-objective speech training and decoding.  The CTC-Transformer model is based on a Bi-RNN similar to what is obtainable in the DeepSpeech model.  There are up to 11 variants of Attention networks implemented in ESPNet, however, the results of the ESPNet experiment performed was determined from the model described in \cite{chorowski2015attention}.  Moreover, the multi-objective training was performed with equal weights on both the CTC-transformer and the Attention-Transducer.  Finally the system was trained for 20 epochs only.
 
 With this minimal default setting, the test set had a final recognition score of 9.5\% character error rate (CER).  The next Chapter discusses how the baseline can be scaled and remodelled for integrating scattering features.
 
-\section{Attention-based Models}
-The objective of attention-based networks highlighted by  \cite{vaswani2017attention} is to reduce sequential computation while attaining hidden representation across arbitrary lengths of sequential input. Mechanisms which have been deployed to achieve this includes a combination of convolutional and recurrent schemes \citep{kaiser2016can,kalchbrenner2016neural, gehring2017convolutional}. \cite{vaswani2017attention} introduces a transduction model known as a Transformer based on self attention network with the ability to compute long term dependencies while eliminating sequence aligned RNN and convolutional architectures.
+The inclusion of Attention-based models and the warp-CTC decoder implemented in ESPNet ensures faster convergence and ultimately faster time to train, in addition to the end-to-end architecture.  Using a weighting function  one can control how much bias either the CTC-Transform or the Attention-Transducer will get during training.  The joint training helps to improve robustness as well as achieve fast convergence.
 
-Self attention is a network that intrinsically reduces the need for intensive resource training.  \cite{vaswani2017attention} reports that state of the art BLEU score of 41.0 having used a small fraction of training resources.  While GANs might not be attractive for low resource speech recognition, they still remain an important tool for verification of the output of other networks.  At the same time self attention networks can help to reduce the resource requirements of GANs when used within the context of a GAN.
-
-As a study to further this thesis, these networks are likely candidates for network training using scatter features as input discriminatory functions.  Attention based networks as a means to reduce training resources required, while GANs can be used as a means to generate training data.
-
-\section{Joint Training with ESPNet}
-Chapter \ref{ch6_speech} has already seen promising results based on preliminary experiments using the ESPNet model.  This model does fulfil major objectives outlined by this research. The inclusion of Attention-based models and the warp-CTC decoder implemented in ESPNet ensures faster convergence and ultimately faster time to train, in addition to the end-to-end architecture presented by ESPNet. The next step required for a further study is an integration of scattering features into ESPNet.  This scattering features implementation is the subject of a paper publication immediately sought after based on this work.  The features of ESPNet include state-of-the-art end-to-end architectures including variants of Attention-Transducers and CTC-decoders.  Using a weighting function  one can control how much bias either the CTC-Transform or the Attention-Transducer will get during training.  The joint training helps to improve robustness as well as achieve fast convergence.
 \begin{equation}
     \mathcal{L}=\alpha\mathcal{L}^{ctc}+(1-\alpha)\mathacal{L}^{att}
     \label{eqn_c7_esp00}
 \end{equation}
+
 At the same time joint decoding of labels is integrated with the character based RNN-language modelling. The log probability of the RNNLM-integrated decoding of character labels is as follows
+
 \begin{equation}
     \log p(y_n|y_{1:n−1},\mathbf{h}_{1:T‘})=\log p^{hyp}(y_n|y_{1:n−1},\mathbf{h}_{1:T‘})+\beta\log p^{lm}(y_n|y_{1:n−1})
     \label{eqn_c7_esp01}
@@ -135,20 +132,22 @@ Where joint decoding, $\log p^{hyp}(y_n|y_{1:n−1},\mathbf{h}_{1:T‘})$ is giv
     \log p^{hyp}(y_n|y_{1:n−1},\mathbf{h}_{1:T‘})\\
     & = \alpha\log p^{ctc}(y_n|y_{1:n-1},\mathbf{h}_{1:T'})+(1-\alpha)\log p^{att}(y_n|y_{1:n-1},\mathbf{h}_{1:T'})
 \end{equation}
-Furthermore, multi-channel training integrates noise robust and far-field speech recognition tasks which can accommodate joint 83-dimension MFCC and scatter transform training in addition to speech enhancement features such as beam forming and STFT masking \cite{ochiai2017multichannel}. Both single and multi-channel scatter transform features are proposed as subjects in the future paper publication. 
+Furthermore, multi-channel training allows noise robust and far-field speech recognition tasks which incorporates joint 83-dimension feature-training in addition to speech enhancement features such as beam forming and STFT masking \cite{ochiai2017multichannel}.
 
-\section{Model Baseline}
-The study by \cite{hannun2014first} reported successful character error rate (CER)  using deep neural network (DNN), recurrent deep neural network with only forward temporal connections (RDNN), and also bi-directional recurrent neural networks (BRDNN). The models used in this their study had 5 hidden layers having either 1,824 or 2,048 hidden units in each hidden layer.  For a baseline, the model produced by the Mozilla DeepSpeech team was adopted.  This model had a similar architecture with 5 hidden units and 2048 hidden units and was trained on the Librespeech corpus and the common voice data corpora \citep{panayotov2015librispeech, mozilla/deepspeech_2019}.
+\section{Model Baselines}
+The model baselines were trained alongside their scatter transform counterparts.  In addition, we adopted the model produced by the Mozilla DeepSpeech team.  This model had a similar architecture with 5 hidden units and 2048 hidden units.  This baseline was trained on Librespeech corpus and the common voice data corpora \citep{panayotov2015librispeech, mozilla/deepspeech_2019}.   Study by \cite{hannun2014first} reported successful character error rate (CER)  using deep neural network (DNN), recurrent deep neural network with only forward temporal connections (RDNN), and also bi-directional recurrent neural networks (BRDNN). The models used in their study had 5 hidden layers having either 1,824 or 2,048 hidden units in each hidden layer.  
 
-Word Error Rates by this model were optimised after 75 epochs, learning rate of 0.0001 and a dropout rate of 15\%.  In addition, the language model hyper parameters for alpha and beta were 0.75 and 1.85 respectively.  This achieved 8\% WER. This model was developed using MFCC features of the training corpus.
+Word Error Rates obtained by this additional model were optimised after 75 epochs, learning rate of 0.0001 and a dropout rate of 15\%.  In addition, the language model hyper parameters for alpha and beta were 0.75 and 1.85 respectively.  This achieved 8\% WER. This model was developed using MFCC features of the training corpora.
 
-\section{Results}
-Experiments were carried out on different GPU configurations. A set of experiments was performed a GPU configuration consisting of 2 GPUs having a total of 10 gigabytes of memory. The second set of experiments was carried out on a GPU configuration comprising 5 GPUs having a total of 15 gigabytes of memory. Experiments were also performed using single GPUs having 2GB and another single GPU having 8GB.  For each GPU configuration experiments were carried out on varying-size subsets of the common voice corpus being utilised.   The various GPU configurations along with the training times are shown in Table \ref{tab_c6_01_training}.
+\section{Model Simulations}
 
-In addition to the GPU configuration, experiments involving CPU and multi-node training were carried out.  Although quite a number of configuration did not reach a stopping condition, the multi node configurations which made use of Tensorflow distributed feature in particularly required regular user-intervention, and as such, was short-lived. In table \ref{tab_c6_01_training}, the first four configurations trained to saturation.  For these results, the training loss reduced significantly once the data was increased to ten hours of training.  However word error rates (WER) only showed improvement on the 40 hours data set.  This seems to indicate that a threshold of about 40 hours is required for the model to begin to converge for a Large Scale Vocabulary Continuous Speech Recognition (LSVCSR) system
+Experiments were carried out on the two different end-to-end models as well as on different acrshort{gpu} configurations. The first set of experiments was performed for the BiRNN-only model.  The first acrshort{gpu} configuration for the \acrshort{birnn}-only model consisted of 2 acrshort{gpu}s having a total of 10 gigabytes of memory. The second acrshort{gpu} configuration comprised 5 \acrshort{gpu}s having a total of 15 gigabytes of memory. Experiments for the BiRNN end-to-end model with transducer and attention were also performed using a acrshort{gpu} configuration having 4 gigabytes of memory. 
+
+\subsection{\acrshort{birnn} only end-to-end model Experiments}
+For the \acrshort{birnn}-only end-to-end experiments, GPU configuration experiments were carried out on varying-size subsets of the common voice corpus.   The various GPU configurations along with the training times are shown in Table \ref{tab_c6_01_training}.
 
 \begin{table}
-  \caption{GPU Experiments}
+  \caption{\acrshort{birnn}-only Experiments}
   \label{tab_c6_01_training}
 \begin{tabular}{lccc}
 \toprule
@@ -167,7 +166,9 @@ Experiment & Hours of speech & Total training time & Estimated training\\
 \end{tabular}
 \end{table}
 
-\section{Preliminary ESPNet Experiment}
+In addition to the GPU configuration, experiments involving CPU and multi-node training were carried out.  Although quite a number of configuration did not reach a stopping condition, the multi node configurations which made use of Tensorflow distributed feature in particularly required regular user-intervention, and as such, was short-lived. In table \ref{tab_c6_01_training}, the first four configurations trained to saturation.  For these results, the training loss reduced significantly once the data was increased to ten hours of training.  However word error rates (WER) only showed improvement on the 40 hours data set.  This seems to indicate that a threshold of about 40 hours is required for the model to begin to converge for a Large Scale Vocabulary Continuous Speech Recognition (LSVCSR) system
+
+\section{Preliminary \acrshort{espnet} Experiment}
 Preliminary experiments were carried out using the ESPNet \citep{watanabe2018espnet} an overview of which is described in Chapter \ref{ch3Method} and detailed some more in this section and Chapter \ref{ch8_future}.  A much smaller audio corpus guaranteed to converge however was used for these experiments.  The AN4 (alphanumeric) corpus by Carnegie Mellon University \citep{acero1990acoustical}, is a small vocabulary speech corpus having only 948 training utterances and 140 test utterances.
 
 The corpus utterances are 16-bit linearly sampled at 16kHz, each recording made with near-field microphone quality.  The compressed tar file comes with a variety of audio formats including raw wav format, the NIST sphere format and those already encoded as Mel cepstral coefficients.
@@ -195,11 +196,15 @@ The end-to-end architecture at the core of ESPNet is the CTC-Transformer+Attenti
 
 With this minimal default setting, the test set had a final recognition score of 9.5\% character error rate (CER).  The next Chapter discusses how the baseline can be scaled and remodelled for integrating scattering features.
 
+\section{Model Interpretation}
+The results showed that the training of the model was moving towards a very slow convergence as indicated by the slow decrements in training loss.  However, we speculate that on the complete data-set, the model will not only converge but show improvements in word error rates.  Already this is seen from results from preliminary baseline experiments with ESPNet.   With an advanced architecture, yet having the CTC-Transformer Bi-RNN at its core, the ESPNet baseline model yielded a competitive 9.5\% CER using multi-channel features derived from features integrated with 83 log MFCC feature vector.
+
+
 \section{Chapter Summary}
 
-In this chapter the details of the novel structure having the end-to-end deep bi-RNN architecture and deep scattering features were elaborated on.  The architecture which follows a five-layer structure consisting of a feed-forward neural network in the first three layers and the last two consisting of recurrent structures flowing in two different directions.  The network is then fed in with a 165-dimension feature vector containing deep-scattering encoding derived from a sampled raw audio file.
+In this chapter the details of the combination of an end-to-end deep bi-RNN architecture and deep scattering features were elaborated on.  The architecture described follows a five-layer structure consisting of a feed-forward neural network in the first three layers and the last two consisting of recurrent structures flowing in two different directions.  The network is then fed in with a 165-dimension feature vector containing deep-scattering encoding derived from a sampled raw audio file.
 
-The results showed that the training of the model was moving towards a very slow convergence as indicated by the slow decrements in training loss.  However, we speculate that on the complete data-set, the model will not only converge but show improvements in word error rates.  Already this is seen from results from preliminary baseline experiments with ESPNet.   With an advanced architecture, yet having the CTC-Transformer Bi-RNN at its core, the ESPNet baseline model yielded a competitive 9.5\% CER using multi-channel features derived from features integrated with 83 log MFCC feature vector.
+\stopblue
 
 \begin{figure}
 \centering
