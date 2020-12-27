@@ -143,7 +143,7 @@ Word Error Rates obtained by this additional model were optimised after 75 epoch
 
 Experiments were carried out on the two different end-to-end models as well as on different acrshort{gpu} configurations. The first set of experiments was performed for the BiRNN-only model.  The first acrshort{gpu} configuration for the \acrshort{birnn}-only model consisted of 2 acrshort{gpu}s having a total of 10 gigabytes of memory. The second acrshort{gpu} configuration comprised 5 \acrshort{gpu}s having a total of 15 gigabytes of memory. Experiments for the BiRNN end-to-end model with transducer and attention were also performed using a acrshort{gpu} configuration having 4 gigabytes of memory. 
 
-\subsection{\acrshort{birnn} only end-to-end model Experiments}
+\subsection{\acrshort{birnn}-only end-to-end model Experiments}
 For the \acrshort{birnn}-only end-to-end experiments, GPU configuration experiments were carried out on varying-size subsets of the common voice corpus.   The various GPU configurations along with the training times are shown in Table \ref{tab_c6_01_training}.
 
 \begin{table}
@@ -151,22 +151,21 @@ For the \acrshort{birnn}-only end-to-end experiments, GPU configuration experime
   \label{tab_c6_01_training}
 \begin{tabular}{lccc}
 \toprule
-Experiment & Hours of speech & Total training time & Estimated training\\
+Experiment & Hours of speech & Total training time & Training status\\
 \midrule
-1. 2xGPU 10GB RAM & 1 & 7 days & Completed\\
-2. 2xGPU 10GB RAM & 10 & 355 days & Completed\\
-3. 5xGPU 15GB RAM & 10 & 17 hours & Completed\\
-4. 5xGPU 15GB RAM & 40 & 12 days & Completed\\
-5. 1xCPU 16GB RAM & 20 & 4+ days & 70 days\\
-6. 1xGPU 2GB RAM & 20 & 17+ days & 100 days\\
-7. 1xCPU 16GB RAM & 20 & 4+ days & 70 days\\
-8. 1xCPU 16GB RAM & 20 & 4+ days & 70 days\\
-9. ESPNet 1xGPU 2GB & 1 & 1 hour & Completed\\
+1. 2xGPU 10GB RAM & 1 & 7 days & Complete\\
+2. 2xGPU 10GB RAM & 10 & 40 days & Not complete\\
+3. 5xGPU 15GB RAM & 10 & 17 hours & Complete\\
+4. 5xGPU 15GB RAM & 40 & 40 days & Not complete\\
+5. 1xCPU 16GB RAM & 20 & 20 days & Not complete\\
+6. 1xGPU 2GB RAM & 20 & 20 days & Not complete\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-In addition to the GPU configuration, experiments involving CPU and multi-node training were carried out.  Although quite a number of configuration did not reach a stopping condition, the multi node configurations which made use of Tensorflow distributed feature in particularly required regular user-intervention, and as such, was short-lived. In table \ref{tab_c6_01_training}, the first four configurations trained to saturation.  For these results, the training loss reduced significantly once the data was increased to ten hours of training.  However word error rates (WER) only showed improvement on the 40 hours data set.  This seems to indicate that a threshold of about 40 hours is required for the model to begin to converge for a Large Scale Vocabulary Continuous Speech Recognition (LSVCSR) system
+It can be seen in Table \ref{tab_c6_01_training}, only two experiments had reached completion.    The others had to be stopped for exceeding reasonable training times of 20 and 40 days. Out of the four experiments that did not complete, all the GPU-based experiments had trained for up to 20 epochs and quantitative metrics were taken for these experiments.  Table \ref{Table \ref{tab_c6_01_training} shows the details for the \acrfull{wer} accuracy metrics for a total of four experiments. The number of hours of speech, corpus type and total number of epochs are also shown. Accuracy curves are shown in figure \ref{fig_c7_acc}
+
+ In table \ref{tab_c6_01_training}, the first four configurations trained to saturation.  For these results, the training loss reduced significantly once the data was increased to ten hours of training.  However word error rates (WER) only showed improvement on the 40 hours data set.  This seems to indicate that a threshold of about 40 hours is required for the model to begin to converge for a Large Scale Vocabulary Continuous Speech Recognition (LSVCSR) system
 
 \section{Preliminary \acrshort{espnet} Experiment}
 Preliminary experiments were carried out using the ESPNet \citep{watanabe2018espnet} an overview of which is described in Chapter \ref{ch3Method} and detailed some more in this section and Chapter \ref{ch8_future}.  A much smaller audio corpus guaranteed to converge however was used for these experiments.  The AN4 (alphanumeric) corpus by Carnegie Mellon University \citep{acero1990acoustical}, is a small vocabulary speech corpus having only 948 training utterances and 140 test utterances.
@@ -186,7 +185,6 @@ Experiment & Hours & Corpus & Metric & Score\\& of speech\\
 2. 2xGPU 10GB RAM & 10 & CV LVCSR & WER(\%) & 100+\\
 3. 5xGPU 15GB RAM & 10 & CV LVCSR & WER(\%) & 100\\
 4. 5xGPU 15GB RAM & 40 &  CV LVCSR & WER(\%) & 87\\
-5. ESPNet 1xGPU 2GB & 1 & AN4 MVCSR & CER(\%) & 9.5\\
 \bottomrule
 \end{tabular}
 \end{table}
