@@ -93,13 +93,7 @@ p(\ell^+|x_{1:t})=p(W(\ell^+)|W(\ell))^\alpha(p_{nb}(\ell|x_{1:t})+p_b(\ell|x_{1
 \end{equation}
 
 Note that $p(W(\ell^+)|W(\ell))$ is set to $0$ if the current word $W(\ell^+)$ is not in the lexicon. This becomes a constraint to enforce all character strings to consist only of words in the lexicon.  Furthermore,  $p(W(\ell^+)|W(\ell))$ is extended to include all the character sequences representing number of words considered by the n-gram language model by constituting the last $n-1$ words in character sequence $W(\ell)$.
-\begin{figure}
-\centering
-  % Requires \usepackage{graphicx}
-  \includegraphics[width=14cm]{thesis/images/res00.PNG}\\
-  \caption{Training Loss, where $w<x<y<z$ are taken arbitrarily across the
-total number of epochs} \label{fig_6_2_loss}
-\end{figure}
+
 \section{Model Hyper parameters}
 The hidden layer matrix for each layer comprised 1024 hidden units (6.6M free parameters).  The weights are initialised from a uniform random distribution having a standard deviation of 0.046875.  The Adam optimisation algorithm \citep{kingma2014adam} was used with initial learning rate of, and a momentum of 0.95 was deployed to optimise the learning rate.
 
@@ -143,7 +137,7 @@ Word Error Rates obtained by this additional model were optimised after 75 epoch
 
 Experiments were carried out on the two different end-to-end models as well as on different acrshort{gpu} configurations. The first set of experiments was performed for the BiRNN-only model.  The first acrshort{gpu} configuration for the \acrshort{birnn}-only model consisted of 2 acrshort{gpu}s having a total of 10 gigabytes of memory. The second acrshort{gpu} configuration comprised 5 \acrshort{gpu}s having a total of 15 gigabytes of memory. Experiments for the BiRNN end-to-end model with transducer and attention were also performed using a acrshort{gpu} configuration having 4 gigabytes of memory. 
 
-\subsection{\acrshort{birnn} only end-to-end model Experiments}
+\subsection{\acrshort{birnn}-only end-to-end model Experiments}
 For the \acrshort{birnn}-only end-to-end experiments, GPU configuration experiments were carried out on varying-size subsets of the common voice corpus.   The various GPU configurations along with the training times are shown in Table \ref{tab_c6_01_training}.
 
 \begin{table}
@@ -151,32 +145,56 @@ For the \acrshort{birnn}-only end-to-end experiments, GPU configuration experime
   \label{tab_c6_01_training}
 \begin{tabular}{lccc}
 \toprule
-Experiment & Hours of speech & Total training time & Estimated training\\
+Experiment & Hours of speech & Total training time & Training status\\
 \midrule
-1. 2xGPU 10GB RAM & 1 & 7 days & Completed\\
-2. 2xGPU 10GB RAM & 10 & 355 days & Completed\\
-3. 5xGPU 15GB RAM & 10 & 17 hours & Completed\\
-4. 5xGPU 15GB RAM & 40 & 12 days & Completed\\
-5. 1xCPU 16GB RAM & 20 & 4+ days & 70 days\\
-6. 1xGPU 2GB RAM & 20 & 17+ days & 100 days\\
-7. 1xCPU 16GB RAM & 20 & 4+ days & 70 days\\
-8. 1xCPU 16GB RAM & 20 & 4+ days & 70 days\\
-9. ESPNet 1xGPU 2GB & 1 & 1 hour & Completed\\
+1. 2xGPU 10GB RAM & 1 & 7 days & Complete\\
+2. 2xGPU 10GB RAM & 10 & 40 days & Not complete\\
+3. 5xGPU 15GB RAM & 10 & 17 hours & Complete\\
+4. 5xGPU 15GB RAM & 40 & 40 days & Not complete\\
+5. 1xCPU 16GB RAM & 20 & 20 days & Not complete\\
+6. 1xGPU 2GB RAM & 20 & 20 days & Not complete\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-In addition to the GPU configuration, experiments involving CPU and multi-node training were carried out.  Although quite a number of configuration did not reach a stopping condition, the multi node configurations which made use of Tensorflow distributed feature in particularly required regular user-intervention, and as such, was short-lived. In table \ref{tab_c6_01_training}, the first four configurations trained to saturation.  For these results, the training loss reduced significantly once the data was increased to ten hours of training.  However word error rates (WER) only showed improvement on the 40 hours data set.  This seems to indicate that a threshold of about 40 hours is required for the model to begin to converge for a Large Scale Vocabulary Continuous Speech Recognition (LSVCSR) system
+It can be seen in Table \ref{tab_c6_01_training}, only two experiments had reached completion.    The others had to be stopped for exceeding reasonable training times of 20 and 40 days. Out of the four experiments that did not complete, all the GPU-based experiments had trained for up to 20 epochs and quantitative metrics were taken for these experiments.  Table \ref{tab_c6_01_training} shows the details for the \acrfull{wer} accuracy metrics for a total of four experiments. The number of hours of speech, corpus type and total number of epochs are also shown. Accuracy curves are shown in figure \ref{fig_6_3_wer}.
 
-\section{Preliminary \acrshort{espnet} Experiment}
+\begin{figure}
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=14cm]{thesis/images/brnn_only.png}\\
+  \caption{\acrshort{birnn}-only Experiments Error curve, where w\<x\<y\<z are taken arbitrarily across the total
+number of epochs} \label{fig_6_3_wer}
+\end{figure}
+
+
+\subsection{\acrshort{birnn} with Transducer and Attention mechanism Experiments}
 Preliminary experiments were carried out using the ESPNet \citep{watanabe2018espnet} an overview of which is described in Chapter \ref{ch3Method} and detailed some more in this section and Chapter \ref{ch8_future}.  A much smaller audio corpus guaranteed to converge however was used for these experiments.  The AN4 (alphanumeric) corpus by Carnegie Mellon University \citep{acero1990acoustical}, is a small vocabulary speech corpus having only 948 training utterances and 140 test utterances.
 
 The corpus utterances are 16-bit linearly sampled at 16kHz, each recording made with near-field microphone quality.  The compressed tar file comes with a variety of audio formats including raw wav format, the NIST sphere format and those already encoded as Mel cepstral coefficients.
 
+The end-to-end architecture at the core of ESPNet is the CTC-Transformer+Attention Transducer model.  Together these two architectures achieve joint multi-objective speech training and decoding.  The CTC-Transformer model is based on a Bi-RNN similar to what is obtainable in the DeepSpeech model.  There are up to 11 variants of Attention networks implemented in ESPNet, however, the results of the ESPNet experiment performed was determined from the model described in \cite{chorowski2015attention}.  Moreover, the multi-objective training was performed with equal weights on both the CTC-transformer and the Attention-Transducer.  Finally the system was trained for 20 epochs only.
+
+\begin{table}
+  \caption{\acrshort{birnn} with attention and transducer Experiments}
+  \label{tab_c6_03_training}
+\begin{tabular}{lccc}
+\toprule
+Experiment & Hours of speech & Total training time & Training status\\
+\midrule
+1. 2xGPU 10GB RAM & 1 & 7 days & Complete\\
+2. 2xGPU 10GB RAM & 10 & 40 days & Not complete\\
+3. 5xGPU 15GB RAM & 10 & 17 hours & Complete\\
+4. 5xGPU 15GB RAM & 40 & 40 days & Not complete\\
+5. 1xCPU 16GB RAM & 20 & 20 days & Not complete\\
+6. 1xGPU 2GB RAM & 20 & 20 days & Not complete\\
+\bottomrule
+\end{tabular}
+\end{table}
 Experiments were carried out using ESPNet default parameters which included those for character based-Recurrent Neural Network language model RNN-LM, multi-channel feature input and multi-objective learning using both CTC-Transformer and Attention-Transducer networks.
 
 \begin{table}
-  \caption{Summary of GPU Experiments}
+  \caption{\acrshort{birnn}-only Experiments Summary}
   \label{tab_c6_02_training}
 \begin{tabular}{lcccc}
 \toprule
@@ -186,19 +204,33 @@ Experiment & Hours & Corpus & Metric & Score\\& of speech\\
 2. 2xGPU 10GB RAM & 10 & CV LVCSR & WER(\%) & 100+\\
 3. 5xGPU 15GB RAM & 10 & CV LVCSR & WER(\%) & 100\\
 4. 5xGPU 15GB RAM & 40 &  CV LVCSR & WER(\%) & 87\\
-5. ESPNet 1xGPU 2GB & 1 & AN4 MVCSR & CER(\%) & 9.5\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\subsection{ESPNet Speech model architecture, parameters and results}
-The end-to-end architecture at the core of ESPNet is the CTC-Transformer+Attention Transducer model.  Together these two architectures achieve joint multi-objective speech training and decoding.  The CTC-Transformer model is based on a Bi-RNN similar to what is obtainable in the DeepSpeech model.  The attention transducer model is further explained in Chapter \ref{ch8_future}.  There are up to 11 variants of Attention networks implemented in ESPNet, however, the results of the ESPNet experiment performed was determined from the model described in \cite{chorowski2015attention}.  Moreover, the multi-objective training was performed with equal weights on both the CTC-transformer and the Attention-Transducer.  Finally the system was trained for 20 epochs only.
-
 With this minimal default setting, the test set had a final recognition score of 9.5\% character error rate (CER).  The next Chapter discusses how the baseline can be scaled and remodelled for integrating scattering features.
 
-\section{Model Interpretation}
-The results showed that the training of the model was moving towards a very slow convergence as indicated by the slow decrements in training loss.  However, we speculate that on the complete data-set, the model will not only converge but show improvements in word error rates.  Already this is seen from results from preliminary baseline experiments with ESPNet.   With an advanced architecture, yet having the CTC-Transformer Bi-RNN at its core, the ESPNet baseline model yielded a competitive 9.5\% CER using multi-channel features derived from features integrated with 83 log MFCC feature vector.
+\begin{table}
+  \caption{\acrshort{birnn} with attention and transducer Experiments Summary}
+  \label{tab_c6_04_training}
+\begin{tabular}{lcccc}
+\toprule
+Experiment & Hours & Corpus & Metric & Score\\& of speech\\
+\midrule
+1. 2xGPU 10GB RAM & 1 & CV LVCSR & WER(\%) & 100+\\
+2. 2xGPU 10GB RAM & 10 & CV LVCSR & WER(\%) & 100+\\
+3. 5xGPU 15GB RAM & 10 & CV LVCSR & WER(\%) & 100\\
+4. 5xGPU 15GB RAM & 40 &  CV LVCSR & WER(\%) & 87\\
+\bottomrule
+\end{tabular}
+\end{table}
 
+\section{Model Results Interpretation}
+
+ In table \ref{tab_c6_01_training}, the first four configurations trained to saturation.  For these results, the training loss reduced significantly once the data was increased to ten hours of training.  However word error rates (WER) only showed improvement on the 40 hours data set.  This seems to indicate that a threshold of about 40 hours is required for the model to begin to converge for a Large Scale Vocabulary Continuous Speech Recognition (LSVCSR) system
+
+
+The results showed that the training of the model was moving towards a very slow convergence as indicated by the slow decrements in training loss.  However, we speculate that on the complete data-set, the model will not only converge but show improvements in word error rates.  Already this is seen from results from preliminary baseline experiments with ESPNet.   With an advanced architecture, yet having the CTC-Transformer Bi-RNN at its core, the ESPNet baseline model yielded a competitive 9.5\% CER using multi-channel features derived from features integrated with 83 log MFCC feature vector.
 
 \section{Chapter Summary}
 
@@ -209,7 +241,8 @@ In this chapter the details of the combination of an end-to-end deep bi-RNN arch
 \begin{figure}
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=14cm]{thesis/images/res01.PNG}\\
-  \caption{WER, where w\<x\<y\<z are taken arbitrarily across the total
-number of epochs} \label{fig_6_3_wer}
+  \includegraphics[width=14cm]{thesis/images/res00.PNG}\\
+  \caption{Training Loss, where $w<x<y<z$ are taken arbitrarily across the
+total number of epochs} \label{fig_6_2_loss}
 \end{figure}
+
