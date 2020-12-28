@@ -406,6 +406,13 @@ journal={Voice.mozilla.org},
 year={2019}
 },
 
+
+@misc{foxvorge2019,
+title = "Voxforge",
+url={http://www.voxforge.org},
+year={2019}
+},
+
 @misc{lyons_2012,
 title={Mel Frequency Cepstral Coefficient (MFCC) tutorial},
 url={http://practicalcryptography.com/miscellaneous/machine-learning/guide-mel-frequency-cepstral-coefficients-mfccs/},

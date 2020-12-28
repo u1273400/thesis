@@ -7,6 +7,12 @@
   year={2013}
 }
 
+@misc{foxvorge2019,
+title = "Voxforge",
+url={http://www.voxforge.org},
+year={2019}
+},
+
 @inproceedings{salazar2019self,
   title={Self-attention networks for connectionist temporal classification in speech recognition},
   author={Salazar, Julian and Kirchhoff, Katrin and Huang, Zhiheng},
