@@ -149,7 +149,7 @@ Experiment & Hours of speech & Total training time & Training status\\
 \midrule
 1. 2xGPU 10GB RAM & 1 & 7 days & Complete\\
 2. 2xGPU 10GB RAM & 10 & 40 days & Not complete\\
-3. 5xGPU 15GB RAM & 10 & 17 hours & Complete\\
+3. 5xGPU 15GB RAM & 2 & 2 days & Complete\\
 4. 5xGPU 15GB RAM & 40 & 40 days & Not complete\\
 5. 1xCPU 16GB RAM & 20 & 20 days & Not complete\\
 6. 1xGPU 2GB RAM & 20 & 20 days & Not complete\\
@@ -162,14 +162,14 @@ It can be seen in Table \ref{tab_c6_01_training}, only two experiments had reach
 \begin{table}
   \caption{\acrshort{birnn}-only Experiments Summary}
   \label{tab_c6_02_training}
-\begin{tabular}{lcccc}
+\begin{tabular}{lccccc}
 \toprule
-Experiment & Hours & Corpus & Metric & Score\\& of speech\\
+Experiment & Hours & Corpus & epochs & Metric & Score\\& of speech\\
 \midrule
-1. 2xGPU 10GB RAM & 1 & CV LVCSR & WER(\%) & 100+\\
-2. 2xGPU 10GB RAM & 10 & CV LVCSR & WER(\%) & 100+\\
-3. 5xGPU 15GB RAM & 10 & CV LVCSR & WER(\%) & 100\\
-4. 5xGPU 15GB RAM & 40 &  CV LVCSR & WER(\%) & 87\\
+1. 2xGPU 10GB RAM & 1 & CV LVCSR & 40 & WER(\%) & 100+\\
+2. 2xGPU 10GB RAM & 10 & CV LVCSR & 25 & WER(\%) & 100+\\
+3. 5xGPU 15GB RAM & 2 & CV LVCSR & 40 & WER(\%) & 100\\
+4. 5xGPU 15GB RAM & 40 &  CV LVCSR & 40 & WER(\%) & 87\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -187,7 +187,7 @@ number of epochs} \label{fig_6_3_wer}
 \subsection{\acrshort{birnn} with Transducer and Attention mechanism Experiments}
 The \acrfull{espnet} \citep{watanabe2018espnet} provides building blocks for \acrshort{blstm} transducer with attention mechanism  described in Section \ref{sec_7_5_blstm_t}.  Two experiments involving a much smaller audio corpus guaranteed to converge quickly at training and a larger Italian language speech corpus \citep{foxvorge2019} used for these experiments.  The AN4 (alphanumeric) corpus by Carnegie Mellon University \citep{acero1990acoustical}, is a small vocabulary speech corpus having only 948 training utterances and 140 test utterances.
 
-The corpora utterances are 16-bit linearly sampled at 16kHz, each recording made with near-field microphone quality.  The compressed tar file comes with a variety of audio formats including raw wav format, the NIST sphere format and those already encoded as Mel cepstral coefficients.
+The speech corpora utterances are 16-bit linearly sampled at 16kHz, each recording made with near-field microphone quality.  The compressed tar file comes with a variety of audio formats including raw wav format, the NIST sphere format and those already encoded as Mel cepstral coefficients.
 
 The end-to-end architecture at the core of ESPNet is the CTC-Transformer+Attention Transducer model.  Together these two architectures achieve joint multi-objective speech training and decoding.  The CTC-Transformer model is based on a \acrshort{blstm} and is similar to what is obtainable in the DeepSpeech model.  There are up to 11 variants of Attention networks implemented in \acrshort{espnet}, however, the results of the \acrshort{espnet} experiment performed was determined from the model described in \cite{chorowski2015attention}.  Moreover, the multi-objective training was performed with equal weights on both the CTC-transformer and the Attention-Transducer.  
 
