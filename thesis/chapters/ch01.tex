@@ -66,7 +66,7 @@ The research objectives were as follows:
 
 Within this framework, our focus on language learning tasks was on Automatic Speech recognition while the intention was to achieve the last two objectives through one or more of the following means:
 \begin{enumerate}
-    \item Reduction of time to train speech models;
+    \item Reduction of time to train speech models and/or ensure training completes within few hours to few days;
     \item Optimisation of sub-tasks and training architecture within the ASR pipeline;
     \item Reduction in the overall time taken to develop speech models;
     \item Make efficient use of training parallelism;
@@ -79,7 +79,7 @@ Furthermore, following the Interspeech 2015 Zero Resource Speech Challenge \cite
 
 \section{Main Contribution to knowledge}
 
-This work uses a well-established neural language model for the low resourced language of Wakirike.  At the same time this work implements a unique combination of end-to-end deep recurrent neural network models with a robust and state of the art audio signal processing mechanism involving a hierarchical \acrfull{dsn} to engineer high-dimensional features to compete with current acoustic and deep architectures for speech recognition. While the base-line model gave state of the art performance from a multi-feature input on a Medium Vocabulary Continuous Speech Recognition corpus, with a Character Error Rate of 9.5\%; the \acrshort{dsn}-feature network was shown to be heading towards model saturation.
+This work uses a well-established neural language model for the low resourced language of Wakirike.  In addition, this work implements a unique combination of end-to-end deep recurrent neural network models with a robust and state of the art audio signal processing mechanism involving a hierarchical \acrfull{dsn} to engineer high-dimensional features to compete with current acoustic and deep architectures for speech recognition. While the language model had a better perplexity score than the 5-gram baseline, the DSN-CTC end-to-end sequence model performed competitively but not better than the baselines with a \acrlong{wer} of 12.9\% and 76.8\%; for \acrshort{svcsr} and \acrshort{lvcsr} tasks respectively.
 
 \section{Thesis outline}
 The engineered systems, methods and supporting literature contained in this thesis report follows the following outline and describe the research outputs of an end-to-end speech recogniser and develops the theory based on the building blocks of the research outputs.
