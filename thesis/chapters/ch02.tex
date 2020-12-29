@@ -8,7 +8,7 @@ A statistical formulation \citep{young2002htk} for the speech recogniser follows
 \label{eqn_1_1_sr_inputs}
 \end{equation}
 
-Equation \ref{eqn_1_1_sr_inputs} says that, at each discrete time $t$, we have an observation $\mathbf{o}_t$, which is, in itself is a vector in $\mathbb{R}^D$.  From the conditional probability, it can be formulated that certain word sequences from a finite dictionary are most probable given a sequence of observations. That is:
+Equation \ref{eqn_1_1_sr_inputs} says that, at each discrete time $t$, \textcolor{blue}{we have an observation $\mathbf{o}_t$, which is, in itself,  a vector space in $\mathbb{R}^D$}.  From the conditional probability, it can be formulated that certain word sequences from a finite dictionary are most probable given a sequence of observations. That is:
 \begin{equation}arg\max_t\{P(w_i|\mathbf{O})\}
 \label{eqn_2_2_srgen}
 \end{equation}
@@ -60,12 +60,12 @@ In terms of data collection processing \cite{besacier2014automatic} enumerate th
   \caption{Automatic Speech Recognition Pipeline} \cite{besacier2014automatic}\label{fig_2_2_asr_pipeline}
 \end{figure}
 
-\section{Low Resource Speech Recognition}
+ \section{Low Resource Speech Recognition}
 In this system building speech recognition research, the focus was on the development of a language model and an end-to-end speech model comparable in performance to state of the art speech recognition system consisting of an acoustic model and a language model.  Low resource language and acoustic modelling are now reviewed keeping in mind that little work has been done on low-resource end-to-end speech modelling when compared to general end-to-end speech modelling and general speech recognition as a whole.  
 
 From an engineering perspective, a practical means of achieving low resource speech modelling from a language rich in resources is through various strategies of the Machine Learning sub-field of transfer learning.  
 
-Transfer learning takes the inner representation of knowledge derived from training algorithm used from one domain and applying this knowledge in a similar domain having different set of system parameters\citep{ramachandran2016unsupervised}. Early work of this nature for speech recognition is demonstrated in \citep{vu2013multilingual} where multi-layer perceptrons were used to train multiple languages rich in linguistic resources. In a later section entitled “speech recognition on a budget”, a transfer learning mechanism involving deep neural networks from \citep{kunze2017transfer} is described.
+Transfer learning takes the inner representation of knowledge derived from training algorithm used from one domain and applies this knowledge in a similar domain having different set of system parameters\citep{ramachandran2016unsupervised}. Early work of this nature for speech recognition is demonstrated in \citep{vu2013multilingual} where multi-layer perceptrons were used to train multiple languages rich in linguistic resources. In a later section entitled “speech recognition on a budget”, a transfer learning mechanism involving deep neural networks from \citep{kunze2017transfer} is described.
 
 \subsection{Low Resource language modelling} \label{sec_lrlm}
 
@@ -96,7 +96,7 @@ P(w_k|w_{k-1},w_{k-2})\approx\frac{C(w_{k-2}w_{k-1}w_k)}{C(w_{k-2}w_{k-1})}
 \label{eqn_c2_lm03}
 \end{equation}
 
-The major problem with maximum likelihood estimation scheme is data sparsity. This can be tackled by a combination of smoothing techniques involving discounting and backing-off.  The alternative approach to robust language modelling is the so-called class based models \citep{Brown1992class,Kuhn1990cache} in which data sparsity is not so much an issue.  Given that for every word $w_k$, there is a corresponding class $c_k$, then,
+The major problem with maximum likelihood estimation schemes is data sparsity. This can be tackled by a combination of smoothing techniques involving discounting and backing-off.  The alternative approach to robust language modelling is the so-called class based models \citep{Brown1992class, Ku} in which data sparsity is not so much an issue.  Given that for every word $w_k$, there is a corresponding class $c_k$, then,
 \begin{equation}
 P(\mathbf{w})\prod_{k=1}^KP(w_k|c_k)p(c_k|c_{k-1},\dots,c_{k-N+1})
 \label{eqn_c2_lm04}
