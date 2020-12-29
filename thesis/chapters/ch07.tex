@@ -226,15 +226,37 @@ Experiment & Hours & Corpus & Metric & Score\\& of speech\\
 \end{table}
 
 \section{Model Results Interpretation}
+Interpretation of Model Results
+Experiments carried out to train the end-to-end \acrshort{asr} were performed on the following system configurations
+\begin{enumerate}
+    \item GPU (GTX1050) with 2GB RAM
+    \item GPU (GTX1050) with 4GB RAM
+    \item GPU (GTX1060) with 6GB RAM
+    \item GPU (GTX1070) with 3GB RAM
+    \item CPU with 16GB RAM
+\end{enumerate}
 
- In table \ref{tab_c6_01_training}, the first four configurations trained to saturation.  For these results, the training loss reduced significantly once the data was increased to ten hours of training.  However word error rates (WER) only showed improvement on the 40 hours data set.  This seems to indicate that a threshold of about 40 hours is required for the model to begin to converge for a Large Scale Vocabulary Continuous Speech Recognition (LSVCSR) system
+\subsection{Bi-RNN-only experiment discussion}
+Configurations with CPU were used as control experiments to compare the GPU efficiency with the CPU being compensated with more memory.  The higher memory allowed the CPU configurations to remain accessible during training unlike the GPU systems that used up most of the system resources bringing the computer system close to a grinding halt and making the GPU systems difficult to access while training was in progress.  In as much as a number of the experiments done exceeded 10 days, our goal was not to exceed more than 10 days training for speech models.  What the GPU lacked in memory resources was compensated for in computational speed gained due to their capacity for parallel.  By changing the batch size, memory resource requirement and computational parallelism was simultaneously managed for all experiments.  Therefore for CPU training computational speedup was attempted by increasing the batch size and for GPU training batch sizes were reduced so as not to quickly deplete the small memories.  For \acrshort{birnn}-only experiments, regardless of the batchsize allocations, only 2GPU configurations  (1 and 3 in Table \ref{tab_c6_01_training}) completed training for the given amounts of epochs and training data.
 
+Table \ref{tab_c6_02_training} shows four GPU-only configurations.  These GPU training configuration experiments had completed at least 20 epochs.  Training metrics for these configurations are plotted in Figure \ref{fig_6_3_wer}.   A reduction in training loss is observed once the data was increased to two hours of training.  This gives an indication of the model learning on the amount of data given.  Even though the speech models were trained on English language only.  We can simulate low resource settings in the English language by limiting the amount of data available during training.  Moreover, word error rates (WER) only showed improvement on the 40 hours data set.  This also indicates that a threshold of about 40 hours is required for the model to begin to converge for a Large Scale Vocabulary Continuous Speech Recognition (LSVCSR) system
 
-The results showed that the training of the model was moving towards a very slow convergence as indicated by the slow decrements in training loss.  However, we speculate that on the complete data-set, the model will not only converge but show improvements in word error rates.  Already this is seen from results from preliminary baseline experiments with ESPNet.   With an advanced architecture, yet having the CTC-Transformer Bi-RNN at its core, the ESPNet baseline model yielded a competitive 9.5\% CER using multi-channel features derived from features integrated with 83 log MFCC feature vector.
+The results showed that the training of the model was moving towards a very slow convergence as indicated by the slow decrements in training loss.  Initial experiments were performed on single GPU Units.  Batch size settings for these experiments were very small to fit into the limited RAM sizes on the GPUs.  At a later stage, multi-GPU units were utilised as a strategy to speed up training by increasing the batch sizes to run on the combined memory.  This however did not result in the anticipated speed up. It is suspected that this outcome may have been as a result of latency copying model parameters between GPU units and CPU multiple times during training.
+
+\subsection{Bi-RNN with Transducer and attention mechanism experiment discussion}
+Results from Bi-RNN with Transducer and attention experiments had shown greater promise in terms of completion of training within the time constraints set. Results shown in table \ref{tab_c6_03_training} show that both CPU and GPU training completed training for less than 20 hours of training and total number of epochs.
+
+We used a \acrfull{svcsr} corpus of English language and a \acrfull{lvcsr} of Italian and achieved a decent score of 26.8\% for the \acrshort{svcsr} corpus and a high error score of 76.7\% for the \acrshort{lvcsr} corpus.  The high error score for the \ref{lvcsr} from the observed results was attributed to the fact that the amount of data given ~10 hours is not sufficient for meaningful convergence.  This is also evidenced by the baseline result having a similar high error rate of 72.4\%.  A similar effect was also observed in the Bi-RNN-only experiments such that after training of 40 hours of data for 40 epochs the error was at 87\%.
+
+From the training curves (Figures \ref{fig_6_2_loss} and \ref{fig_6_3_wer} however, we can see that at 40 epochs the Bi-RNN with transducer and attention mechanism experiments had a faster rate of convergence and this led to experiments being completed within the time limits set.
 
 \section{Chapter Summary}
 
-In this chapter the details of the combination of an end-to-end deep bi-RNN architecture and deep scattering features were elaborated on.  The architecture described follows a five-layer structure consisting of a feed-forward neural network in the first three layers and the last two consisting of recurrent structures flowing in two different directions.  The network is then fed in with a 165-dimension feature vector containing deep-scattering encoding derived from a sampled raw audio file.
+In this chapter the details of the combination of an end-to-end deep bi-RNN architecture and deep scattering features were elaborated on.  The architecture described follows a five-layer structure consisting of a feed-forward neural network in the first three layers and the last two consisting of recurrent structures flowing in two different directions.  A 250-dimension 2nd-order feature vector of deep-scattering encoding derived from a sampled raw audio file is fed into this network.
+
+A second set of experiments comprising a similar architecture containing a \acrshort{bilstm} this time with encoder and decoder architectures and a transducer is also developed and tested.
+
+The result showed the second set of experiments having the transducer architecture with attention mechanism are able to train faster but out of all the results, although some models came close to their respective baselines none actually performed better than the baseline models.  In Chapter \ref{ch8_future} we address ways that the results may be improved.
 
 \stopblue
 

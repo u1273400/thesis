@@ -23,9 +23,15 @@ Initial pilot studies for this work involved feature engineering of speech signa
 
 Some aspects of \acrshort{asr} system development covered in this work not directly related to Zero-speech challenge included that of speech segmentation and speech-to-text alignment (Section \ref{sec_digitspeech}).  These are pre-input-feature processing tasks which occurs at the data preparation stage.  Once again, although speech segmentation is not directly integrated into our end-to-end system, one of the huge benefits to end-to-end CTC-based systems implemented in our work for new languages is the time saved from the need for accurate aligned speech during training.  CTC-based end-to-end systems is able to achieve alignment based on roughly aligned inputs.  Roughly aligned here means chunks of segmented raw speech audio and their text equivalent.  Hence, alignment is only at the segmentation or utterance stage and no need to align at the word or sub-word level.
 
-Finally, in addition to the speech model built using \acrshort{dsn} features, in Chapter \ref{ch6_wlm}, a word-level language model was developed using a character-based, \acrshort{gru}-\acrshort{rnn} language model.  This model had an improved perplexity to the baseline language model which was based on statistical 5-gram language model.
+Finally, in addition to the speech model built using \acrshort{dsn} features, in Chapter \ref{ch6_wlm}, a word-level language model was developed using a character-based, \acrshort{gru}-\acrshort{rnn} language model.  This model had an improved perplexity to the baseline language model which was based on a statistical 5-gram language model.
 
 Unlike some of the sub-word systems which did not have direct impact on the final research outcome, the \acrshort{gru}-\acrshort{rnn} language character based model developed by this research was integrated into some of the final speech models built in this work.
+
+\section{Limitations of the Study}
+This research was able to develop ground-breaking end-to-end speech models for speech recognition. However, only preliminary results have been obtained for deep scattering features.  While a handful of \acrshort{asr} sequence models were developed for the Wakirike language, the Wakirike language, which motivated this research, did not have any end-to-end speech model built for it.  It is the goal of this research, therefore,  in a future study, to develop a speech corpora for the Wakirike language.
+
+A more immediate limitation, was the high system capacity requirements for training \acrlong{lvcsr}.  The training of \acrshort{lvcsr} such as the full common voice data set requires high-end capacity systems and GPU configurations that were not accessible for training.  Notwithstanding, considering the current configurations that are available, a number of improvements to the present models are possible.    One includes further investigation of first and second order scatter network features. While first order features have been recommended, experiments used in this research utilised 2nd-order features.
+
 \stopblue
 
 \section{Directions for future study}
@@ -45,8 +51,10 @@ Self attention is a network that intrinsically reduces the need for intensive re
 
 As a study to further this thesis, these networks are likely candidates for network training using scatter features as input discriminatory functions.  Attention based networks as a means reduce training resources required, while GANs can be used as a means to generate training data.
 
+While we have used attention-based encoder-decoder networks for training of \acrshort{dss} features, considerable resource-saving may be gained by employing self-attention-based networks.  This has been explored by  \cite{salazar2019self} with satisfactory results.
+
 \subsection{Model Pre-training}
-The major setback this work suffered was from a reasonable time for training.  This work therefore recommends that speech models or indeed artificial intelligence models should be trainable within a maximum of 30 days and shouldn't generally exceed 20 days training.
+The major setback this work suffered was from a reasonable time for training.  This work therefore recommends that speech models or indeed artificial intelligence models should be trainable within a maximum of 20 days and should not generally exceed 10 days training.
 
 An area of neural network training optimisation not developed in this report is that of layer-wise greedy pre-training.  In this process, rather than train the deep neural network structure all in one stage, the network layers are successively added and trained layer by layer, one layer at a time \citep{Goodfellow-et-al-2016}.  The intuition behind this is that this makes the layers saturate much faster as the previous layer has already been saturated before the new layer is being added.
 
