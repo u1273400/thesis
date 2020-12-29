@@ -751,7 +751,7 @@ year={2019}
   year={2007}
 }
 
-@article{Kuhn1990cache,
+@article{kuhn1990cache,
 	author={R. Kuhn and R. De Mori},
 	year={1990},
 	title={A cache-based natural language model for speech recognition},
