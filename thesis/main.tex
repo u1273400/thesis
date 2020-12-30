@@ -70,7 +70,7 @@ The alternative approach, known as the end-to-end paradigm, makes use of a singl
 
 This \href{https://docs.google.com/document/d/1ne2ctaxjpOlilMDg88aTtzOdIyP-wI2_ST5mGDvAYMw/edit?usp=sharing}{research} focuses on taking advantage of end-to-end model ASR development gains for new and low-resource languages. Using a specialised light weight convolution-like neural network called the deep scattering network (DSN) to replace the input layer of the end-to-end model, our objective was to measure the performance of the end-to-end model using these augmented speech features while checking to see if the lightweight, wavelet-based architecture added any new features that are beneficial for low resource Speech recognition. 
 
-The research showed that it is possible to use this compact strategy as an alternative for speech features required for speech pattern recognition by deploying deep scattering network features with higher dimensional vectors when compared to traditional speech features. With \acrlong{wer}s of 26.8\% and 76.7\% for \acrshort{svcsr} and \acrshort{lvcsr} respective tasks. The \acrshort{asr} system metrics fell few \acrshort{wer} points short of the respective baselines.  In addition, training times tended to be longer when compared to the respective baselines.
+The results showed that it is possible to use this compact strategy as an alternative for speech features required for speech pattern recognition by deploying deep scattering network features with higher dimensional vectors when compared to traditional speech features. With \acrlong{wer}s of 26.8\% and 76.7\% for \acrshort{svcsr} and \acrshort{lvcsr} respective tasks. The \acrshort{asr} system metrics fell few \acrshort{wer} points short of the respective baselines.  In addition, training times tended to be longer when compared to the respective baselines.
 \stopblue
 \spacing{1.5}
 
@@ -83,7 +83,7 @@ To the praise and glory of our God and of His Christ.
 \chapter*{Acknowledgements}
 I thank the members supervisory team including Dr David Wilson and Dr Simon Parkinson for the invaluable guidance and keen interest throughout my research.  
 
-I also acknowledge my parents (Prof. Mrs. Jane Alamina and Dr. P. T. Alamina) for immense support shown.  My wife, children (Topaz and Jade) and family members have also stood by given and given all the encouragement I could ever need.  Thank you.  Finally, to all who have said a prayer and have contributed towards my studies or well being, I am grateful to you all.
+I also acknowledge my parents (Prof. Mrs. Jane Alamina and Dr. P. T. Alamina) for immense support shown.  My wife, Ibinabo Alamina, children (Topaz and Jade) and family members have also stood by given and given all the encouragement I could ever need.  Thank you.  Finally, to all who have said a prayer and have contributed towards my studies or well being, I am grateful to you all.
 
 \addcontentsline{toc}{section}{Copyright Statement}
 \chapter*{Copyright statement}
@@ -105,7 +105,6 @@ I also acknowledge my parents (Prof. Mrs. Jane Alamina and Dr. P. T. Alamina) fo
 \listofalgorithms
 \newpage
 \addcontentsline{toc}{section}{Acronyms}
-\clearpage
 
 \begin{table}[tp]
 \chapter*{Acronyms}
@@ -169,11 +168,59 @@ I also acknowledge my parents (Prof. Mrs. Jane Alamina and Dr. P. T. Alamina) fo
   \acrshort{sgd} & \acrlong{sgd} \\
   \acrshort{stc} & \acrlong{stc} \\
   \acrshort{vtln} & \acrlong{vtln} \\
-  \acrshort{wer} & \acrlong{wer} 
+  \acrshort{wer} & \acrlong{wer} \\
   \acrshort{wfst} & \acrlong{wfst} 
 \end{tabular}
 \end{table}
-  
+\clearpage
+
+\addcontentsline{toc}{section}{List of Symbols}
+\begin{table}[tp]
+\chapter*{Symbols}
+  \label{tab:symbols}
+\begin{tabular}{ll}
+Symbol & Meaning \\
+$\mathbf{O}$ & vector sequence of natural observations \\
+$\mathbf{o}_i$ & observation vector at time=i\\
+$\mathbf{w}$ & sequence of words recognised \\
+$w_i$ & word recognised at time=i\\
+$a_{ij}$ & probability between state i and j\\
+$b_j$ & probability of output observation\\
+$M$ & \acrlong{hmm} \\
+$H$ & Entropy of a language \\
+$PP$ & Perplexity of a language \\
+$\mathbf{x}$ & observation vector in terms of input features \\
+$C$ & output machine learning class prediction \\
+$\mathbf{W}$ & matrix of neural network weight parameters \\
+$E$ & Error margin \\
+$\nabla_\mathbf{w}$ & derivative with respect to weights \\
+$\sigma$ & neural network non-linear function \\
+$\mathbf{h}$ & matrix of hidden state weights \\
+$\mathbf{l}$ & sequence of output class labels \\
+$\mathbf{y}$ & sequence of output classes \\
+$y_{t,p}$ & \acrshort{ctc} output probabilities \\
+$\pi$ & \acrshort{ctc} output character sequence \\
+$\alpha$ & forward probability per time-step \\
+$\beta & backward probability per time-step \\
+$\mathcal{L}$ & Cross entropy loss for a sequence of input data\\
+$z$ & sequence of output characters \\
+$a_k$ & Fourier series coefficient \\
+$x$ & continuous signal input \\
+$C$ & Continuous wavelet transform \\
+$a$ & continuous wavelet scaling factor \\
+$b$ & continuous wavelet shifting factor \\
+$\phi$ & orthonormal bases (scaling) function \\
+$\psi$ & shifting (translation) function \\
+$\hat{\psi}$ & mother wavelet \\
+$h$ & Haar coefficients \\
+$M$ & Mel scale function \\
+$\delta_m$ & frequency range \\
+$d_t$ & delta-delta \acrshort{mfcc}s \\
+$\psi_j$ & Scatter transform wavelet \\
+$S_n$ & $n$-th order Scatter transform \\
+\end{tabular}
+\end{table}
+
 \chapter{\href{https://docs.google.com/document/d/1h8ZEcfEUpjJM6wYkgYYH-ryuiBFYVGSQA-Sf1StQtiY/edit#heading=h.i9tlo6ovvcpr}{Introduction}}\label{ch1_intro}
 \input{chapters/ch01}
 

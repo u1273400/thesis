@@ -2,16 +2,16 @@ This chapter describes the system building methodology  \citep{nunamaker1990syst
 
 In order to arrive at the initial research questions and hypothesis a literature survey  of speech processing advances was carried out.  
 
-The initial research topic was centred around a language learning companion.  Thus, a mini survey was conducted on recipients' use of technology in general learning.  However, after the literature survey, the research was narrowed down to core language technology assistive features and speech recognition for low resource languages was the chosen area of research focus.
+The initial research topic was centred around a language learning companion.  Thus, a mini survey was conducted on recipients' use of technology in general learning.  After the literature survey, the research was narrowed down to core language technology assistive features and speech recognition for low resource languages was the chosen area of research focus.
 
 This research develops several software systems based on knowledge acquired from the literature survey in order to gain deeper understanding into the state of the art research results as well as building upon baseline systems in order to achieve the research aims and objectives.  It was through this methodology that the final systems developed in chapters six and seven were designed and developed as a unique combination of existing research systems.  While the system built in chapter seven is a combination of systems in order to generate knowledge in the field of speech recognition, the value added from the system built in chapter six relates to using already successful methods in speech recognition on a new language having linguistic data challenges. 
 
 \section{Assumptions}
-This research makes the following assumptions and claims.
+This research makes the following assumptions.
 \begin{enumerate}
     \item The first assumption is that Software engineering systems are successfully developed using an incremental and iterative manner of increasing complexity.
     \item End-to-end speech models are more conservative on actual software engineering complexity and in that respect are said to be utilised towards low resource speech recognition.
-    \item End-to-end speech recognition has been made possible using recurrent neural networks (RNNs) and connectionist temporal classification (CTC) algorithm.
+    \item End-to-end speech recognition has been made possible using recurrent neural networks (RNNs) and connectionist temporal classification (CTC) algorithms.
     \item By having a higher number of features, Deep scattering networks (DSNs) can better detect speech than state of the art Mel Frequency Cepstral Coefficients (MFCCs).
     \item There is knowledge to be gained in the application of speech models to new languages.
 \end{enumerate}
@@ -72,7 +72,7 @@ The \texttt{SearchManager} sub-framework generates \texttt{ActiveLists} from cur
 The \texttt{SearchManager} sub-framework also communicates with the \texttt{Scorer}, a pluggable state probability estimation module that provides state output density values on demand.
 
 \subsubsection{Other modules}
-\texttt{ConfigurationManager} allows various module implementations to be combined in various ways.  Finally, we illustrate how the \texttt{ConfigurationManager} creates Automatic Speech Recognition (ASR) experiments using the CMU-sphinx4 objects described above in the sample code from \citep{Lamere03thecmu} 
+\texttt{ConfigurationManager} allows various module implementations to be combined in various ways.  Finally, we illustrate how the \texttt{ConfigurationManager} creates Automatic Speech Recognition (ASR) experiments using the CMU-sphinx4 objects described above in the sample program from \cite{Lamere03thecmu} 
 \begin{lstlisting}[language=Java,basicstyle=\small]
 
 package com.example;
