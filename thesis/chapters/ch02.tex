@@ -138,7 +138,7 @@ In this section, a recent transfer learning speech model \citep{kunze2017transfe
 
 Introduction of the unique scattering network is discussed in the next section.  It is worthy to note however that \cite{kunze2017transfer} uses a CNN network only while \cite{amodei2016deep} uses both RNN and CNN networks.  The speech model in this thesis uses a BiRNN model and combines an RNN model with the scattering layer which represents a light-weight low resource friendly pseudo enhanced CNN backing.  What is meant by pseudo enhanced CNN backing is reserved for the next section.  \textcolor{blue}{The proposed speech model therefore, in this thesis, stands to gain from an enhanced but lightweight CNN combined with RNN learning}.
 
-\subsection{Adding a Scattering layer}
+\subsection{Adding a Scattering layer}\label{sec_2_3_3_scat}
 
 In Machine Learning, training accuracy is greatly improved through a process described as feature engineering.  In feature engineering, discriminating characteristics of the data are enhanced at the same time non-distinguishing features constituting noise are removed or attenuated to a barest minimum.  A lot of the components signal speech signal are due to noise in the environment as well as signal channel distortions such as losses due to conversion from audio signals to electrical signal in the recording system.
 
