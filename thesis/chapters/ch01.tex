@@ -75,7 +75,7 @@ Within this framework, our focus on language learning tasks was on Automatic Spe
     \item Induce model simplicity thereby reducing training and development time without compromising performance.
 \end{enumerate}
 
-Furthermore, following the Interspeech 2015 Zero Resource Speech Challenge \citep{versteegh2015zero}, this research also fulfilled the objectives of modelling speech at subword, word and syntax level. The Zero Resource Speech Challenge is inspired from infants ability to construct acoustic and language models of speech in an end-to-end manner. At the word and syntax level this research develops a character-based language model that reinforces subword, word and syntax level speech model based on Character-Temporal-Classification CTC.
+Furthermore, following the Interspeech 2015 Zero Resource Speech Challenge \citep{versteegh2015zero}, this research also fulfilled the objectives of modelling speech at sub-word, word and syntax level. The Zero Resource Speech Challenge is inspired from infants ability to construct acoustic and language models of speech in an end-to-end manner. At the word and syntax level this research develops a character-based language model that reinforces sub-word, word and syntax level speech model based on Character-Temporal-Classification CTC.
 
 \startblue
 \subsection{Research Question}
@@ -83,9 +83,24 @@ Considering the recent development of end-to-end systems facilitated by deep-lea
 \stopblue
 
 \section{Main Contribution to knowledge}
-\textcolor{blue}{This work uses a character-based neural language model for the low resourced language of Wakirike.  In addition, this work implements a unique combination of end-to-end deep recurrent neural network models with a robust and state of the art audio signal processing mechanism involving a hierarchical \acrfull{dsn} to engineer high-dimensional features to compete with current acoustic and deep architectures for speech recognition. While the language model had a better perplexity score than the 5-gram baseline, the DSN-CTC end-to-end sequence model performed competitively but not better than the baselines with a \acrlong{wer} of 12.9\% and 76.8\%; for \acrshort{svcsr} and \acrshort{lvcsr} tasks respectively.}
+\textcolor{blue}{This work uses a character-based neural language model for the low resourced language of Wakirike.  In addition, this work implements a unique combination of end-to-end deep recurrent neural network models with a robust and state of the art audio signal processing mechanism involving a hierarchical \acrfull{dsn} to engineer high-dimensional features to compete with current acoustic and deep architectures for speech recognition. While the language model had a better perplexity score than the 5-gram baseline, the \acrshort{dsn}-\acrshort{ctc} end-to-end sequence model performed competitively but not better than the baselines with a \acrlong{wer} of 12.9\% and 76.8\%; for \acrshort{svcsr} and \acrshort{lvcsr} tasks respectively.}
 
 \startblue
+The main contributions to knowledge of this research include:
+\begin{itemize}
+    \item Rather than developing separate systems including \acrlong{am}, \acrlong{lm}, phonetic dictionary, aligned text and speaker related data transformation.  Systems developed in this research uses a single end-to-end frame-work which does not require separate sub-system training only input audio and output text sequences for training.
+    \item Detailed alignment of text and speech is not required only rough alignment comprising of segmented utterances and equivalent text
+    \item Our system is enhanced with a robust character-based \acrlong{rnnlm} which is trained integrally within the super end-to-end model.
+    \item Contribution to the Zero Resource challenge \citep{versteegh2015zero} in terms of sub-word modelling of speech features using lightweight \acrfull{dsn} and modelling of syntax level speech with end-to-end speech modelling.  This uses sequential model which simulates speech at the syntax level as opposed to the word-level.
+    \item This research also implemented hybrid model subsystems based on alternative sequential models specifically for the wakirike language including
+\begin{enumerate}
+    \item Wakirike Diacritic text converter from plain Wakirike text 
+    \item Phonetic Dictionary for Wakirike language
+\end{enumerate}
+    \item This research also as a pilot study designed an unsupervised syllable-phone recogniser using auto-correlation and \acrfull{gmm}
+\end{itemize}
+
+
 \section{Limitation of the study}
 This study realises from the onset that it may not be able to gather the data required to build ASR systems for the Wakirike language as this is an initial problem this work hopes to get a step closer to solving.  As a result, the English and Italian languages were substituted and simulated low resource constraints by reducing the amount of hours of recorded speech data for training or reducing the vocabulary size.  This provides a rough estimate of how much of the target Wakirike language speech data will be required to provide equivalent results based on this multilingual approach.
 \stopblue
