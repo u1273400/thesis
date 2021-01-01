@@ -8,10 +8,10 @@ The building block of a neural network simulates a combination of two consecutiv
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=7cm]{thesis/images/ptron2.png}\\
-  \caption{Perceptron} \label{fig_3_1_ptron}
+  \caption{Perceptron algorithm where $x_i$ are inputs and $w_i$ are input weights} \label{fig_3_1_ptron}
 \end{figure}
 
-The linear operation is the sum of the products of the input feature and a  weight vector set.  This vector sum of products is referred to as an affine transformation or operation.  The non linear operation is given by any one of a selection of nonlinear functions.  In  Figure \ref{fig_3_2_nn} this is shown as a step function.  The step function is activated (becomes 1) whenever the output of the linear function is above a certain threshold, otherwise remains at 0.  A simple neural network of perceptrons is formed by stacking the perceptrons into an interconnected layer as shown in the Figure \ref{fig_3_2_nn}  :
+The linear operation is the sum of the products of the input feature and a  weight vector set.  This vector sum of products is referred to as an affine transformation or operation.  The non linear operation is given by any one of a selection of nonlinear functions.  In  Figure \ref{fig_3_2_nn} this is shown as a step function.  The step function is activated (becomes 1) whenever the output of the linear function is above a certain threshold, otherwise remains at 0.  A simple neural network of perceptrons is formed by stacking the perceptrons into an interconnected layer as shown in the Figure \ref{fig_3_2_nn}.
 
 \begin{figure}
 \centering
@@ -23,12 +23,12 @@ The linear operation is the sum of the products of the input feature and a  weig
 From the preceding paragraph, each combination of linear operation followed by a non linear operation is called a neuron and the total number of neurons in the layer formed is termed as $M$-number of neurons in the layer.
 
 \subsection{Multi-layer Perceptron (MLP)}
-The multilayer Perceptron or MLP extends the basic Perceptron structure by adding one or more hidden layers.  These hidden layers comprise the outputs of one layer becoming the input of the next layer. In the simplest case having one hidden layer, the output of layer 1 becomes the input of the final output layer.  In comparison, the Perceptron is a one dimensional structure having one or more linear and non linear combination outputs, while the multilayer Perceptron is a 2-dimensional structure having one or more hidden layers of $N$ linear and non-linear combination outputs.  Mathematically speaking the output of each layer of an MLP having $N$ inputs and $M$ neurons is given by
+The multilayer Perceptron or MLP extends the basic Perceptron structure by adding one or more hidden layers.  These hidden layers comprise the outputs of one layer becoming the input of the next layer. In the simplest case having one hidden layer, the output of layer 1 becomes the input of the final output layer.  In comparison, the Perceptron is a one dimensional structure having one or more linear and non linear combination outputs, while the multilayer Perceptron is a 2-dimensional structure having one or more hidden layers of $N$ linear and non-linear combination outputs.  Mathematically speaking the output of each layer of an MLP having $N$ inputs and $M$.  The nonlinear portion of this equation is given by
 \begin{equation}
 z_j=h(b_j)=\frac{1}{ 1+e^{-b_j}} 
 \label{eqn_c3_nn_01}
 \end{equation}
- is the non-linear function while  is the linear function given by:
+ The other linear half of the equation is given by:
 \begin{equation}
 b_j=\sum_{i=0}^Nw_{ji}^{(1)}\qquad j=1,2,\dots,M
 \label{eqn_c3_nn_02}
@@ -81,8 +81,9 @@ The concept behind the Gradient descent algorithm is the fact that a function is
 
 A common error function or cost function for neural networks is the sum-of-squares error cost function.  This is obtained by summing the difference between the actual value and the Machine Learning model value over the training set $N$. 
 \begin{equation}
-E^n=\frac{1}{2}\sum_{k=1}^K(y_k^n-t_k^n)^2
+E^n=\frac{1}{2}\sum_{k=1}^K(l_k^n-y_k^n)^2
 \label{eqn_c3_nn_09}\end{equation}
+where $l$ is the label value for the output value $y$.
 
 In a neural network having a weight matrix $\mathbf{W}$ of $M$ neurons times $N$ inputs, the resulting gradient is a vector of partial derivatives of $E$ with respect to each element.  
 \begin{equation}\nabla_{\mathbf{W}}E=\left(\frac{\partial E}{\partial w_{10}},\dots,\frac{\partial E}{\partial w_{ki}},\dots,\frac{\partial E}{\partial w_{Kd}}\right) 
