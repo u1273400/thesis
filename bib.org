@@ -9,6 +9,13 @@
   organization={IEEE}
 }
 
+@article{luong2015effective,
+  title={Effective approaches to attention-based neural machine translation},
+  author={Luong, Minh-Thang and Pham, Hieu and Manning, Christopher D},
+  journal={arXiv preprint arXiv:1508.04025},
+  year={2015}
+}
+
 @inproceedings{salazar2019self,
   title={Self-attention networks for connectionist temporal classification in speech recognition},
   author={Salazar, Julian and Kirchhoff, Katrin and Huang, Zhiheng},

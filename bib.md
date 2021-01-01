@@ -7,6 +7,13 @@
   year={2013}
 }
 
+@article{luong2015effective,
+  title={Effective approaches to attention-based neural machine translation},
+  author={Luong, Minh-Thang and Pham, Hieu and Manning, Christopher D},
+  journal={arXiv preprint arXiv:1508.04025},
+  year={2015}
+}
+
 @misc{foxvorge2019,
 title = "Voxforge",
 url={http://www.voxforge.org},
