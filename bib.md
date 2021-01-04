@@ -142,7 +142,7 @@ language={English},
   booktitle={Proceedings of the 34th International Conference on Machine Learning-Volume 70},
   pages={2632--2641},
   year={2017},
-  organization={JMLR. org}
+  organization={JMLR.org}
 }
 
 @inproceedings{chorowski2015attention,
