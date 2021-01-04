@@ -412,7 +412,7 @@ language={English},
 }
 
 @misc{mozilla_2019,
-title = "Mozilla Deepspeech",
+title = {Mozilla Deepspeech},
 url={https://voice.mozilla.org/en},
 journal={Voice.mozilla.org},
 year={2019}
