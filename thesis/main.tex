@@ -1,5 +1,6 @@
 \documentclass[12pt,twoside]{report}
 \usepackage{hyperref}
+\usepackage{apacite}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \graphicspath{ {images/} }
@@ -66,7 +67,7 @@ A thesis submitted to the University of Huddersfield in partial fulfilment of th
 \startblue
 Automatic Speech Recognition (ASR) has made major leaps in its advancement largely due to two different machine learning models: Hidden Markov Models (HMMs) and Deep Neural Networks (DNNs).  State-of-the art results have been achieved by combining these two disparate methods to form a hybrid system.  This also requires that various components of the speech recognizer be trained independently based on a probabilistic noisy channel model.  Although this HMM-DNN hybrid ASR method has been successful in recent studies, the independent development of the individual components used in hybrid HMM-DNN models makes ASR development fragile and expensive in terms of time-to-develop the various components and their associated sub-systems.  The resulting trade-off is that ASR systems are difficult to develop and use especially for new applications and languages.
 
-The alternative approach, known as the end-to-end paradigm, makes use of a single deep neural-network architecture used to encapsulate as many as possible sub-components of speech recognition as a single process.  In the so-called end-to-end paradigm, latent variables of sub-components are subsumed by the neural network sub-architectures and the associated parameters.  The end-to-end paradigm gains of a simplified ASR-development process again is traded for higher internal model complexity and computational resources needed to train the end-to-end models. 
+The alternative approach, known as the end-to-end paradigm, makes use of a single deep neural-network architecture used to encapsulate as many as possible sub-components of speech recognition as a single process.  In the so-called end-to-end paradigm, latent variables of sub-components are subsumed by the neural network sub-architectures and the associated parameters.  The end-to-end paradigm gains of a simplified ASR-development process again are traded for higher internal model complexity and computational resources needed to train the end-to-end models. 
 
 This \href{https://docs.google.com/document/d/1ne2ctaxjpOlilMDg88aTtzOdIyP-wI2_ST5mGDvAYMw/edit?usp=sharing}{research} focuses on taking advantage of end-to-end model ASR development gains for new and low-resource languages. Using a specialised light weight convolution-like neural network called the deep scattering network (DSN) to replace the input layer of the end-to-end model, our objective was to measure the performance of the end-to-end model using these augmented speech features while checking to see if the lightweight, wavelet-based architecture added any new features that are beneficial for low resource Speech recognition. 
 
@@ -269,7 +270,7 @@ $S_n$ & $n$-th order Scatter transform \\
 \addcontentsline{toc}{chapter}{Appendix V - Wakirike Phonetic dictionary}
 \chapter*{\appendix}
 \input{chapters/ch08d}\label{app5_okd}
-\bibliographystyle{chapters/myplainnat}
+\bibliographystyle{apacite}
 \startblue
 \bibliography{bib}
 \stopblue
