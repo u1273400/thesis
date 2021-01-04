@@ -20,6 +20,15 @@ url={http://www.voxforge.org},
 year={2019}
 },
 
+
+@misc{karpathy2015unreasonable,
+  title = "The unreasonable effectiveness of recurrent neural network",
+  author={Andrej Karpathy},
+  booktitle={Andrej Karpathy Blog},
+  url={http://karpathy.github.io/2015/05/21/rnn-effectiveness/},
+  year={2015}
+},
+
 @inproceedings{salazar2019self,
   title={Self-attention networks for connectionist temporal classification in speech recognition},
   author={Salazar, Julian and Kirchhoff, Katrin and Huang, Zhiheng},
