@@ -480,10 +480,24 @@ These experiments were performed using CMU Sphinx4 recognition system and Kaldi 
 
 Speech alignment experiments were performed using the Alisa \cite{stan2016alisa} tool which is a python based tool with calls made to the HMM toolkit \cite{young2002htk}.  The Alisa tool alignment process undergoes a semi-supervised process and requires an error prone time-intensive manual pre-alignment procedure.  The tool itself was found to be quite unstable and the output results were not very easily reproducible for further tests to be carried out on different data sets.  In addition, the time-intensive pre-alignment procedure made the tool not very useful for this research. Had the tool been more successful, the tool, which utilises \acrfull{vad} algorithms, would have been especially useful for sentence segmentation of long sequences of transcribed audio speech.  This tool however still lacked in alignment at either a word-level or sub-word level of alignment required in ASR pipelines.
 
-\section{End-to-end Research Experiments}\label{sec_postalign}
-A significant issue arises when using HMM-based toolkits such as Kaldi.  This is the requirement for aligned speech.  In more recent endeavours, there have been efforts towards automatic alignment of transcribed audio speech recordings through successive Baum-Welch estimation techniques \cite{gales2014speech,ragni2018automatic,ragni2014data}. However, this technique is not particularly compatible with end-to-end goals adopted for this research as it would require preprocessing and successive pre-training of the data set.
+\startblue
+\section{Sequence-to-sequence Model Experiments}\label{sec_postalign}
+A significant issue arises when using HMM-based toolkits such as Kaldi.  This is the requirement for aligned speech.  In more recent endeavours, there have been efforts towards automatic alignment of transcribed audio speech recordings through successive Baum-Welch estimation techniques \citep{gales2014speech,ragni2018automatic,ragni2014data}. However, this technique is not particularly compatible with end-to-end goals adopted for this research as it would require preprocessing and successive pre-training of the data set.
 
-The following section describes the post-alignment experiments and in Chapters \ref{ch6_speech} and \ref{ch8_future}, how these methods deal with the problem of automatic speech alignment in a fashion which was compatible with end-to-end speech processing.  The end-to-end requirements were desirable for low-resource speech recognition as it introduces a simpler speech model design.  The downside however to the end-to-end approach is the dependency on very deep recurrent neural network structures which require large volumes of data for successful training.
+The following section introduces \acrshort{rnn} sequence-to-sequence modelling and some of the pilot studies done using these models and in Chapters \ref{ch6_speech} and \ref{ch8_future}, how these methods deal with the problem of automatic speech alignment in a fashion which is compatible with end-to-end speech processing.  The end-to-end requirements were desirable for low-resource speech recognition as it introduces a simpler speech model design.  The downside however to the end-to-end approach is the dependency on very deep recurrent neural network structures which require large volumes of data for successful training.
+
+
+\begin{figure}
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=9cm]{thesis/images/seq00}\\
+  \includegraphics[width=9cm]{thesis/images/seq00}\\
+  \includegraphics[width=9cm]{thesis/images/seq00}\\
+  \caption{(a) Positive values of original waveform (b) Filtered values (c) Peak counter (d) Trough counter}\label{fig_c3_exp02}
+\end{figure}
+
+In the wild, three types of naturally occurring sequence relationships are observed, one-to-many also known as \acrfull{simo},  many-to-one also known as \acrfull{miso} and many-to-many also known as \acrfull{mimo}.  The one-to-one also referred to as \acrfull{siso} is excluded here.  Although \acrshort{siso} relationship is naturally existing, this is not a sequential relationship and will not be modelled using a \acrlong{rnn}, but rather, a regular \acrlong{dnn} will accurately model a \acrshort{siso} relationship.  In addition the \acrshort{mimo} relationship can be further divided
+\stopblue
 
 \subsection{Tensor flow sequence-to-sequence character-to-diacritically-labelled-character model}\label{sec_c2d}
 Experiments performed in this and the next three sections are all based on sequence-to-sequence modelling using recurrent neural networks.  While the this section and the next section represent precursor experiments centred around speech recognition tasks, the later two sections represent the final experiments reported in this work.
