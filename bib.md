@@ -15,14 +15,14 @@
 }
 
 @misc{foxvorge2019,
-title = {Voxforge},
+title={Voxforge},
 url={http://www.voxforge.org},
 year={2019}
 },
 
 
 @misc{karpathy2015unreasonable,
-  title = {The unreasonable effectiveness of recurrent neural network},
+  title={The unreasonable effectiveness of recurrent neural network},
   author={Andrej Karpathy},
   booktitle={Andrej Karpathy Blog},
   url={http://karpathy.github.io/2015/05/21/rnn-effectiveness/},
@@ -412,7 +412,7 @@ language={English},
 }
 
 @misc{mozilla_2019,
-title = {Mozilla Deepspeech},
+title={Mozilla Deepspeech},
 url={https://voice.mozilla.org/en},
 journal={Voice.mozilla.org},
 year={2019}
