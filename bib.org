@@ -9,7 +9,6 @@
   organization={IEEE}
 }
 
-
 @misc{karpathy2015unreasonable,
   title = {The unreasonable effectiveness of recurrent neural network},
   author={Andrej Karpathy},
