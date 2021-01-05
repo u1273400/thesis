@@ -531,14 +531,21 @@ The character-to-diacritically labelled character model was a sequence-to-sequen
 \begin{figure}
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=14cm]{thesis/images/seq03.PNG}\\
+  \includegraphics[width=14cm]{thesis/images/diacritic.png}\\
   \caption{Diacritic symbol generator training data sequences}\label{fig_c3_t2d_sample}
 \end{figure}
 
+Although after training for 75 epochs (Figure \ref{fig_c3_t2d00}) the accuracy of the Wakirike diacritics sequence generator model was unacceptable (6\%), the model may have been improved by changing the sequence-relationship model from an asynchronous \acrshort{mimo} to a synchronous \acrshort{mimo}.  Improvements from a synchronous design stems from the insertion and deletion errors observed from the output transcription.  Ensuring the outputs and inputs had equal length would therefore constrain the model for better results.  The main aim of the pilot experiment, however, was to implement asynchronous transducer \acrshort{rnn} design and therefore further experiments for the diacritics sequence generator were not done.
 \stopblue
+\begin{figure}
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=14cm]{thesis/images/diacritic.png}\\
+  \caption{Diacritic symbol generator training loss}\label{fig_c3_t2d00}
+\end{figure}
 
 \subsection{Sequence-to-sequence Grapheme-to-Phoneme (G2P) model}\label{sec_c3_g2p}
-This follow up experiment to the previous experiment in section \ref{sec_c2d},  attempts to automatically generate a phonetic dictionary from graphemes in a text corpus. Grapheme-to-phoneme experiments come in two flavours, the first being a continuation of the previous experiment, that is, using diacritically marked symbols, and the second flavour using non-marked graphemes as input.  The experiments we performed used the latter non-marked graphemes as input. As this experiment was also a sub task in HMM speech model building,  the results of these experiments were reserved for further study.
+This follow up experiment to the previous experiment in section \ref{sec_c2d},  attempts to automatically generate a phonetic dictionary from graphemes in a text corpus. Grapheme-to-phoneme experiments come in two flavours, the first being a continuation of the previous experiment, that is, using diacritically marked symbols, and the second flavour using non-marked graphemes as input.  The experiments performed used the latter non-marked graphemes as input.  \textcolor{blue}{For this experiment, a pre-trained model having a 2-layer transducer \acrshort{rnn} having 256 hidden units was fine-tuned on the training data.  Appendix V shows the output Wakirike phonetic dictionary generated from this experiment.}
 
 What follows in the next three sections are sequence-to-sequence experiments actively developed in this research and are detailed in chapters (\ref{ch6_wlm},\ref{ch6_speech} and \ref{ch8_future}).  A brief summary of the experiments are highlighted in the following sections (\ref{sec_grulm}, \ref{sec_be2e} and \ref{c3sec_espnet}).  Note that these models all utilise TensorFlow deep learning library including the Bi-directional speech model (section \ref{sec_be2e}) which is built on top of Mozilla DeepSpeech with the exception of section \ref{c3sec_espnet} which is based on PyTorch; a similar deep learning library.
 
