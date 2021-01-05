@@ -482,29 +482,63 @@ Speech alignment experiments were performed using the Alisa \cite{stan2016alisa}
 
 \startblue
 \section{Sequence-to-sequence Model Experiments}\label{sec_postalign}
-A significant issue arises when using HMM-based toolkits such as Kaldi.  This is the requirement for aligned speech.  In more recent endeavours, there have been efforts towards automatic alignment of transcribed audio speech recordings through successive Baum-Welch estimation techniques \citep{gales2014speech,ragni2018automatic,ragni2014data}. However, this technique is not particularly compatible with end-to-end goals adopted for this research as it would require preprocessing and successive pre-training of the data set.
+A significant issue arises when using HMM-based toolkits such as Kaldi in low resource \acrshort{asr} applications.  This is the requirement for aligned speech.  In more recent endeavours, there have been efforts towards automatic alignment of transcribed audio speech recordings through successive Baum-Welch estimation techniques \citep{gales2014speech,ragni2018automatic,ragni2014data}. However, this technique is not particularly compatible with end-to-end goals adopted for this research as it would require preprocessing and successive pre-training of the data set.
 
 The following section introduces \acrshort{rnn} sequence-to-sequence modelling and some of the pilot studies done using these models and in Chapters \ref{ch6_speech} and \ref{ch8_future}, how these methods deal with the problem of automatic speech alignment in a fashion which is compatible with end-to-end speech processing.  The end-to-end requirements were desirable for low-resource speech recognition as it introduces a simpler speech model design.  The downside however to the end-to-end approach is the dependency on very deep recurrent neural network structures which require large volumes of data for successful training.
 
-In the wild, three types of naturally occurring sequence relationships exist: the one-to-many relationship also referred to here as \acrfull{simo}; the many-to-one relationship also referred to here as \acrfull{miso}, and; the many-to-many also referred to here as \acrfull{mimo}.  The one-to-one relationship also referred to as \acrfull{siso} is excluded here.  Although the \acrshort{siso} relationship is a naturally existing relationship, this relationship is not a sequence-type relationship and will not be modelled using a \acrlong{rnn}, but rather, can be modelled using regular \acrlong{dnn}s.  In addition, the \acrshort{mimo} relationship can be further subdivided into synchronous and asynchronous \acrshort{mimo}. In synchronous \acrshort{mimo}, the inputs and the outputs have equal lengths but in the asynchronous \acrshort{mimo}, the inputs and the outputs lengths are not necessarily equal.
+In the wild, three types of naturally occurring sequence relationships exist: the one-to-many relationship also referred to here as \acrfull{simo}; the many-to-one relationship also referred to here as \acrfull{miso}, and; the many-to-many also referred to here as \acrfull{mimo}.  The one-to-one relationship also referred to as \acrfull{siso} is excluded here.  Although the \acrshort{siso} relationship is a naturally existing relationship, this relationship is not a sequence-type relationship and will not be modelled using a \acrlong{rnn}, but rather, can be modelled using regular \acrlong{dnn}s.  In addition, the \acrshort{mimo} relationship can be further subdivided into synchronous and asynchronous \acrshort{mimo}. In synchronous \acrshort{mimo}, the inputs and the outputs have equal lengths but in the asynchronous \acrshort{mimo}, the input and the output lengths are not necessarily equal.
 
 \begin{figure}
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=9cm]{thesis/images/seq03.PNG}\\
-  \caption{Relationship Types and the neural network interpretation.  \citep{karpathy2015unreasonable}}\label{fig_c3_seq2seq}
+  \includegraphics[width=14cm]{thesis/images/seq03.PNG}\\
+  \caption{Relationship Types and their neural network interpretation.  \citep{karpathy2015unreasonable}}\label{fig_c3_seq2seq}
 \end{figure}
 
-Figure \ref{fig_c3_seq2seq} illustrates how the five  relationship types are translated into neural networks where (\ref{fig_c3_seq2seq}a) refers to a regular \acrshort{dnn} structure and (\ref{fig_c3_seq2seq}b to d) are different \acrshort{rnn} structures. Examples of each type of relationship structure are given in \cite{karpathy2015unreasonable}.  An example of a \
+Figure \ref{fig_c3_seq2seq} illustrates how the five  relationship types are translated into neural networks where (\ref{fig_c3_seq2seq}a) refers to a regular \acrshort{dnn} structure and (\ref{fig_c3_seq2seq}b to d) are different \acrshort{rnn} structures. Examples of each type of relationship structure are given in \cite{karpathy2015unreasonable}.  In Figure \ref{fig_c3_seq2seq}, the red blocks at the bottom are input blocks, the green blocks are neural network units and the blue blocks are output blocks.  For \acrshort{simo} relationship (Figure \ref{fig_c3_seq2seq}b), A single input will generate a sequence as output. An example of a \acrshort{simo} is an image captioning task where a single image input will generate a sentence or sequence of words. For the case of the \acrshort{miso} (Figure \ref{fig_c3_seq2seq}c), a sequence of inputs will generate a single output.  As an example, consider a fault detection task where a sequence of historical data can classify whether an instrument is faulty or not.  In this research, we only implement asynchronous \acrshort{mimo} (Figure \ref{fig_c3_seq2seq}d) and synchronous \acrshort{mimo} (Figure \ref{fig_c3_seq2seq}e) which satisfied the design requirement of the models implemented. In the asynchronous case (\ref{fig_c3_seq2seq}d), we see here that due to the misaligned or jagged alignment of inputs to outputs, there is a degree of freedom between the inputs and outputs such that they do not have to have equal number of inputs and outputs.  Within the \acrshort{rnn} model, this is implemented using two different \acrlong{rnn}s. One \acrshort{rnn} for the inputs known as the encoder network and one \acrshort{rnn} for the output known as the decoder network.  Together these encoder and decoder networks become a \acrshort{rnn}-Transducer network.   For the synchronous \acrshort{mimo} in Figure (\ref{fig_c3_seq2seq}e), however, only one \acrshort{rnn} is implemented constraining the number of inputs to be equal the number of outputs.  Note that both \acrshort{miso} and \acrshort{simo} are also implemented with a single \acrshort{rnn} structure, the difference between \acrshort{miso}, \acrshort{simo} and synchronous \acrshort{mimo} is that for \acrshort{simo} and \acrshort{miso} the corresponding inputs or outputs are ignored.  For the \acrshort{simo}, we only input the first \acrshort{rnn} sequence and ignore the rest.  For the \acrshort{miso} sequence, we only harvest the last output and ignore the preceding sequence of outputs.  
+
+\subsection{Procedure for designing sequence-to-sequence \acrshort{rnn} models}\label{sec_341_rnnproc}
+In the next two sections (\ref{sec_c2d} and \ref{sec_c3_g2p}), two pilot study experiment designs are discussed.  These experiments had two objectives; the first objective was to implement regular speech-recognition tasks using sequence-to-sequence methods and second objective was the exploration of sequence network designs described in the previous Section (\ref{sec_postalign}).  Since these experiments were mere pilot studies and not required in the final outputs, the results were not improved upon and were reserved for further investigation in future publications and the emphasis of these experiments was centred on sequence modelling design and implementation.  A detailed discussion of the final sequence models designed in this thesis is reserved for Chapters \ref{ch6_wlm} and \ref{ch6_speech}.  Generally for the sequence-to-sequence model experiments designed in this thesis we follow the following steps.
+\begin{itemize}
+    \item Step 1: Select the sequence \acrshort{rnn} model that satisfies the requirement for the sequence relationship being modelled.
+    \item Step 2: Select an appropriate \acrshort{rnn} (see Chapter \ref{ch3RNN} for discussion of \acrshort{rnn} types) for each \acrshort{rnn} component.
+    \item Step 3: Design neural network components including
+    \begin{enumerate}
+        \item Number of hidden layers
+        \item Number of neurons in hidden layers
+        \item Network saturation parameters
+        \begin{itemize}
+            \item Weight initialisation
+            \item Number of epochs
+            \item Learning rate
+            \item Cost function
+            \item Optimiser
+        \end{itemize}
+    \end{enumerate}
+    \item Step 4: Design Regularisation measures.  These are measures to ensure your network, which can be viewed as a high dimension function fitter does, not over-generalise or under-generalise.
+\end{itemize}
+
+Note that in this research, parameters in steps 3 and 4 are either experimentally determined or selected based on similar research which has yielded the desired outcomes.
+
 \stopblue
 
 \subsection{Sequence-to-sequence character-to-diacritically-labelled-character model}\label{sec_c2d}
-Experiments performed in this and the next three sections are all based on sequence-to-sequence modelling using recurrent neural networks.  While the this section and the next section represent precursor experiments centred around speech recognition tasks, the later two sections represent the final experiments reported in this work.
+Experiments performed in this and the next three sections are all based on sequence-to-sequence modelling using recurrent neural networks.  \textcolor{blue}{While this section and the next section represent precursor experiments centred around sequence modelling for speech recognition tasks, sections \ref{sec_grulm} and \ref{sec_be2e} introduce the major experiments in this work later discussed in Chapters \ref{ch6_wlm} and \ref{ch6_speech}.}
 
-The character-to-diacritically labelled character model was a sequence-to-sequence diacritically labeled experiment to automatically infer diacritic transcriptions of the Wakirike language given the plain unmarked Wakirike language text as input.  This is a task, when achieved successfully, then becomes a sub task towards developing a phonetic dictionary for the Wakirike Language and the phonetic dictionary in turn can be used in HMM speech recognition or equivalent  end-to-end models.  This experiment was a precursor experiment, the results of which were reserved for further study.
+\startblue
+The character-to-diacritically labelled character model was a sequence-to-sequence diacritically labeled experiment to automatically infer diacritic transcriptions of the Wakirike language given the plain unmarked Wakirike language text as input.  This is a task, when achieved successfully, then becomes a sub task towards developing a phonetic dictionary for the Wakirike Language and the phonetic dictionary in turn can be used in HMM speech recognition or as post-processing technique for an end-to-end model output text.  This experiment follows the design procedure outlined in Section \ref{sec_341_rnnproc}. Figure \ref{fig_c3_t2d_sample} gives example input and output sequences for this experiment.
+
+\begin{figure}
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=14cm]{thesis/images/seq03.PNG}\\
+  \caption{Diacritic symbol generator training data sequences}\label{fig_c3_t2d_sample}
+\end{figure}
+
+\stopblue
 
 \subsection{Sequence-to-sequence Grapheme-to-Phoneme (G2P) model}\label{sec_c3_g2p}
-This follow up experiment to the previous experiment in section \ref{sec_c2d},  attempts to automatically generate a phonetic dictionary from graphemes in a text corpus. Grapheme-to-phoneme experiments come in two flavours, the first being a continuation of the previous experiment, that is, using diacritically marked symbols, and the second flavour using non-marked graphemes as input.  The experiments we performed used the latter non-marked graphemes as input. As this experiment was also a subtask in HMM speech model building,  the results of these experiments were reserved for further study.
+This follow up experiment to the previous experiment in section \ref{sec_c2d},  attempts to automatically generate a phonetic dictionary from graphemes in a text corpus. Grapheme-to-phoneme experiments come in two flavours, the first being a continuation of the previous experiment, that is, using diacritically marked symbols, and the second flavour using non-marked graphemes as input.  The experiments we performed used the latter non-marked graphemes as input. As this experiment was also a sub task in HMM speech model building,  the results of these experiments were reserved for further study.
 
 What follows in the next three sections are sequence-to-sequence experiments actively developed in this research and are detailed in chapters (\ref{ch6_wlm},\ref{ch6_speech} and \ref{ch8_future}).  A brief summary of the experiments are highlighted in the following sections (\ref{sec_grulm}, \ref{sec_be2e} and \ref{c3sec_espnet}).  Note that these models all utilise TensorFlow deep learning library including the Bi-directional speech model (section \ref{sec_be2e}) which is built on top of Mozilla DeepSpeech with the exception of section \ref{c3sec_espnet} which is based on PyTorch; a similar deep learning library.
 
