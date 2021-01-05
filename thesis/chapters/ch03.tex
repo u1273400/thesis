@@ -405,7 +405,7 @@ Lastly, sample images can be visualised on the TensorBoard graph. This way kerne
 The Choregraphe software tool is a high-level language used for programming of Nao humanoid robots.  This is built on top of the Naoqi/Gentoo Unix/Robot Operating System(ROS) \citep{pot2009choregraphe}.  Speech recognition and processing modules of the Choregraphe tool were explored and expanded at the initial stages of the research.  However the Choregraphe software tool for the Nao robot was found to be unsuitable in speech recognition at the level of research that aligned with the research objectives and therefore was not utilised in this work.
 
 \subsection{Alisa}\label{sec_c3_alisa}
-Alisa tool is a lightly supervised sentence segmentation tool based on Voice Activity Detection (VAD) algorithms \citep{stan2016alisa}.  It is so called lightly supervised because it requires small amounts of training data.  Generally the tool was asserted to be optimised for sentence segmentation and offered assistance in the creation of new speech corpora in a language-independent fashion. 
+Alisa tool is a lightly supervised sentence segmentation tool based on Voice Activity Detection (VAD) algorithms \citep{stan2016alisa}.  It is so-called "lightly supervised" because it requires small amounts of training data.  Generally the tool was asserted to be optimised for sentence segmentation and offered assistance in the creation of new speech corpora in a language-independent fashion. 
 
 The Alisa tool researchers deploy a two-step method for aligning speech, and claim performance up to 70\% imperfect transcriptions often found in online resources can be successfully aligned with a word error rate of less than 0.5\%.  This tool is therefore said to be suitable for development multilingual and under-resourced language aligned speech-corpora.
 
@@ -486,20 +486,19 @@ A significant issue arises when using HMM-based toolkits such as Kaldi.  This is
 
 The following section introduces \acrshort{rnn} sequence-to-sequence modelling and some of the pilot studies done using these models and in Chapters \ref{ch6_speech} and \ref{ch8_future}, how these methods deal with the problem of automatic speech alignment in a fashion which is compatible with end-to-end speech processing.  The end-to-end requirements were desirable for low-resource speech recognition as it introduces a simpler speech model design.  The downside however to the end-to-end approach is the dependency on very deep recurrent neural network structures which require large volumes of data for successful training.
 
+In the wild, three types of naturally occurring sequence relationships exist: the one-to-many relationship also referred to here as \acrfull{simo}; the many-to-one relationship also referred to here as \acrfull{miso}, and; the many-to-many also referred to here as \acrfull{mimo}.  The one-to-one relationship also referred to as \acrfull{siso} is excluded here.  Although the \acrshort{siso} relationship is a naturally existing relationship, this relationship is not a sequence-type relationship and will not be modelled using a \acrlong{rnn}, but rather, can be modelled using regular \acrlong{dnn}s.  In addition, the \acrshort{mimo} relationship can be further subdivided into synchronous and asynchronous \acrshort{mimo}. In synchronous \acrshort{mimo}, the inputs and the outputs have equal lengths but in the asynchronous \acrshort{mimo}, the inputs and the outputs lengths are not necessarily equal.
 
 \begin{figure}
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=9cm]{thesis/images/diags.jpeg}\\
-  \caption{Types of Sequence-to-Sequence networks.  \citep{karpathy2015unreasonable}}\label{fig_c3_seq2seq}
+  \includegraphics[width=9cm]{thesis/images/seq03.PNG}\\
+  \caption{Relationship Types and the neural network interpretation.  \citep{karpathy2015unreasonable}}\label{fig_c3_seq2seq}
 \end{figure}
 
-In the wild, three types of naturally occurring sequence relationships exist: the one-to-many relationship also referred to here as \acrfull{simo}; the many-to-one relationship also referred to here as \acrfull{miso}, and; the many-to-many also referred to here as \acrfull{mimo}.  The one-to-one relationship also referred to as \acrfull{siso} is excluded here.  Although the \acrshort{siso} relationship is a naturally existing relationship, this relationship is not sequential in nature and will not be modelled using a \acrlong{rnn}, but rather, can be modelled using regular \acrlong{dnn}s.  In addition, the \acrshort{mimo} relationship can be further subdivided into synchronous and asynchronous where the synchronous \acrshort{mimo} inputs and outputs have equal lengths but the asynchronous \acrshort{mimo} relationship inputs and outputs lengths are not particularly similar.
-
-Figure \ref{fig_c3_seq2seq}
+Figure \ref{fig_c3_seq2seq} illustrates how the five  relationship types are translated into neural networks where (\ref{fig_c3_seq2seq}a) refers to a regular \acrshort{dnn} structure and (\ref{fig_c3_seq2seq}b to d) are different \acrshort{rnn} structures. Examples of each type of relationship structure are given in \cite{karpathy2015unreasonable}.  An example of a \
 \stopblue
 
-\subsection{Tensor flow sequence-to-sequence character-to-diacritically-labelled-character model}\label{sec_c2d}
+\subsection{Sequence-to-sequence character-to-diacritically-labelled-character model}\label{sec_c2d}
 Experiments performed in this and the next three sections are all based on sequence-to-sequence modelling using recurrent neural networks.  While the this section and the next section represent precursor experiments centred around speech recognition tasks, the later two sections represent the final experiments reported in this work.
 
 The character-to-diacritically labelled character model was a sequence-to-sequence diacritically labeled experiment to automatically infer diacritic transcriptions of the Wakirike language given the plain unmarked Wakirike language text as input.  This is a task, when achieved successfully, then becomes a sub task towards developing a phonetic dictionary for the Wakirike Language and the phonetic dictionary in turn can be used in HMM speech recognition or equivalent  end-to-end models.  This experiment was a precursor experiment, the results of which were reserved for further study.
