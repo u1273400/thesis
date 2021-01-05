@@ -1,7 +1,41 @@
 \documentclass[12pt,twoside]{report}
 \usepackage{hyperref}
 \usepackage{apacite}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{textcomp}
 \usepackage[utf8]{inputenc}
+
+\usepackage{stringenc}
+\newcommand*{\uni}{}
+\DeclareRobustCommand*{\uni}[1]{%
+  \begingroup
+    \StringEncodingConvert\x{%
+      \pdfunescapehex{%
+        00%
+        \ifnum"#1<"100000 0\fi
+        \ifnum"#1<"10000 0\fi
+        \ifnum"#1<"1000 0\fi
+        \ifnum"#1<"100 0\fi
+        \ifnum"#1<"10 0\fi
+        #1%
+      }%
+    }{utf32be}{utf8}%
+    \everyeof{\noexpand}%
+    \endlinechar=-1 %
+  \edef\x{%
+    \endgroup
+    \scantokens\expandafter{%
+      \expandafter\unexpanded\expandafter{\x}%
+    }%
+  }\x
+}
+
+% hyperref support
+\usepackage[pdfencoding=auto]{hyperref}
+\pdfstringdefDisableCommands{%
+  \def\uni#1{\unichar{"#1}}%
+}
 \usepackage{graphicx}
 \graphicspath{ {images/} }
 \usepackage[a4paper,width=150mm,top=25mm,bottom=25mm,bindingoffset=6mm]{geometry}
