@@ -437,8 +437,16 @@ In the model described in this work, the gradient $\mathcal{L}(x, z)$is computed
 
 This can be likened to how neural networks simulate how the human brain functions in achieving tasks.   Attention is a cognitive process of concentrating on one or a few things and at the same time ignoring others.  Therefore attention mechanism focuses more on the informative data segment of a model that contributes more to the final output.  It creates an underlying relationship between the input and output of a model producing improved transduction from input to output sequence. 
 
-The objective of attention-based networks highlighted by \cite{vaswani2017attention} is to reduce sequential computation while attaining hidden representation across arbitrary lengths of sequential input. Mechanisms which have been deployed to achieve this includes a combination of convolutional and recurrent schemes \citep{kaiser2016can,kalchbrenner2016neural, gehring2017convolutional}.
+Attention mechanism is an extension to the sequence-to-sequence asynchronous \acrshort{mimo} \acrshort{rnn} architecture discussed in Section \ref{sec_postalign}.  The objective of attention-based networks highlighted by \cite{vaswani2017attention} is to reduce sequential computation while attaining hidden representation across arbitrary lengths of sequential input. Some other strategies which have also attempted to achieve this includes a combination of convolutional and recurrent schemes \citep{kaiser2016can,kalchbrenner2016neural, gehring2017convolutional}.
 
+Attention is achieved by joint training of an attention neuron that takes outputs of the hidden layer of each input in the encoder along with the entire \acrshort{rnn} as shown in figure \ref{fig_c4_attn}.  In the original attention mechanism proposed by \cite{bahdanau2014neural}, the weighted sum of all encoder outputs will determine what segment of the sequence receives more attention.  The output of this attention neuron at each time-step is then concatenated with the output of the \acrshort{rnn} and fed to the decoder.
+\begin{figure}
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=9cm]{thesis/images/attention.PNG}
+  \caption{Attention mechanism}
+\label{fig_c4_attn}
+\end{figure}
 
 \cite{vaswani2017attention} introduces a transduction model known as a Transformer based on self attention network with the ability to compute long term dependencies while eliminating sequence aligned RNN and convolutional architectures.  Although this study makes use of \acrshort{rnn} transducers with attention, integration of the self-attention architecture was left for a further study.
 \stopblue
