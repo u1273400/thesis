@@ -1,5 +1,12 @@
 * Bibliography
 
+@article{bahdanau2014neural,
+  title={Neural machine translation by jointly learning to align and translate},
+  author={Bahdanau, Dzmitry and Cho, Kyunghyun and Bengio, Yoshua},
+  journal={arXiv preprint arXiv:1409.0473},
+  year={2014}
+}
+
 @article{goodfellow2013multi,
   title={Multi-digit number recognition from street view imagery using deep convolutional neural networks},
   author={Goodfellow, Ian J and Bulatov, Yaroslav and Ibarz, Julian and Arnoud, Sacha and Shet, Vinay},
