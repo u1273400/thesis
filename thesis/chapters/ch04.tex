@@ -439,14 +439,26 @@ This can be likened to how neural networks simulate how the human brain function
 
 Attention mechanism is an extension to the sequence-to-sequence asynchronous \acrshort{mimo} \acrshort{rnn} architecture discussed in Section \ref{sec_postalign}.  The objective of attention-based networks highlighted by \cite{vaswani2017attention} is to reduce sequential computation while attaining hidden representation across arbitrary lengths of sequential input. Some other strategies which have also attempted to achieve this includes a combination of convolutional and recurrent schemes \citep{kaiser2016can,kalchbrenner2016neural, gehring2017convolutional}.
 
-Attention is achieved by joint training of an attention neuron that takes outputs of the hidden layer of each input in the encoder along with the entire \acrshort{rnn} as shown in figure \ref{fig_c4_attn}.  In the original attention mechanism proposed by \cite{bahdanau2014neural}, the weighted sum of all encoder outputs will determine what segment of the sequence receives more attention.  The output of this attention neuron at each time-step is then concatenated with the output of the \acrshort{rnn} and fed to the decoder.
 \begin{figure}
 \centering
   % Requires \usepackage{graphicx}
-  \includegraphics[width=9cm]{thesis/images/attention.PNG}
+  \includegraphics[width=12cm]{thesis/images/attention.PNG}
   \caption{Attention mechanism}
 \label{fig_c4_attn}
 \end{figure}
+
+Attention is achieved by joint training of an attention neuron that takes outputs of the hidden layer of each input in the encoder along with the entire \acrshort{rnn} as shown in figure \ref{fig_c4_attn}.  In the original attention mechanism proposed by \cite{bahdanau2014neural}, the weighted sum of all encoder outputs will determine what segment of the sequence receives more attention.  The output of this attention neuron at each time-step is then concatenated with the output of the \acrshort{rnn} and fed to the decoder.
+
+Since dot product is a fairly decent measure of similarity, and faster to compute, Luong et al  proposed a dot product between encoder’s output and decoder’s previous hidden state as a basis for attention mechanism.  For this to work however, both of these vectors must be of the same dimensions.  This type of attention mechanism is known as multiplicative attention.  Just like in Concatenative attention, the dot product gives a score and all the scores (at a given decoder timestep) go through a softmax layer to give the final weights.  Another modification proposed was to use the decoder’s hidden state at the current time step rather than at the previous time step (i.e., ) rather than, , then to use the output from the attention mechanism (denoted as ) directly to compute the decoder's predictions (rather than using it to compute the decoder’s current hidden state). They also proposed a variant of the dot product mechanism where the encoder outputs first go through a linear transformation (i.e., a time-distributed Dense layer without a bias term) before the dot products are computed.  This is called the “general” dot product approach.  They compared both dot product approaches to the concatenative attention mechanism (adding a rescaling parameter v), and they observed that the dot product variants performed better than concatenative attention.
+
+\begin{equation} \begin{aligned}
+\mathbf{\tilde{h}}_{(t)} &= \sum_i\alpha_{(t,i)}\mathbf{y}_{(i)} \\
+\text{with }\alpha_{(t,i)} &= \frac{exp(e_{(t,i)})}{\sum_{i'}exp(e_{(t,i')})} \\
+\text{and } &= \begin{cases} \mathbf{h}_{(t)}^\top\mathbf{y}_{(i)} & dot\\ 
+\mathbf{h}_{(t)}^\top\mathbf{W}\mathbf{y}_{(i)} &  general \\
+\mathbf{v}^\top\tanh{(\mathbf{W}[\mathbf{h}_{(t)};\mathbf{y}_{(i)}]) & concatenate
+\end{cases} 
+\end{aligned}\label{eqn_c4_attn00}\end{equation}
 
 \cite{vaswani2017attention} introduces a transduction model known as a Transformer based on self attention network with the ability to compute long term dependencies while eliminating sequence aligned RNN and convolutional architectures.  Although this study makes use of \acrshort{rnn} transducers with attention, integration of the self-attention architecture was left for a further study.
 \stopblue
