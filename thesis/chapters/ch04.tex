@@ -400,7 +400,7 @@ similarly,
 g(u) = \begin{cases} u + 1,& \text{if } l'_u = blank \text{ or } l'_{u+2} = l'_{u} \\ u + 2,& \text{otherwise} \end{cases}   
 \end{equation}
 
-\subsection{CTC Loss function}
+\subsection{CTC Loss function}\label{sec_c4_ctcloss}
 
 The cross entropy error is a loss function used to measure accuracy of probabilistic measures.  It is calculated as the negative log probability of a likelihood measure.  The CTC loss function $\mathcal{L}(S)$ uses the cross entropy loss function of and is defined as the cross entropy error of correctly labelling all the training samples in some training set S:
 \begin{equation}
