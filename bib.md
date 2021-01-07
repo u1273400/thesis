@@ -1,5 +1,12 @@
 * Bibliography
 
+@article{ardila2019common,
+  title={Common voice: A massively-multilingual speech corpus},
+  author={Ardila, Rosana and Branson, Megan and Davis, Kelly and Henretty, Michael and Kohler, Michael and Meyer, Josh and Morais, Reuben and Saunders, Lindsay and Tyers, Francis M and Weber, Gregor},
+  journal={arXiv preprint arXiv:1912.06670},
+  year={2019}
+}
+
 @article{bahdanau2014neural,
   title={Neural machine translation by jointly learning to align and translate},
   author={Bahdanau, Dzmitry and Cho, Kyunghyun and Bengio, Yoshua},
@@ -538,6 +545,7 @@ year={2012}
 }
 
 @misc{mozilla/deepspeech_2019,
+title={Common voice},
 url={https://github.com/mozilla/DeepSpeech#common-voice-training-data},
 journal={GitHub},
 year={2019}
