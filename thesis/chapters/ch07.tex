@@ -18,7 +18,7 @@ The matlab scatnet toolbox \citep{anden2014scatnet}, used to determine the scatt
 
 The core of the system is a bidirectional recurrent neural network (BiRNN) trained to ingest scatter coefficients described in the previous section, in order to generate English text transcriptions.  An end-to-end system therefore specifies that utterances $x$ and the corresponding label $y$ be sampled from a training set such that the sample $S = {(x^{(1)}, y^{(1)}), (x^{(2)}, y^{(2)}), . . .}$.   In our end-to-end model, each utterance, $x^{(i)}$ is a processed feature vector consisting of $165$ dimensions.  Recall, every window passes through a scattering transform to yield an input of vector of $p=165$ features; consequently,   $x^{(i)}_{t,p}$ denotes the $p$-th feature in a scatter transform at time $t$.  
 
-GPU training of the speech model architecture developed above was conducted using Mozilla deepspeech \citep{mozilla_2019} CTC bi-directional RNN implementation along with the accompanying Mozilla Common voice data set  \citep{ardila2019common}.  The Common Voice Data set project consists of voice samples in short recordings approximately $4$ seconds each.  The complete dataset is about $250$ hours of recording divided into training, test and development subsets.  The BiRNN, given the input sequence, $x$, outputs a sequence of probabilities $y_t=\mathbb{P}(c_t|x)$,  where $c_t \in a,b,c,\dots,z,space,apostrophe,blank$. 
+GPU training of the speech model architecture developed above was conducted using Mozilla Deepspeech \citep{mozilla_2019} CTC bi-directional RNN implementation along with the accompanying Mozilla Common voice data set  \citep{ardila2019common}.  The Common Voice Data set project consists of voice samples in short recordings approximately $4$ seconds each.  The complete data set is about $250$ hours of recording divided into training, test and development subsets.  The BiRNN, given the input sequence, $x$, outputs a sequence of probabilities $y_t=\mathbb{P}(c_t|x)$,  where $c_t \in a,b,c,\dots,z,space,apostrophe,blank$. 
 
 The actual architecture of our core Bi-RNN is similar to the deepspeech system described in \cite{hannun2014deep}. This structure constitutes 5 hidden layers and one output layer.  The first three layers are regular DNNs followed by a bi-directional recurrent layer. As such, the output of the first three layers are computed by:
 \begin{equation}
@@ -53,7 +53,7 @@ $b^{(6)}_k$ takes on the -th bias and $(W^{(6)} h^{(5)}_t)_k$ is the matrix prod
   \caption{Deep scattering Bi-RNN Model} \label{fig_6_1_ctc_scatter}
 \end{figure}
 
-\section{CTC Decoding} \label{sec_c7_ctc_decoder}
+\subsection{CTC Decoding} \label{sec_c7_ctc_decoder}
 
 In chapter three the CTC loss function algorithm was established as being able to maximise the probability of two cases.  The first case of transiting to a blank and the second case of transiting to a non blank.  In this section, this concept is used to enable decoding of the network output from posterior distribution output to character sequences which can be measured against a reference transcription using either character error rate (CER) or word error rate (WER).
 
@@ -97,19 +97,28 @@ p(\ell^+|x_{1:t})=p(W(\ell^+)|W(\ell))^\alpha(p_{nb}(\ell|x_{1:t})+p_b(\ell|x_{1
 
 Note that $p(W(\ell^+)|W(\ell))$ is set to $0$ if the current word $W(\ell^+)$ is not in the lexicon. This becomes a constraint to enforce all character strings to consist only of words in the lexicon.  Furthermore,  $p(W(\ell^+)|W(\ell))$ is extended to include all the character sequences representing number of words considered by the n-gram language model by constituting the last $n-1$ words in character sequence $W(\ell)$.
 
-\section{Model Hyper parameters}
+\subsection{Model Hyper parameters}
 The hidden layer matrix for each layer comprised 1024 hidden units (6.6M free parameters).  The weights are initialised from a uniform random distribution having a standard deviation of 0.046875.  The Adam optimisation algorithm \citep{kingma2014adam} was used with initial learning rate of, and a momentum of 0.95 was deployed to optimise the learning rate.
 
 The network was trained for a total of five to fifty epochs over the training set for experiments conducted. The training time for Python GPU implementation is shown in Table \ref{tab_c6_01_training}.  For decoding with prefix search we use a beam size of $200$ and cross-validated with a held-out set to find optimal settings for the parameters $\alpha$ and $\beta$. Figure \ref{fig_6_3_wer} shows word error rates for various GPU configurations and audio data-set sizes.
 
 \startblue
-\section{BiRNN with Transducer+Attention end-to-end Architecture}\label{sec_7_5_blstm_t}
+\section{Summary of \acrshort{birnn} Experiment Design}
+The details of the \acrshort{birnn} model has been outlined in Sections \ref{sec_c7_birnn} and \ref{sec_c7_ctc_decoder}.  This section now summarises the process of the \acrshort{birnn} experiment from data collection to output text transcriptions.  Recall once again, as this is an end-to-end experiment the input-end will comprise raw audio speech utterances and at the output-end will be the character sequences which are resolved into words using a language model. The design of this experiment therefore utilises the \acrshort{birnn} to ingest raw audio utterances as preprocessed scatter-transforms and outputs text transcription which can be compared against the original audio transcriptions.
 
-The end-to-end architecture at the core of ESPNet is the CTC-Transformer+Attention Transducer model.  Together these two architectures achieve joint multi-objective speech training and decoding.  The CTC-Transformer model is based on a Bi-RNN similar to what is obtainable in the DeepSpeech model.  There are up to 11 variants of Attention networks implemented in ESPNet, however, the results of the ESPNet experiment performed was determined from the model described in \cite{chorowski2015attention}.  Moreover, the multi-objective training was performed with equal weights on both the CTC-transformer and the Attention-Transducer.  Finally the system was trained for 20 epochs only.
+The audio clips and the corresponding transcriptions are downloaded with a script and the subsequent locations are stored into a configuration file. Being an end to end process, no further data pre-processing is required except conversion of the audio file from a binary format to a numeric-text format.  From this numeric text format, the scatter-transforms are computed when loaded from the configuration file.  
 
-With this minimal default setting, the test set had a final recognition score of 9.5\% character error rate (CER).  The next Chapter discusses how the baseline can be scaled and remodelled for integrating scattering features.
+The \acrshort{ctc}-algorithm discussed in Sections \ref{sec_c4_ctcloss} and \ref{sec_c7_ctc_decoder} is responsible for correcting fuzzy alignments between audio input and output text.  This relationship according to Section \ref{sec_341_rnnproc} is an asynchronous \acrshort{mimo}, but the \acrshort{birnn} represents a synchronous \acrshort{mimo}. Hence a synchronous \acrshort{mimo} is combined with the CTC-decoder such that while \acrshort{birnn} takes care of the \acrlong{mimo} relationship the \acrshort{ctc} decoder takes care of collapsing output characters and, therefore, restoring the asynchronous relationship between outputs and inputs.  For steps 1 and 2 of Section \ref{sec_341_rnnproc} we use a \acrshort{birnn}.  Details of the internal structure of the \acrshort{birnn} from Sections \ref{sec_c7_birnn} and \ref{sec_c7_ctc_decoder} are used for step 3.  This includes 3 hidden regular \acrshort{dnn} layers and two bi-directional \acrshort{lstm}s hidden-layers and a softmax output layer.  Neural network saturation parameters are selected based on desired training time, similar research practice, and accuracy expectations in line with the research objectives. They include weight initialization having a mean of 0 and standard deviation of 0.046875; clipped \acrshort{relu} non-linear function (see Chapter \ref{ch4DSN}); learning rate of 0.001 with 0.95 momentum.  Finally, the adam optimiser and CTC-loss function (Section \ref{sec_c4_ctcloss}) are incorporated at the training output stages.
 
-The inclusion of Attention-based models and the warp-CTC decoder implemented in ESPNet ensures faster convergence and ultimately faster time to train, in addition to the end-to-end architecture.  Using a weighting function  one can control how much bias either the CTC-Transform or the Attention-Transducer will get during training.  The joint training helps to improve robustness as well as achieve fast convergence.
+The \acrshort{ctc} decoder described in Section \ref{sec_c7_ctc_decoder} is then used to determine the characters from the softmax output.  The \acrshort{ctc} decoder had a look ahead beam search parameter of 200 characters.
+
+\section{BiRNN with Attention Transducer end-to-end Architecture}\label{sec_7_5_blstm_t}
+
+The core of this model is a CTC-Transformer+Attention Transducer model.  Together these two architectures achieve joint speech training and decoding.  The CTC-Transformer model is based on a Bi-LSTM similar to what is obtainable in the DeepSpeech model. There are up to 11 variants of Attention networks implemented in \acrshort{espnet}, however, the results of the experiments done this work experiment was determined from the attention model described in \cite{chorowski2015attention}.  Moreover, the multi-objective training was performed with equal weights on both the CTC-transformer and the Attention-Transducer.  Finally the system was trained for 20-200 epochs depending on the design goals and accuracy required.
+
+This model uses the asynchronous \acrshort{mimo} model.  Although this model would require more neural network layers and about 2 times more \acrshort{rnn} units than the synchronous \acrshort{mimo}-\acrshort{rnn} model, ultimately, addition of Attention-based models ensures faster convergence and ultimately faster time to train.  This can only be achieved using asynchronous \acrshort{mimo} models which are the only models that support attention-mechanism.
+
+Using a weighting function, $\alpha$, one can control how much bias either the CTC-Transform or the Attention-Transducer will get during training.  The joint training helps to improve robustness as well as achieve fast convergence.
 
 \begin{equation}
     \mathcal{L}=\alpha\mathcal{L}^{ctc}+(1-\alpha)\mathacal{L}^{att}
@@ -127,7 +136,11 @@ Where joint decoding, $\log p^{hyp}(y_n|y_{1:n−1},\mathbf{h}_{1:T‘})$ is giv
     \log p^{hyp}(y_n|y_{1:n−1},\mathbf{h}_{1:T‘})\\
     & = \alpha\log p^{ctc}(y_n|y_{1:n-1},\mathbf{h}_{1:T'})+(1-\alpha)\log p^{att}(y_n|y_{1:n-1},\mathbf{h}_{1:T'})
 \end{equation}
-Furthermore, multi-channel training allows noise robust and far-field speech recognition tasks which incorporates joint 83-dimension feature-training in addition to speech enhancement features such as beam forming and STFT masking \cite{ochiai2017multichannel}.
+
+
+\section{Summary of \acrshor{birnn} with Attention Transducer Experiment Design}
+According to the stepwise procedure of deriving \acrshort{rnn} sequence-to-sequence models , the \acrshort{birnn} with Attention Transducer model incorporates an asynchronous \acrshort{mimo} design for Step 1 (Section \ref{sec_341_rnnproc}).  For steps 2 and 3 (Section \ref{sec_341_rnnproc}), 6 layers similar to the \acrshort{birnn}-only design consisting 3 regular \acrshort{dnn} layers, 2 \acrshort{blstm} and the output softmax layer. Neural network components  The number of neurons for the hidden layers were 2048 neurons.  Network saturation parameters were similar to the \acrshort{birnn}-only experiment setup having the number of epochs between 20-200 epochs and in line with research objectives.  As the training was significantly faster in this setup, more epochs could be incorporated into the experiments.  The initial experiment had only 20 epochs using baseline experiments and to determine how fast the training would be.  Subsequent experiments were between 100 and 200 epochs according to desired accuracy and research objectives.  Weights were initialized between 1 and -1 according to a normal distribution.  Learning rate was 0.001; Non linear function was a clipped \acrshort{relu}.  Cost function and optimizer was ctc-loss and ada-grad variant. Decoding was done according to the joint decoding function described in Section \ref{sec_7_5_blstm_t}.  Finally
+
 
 \section{Model Baselines}
 The model baselines were trained alongside their scatter transform counterparts.  In addition, we adopted the model produced by the Mozilla DeepSpeech team.  This model had a similar architecture with 5 hidden units and 2048 hidden units.  This baseline was trained on Librespeech corpus and the common voice data corpora \citep{panayotov2015librispeech, ardila2019common}.   Study by \cite{hannun2014first} reported successful character error rate (CER)  using deep neural network (DNN), recurrent deep neural network with only forward temporal connections (RDNN), and also bi-directional recurrent neural networks (BRDNN). The models used in their study had 5 hidden layers having either 1,824 or 2,048 hidden units in each hidden layer.  
@@ -185,7 +198,7 @@ number of epochs} \label{fig_6_3_wer}
 \end{figure}
 
 
-\subsection{\acrshort{birnn} with Transducer and Attention mechanism Experiments}
+\subsection{\acrshort{birnn} with Attention Transducer Experiments}
 The \acrfull{espnet} \citep{watanabe2018espnet} provides building blocks for \acrshort{blstm} transducer with attention mechanism  described in Section \ref{sec_7_5_blstm_t}.  Two experiments involving a much smaller audio corpus guaranteed to converge quickly at training and a larger Italian language speech corpus \citep{foxvorge2019} used for these experiments.  The AN4 (alphanumeric) corpus by Carnegie Mellon University \citep{acero1990acoustical}, is a small vocabulary speech corpus having only 948 training utterances and 140 test utterances.
 
 The speech corpora utterances are 16-bit linearly sampled at 16kHz, each recording made with near-field microphone quality.  The compressed tar file comes with a variety of audio formats including raw wav format, the NIST sphere format and those already encoded as Mel cepstral coefficients.
