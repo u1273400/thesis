@@ -1,4 +1,4 @@
-The HMM model described in Chapter \ref{c02} uses a divide and conquer strategy which has also been described as a generative Machine Learning algorithm in which we use the smaller components’ representations as modelled by the HMM to learn the entire speech process.   In previous chapters, this was referred to as the bottom-top strategy.  The discriminative method however uses the opposite mechanism.  Instead of using the building blocks of speech to determine speech parameters of a HMM, the discriminative strategy determines the posterior probability directly using the joint probability distribution of the parameters involved in the discriminative process.  The discriminative approach, discussed in this chapter focuses in on Neural network architectures.
+The HMM model described in Chapter \ref{c02} uses a divide and conquer strategy which has also been described as a generative Machine Learning algorithm in which we use the smaller components’ representations as modelled by the HMM to learn the entire speech process.   In previous chapters, this was referred to as the bottom-top strategy.  The discriminative method however uses the opposite mechanism.  Instead of using the building blocks of speech to determine speech parameters of a HMM, the discriminative strategy determines the posterior probability directly using the joint probability distribution of the parameters involved in the discriminative process.  The discriminative approach, discussed in this chapter focuses on Neural network architectures.
 
 \section{Neural network architecture}
 
@@ -431,8 +431,40 @@ In the model described in this work, the gradient $\mathcal{L}(x, z)$is computed
 \ln(a + b) = \ln(a) + \ln(1 + e^{\ln b - \ln a})
 \label{eqn_c3_ctc18}\end{equation}
 
+
+\startblue
+\section{Attention Mechanism}\label{sec_45_attn}
+
+This can be likened to how neural networks simulate how the human brain functions in achieving tasks.   Attention is a cognitive process of concentrating on one or a few things and at the same time ignoring others.  Therefore attention mechanism focuses more on the informative data segment of a model that contributes more to the final output.  It creates an underlying relationship between the input and output of a model producing improved transduction from input to output sequence. 
+
+Attention mechanism is an extension to the sequence-to-sequence asynchronous \acrshort{mimo} \acrshort{rnn} architecture discussed in Section \ref{sec_postalign}.  The objective of attention-based networks highlighted by \cite{vaswani2017attention} is to reduce sequential computation while attaining hidden representation across arbitrary lengths of sequential input. Some other strategies which have also attempted to achieve this includes a combination of convolutional and recurrent schemes \citep{kaiser2016can,kalchbrenner2016neural, gehring2017convolutional}.
+
+\begin{figure}
+\centering
+  % Requires \usepackage{graphicx}
+  \includegraphics[width=12cm]{thesis/images/attention.PNG}
+  \caption{Attention mechanism}
+\label{fig_c4_attn}
+\end{figure}
+
+Attention is achieved by joint training of an attention neuron that takes outputs of the hidden layer of each input in the encoder along with the entire \acrshort{rnn} as shown in figure \ref{fig_c4_attn}.  In the original attention mechanism proposed by \cite{bahdanau2014neural}, the weighted sum of all encoder outputs will determine what segment of the sequence receives more attention.  The output of this attention neuron at each time-step is then concatenated with the output of the \acrshort{rnn} and fed to the decoder.
+
+Since dot product is a fairly decent measure of similarity, and faster to compute, Luong et al  proposed a dot product between encoder’s output and decoder’s previous hidden state as a basis for attention mechanism.  For this to work however, both of these vectors must be of the same dimensions.  This type of attention mechanism is known as multiplicative attention.  Just like in Concatenative attention, the dot product gives a score and all the scores (at a given decoder timestep) go through a softmax layer to give the final weights.  Another modification proposed was to use the decoder’s hidden state at the current time step rather than at the previous time step (i.e., ) rather than, , then to use the output from the attention mechanism (denoted as ) directly to compute the decoder's predictions (rather than using it to compute the decoder’s current hidden state). They also proposed a variant of the dot product mechanism where the encoder outputs first go through a linear transformation (i.e., a time-distributed Dense layer without a bias term) before the dot products are computed.  This is called the “general” dot product approach.  They compared both dot product approaches to the concatenative attention mechanism (adding a rescaling parameter v), and they observed that the dot product variants performed better than concatenative attention.
+
+\begin{equation} \begin{aligned}
+\mathbf{\tilde{h}}_{(t)} &= \sum_i\alpha_{(t,i)}\mathbf{y}_{(i)} \\
+\text{with }\alpha_{(t,i)} &= \frac{exp(e_{(t,i)})}{\sum_{i'}exp(e_{(t,i')})} \\
+\text{and } &= \begin{cases} \mathbf{h}_{(t)}^\top\mathbf{y}_{(i)} & dot\\ 
+\mathbf{h}_{(t)}^\top\mathbf{W}\mathbf{y}_{(i)} &  general \\
+\mathbf{v}^\top\tanh{(\mathbf{W}[\mathbf{h}_{(t)};\mathbf{y}_{(i)}]) & concatenate
+\end{cases} 
+\end{aligned}\label{eqn_c4_attn00}\end{equation}
+
+\cite{vaswani2017attention} introduces a transduction model known as a Transformer based on self attention network with the ability to compute long term dependencies while eliminating sequence aligned RNN and convolutional architectures.  Although this study makes use of \acrshort{rnn} transducers with attention, integration of the self-attention architecture was left for a further study.
+\stopblue
+
 \section{Chapter Summary}
-Deep Neural Networks (DNNs) are at the centre of the models developed within this research.  They are able to overcome the challenge of complex modelling of latent information when discriminating directly from the data.  To this extent, they tend to be data intensive in nature.  In this chapter, neural network architectures and algorithms were considered.  The Chapter begins with the rudimentary perceptron algorithm which is the precursor to the logistic regression algorithm.  The Neural Network and Multi-Layer Peceptron (MLP), uses logistic regression concept and adds an extra layer of neurons and back propagation algorithm to optimise classifications.  
+Deep Neural Networks (DNNs) are at the centre of the models developed within this research.  They are able to overcome the challenge of complex modelling of latent information when discriminating directly from the data.  To this extent, they tend to be data intensive in nature.  In this chapter, neural network architectures and algorithms were considered.  The Chapter begins with the rudimentary Perceptron algorithm which is the precursor to the logistic regression algorithm.  The Neural Network and \acrfull{mlp}, uses logistic regression concept and adds an extra layer of neurons and back propagation algorithm to optimise classifications.  
 
 The Deep Neural Networks used within this research are special DNNs which are able to identify patterns in data having sequential patterns.  These are the deep Recurrent Neural Networks (RNNs).  It is shown in this Chapter that RNNs are able to learn the recurrent relationship information by modifying their architecture such that the data paths among the neurons are modified so that hidden states are also used as inputs.  In addition the back propagation algorithm is also modified in terms of datapaths of the algorithm output to reflect the sequential structure of the neural network.
 
