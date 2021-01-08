@@ -27,20 +27,24 @@ In this work, there are two speech models developed for low resource end-to-end 
 
 \subsection{Selection of RNN-architectures for sequence modelling}
 In the previous section (\ref{sec_c6_seqsel}) and in Section \ref{sec_postalign}, five \acrshort{rnn}/\acrshort{dnn} sequence-to-sequence models were defined as 
-\acrfull{siso}
-\acrfull{miso}
-\acrfull{simo}
-Synchronous \acrfull{mimo}
-Asynchronous \acrfull{mimo}
+\begin{enumerate}
+    \item \acrfull{siso}
+    \item \acrfull{miso}
+    \item \acrfull{simo}
+    \item Synchronous \acrfull{mimo}
+    \item Asynchronous \acrfull{mimo}
+\end{enumerate}
 
 Note that number 1 above can only apply to a regular \acrshort{dnn}, while numbers 2 to 5  apply to \acrshort{rnn}s.  Apart from the super-structures, the second sequence-to-sequence design criteria considers the sub-structures that comprise these super structures at the cell level.  There are five of \acrshort{rnn} sub architecture considered in this work
-Regular \acrshort{dnn}s
-\acrfull{lstm}
-\acrfull{gru}
-\acrlong{birnn}
-\acrlong{blstm}
+\begin{enumerate}
+    \item Regular \acrshort{dnn}s
+    \item \acrfull{lstm}
+    \item \acrfull{gru}
+    \item \acrlong{birnn}
+    \item \acrlong{blstm}
+\end{enumerate}
 
-Chapter \ref{ch5_DNN} presented an in-depth look at the above \acrshort{rnn} sub-structures.  For the \acrshort{rnn}-\acrshort{lm} developed in this Chapter, the sub-structure selected was the \acrshort{gru}. Similarly, the \acrshort{bilstm} is used for first speech model experiments. Details of the designs and selection criteria are given in this Chapter and Chapter \ref{ch6_speech}.  Note however, that as the name implies, the \acrfull{blstm} is a \acrshort{birnn} where the regular \acrshort{rnn}s are replaced by \acrshort{lstm}s.  Furthermore, the results in this Chapter show that there was no need to use the heavier duty \acrshort{lstm}s or \acrshort{birnn}s for the language model development  as the deep-\acrshort{gru}s proved to be quite sufficient. Speech models however, required a more robust substructure where \acrshort{blstm} have been shown to perform better \citep{kim2017joint}.
+Chapter \ref{ch3RNN} presented an in-depth look at the above \acrshort{rnn} sub-structures.  For the \acrshort{rnn}-\acrshort{lm} developed in this Chapter, the sub-structure selected was the \acrshort{gru}. Similarly, the \acrshort{bilstm} is used for first speech model experiments. Details of the designs and selection criteria are given in this Chapter and Chapter \ref{ch6_speech}.  Note however, that as the name implies, the \acrfull{blstm} is a \acrshort{birnn} where the regular \acrshort{rnn}s are replaced by \acrshort{lstm}s.  Furthermore, the results in this Chapter show that there was no need to use the heavier duty \acrshort{lstm}s or \acrshort{birnn}s for the language model development  as the deep-\acrshort{gru}s proved to be quite sufficient. Speech models however, required a more robust substructure where \acrshort{blstm} have been shown to perform better \citep{kim2017joint}.
 
 \subsection{Neural Network geometry}
 Neural network geometry refers to the number of layers and the number of neurons per layer. This will give the total degrees of freedom of the neural network.  Increasing the number of neurons per layer causes the neural network to extend the dimensions for discrimination.  However, increasing the number of layers enables better generalisation of the dimensional data.  These parameters have been selected empirically based on pilot experiments and experiments on neural networks for similar research. Generally for neural networks involving \acrshort{rnn}s good practice should have the number of layers start from 2-layers and the number of neurons per layer from 64.  Experiments for this research typically had 3-5 layers with the number of neurons being between 128 and 2048.
@@ -55,8 +59,8 @@ In Chapter \ref{ch3RNN}, the following nonlinear functions sigmoid, tanh and \ac
 An epoch is an event that occurs when the neural network has processed all the training data available.  Neural networks iteratively get trained until the network saturates or has reached an optimal state where the performance cannot improve further.  Usually, it takes several epochs for the network to get to a global optimum assuming all other parameters are configured optimally.  In the models developed in this thesis, the number of epochs were selected empirically from pilot experiments.  In some of the experiments performed, epochs were selected based on the Research objectives not to train for more than a few hours for the language models or a few days for speech models.
 \subsubsection{Learning rate}
 Learning rate has been introduced in Chapter \ref{ch3RNN}. The rule of thumb for \acrshort{dnn}s is the larger the network the lower the learning rate should be.  Learning rates applied to sequence models developed in this work based on geometries used ranged from 0.0001 to 0.0005.
-6.2.4.5 Cost function selection
-We have introduced the root mean square error, negative log likelihood and the \acrshort{ctc} loss cost functions in Chapter \ref{ch3RNN}.  This work made use of the negative log likelihood for the language model and the \acrshort{ctc} for the speech models. By way of comparison the AutoSegCriterion \citep{collobert2016wav2letter} is reviewed.
+\subsubsection{Cost function selection}
+We have introduced the root mean square error, negative log likelihood and the \acrshort{ctc} loss cost functions in Chapter \ref{ch3RNN}.  This work made use of the negative log likelihood for the language model and the \acrshort{ctc} for the speech models. Comparing \acrshort{ctc} to AutoSegCriterion proposed by \citep{collobert2016wav2letter} the differences for AutoSegCriterion are (1) no blank labels are required (2)nodes and  possibly edges have unnormalised scores and (3) global normalisation is utilised instead of per-frame normalisation.
 \subsubsection{Optimiser}
 Gradient descent algorithm has been introduced in Chapter \ref{ch3RNN}.  Different algorithms that improve upon the Gradient descent algorithm, such as ensuring a global minima is determined, are explored in work.  The adadelta and adam optimizer are examples of such used in this thesis.
 
