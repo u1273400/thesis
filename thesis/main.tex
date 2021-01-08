@@ -1,5 +1,18 @@
 \documentclass[12pt,twoside]{report}
-\usepackage{hyperref}
+\usepackage[bookmarksnumbered=true]{hyperref}
+\usepackage{bookmark}
+
+%\hypersetup{
+%    colorlinks=true,
+%    linkcolor=blue,
+%    filecolor=magenta,      
+%    urlcolor=cyan,
+%    pdftitle={Sharelatex Example},
+%    bookmarks=true,
+%    pdfpagemode=FullScreen,
+%}
+
+
 \usepackage[natbibapa]{apacite}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -141,6 +154,7 @@ I also acknowledge my parents (Prof. Mrs. Jane Alamina and Dr. P. T. Alamina) fo
 \addcontentsline{toc}{section}{List of Algorithms}
 \listofalgorithms
 \newpage
+\startblue
 \addcontentsline{toc}{section}{Acronyms}
 
 \begin{table}[tp]
@@ -268,6 +282,7 @@ $\psi_j$ & Scatter transform wavelet \\
 $S_n$ & $n$-th order Scatter transform \\
 \end{tabular}
 \end{table}
+\stopblue
 
 \chapter{\href{https://docs.google.com/document/d/1h8ZEcfEUpjJM6wYkgYYH-ryuiBFYVGSQA-Sf1StQtiY/edit#heading=h.i9tlo6ovvcpr}{Introduction}}\label{ch1_intro}
 \input{chapters/ch01}
