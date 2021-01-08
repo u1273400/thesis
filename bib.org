@@ -1,5 +1,14 @@
 * Bibliography
 
+@inproceedings{kim2017joint,
+  title={Joint CTC-attention based end-to-end speech recognition using multi-task learning},
+  author={Kim, Suyoun and Hori, Takaaki and Watanabe, Shinji},
+  booktitle={2017 IEEE international conference on acoustics, speech and signal processing (ICASSP)},
+  pages={4835--4839},
+  year={2017},
+  organization={IEEE}
+}
+
 @article{ardila2019common,
   title={Common voice: A massively-multilingual speech corpus},
   author={Ardila, Rosana and Branson, Megan and Davis, Kelly and Henretty, Michael and Kohler, Michael and Meyer, Josh and Morais, Reuben and Saunders, Lindsay and Tyers, Francis M and Weber, Gregor},
