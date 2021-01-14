@@ -44,17 +44,17 @@ It is clearly seen that the discriminative paradigm follows a much more direct a
 \section{Low Resource Languages}
 Another challenge observed in complex Machine Learning models for both generative as well as discriminative learning models is the data intensive nature of the work required for robust classification models. \cite{saon2015ibm} recommends around 2000 hours of transcribed speech data for a robust speech recognition system. As is covered in the next chapter, for new languages, which are low in training data such as transcribed speech, there are various strategies devised for low resource speech recognition. \cite{besacier2014automatic} outlines various matrices for bench-marking low resource languages.  From the generative speech model interest perspective,  reference is made to languages having less than ideal data in transcribed speech, phonetic dictionary and a text corpus for language modelling.  For end-to-end speech recognition models interests, the data relevant for low resource evaluation is the transcribed speech and a text corpus for language modelling.  It is worth noting that it was observed in \cite{besacier2014automatic} that speaker-base often does not affect a language resource status of a language and was often observed that large speaker bases could in fact lack language/speech recognition resources and that some languages having small speaker bases did in fact have sufficient language/ speech recognition resources.
 
-Speech recognition methods investigated in this work are motivated by the Wakirike language discussed in the next section, which is a low resource language by definition.  Thus, this research looked at low research language modelling for the Wakirike language from a corpus of Wakirike text available for analysis.  \textcolor{blue}{ However, due to the insufficiency of transcribed speech for the Wakirike language, Italian and English languages were substituted and used as control variables to study low resource effects of a language when exposed to speech models developed in this work.  Therefore, English and Italian languages simulated low resource constraint by purposely limiting the number of hours of recorded speech data during ASR system training.}
+Speech recognition methods investigated in this work are motivated by the Wakirike language discussed in the next section, which is a low resource language by definition.  Thus, this research looked at low research language modelling for the Wakirike language from a corpus of Wakirike text available for analysis.   However, due to the insufficiency of transcribed speech for the Wakirike language, Italian and English languages were substituted and used as control variables to study low resource effects of a language when exposed to speech models developed in this work.  Therefore, English and Italian languages simulated low resource constraint by purposely limiting the number of hours of recorded speech data during ASR system training.
 
 \section{The Wakirike Language}
 The Wakirike municipality is a fishing community comprising 13 districts in the Niger Delta area of the country of Nigeria in the West African region of the continent of Africa. The first set of migrants to Wakirike settled at the mainland town of Okrika between AD860 and AD1515 at the earliest.  These early settlers had migrated from Central and Western regions of the Niger Delta region of Nigeria.  As the next set of migrants also migrated from a similar region, when the second set of migrants met with the first settlers they exclaimed “we are not different” or “Wakirike” \citep{wakirike}.  
 
 Although the population of the Wakirike community from a 1995 report \citep{ethnologue} is about 248,000, the speaker base is  significantly less than stipulated.  The language is classified as Niger-Congo and Ijoid languages.  The writing orthography is Latin and the language status is 5 (developing) \citep{ethnologue}.  This means that although the language is not yet an endangered language, it still isn't thriving and it is being passed on to the next generation at a limited rate.
 
-The Wakirike language was the focus for this research.  An End-to-end deep neural network language model was built for the Wakirike language based on the availability of the new testament bible printed edition that was available for processing.  The corpus utilized for this thesis work is approximately \textcolor{blue}{668,522} words.
+The Wakirike language was the focus for this research.  An End-to-end deep neural network language model was built for the Wakirike language based on the availability of the new testament bible printed edition that was available for processing.  The corpus utilized for this thesis work is approximately 668,522 words.
 
 \section{Research aim and objectives}
-\startblue
+
 In this work, we develop speech processing and language models based on deep and recurrent neural network implementations. These models use input features which are of interest to new and low resource languages.  In particular, we develop a language model based on \acrfull{gru} for the Wakirike language and a \acrfull{birnn} speech model for the English and Italian languages.  The aim of this research is therefore to build competitive ASR systems in a resource conservative manner, encompassing both system resources as well as training data.
 
 The research objectives were as follows:
@@ -63,29 +63,29 @@ The research objectives were as follows:
     \item Discover building blocks for creating ASR systems generally, and then, limitations for new languages;
     \item Build robust ASR systems using methods that also address resource concerns; and
     \item Build and evaluate resource-friendly, end-to-end ASR systems.
-\end{itemize}\stopblue
+\end{itemize}
 
 Within this framework, our focus on language learning tasks was on Automatic Speech recognition while the intention was to achieve the last two objectives through one or more of the following means:
 \begin{enumerate}
     \item Reduction of time to train speech models and/or ensure training completes within few hours to few days;
     \item Optimisation of sub-tasks and training architecture within the ASR pipeline;
-    \item \textcolor{blue}{Observe and recommend models which perform better or train faster than others;}
+    \item Observe and recommend models which perform better or train faster than others;
     \item Make efficient use of training parallelism;
-    \item \textcolor{blue}{Obtain better or close to state-of-the-art performance; and}
+    \item Obtain better or close to state-of-the-art performance; and
     \item Induce model simplicity thereby reducing training and development time without compromising performance.
 \end{enumerate}
 
 Furthermore, following the Interspeech 2015 Zero Resource Speech Challenge \citep{versteegh2015zero}, this research also fulfilled the objectives of modelling speech at sub-word, word and syntax level. The Zero Resource Speech Challenge is inspired from infants ability to construct acoustic and language models of speech in an end-to-end manner. At the word and syntax level this research develops a character-based language model that reinforces sub-word, word and syntax level speech model based on Character-Temporal-Classification CTC.
 
-\startblue
+
 \subsection{Research Question}
 Considering the recent development of end-to-end systems facilitated by deep-learning and sequence modelling, is it possible to combine the recent pattern recognition strides in deep scattering transform with an end-to-end sequential model that results in a robust speech recognition system that new and low resource languages can leverage?  In addition, can supporting Speech recognition sub-systems be replaced or enhanced or simplified by sequence-oriented end-to-end deep learning models?
-\stopblue
+
 
 \section{Main Contribution to knowledge}
-\textcolor{blue}{This work uses a character-based neural language model for the low resourced language of Wakirike.  In addition, this work implements a unique combination of end-to-end deep recurrent neural network models with a robust and state of the art audio signal processing mechanism involving a hierarchical \acrfull{dsn} to engineer high-dimensional features to compete with current acoustic and deep architectures for speech recognition. While the language model had a better perplexity score than a 5-gram language model baseline, the \acrshort{dsn}-\acrshort{ctc} end-to-end sequence model performed competitively but not better than the baselines with a \acrlong{wer} of 12.9\% and 76.8\%; for \acrshort{svcsr} and \acrshort{lvcsr} tasks respectively.}
+This work uses a character-based neural language model for the low resourced language of Wakirike.  In addition, this work implements a unique combination of end-to-end deep recurrent neural network models with a robust and state of the art audio signal processing mechanism involving a hierarchical \acrfull{dsn} to engineer high-dimensional features to compete with current acoustic and deep architectures for speech recognition. While the language model had a better perplexity score than a 5-gram language model baseline, the \acrshort{dsn}-\acrshort{ctc} end-to-end sequence model performed competitively but not better than the baselines with a \acrlong{wer} of 12.9\% and 76.8\%; for \acrshort{svcsr} and \acrshort{lvcsr} tasks respectively.
 
-\startblue
+
 The main contributions to knowledge of this research include:
 \begin{itemize}
     \item Rather than developing separate systems including \acrlong{am}, \acrlong{lm}, phonetic dictionary, aligned text and speaker related data transformation, the systems developed in this research use a single end-to-end frame-work.  This framework, on the other hand, does not require separate sub-system training, but rather, uses only input audio and output text sequences for training. This is quite beneficial for low resource settings.
@@ -104,7 +104,7 @@ The main contributions to knowledge of this research include:
 
 \section{Scope of the study}
 This study acknowledged from the onset that it may not be able to gather the data required to build ASR systems for the Wakirike language as this is an initial problem this work hopes to get a step closer to solving.  As a result, the English and Italian languages were substituted and simulated low resource constraints by reducing the amount of hours of recorded speech data for training or reducing the vocabulary size.  This provides a rough estimate of how much of the target Wakirike language speech data will be required to provide equivalent results based on this multilingual approach.
-\stopblue
+
 
 \section{Thesis outline}
 The engineered systems, methods and supporting literature contained in this thesis report follows the following outline and describe the research outputs of an end-to-end speech recogniser and develops the theory based on the building blocks of the research outputs.
