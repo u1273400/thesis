@@ -8,7 +8,7 @@ The building block of a neural network simulates a combination of two consecutiv
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=7cm]{thesis/images/ptron2.png}\\
-  \caption{Neuron cell where $x_i$ are inputs and $w_i$ are input weights} \label{fig_3_1_ptron}
+  \caption{Neuron cell \citep{landahl1943statistical} where $x_i$ are inputs and $w_i$ are input weights} \label{fig_3_1_ptron}
 \end{figure}
 
 The linear operation is the sum of the products of the input feature and a  weight vector set.  This vector sum of products is referred to as an affine transformation or operation.  The non linear operation is given by any one of a selection of nonlinear functions.  In  Figure \ref{fig_3_2_nn} this is shown as a step function.  The step function is activated (becomes 1) whenever the output of the linear function is above a certain threshold, otherwise remains at 0.  A simple neural network of perceptrons is formed by stacking the perceptrons into an interconnected layer as shown in the Figure \ref{fig_3_2_nn}.
@@ -17,7 +17,7 @@ The linear operation is the sum of the products of the input feature and a  weig
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=7cm]{thesis/images/ptron3.png}\\
-  \caption{Neural network} \label{fig_3_2_nn}
+  \caption{Perceptron algorithm having multiple neuron cells} \label{fig_3_2_nn}
 \end{figure}
 
 From the preceding paragraph, each combination of linear operation followed by a non linear operation is called a neuron and the total number of neurons in the layer formed is termed as $M$-number of neurons in the layer.
@@ -256,7 +256,7 @@ The internal structure and working  of the LSTM cell is documented by its creato
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=7cm]{lstmcell}\\
-  \caption{An LSTM Cell  \citep{graves2013hybrid}}\label{fig_3_3_lstmcell}
+  \caption{An LSTM Cell showing Input, output and forget  gates  \citep{graves2013hybrid}}\label{fig_3_3_lstmcell}
 \end{figure}
 
 The gates in the above formula are illustrated in Figure \ref{fig_3_3_lstmcell}.  $\mathbf{i}_t$ represents the input gate, $\mathbf{f}_t$ is the forget gate and $\mathbf{o}_t$ represents the output gate.  At each of these gates therefore, the inputs consisting of hidden states in addition to the regular inputs are multiplied by a set of weights and passed through a soft-max function. These weights during training learn whether the gate will, during inference, open or not.  In summary, the input gate tells the LSTM whether or not to receive new information, the forget gate determines whether the current information it already has from the previous step should be kept or dropped and the output gate determines what should be forwarded to the next LSTM cell.  Note also that the LSTM has two sigmoid ($tanh$) activation functions utilised at the input and output of the current cell $\mathbf{c}_t$.
@@ -371,7 +371,7 @@ Figure \ref{fig_c4_lattice} expresses the recurrence relation for $\alpha(t, u)$
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=9cm]{thesis/images/Lattice.png}
-  \caption{Beam Search Lattice Structure \citep{graves2006connectionist}}
+  \caption{Beam Search Lattice Structure showing forward (left) and backward (right) paths \citep{graves2006connectionist}}
 \label{fig_c4_lattice}
 \end{figure}
 
@@ -406,7 +406,7 @@ The cross entropy error is a loss function used to measure accuracy of probabili
 \begin{equation}
 \mathcal{L}(S) = - \ln \prod_{(x,z) \in S} \Pr(z \, | \, x) = - \sum_{(x,z) \in S} \ln \Pr(z \, | \, x)
 \label{eqn_c3_ctc11}\end{equation}
-where $z$ is the output label and $x$ is the input sequence.  Since $\mathcal{L}(S)$ in equation \ref{eqn_c3_ctc11} is differentiable, this loss function can be back propagated to the softmax layer in the BiRNN configuration discussed in section \ref{deepspeech}.
+where $z$ is the output label and $x$ is the input sequence.  Since $\mathcal{L}(S)$ in equation \ref{eqn_c3_ctc11} is differentiable, this loss function can be back propagated to the soft max layer in the BiRNN configuration discussed in section \ref{deepspeech}.
 \begin{equation}
 \mathcal{L}(x,z) \equiv - \ln \Pr(z \, | \, x)
 \label{eqn_c3_ctc12}\end{equation}
@@ -454,7 +454,7 @@ Attention mechanism is an extension to the sequence-to-sequence asynchronous \ac
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=12cm]{thesis/images/attention.PNG}
-  \caption{Attention mechanism}
+  \caption{Attention mechanism is centred around a time-distributed dense operation that determines similarity measure between current decoding sequence hidden input and all input sequence outputs.}
 \label{fig_c4_attn}
 \end{figure}
 
