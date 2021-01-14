@@ -60,7 +60,7 @@ The CMU Sphinx recogniser system is illustrated in Figure \ref{fig_c3_sphinx}.  
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=9cm]{thesis/images/sphinx}\\
-  \caption{CMU Sphinx4 recogniser system }\label{fig_c3_sphinx}
+  \caption{CMU Sphinx4 recogniser system. The core modules: \texttt{FrontEnd}, \texttt{Decoder} and \texttt{Linguist} coloured in grey.}\label{fig_c3_sphinx}
 \end{figure}
 In the CMU Sphinx realisation, the \texttt{FrontEnd} module implements feature extraction.  The \texttt{Linguist} module implements the acoustic modelling and the language model component. Finally, the \texttt{Decoder} module implements a decoder.  The \texttt{ConfigurationManager} class is used to determine the behaviour of the recogniser by specifying the parameters of the other modules.   
 
@@ -127,7 +127,7 @@ The component architecture of Kaldi is illustrated in the figure below.  Modules
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=9cm]{thesis/images/kaldi}\\
-  \caption{Kaldi Architecture\citep{povey2011kaldi}}\label{fig_c3_kaldi}
+  \caption{ The Kaldi Architecture\citep{povey2011kaldi} has four layers.  At the deepest layer are the external libraries, followed by the C++ back-end library.  At the top: are the C++ executables called by shell scripts }\label{fig_c3_kaldi} 
 \end{figure}
 \subsubsection{Feature Extraction}
 Kaldi supports various speech feature outputs including the standard \acrfull{mfcc}, \acrfull{plp}, \acrfull{vtln}, \acrfull{cmvn}, \acrfull{lda}, \acrfull{stc},\acrfull{mllt}, \acrfull{hlda}.  These systems are made complete with various configuration parameters for fine tuning their individual models.
@@ -225,7 +225,7 @@ end
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=9cm]{thesis/images/wfplot}\\
-  \caption{Scatter transform wavelet filters}\label{fig_c3_wplot}
+  \caption{Scatter transform wavelet filter plots of various dilations of $J$}\label{fig_c3_wplot}
 \end{figure}
 
 \subsubsection{Using the Matlab API}\label{sec_c3_scat02}
@@ -347,7 +347,7 @@ In a TensorFlow computational data flow graph, vertices or nodes of the directed
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=9cm]{thesis/images/tfgraph}\\
-  \caption{Sample TensorFlow computation graphs\citep{goldsborough2016tour}}\label{fig_c3_tfg}
+  \caption{Sample TensorFlow computation graphs\citep{goldsborough2016tour} showing a simple addition operation on the left and a more involved sequence on the right comprising a dot operation followed by an addition and then a sigmoid operation}\label{fig_c3_tfg}
 \end{figure}
 
 The left graph displays a basic compute graph consisting of an addition operator having two input variables $x$ and $y$.  The result, $z$ is the output of the $+$ operation.  The right graph gives an example logistic regression function. $\hat{y}$ is the final output of the function for some sample vector $\mathbf{x}$, weight vector $\mathbf{w}$ and scalar bias $b$.  As shown in the graph, $\hat{y}$ is the output of the sigmoid or logistic function $\sigma$
@@ -358,7 +358,7 @@ The Backprop algorithm \cite{Goodfellow-et-al-2016} is an efficient method to co
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=9cm]{thesis/images/bprop}\\
-  \caption{Tensorflow graph with backprop nodes \citep{goldsborough2016tour}}\label{fig_c3_bprop}
+  \caption{Tensorflow graph with backprop nodes \citep{goldsborough2016tour}.  The forward propagation is on the left (a) and; the Forward propagation with back propagation (b) is on the right}\label{fig_c3_bprop}
 \end{figure}
 
 Figure \ref{fig_c3_bprop} illustrates how tensor implements backprop by adding two extra nodes at the appropriate layers within the network to satisfy the chain rule.  For each operation encountered, there is a corresponding gradient function that reverses the output as a function of the inputs.  The output of this gradient function can then be propagated backwards to a previous operation which would represent a previous layer within a neural network.  The gradient function propagated to the previous layer is then used to complete the parameters of the chain rule by multiplying with that previous layer’s gradient.  This output is ready to be propagated down the network to the subsequent layer to perform a similar function.  This process continues until all the weights within the network have appropriate update values.
@@ -417,7 +417,7 @@ The goal of automatic transcription of new language with low resource constraint
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=9cm]{thesis/images/alisa}\\
-  \caption{Alisa Architecture\citep{stan2016alisa}}\label{fig_c3_alisa00}
+  \caption{Alisa iterative architecture \citep{stan2016alisa} involving acoustic model, skip-network recognition and confidence level determination}\label{fig_c3_alisa00}
 \end{figure}
 
 Figure \ref{fig_c3_alisa00} shows a block diagram of the steps involved in the alignment.  The method can be applied to any language with an alphabetic writing system, given the availability of speech resource and its corresponding approximate script.
@@ -446,7 +446,7 @@ This two stage procedure performs segmentation of phonemes and then discovery of
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=9cm]{thesis/images/corr}\\
-  \caption{Original waveform input for auto-correlation}\label{fig_c3_exp01}
+  \caption{Original waveform input from 3-second utterance for auto-correlation}\label{fig_c3_exp01}
 \end{figure}
 
 \subsubsection{Segmentation}
@@ -464,7 +464,7 @@ At the auto-correlation stage estimated phoneme segment boundaries are stored in
 \centering
   % Requires \usepackage{graphicx}
   \includegraphics[width=9cm]{thesis/images/corr01}\\
-  \caption{(a) Positive values of original waveform (b) Isolated Segment plot (c) Correlation of (a) against (b) plot. counter}\label{fig_c3_exp03}
+  \caption{(a) Positive values of original waveform (b) Isolated Segment plot (c) Correlation plot of (a) against (b) plot. counter}\label{fig_c3_exp03}
 \end{figure}
 
 \startblue
