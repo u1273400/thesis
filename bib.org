@@ -7,6 +7,17 @@
   year={2017}
 }
 
+@article{landahl1943statistical,
+  title={A statistical consequence of the logical calculus of nervous nets},
+  author={Landahl, HD and McCulloch, Warren S and Pitts, Walter},
+  journal={The bulletin of mathematical biophysics},
+  volume={5},
+  number={4},
+  pages={135--137},
+  year={1943},
+  publisher={Springer}
+}
+
 @inproceedings{he2015delving,
   title={Delving deep into rectifiers: Surpassing human-level performance on imagenet classification},
   author={He, Kaiming and Zhang, Xiangyu and Ren, Shaoqing and Sun, Jian},
