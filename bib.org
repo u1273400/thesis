@@ -7,6 +7,13 @@
   year={2017}
 }
 
+@article{hori2017advances,
+  title={Advances in joint CTC-attention based end-to-end speech recognition with a deep CNN encoder and RNN-LM},
+  author={Hori, Takaaki and Watanabe, Shinji and Zhang, Yu and Chan, William},
+  journal={arXiv preprint arXiv:1706.02737},
+  year={2017}
+}
+
 @article{landahl1943statistical,
   title={A statistical consequence of the logical calculus of nervous nets},
   author={Landahl, HD and McCulloch, Warren S and Pitts, Walter},
